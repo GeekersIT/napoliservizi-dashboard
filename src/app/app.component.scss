@@ -1,0 +1,6 @@
+@import '../styles.scss';
+
+.container{
+    min-height: calc(100% - #{$topbar})!important;
+    height: calc(100% - #{$topbar})!important;
+}

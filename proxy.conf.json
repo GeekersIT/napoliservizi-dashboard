@@ -1,0 +1,21 @@
+{    
+    "/api/v1/graphql/*": {
+      "target": "https://napoliservizi.duckdns.org/api/v1/graphql",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api/v1/graphql": ""
+      }
+    },
+    "/geoserver/*": {
+      "target": "https://napoliservizi.duckdns.org/geoserver",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/geoserver": ""
+      }
+    }  
+  }
+    

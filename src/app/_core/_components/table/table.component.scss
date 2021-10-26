@@ -1,0 +1,44 @@
+@use '~@angular/material' as mat;
+@import '../../../../styles.scss';
+
+table {
+    width: 100%;
+}
+.mat-form-field {
+    width: 20%;
+}
+
+.active{
+    background-color: mat.get-color-from-palette($dashboard-primary)!important;
+    color: mat.get-color-from-palette($dashboard-primary, '500-contrast')!important
+}
+
+tr.detail-row {
+    height: 0;
+  }
+  
+  tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+  }
+  
+  .element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+
+  .mat-button-toggle-checked {
+    background-color: #FFF !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 24px 16px!important;
+}
