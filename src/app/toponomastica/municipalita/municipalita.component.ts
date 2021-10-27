@@ -1,12 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { ItemData } from 'src/app/_core/_formly/multiple-autocomplete-formly/multiple-autocomplete-formly.component';
-import { MunicipalitaService } from 'src/app/_core/_services/municipalita.service';
-import { QuartiereService } from 'src/app/_core/_services/quartiere.service';
+import { map } from 'rxjs/operators';
+import { DataSource } from 'src/app/_core/_components/table/data-source.model';
+import { MunicipalitaGQL, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 
 @Component({
@@ -15,19 +13,24 @@ import { MunicipalitaEditComponent } from './edit/edit.component';
   styleUrls: ['./municipalita.component.scss']
 })
 export class MunicipalitaComponent implements OnInit {
-  @ViewChild('optionTemplate') public optionTemplate!: TemplateRef<any>;
+  source: any;
+  dataSource: DataSource;
 
-  dataSource: any;
   options: FormlyFormOptions = {};
   model: any = {};
-  fields: FormlyFieldConfig[] = [];
-  quartieri:any=[];
-  columns = [
-    {      
-      columnDef: 'expands',
-      show: true
+  fields: FormlyFieldConfig[] = [{
+    key: 'quartiere',
+    type: 'autocomplete',
+    templateOptions: {
+      multiple: true,
+      filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.watch().valueChanges.pipe(map(result => result.data.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.watch().valueChanges.pipe(map(result => result.data.quartiere)),
     },
-    {
+    expressionProperties: {
+      'templateOptions.label': this._translatService.stream('Quartiere'),
+    },
+  }];
+
+  columns = [{
       columnDef: 'id',
       header: this._translatService.instant('ID'),
       show: false,
@@ -42,59 +45,51 @@ export class MunicipalitaComponent implements OnInit {
       header: this._translatService.instant('Quartieri'),
       show: true,
       cell: (element: any) => `${element.quartiere}`
-    },{      
-      columnDef: 'actions',
-      show: true
     }];
-    isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
   constructor(
-    private _municipalitaService: MunicipalitaService,
-    private _quartiereService: QuartiereService,
+    private _municipalitaGQL: MunicipalitaGQL,
+    private _quartiereSelectGQL: QuartiereSelectGQL,
     private _translatService: TranslateService,
     public dialog: MatDialog
   ) {
-    this.dataSource = new BehaviorSubject<any>([]);
+    this.dataSource = new DataSource();
   }
 
-
-
-  private async _init(){
-    this.dataSource.next(await this._municipalitaService.getData());
-    this.quartieri = await this._quartiereService.getOptions();
-    this.fields = [
-      {
-        key: 'quartiere',
-        type: 'multiple-autocomplete',
-        templateOptions: {
-          appearance: 'outline',
-          data: this.quartieri.map((o:any) => new ItemData(o,false)),
-          filter: (option: ItemData, filter: string) => option.item.nome.toLowerCase().indexOf(filter.toLowerCase()) >= 0,
-          optionTemplate: this.optionTemplate,
-        },
-        expressionProperties: {
-          'templateOptions.label': this._translatService.stream('Quartiere'),
-        },
-      },
-    ];
-    this.isLoading.next(false);
+  private _map(element:any){
+    return {
+      ...element, 
+      ...{quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita == null).map((q:any) => q.quartieri.map((q:any) => q.quartiere.nome).join(', ')).join(', ')},
+      ...{pacchetti_quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita == null).map((q:any) => { return {...q, nome: q.quartieri.map((q:any) => q.quartiere.nome).join(', ')}})[0]},
+      ...{vecchi_pacchetti_quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita != null).map((q:any) => { return {...q,quartieri:q.quartieri.map((q:any) => q.quartiere.nome).join(', ')}})}
+    }
   }
 
   ngOnInit(){
-    this._init()
+    this.dataSource.isLoading!.next(true);
+    this.source = this._municipalitaGQL.subscribe().subscribe((data:any) => {
+      this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+      this.dataSource.isLoading!.next(false);
+    });
   }
 
   async applyFilter() {
-    const filterValue = this.model.quartiere.map((e:ItemData) => e.item.id);
-    this.isLoading.next(true);
-    this.dataSource.next(await this._municipalitaService.getDataByQuartiere(filterValue));
-    this.isLoading.next(false);
+    this.dataSource.isLoading!.next(true);
+    this.source.unsubscribe();
+    this.source = this._municipalitaGQL.subscribe({quartieri_id:{_in: this.model.quartiere.map((e:any) => e.id)}}).subscribe((data:any) => {
+      this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+      this.dataSource.isLoading!.next(false);
+    });
   }
 
   async reset(event: boolean){
     if(event) {
-      this.isLoading.next(true);
-      this.dataSource.next(await this._municipalitaService.getData());
-      this.isLoading.next(false);
+      this.dataSource.isLoading!.next(true);
+      this.source.unsubscribe();
+      this.source = this._municipalitaGQL.subscribe().subscribe((data:any) => {
+        this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+        this.dataSource.isLoading!.next(false);
+      });
     }
   }
 
@@ -102,8 +97,8 @@ export class MunicipalitaComponent implements OnInit {
     const dialogRef = this.dialog.open(MunicipalitaEditComponent, {
       data: row
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result) => {
+        console.log(result);
     });
   }
 

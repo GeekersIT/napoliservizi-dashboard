@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json --disable-host-check",
+    "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json --disable-host-check ",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/it1.json --clean --format json"
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/it1.json --clean --format json",
+    "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +31,8 @@
     "@swimlane/ngx-datatable": "^20.0.0",
     "@types/jspdf": "^2.0.0",
     "apollo-angular": "^2.6.0",
-    "graphql": "^15.0.0",
+    "dotenv": "^10.0.0",
+    "graphql": "^15.6.1",
     "keycloak-angular": "^8.4.0",
     "keycloak-js": "^15.0.2",
     "mat-table-exporter": "^10.2.4",
@@ -48,6 +50,7 @@
     "@angular-devkit/build-angular": "~12.1.1",
     "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
+    "@graphql-codegen/cli": "2.2.1",
     "@ngx-formly/schematics": "^5.10.23",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
@@ -58,6 +61,10 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~4.3.2"
+    "typescript": "~4.3.2",
+    "@graphql-codegen/typescript": "2.2.4",
+    "@graphql-codegen/typescript-operations": "2.1.8",
+    "@graphql-codegen/typescript-apollo-angular": "3.2.2",
+    "@graphql-codegen/introspection": "2.1.0"
   }
 }

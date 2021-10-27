@@ -1,0 +1,28 @@
+query MunicipalitaSelect {
+  municipalita(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+
+
+query QuartiereSelect {
+  quartiere(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+
+query DugSelect {
+  dug(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+
+query TipologiaSelect {
+  tipologia(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}

@@ -78,4 +78,18 @@ export class MunicipalitaService {
     return data.data.municipalita;
   }
 
+
+  update(data:any){
+    return this.apollo.mutate<any>({
+      mutation: gql`mutation UpdateMunicipalita($id: Int!, $nome: String!) {
+        update_municipalita(where: {id: {_eq: $id}}, _set: {nome: $nome}) {
+          affected_rows
+        }
+      }`,
+      variables: {
+        "id": data.id,
+        "nome": data.nome
+      }
+    });
+  }
 }

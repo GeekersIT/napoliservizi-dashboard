@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
+import { DataSource } from './data-source.model';
 
 @Component({
   selector: 'table-component',
@@ -22,22 +22,17 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @Input() expandsTemplate!: TemplateRef<any>;
-  @Input() actionsTemplate!: TemplateRef<any>;
-  @Input() filterTemplate!: TemplateRef<any>;
+  @Input() expandsTemplate: TemplateRef<any>|undefined = undefined;
+  @Input() actionsTemplate: TemplateRef<any>|undefined = undefined;
+  @Input() filterTemplate: TemplateRef<any>|undefined = undefined;
 
 
-  @Input() source!: BehaviorSubject<any>;
+  @Input() dataSource!: DataSource;
   @Input() columns!: Array<any>;
 
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
-  @Input() isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-
+  source: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   expandedElement: any | null;
-
-
   displayedColumns!: string[];
-
   pageSize: number = 10;
 
   panelOpenState = false;
@@ -45,25 +40,25 @@ export class TableComponent implements OnInit {
   constructor() {}
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.source.paginator = this.paginator;
+    this.source.sort = this.sort;
   }
 
   ngOnInit(): void {
-    this.source.subscribe(s => {
-      this.dataSource = new MatTableDataSource<any>(s);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.dataSource.source!.subscribe(s => {
+      this.source = new MatTableDataSource<any>(s);
+      this.source.paginator = this.paginator;
+      this.source.sort = this.sort;
     })
     this._updateDisplayedColumns();
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.source.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.source.paginator) {
+      this.source.paginator.firstPage();
     }
   }
 
@@ -79,13 +74,15 @@ export class TableComponent implements OnInit {
       }
       return filtered;
     }, []);
+    this.displayedColumns = this.expandsTemplate ? ['expands'].concat(this.displayedColumns) : this.displayedColumns;
+    this.displayedColumns = this.actionsTemplate ? this.displayedColumns.concat(['actions']) : this.displayedColumns;
   }
 
   tooglePageSize(){
-    this.pageSize = this.pageSize == 10 ? this.dataSource.data.length : 10;
+    this.pageSize = this.pageSize == 10 ? this.source.data.length : 10;
     this.paginator.length = this.pageSize;
     this.paginator.pageSize = this.pageSize;
-    this.dataSource.paginator = this.paginator;
+    this.source.paginator = this.paginator;
   }
 
 }

@@ -1,0 +1,27 @@
+subscription Quartieri($municipalita_id: Int_comparison_exp = {}) {
+  quartiere(order_by: {nome: asc}, where: {municipalita: {municipalita: {fine_validita: {_is_null: true}, municipalita: {id: $municipalita_id}}}}) {
+    id
+    nome
+    updated_at
+    vecchie_denominazioni(order_by: {created_at: desc, nome: asc}) {
+      nome
+      created_at
+    }
+    municipalita(order_by: {municipalita: {fine_validita: asc_nulls_first}}) {
+      municipalita {
+        municipalita {
+          id
+          nome
+        }
+        fine_validita
+        inizio_validita
+      }
+    }
+  }
+}
+
+mutation UpdateQuartiere($quartiere: [quartiere_insert_input!] = {}) {
+  insert_quartiere(on_conflict: {constraint: quartiere_pkey, update_columns: nome}, objects: $quartiere) {
+    affected_rows
+  }
+}

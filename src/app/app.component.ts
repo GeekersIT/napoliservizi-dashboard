@@ -14,6 +14,13 @@ export class AppComponent {
   ) {
     translate.setDefaultLang('it');
     translate.use('it');
+
+    this.getToken()
+  }
+  async getToken(){
+    let userToken = await this._keycloak.getToken();
+
+    console.log(userToken);
   }
 
   logout() {

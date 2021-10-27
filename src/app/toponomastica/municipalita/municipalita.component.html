@@ -3,7 +3,7 @@
     <span class="spacer"></span>
 </mat-toolbar>
 <div class="main-content">
-    <table-component [source]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate" [isLoading]="isLoading"></table-component>
+    <table-component [dataSource]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
 </div>
 
 <ng-template #filterTemplate>
@@ -11,13 +11,7 @@
     <ng-template #filterActionsTemplate>
         <button mat-button (click)="applyFilter()">{{ 'Applica filtro'|translate }}</button>
     </ng-template>
-
-    <ng-template let-option="option" #optionTemplate>
-        {{ option.nome }}
-    </ng-template>
-
 </ng-template>
-
 
 <ng-template let-row="row" #expandsTemplate>
     <div style="width: 30%;">
@@ -71,10 +65,6 @@
         <mat-icon>edit</mat-icon>
         {{ 'Modifica'|translate }}
     </button>
-    <!-- <button mat-stroked-button color="accent" [routerLink]="['/','toponomastica','municipalita','edit',row.id]">
-        <mat-icon>edit</mat-icon>
-        {{ 'Modifica'|translate }}
-    </button> -->
 </ng-template>
 
 
