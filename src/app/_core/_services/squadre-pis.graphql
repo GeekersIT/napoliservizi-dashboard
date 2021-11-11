@@ -1,0 +1,65 @@
+subscription SquadrePis($where: squadra_bool_exp = {}) {
+  squadra(where: $where) {
+    id
+    nome
+    protezione_civile
+    updated_at
+    vecchie_denominazioni(order_by: {created_at: desc}) {
+      nome
+      created_at
+    }
+    membri(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      caposquadra
+      inizio_validita
+      fine_validita
+      membro {
+        id
+        nome
+        cognome
+        matricola
+      }
+    }
+  }
+}
+mutation UpdateSquadraPis($squadra: [squadra_insert_input!] = {}) {
+  insert_squadra(on_conflict: {constraint: squadra_pkey, update_columns: [nome,protezione_civile]}, objects: $squadra) {
+    affected_rows
+  }
+}
+mutation DeleteSquadraPis($id: Int!) {
+  delete_squadra(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+
+
+subscription OperatoriPis($where: membro_bool_exp = {}) {
+  membro(where: $where) {
+    id
+    nome
+    cognome
+    matricola
+    squadre(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      caposquadra
+      inizio_validita
+      fine_validita
+      squadra{
+        id
+        nome
+        protezione_civile
+      }
+    }
+  }
+}
+mutation UpdateOperatorePis($membro: [membro_insert_input!] = {}) {
+  insert_membro(on_conflict: {constraint: membro_pkey, update_columns: [nome,cognome,matricola]}, objects: $membro) {
+    affected_rows
+  }
+}
+mutation DeleteOperatorePis($id: Int!) {
+  delete_membro(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}

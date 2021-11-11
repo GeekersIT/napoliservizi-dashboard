@@ -6,6 +6,9 @@ import { FormlyModule } from '@ngx-formly/core';
 import { AutocompleteFormlyModule } from '../../_formly/autocomplete-formly/autocomplete-formly.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RepeatSectionFormlyModule } from '../../_formly/repeat-section-formly/repeat-section-formly.module';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 
 
 
@@ -18,8 +21,11 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     FormlyModule.forChild(),
     AutocompleteFormlyModule,
+    RepeatSectionFormlyModule,
     TranslateModule,
-    MatButtonModule
+    MatButtonModule,
+    NgScrollbarModule,
+    FormlyMatToggleModule
   ],
   exports: [ FormComponent ]
 })

@@ -1,0 +1,9 @@
+<div style="margin-bottom:25px;">
+    <button mat-raised-button type="button" (click)="add()">{{ to.addText }}</button>
+</div>
+<div *ngFor="let field of field.fieldGroup; let i = index;" class="display-flex">
+    <formly-field [field]="field" class="flex-1"></formly-field>
+    <button class="remove" mat-icon-button color="warn" type="button" (click)="delete(i)">
+        <mat-icon>delete_forever</mat-icon>
+    </button>
+</div>

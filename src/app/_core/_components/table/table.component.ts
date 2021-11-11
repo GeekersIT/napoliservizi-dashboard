@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DataSource } from './data-source.model';
@@ -26,6 +26,8 @@ export class TableComponent implements OnInit {
   @Input() actionsTemplate: TemplateRef<any>|undefined = undefined;
   @Input() filterTemplate: TemplateRef<any>|undefined = undefined;
 
+
+  @Input() defaultSort!: any;
 
   @Input() dataSource!: DataSource;
   @Input() columns!: Array<any>;

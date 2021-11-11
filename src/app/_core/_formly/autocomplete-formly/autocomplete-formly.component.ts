@@ -36,6 +36,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
           ...{displayFn: this.to.multiple ? ((): string => this.selectedData.length > 0 ? ' ': '') : (this.to.displayWith ? this.to.displayWith : (option:any) => (option!==null && option!==undefined) ? option.nome : '') }
         }
         if(this.to.multiple){
+
+          if(this.formControl.value!=null)
+            this.formControl.value.map((data:any) => this.selectedData.push(data))
           this.formControl.valueChanges.subscribe(d => {
             if(d === undefined || d === null){
               this.selectedData.map((data:any) => this.toggleSelection(data))
@@ -57,7 +60,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
     };
   
     toggleSelection = (data: any): void => {
-      const i = this.selectedData.findIndex(value => value === data)
+      const i = this.selectedData.findIndex(value => value.id === data.id)
       if(i == -1){
         this.selectedData.push(data);
       }else{
@@ -70,7 +73,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
       this.toggleSelection(data);
     };
   
-    check = (data:any): boolean => this.selectedData.findIndex(value => value === data) == -1 ? false : true
+    check = (data:any): boolean => this.selectedData.findIndex(value => value.id === data.id) == -1 ? false : true
   
     displayFn = (): string => this.selectedData.length > 0 ? ' ': '';
 

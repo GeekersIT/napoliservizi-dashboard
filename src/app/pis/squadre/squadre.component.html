@@ -1,0 +1,75 @@
+<mat-toolbar>
+    <span>{{ 'Gestione squadre'|translate }}</span>
+    <span class="spacer"></span>
+    <button mat-stroked-button color="accent" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        {{ 'Aggiungi una squadra'|translate }}
+    </button>
+    <button mat-stroked-button color="accent" [routerLink]="'operatore'">
+        <mat-icon>list</mat-icon>
+        {{ 'Lista operatori'|translate }}
+    </button>
+</mat-toolbar>
+<div class="main-content">
+    <table-component [defaultSort]="defaultSort" [dataSource]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate"></table-component>
+</div>
+
+<ng-template let-row="row" #expandsTemplate>
+    <div class="display-flex">
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Denominazione attuale'|translate }}</div>
+            <mat-list-item>
+                <div mat-line>{{ row.nome }}<span *ngIf="row.protezione_civile"> - {{ 'Protezione civile'|translate  }}</span></div>
+                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:row.updated_at | date:'full':'it'} }}</span></div>
+            </mat-list-item>
+        </mat-list>
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Composizione squadra attuale'|translate }}</div>
+            <mat-list-item *ngFor="let membro of row.membri">
+                <div mat-line>{{ membro.membro.nome }} {{ membro.membro.cognome}} <span *ngIf="membro.caposquadra">({{ 'Caposquadra'|translate }})</span></div>
+                <div mat-line><span>{{ 'Matricola'|translate }}: {{ membro.membro.matricola}}</span></div>
+                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:membro.inizio_validita | date:'full':'it'} }}</span></div>
+            </mat-list-item>
+        </mat-list>
+        <mat-divider class="break"></mat-divider>
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Vecchie denominazioni'|translate }}</div>
+            <ng-container *ngIf="row.vecchie_denominazioni.length != 0; else empty">
+                <mat-list-item  *ngFor="let denominazioni of row.vecchie_denominazioni;">
+                    <div mat-line>{{ denominazioni.nome }}<span *ngIf="denominazioni.protezione_civile"> - {{ 'Protezione civile'|translate  }}</span></div>
+                    <div mat-line><span>{{ 'Valida fino a {data}'|translate:{data:denominazioni.created_at | date:'full':'it'} }}</span></div>
+                </mat-list-item>
+            </ng-container>
+            <ng-template #empty>
+                <mat-list-item>
+                    <div mat-line><span>{{ 'Non ci sono vecchie denominazioni'|translate }}</span></div>
+                </mat-list-item>
+            </ng-template>
+        </mat-list>
+        
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Vecchie assegnazioni'|translate }}</div>
+            <ng-container *ngIf="row.membri_vecchi.length != 0 || row.membri_vecchi.length != 0 ; else empty">
+                <mat-list-item *ngFor="let membro of row.membri_vecchi">
+                    <div mat-line>{{ membro.membro.nome }} {{ membro.membro.cognome}} <span *ngIf="membro.caposquadra">({{ 'Caposquadra'|translate }})</span></div>
+                    <div mat-line><span>{{ 'Matricola'|translate }}: {{ membro.membro.matricola}}</span></div>
+                    <div mat-line><span>{{ 'Valida fino a {data}'|translate:{data:membro.fine_validita | date:'full':'it'} }}</span></div>
+                </mat-list-item>
+            </ng-container>
+            <ng-template #empty1>
+                <mat-list-item>
+                    <div mat-line><span>{{ 'Non ci sono vecchie assegnazioni'|translate }}</span></div>
+                </mat-list-item>
+        </ng-template>
+        </mat-list>
+    </div>
+</ng-template>
+
+<ng-template let-row="row" #actionsTemplate>
+    <button mat-stroked-button color="accent" (click)="openDialog(row)">
+        <mat-icon>edit</mat-icon>
+        {{ 'Modifica'|translate }}
+    </button>
+</ng-template>
+
+

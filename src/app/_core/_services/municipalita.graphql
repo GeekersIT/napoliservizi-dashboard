@@ -1,20 +1,19 @@
-subscription Municipalita($quartieri_id: Int_comparison_exp = {}) {
-  municipalita(order_by: {nome: asc}, where: {pacchetti_quartiere: {fine_validita: {_is_null: true}, quartieri: {quartiere_id: $quartieri_id}}}) {
+subscription Municipalita($where: municipalita_bool_exp = {}) {
+  municipalita(where: $where) {
     id
     nome
     updated_at
-    vecchie_denominazioni(order_by: {created_at: desc, nome: asc}) {
+    vecchie_denominazioni(order_by: {created_at: desc}) {
       nome
       created_at
     }
-    pacchetti_quartiere(order_by: {fine_validita: asc_nulls_first}) {
+    quartieri(order_by: {fine_validita: desc_nulls_first}) {
+      id
       inizio_validita
       fine_validita
-      quartieri(order_by: {quartiere: {nome: asc}}) {
-        quartiere {
-          id
-          nome
-        }
+      quartiere {
+        id
+        nome
       }
     }
   }
@@ -22,6 +21,12 @@ subscription Municipalita($quartieri_id: Int_comparison_exp = {}) {
 
 mutation UpdateMunicipalita($municipalita: [municipalita_insert_input!] = {}) {
   insert_municipalita(on_conflict: {constraint: municipalita_pkey, update_columns: nome}, objects: $municipalita) {
+    affected_rows
+  }
+}
+
+mutation DeleteMunicipalita($id: Int!) {
+  delete_municipalita(where: {id: {_eq: $id}}) {
     affected_rows
   }
 }

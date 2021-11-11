@@ -1,49 +1,54 @@
-subscription Toponimi($dug_id: Int_comparison_exp = {}, $tipologia_id: Int_comparison_exp = {}, $quartieri_id: Int_comparison_exp = {}, $municipalita_id: Int_comparison_exp = {}) {
-  toponimo(where: {_and: {dug_id: $dug_id, tipologia_id: $tipologia_id, quartiere: {_and: {quartiere: {fine_validita: {_is_null: true}, quartiere: {id: $quartieri_id, municipalita: {municipalita: {municipalita: {id: $municipalita_id}}}}}}}}}, order_by: {nome: asc}) {
+subscription Toponimi($where: toponimo_bool_exp = {}) {
+  toponimo(where: $where) {
     id
+    dug {
+      id
+      nome
+    }
     nome
+    tipologia {
+      id
+      nome
+    }
     codice
     updated_at
-    dug {
-      nome
-    }
-    tipologia {
-      nome
-    }
-    vecchie_denominazioni {
-      nome
-      created_at
+    vecchie_denominazioni(order_by: {created_at: desc}) {
       dug {
         nome
       }
-      tipologia {
+      nome
+      tipologia{
         nome
       }
+      codice
+      created_at
     }
-    quartiere(order_by: {quartiere: {fine_validita: desc_nulls_first}}) {
+    assegnazioni(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      inizio_validita
+      fine_validita
+      municipalita {
+        id
+        nome
+      }
       quartiere {
-        inizio_validita
-        fine_validita
-        quartiere {
-          id
-          nome
-          municipalita(where: {municipalita: {fine_validita: {_is_null: true}}}, limit: 1) {
-            municipalita {
-              municipalita {
-                id
-                nome
-              }
-            }
-          }
-        }
+        id
+        nome
       }
     }
   }
 }
 
 
-mutation UpdateToponimo($toponimo: [toponimo_insert_input!] = {}, $update_columns: [toponimo_update_column!] = [nome,dug_id,tipologia_id]) {
-  insert_toponimo(on_conflict: {constraint: toponimo_pkey, update_columns: $update_columns}, objects: $toponimo) {
+
+mutation UpdateToponimo($toponimo: [toponimo_insert_input!] = {}) {
+  insert_toponimo(on_conflict: {constraint: toponimo_pkey, update_columns:[nome,dug_id,tipologia_id]}, objects: $toponimo) {
+    affected_rows
+  }
+}
+
+mutation DeleteToponimo($id: Int!) {
+  delete_toponimo(where: {id: {_eq: $id}}) {
     affected_rows
   }
 }

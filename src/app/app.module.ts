@@ -29,7 +29,6 @@ import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { MunicipalitaService } from './_core/_services/old.municipalita.service';
 
 registerLocaleData(localeIt);
 
@@ -99,10 +98,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatFormFieldModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyMaterialModule
-
   ],
   providers: [
-    MunicipalitaService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
     { provide: LOCALE_ID, useValue: "it" },
     { provide: FORMLY_CONFIG, multi: true, useFactory: formlyValidationConfig, deps: [TranslateService] },

@@ -10,12 +10,13 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 export class FormComponent implements OnInit {
   @Input() options: FormlyFormOptions = {};
   @Input() model: any = {};
+  @Input() scrollable: boolean = false;
   @Input() fields: FormlyFieldConfig[] = [];
   @Input() actionsTemplate!: TemplateRef<any>;
+  @Input() form: FormGroup = new FormGroup({});
 
   @Output() resetEvent = new EventEmitter<boolean>();
 
-  form = new FormGroup({});
 
   constructor() { }
 
@@ -26,5 +27,6 @@ export class FormComponent implements OnInit {
     if(this.options.resetModel) this.options.resetModel();
     this.resetEvent.emit(true);
   }
+
 
 }

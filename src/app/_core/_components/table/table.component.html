@@ -39,7 +39,7 @@
 </mat-menu>
 
 <mat-progress-bar *ngIf="dataSource.isLoading|async"  mode="query"></mat-progress-bar>
-<table mat-table [dataSource]="source" matSort matTableExporter #exporter="matTableExporter" multiTemplateDataRows>
+<table mat-table [dataSource]="source" matSort matTableExporter #exporter="matTableExporter" multiTemplateDataRows [matSortActive]="defaultSort.column" [matSortDirection]="defaultSort.direction" matSortDisableClear>
 
     <ng-container [matColumnDef]="'expands'" >
         <th mat-header-cell *matHeaderCellDef></th>

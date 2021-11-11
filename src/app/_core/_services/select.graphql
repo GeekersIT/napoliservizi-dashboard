@@ -1,28 +1,45 @@
-query MunicipalitaSelect {
+subscription MunicipalitaSelect {
   municipalita(order_by: {nome: asc}) {
     id
     nome
   }
 }
 
-
-query QuartiereSelect {
-  quartiere(order_by: {nome: asc}) {
+subscription QuartiereSelect($where: quartiere_bool_exp = {}) {
+  quartiere(order_by: {nome: asc}, where: $where) {
     id
     nome
+    municipalita {
+      municipalita_id
+    }
   }
 }
 
-query DugSelect {
+subscription DugSelect {
   dug(order_by: {nome: asc}) {
     id
     nome
   }
 }
 
-query TipologiaSelect {
+subscription TipologiaSelect {
   tipologia(order_by: {nome: asc}) {
     id
     nome
+  }
+}
+
+
+subscription OperatorePisSelect {
+  membro(order_by: {nome: asc}) {
+    id
+    nome
+    cognome
+    matricola
+    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
+      aggregate {
+        count
+      }
+    }
   }
 }

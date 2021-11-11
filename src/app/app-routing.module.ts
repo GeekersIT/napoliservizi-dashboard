@@ -11,6 +11,9 @@ const routes: Routes = [{
   path: 'toponomastica',
   loadChildren: () => import('./toponomastica/toponomastica.module').then(m => m.ToponomasticaModule),
 },{
+  path: 'pis',
+  loadChildren: () => import('./pis/pis.module').then(m => m.PisModule),
+},{
   path: '401',
   loadChildren: () => import('./page401/page401.module').then(m => m.Page401Module)
 },

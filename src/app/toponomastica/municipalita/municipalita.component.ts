@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
+import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
-import { MunicipalitaGQL, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
+import { MunicipalitaObj } from 'src/app/_core/_models/municipalita.interface';
+import { MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 
 @Component({
@@ -16,6 +19,7 @@ export class MunicipalitaComponent implements OnInit {
   source: any;
   dataSource: DataSource;
 
+  form: FormGroup = new FormGroup({});
   options: FormlyFormOptions = {};
   model: any = {};
   fields: FormlyFieldConfig[] = [{
@@ -23,52 +27,57 @@ export class MunicipalitaComponent implements OnInit {
     type: 'autocomplete',
     templateOptions: {
       multiple: true,
-      filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.watch().valueChanges.pipe(map(result => result.data.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.watch().valueChanges.pipe(map(result => result.data.quartiere)),
+      filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere)),
     },
     expressionProperties: {
-      'templateOptions.label': this._translatService.stream('Quartiere'),
+      'templateOptions.label': this._translateService.stream('Quartiere'),
     },
   }];
-
+  defaultSort = {
+    column: "nome",
+    direction: "asc"
+  };
   columns = [{
       columnDef: 'id',
-      header: this._translatService.instant('ID'),
+      header: this._translateService.instant('ID'),
       show: false,
-      cell: (element: any) => `${element.id}`
+      cell: (element: MunicipalitaObj) => `${element.id}`
     },{
       columnDef: 'nome',
-      header: this._translatService.instant('Municipalità'),
+      header: this._translateService.instant('Municipalità'),
       show: true,
-      cell: (element: any) => `${element.nome}`
+      cell: (element: MunicipalitaObj) => `${element.nome}`
     },{
       columnDef: 'quartieri',
-      header: this._translatService.instant('Quartieri'),
+      header: this._translateService.instant('Quartieri'),
       show: true,
-      cell: (element: any) => `${element.quartiere}`
+      cell: (element: MunicipalitaObj) => `${element.quartieri.map(quartiere => quartiere.quartiere.nome).join(', ')}`
     }];
 
   constructor(
     private _municipalitaGQL: MunicipalitaGQL,
     private _quartiereSelectGQL: QuartiereSelectGQL,
-    private _translatService: TranslateService,
+    private _translateService: TranslateService,
     public dialog: MatDialog
   ) {
     this.dataSource = new DataSource();
   }
 
-  private _map(element:any){
+  private _map(element: MunicipalitaObj){
+    const quartieri = element.quartieri.filter((quartiere) => quartiere.fine_validita == null);
+    const quartieri_vecchi = element.quartieri.filter((quartiere) => quartiere.fine_validita != null);
+
     return {
-      ...element, 
-      ...{quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita == null).map((q:any) => q.quartieri.map((q:any) => q.quartiere.nome).join(', ')).join(', ')},
-      ...{pacchetti_quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita == null).map((q:any) => { return {...q, nome: q.quartieri.map((q:any) => q.quartiere.nome).join(', ')}})[0]},
-      ...{vecchi_pacchetti_quartiere: element.pacchetti_quartiere.filter((q:any) => q.fine_validita != null).map((q:any) => { return {...q,quartieri:q.quartieri.map((q:any) => q.quartiere.nome).join(', ')}})}
+      ...element,
+      ...{quartieri: quartieri},
+      ...{quartieri_vecchi: quartieri_vecchi}
     }
   }
 
   ngOnInit(){
     this.dataSource.isLoading!.next(true);
-    this.source = this._municipalitaGQL.subscribe().subscribe((data:any) => {
-      this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+    this.source = this._municipalitaGQL.subscribe().subscribe((response:SubscriptionResult<MunicipalitaSubscription>) => {
+      this.dataSource.source!.next(response.data?.municipalita.map(element => this._map(element)));
       this.dataSource.isLoading!.next(false);
     });
   }
@@ -76,8 +85,14 @@ export class MunicipalitaComponent implements OnInit {
   async applyFilter() {
     this.dataSource.isLoading!.next(true);
     this.source.unsubscribe();
-    this.source = this._municipalitaGQL.subscribe({quartieri_id:{_in: this.model.quartiere.map((e:any) => e.id)}}).subscribe((data:any) => {
-      this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+    this.source = this._municipalitaGQL.subscribe({where:{
+      quartieri: {
+        quartiere_id: {
+          _in: this.model.quartiere.map((e: { id: any; }) => e.id)
+        }
+      }
+    }}).subscribe((response:SubscriptionResult<MunicipalitaSubscription>) => {
+      this.dataSource.source!.next(response.data?.municipalita.map(element => this._map(element)));
       this.dataSource.isLoading!.next(false);
     });
   }
@@ -86,15 +101,18 @@ export class MunicipalitaComponent implements OnInit {
     if(event) {
       this.dataSource.isLoading!.next(true);
       this.source.unsubscribe();
-      this.source = this._municipalitaGQL.subscribe().subscribe((data:any) => {
-        this.dataSource.source!.next(data.data.municipalita.map((element:any) => this._map(element)));
+      this.source = this._municipalitaGQL.subscribe().subscribe((response:SubscriptionResult<MunicipalitaSubscription>) => {
+        this.dataSource.source!.next(response.data?.municipalita.map(element => this._map(element)));
         this.dataSource.isLoading!.next(false);
       });
     }
   }
 
-  openDialog(row:any) {
+  openDialog(row?:MunicipalitaObj) {
     const dialogRef = this.dialog.open(MunicipalitaEditComponent, {
+      height: '50%',
+      minHeight: '400px',
+      width: '50%',
       data: row
     });
     dialogRef.afterClosed().subscribe((result) => {

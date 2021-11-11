@@ -1,0 +1,12 @@
+@import '../../../../styles.scss';
+
+
+.mat-line{
+    font-weight: bold!important;
+
+    span{
+        font-size: 14px; 
+        font-style: italic;
+        font-weight: normal!important;
+    }
+}

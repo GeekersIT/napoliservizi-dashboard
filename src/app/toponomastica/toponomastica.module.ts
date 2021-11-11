@@ -17,6 +17,7 @@ import { QuartieriEditComponent } from './quartieri/edit/edit.component';
 import { ToponimiEditComponent } from './toponimi/edit/edit.component';
 import { FormModule } from '../_core/_components/form/form.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatIconModule,
     FormModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
   ]
 })
 export class ToponomasticaModule { }

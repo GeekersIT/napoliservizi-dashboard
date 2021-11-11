@@ -1,59 +1,66 @@
 <mat-toolbar>
     <span>{{ 'Gestione quartieri'|translate }}</span>
     <span class="spacer"></span>
+    <button mat-stroked-button color="accent" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        {{ 'Aggiungi un quartiere'|translate }}
+    </button>
 </mat-toolbar>
 <div class="main-content">
-    <table-component [dataSource]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
+    <table-component [defaultSort]="defaultSort" [dataSource]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
 </div>
 
 <ng-template #filterTemplate>
-    <form-component [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="filterActionsTemplate" (resetEvent)="reset($event)"></form-component>
+    <form-component [form]="form" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="filterActionsTemplate" (resetEvent)="reset($event)"></form-component>
     <ng-template #filterActionsTemplate>
         <button mat-button (click)="applyFilter()">{{ 'Applica filtro'|translate }}</button>
     </ng-template>
 </ng-template>
 
 <ng-template let-row="row" #expandsTemplate>
-    <div style="width: 30%;">
-        <mat-list>
+    <div class="display-flex">
+        <mat-list class="flex-1">
             <div mat-subheader>{{ 'Denominazione attuale'|translate }}</div>
-            <mat-list-item >
-              <div mat-line>{{ row.nome }}</div>
-              <div mat-line> {{ 'Valida da {data}'|translate:{data:row.updated_at | date:'full':'it'} }} </div>
+            <mat-list-item>
+                <div mat-line>{{ row.nome }}</div>
+                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:row.updated_at | date:'full':'it'} }}</span></div>
             </mat-list-item>
-            <mat-divider></mat-divider>
+        </mat-list>
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Elenco municipalità attuali'|translate }}</div>
+            <mat-list-item *ngFor="let municipalita of row.municipalita">
+                <div mat-line>{{ municipalita.municipalita.nome }}</div>
+                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:municipalita.inizio_validita | date:'full':'it'} }}</span></div>
+            </mat-list-item>
+        </mat-list>
+        <mat-divider class="break"></mat-divider>
+        <mat-list class="flex-1">
             <div mat-subheader>{{ 'Vecchie denominazioni'|translate }}</div>
             <ng-container *ngIf="row.vecchie_denominazioni.length != 0; else empty">
                 <mat-list-item  *ngFor="let denominazioni of row.vecchie_denominazioni;">
-                    <div mat-line>{{ denominazioni.nome }}</div>
-                    <div mat-line> {{ 'Valida fino a {data}'|translate:{data:denominazioni.created_at | date:'full':'it'} }} </div>
+                    <div mat-line>
+                        {{ denominazioni.nome }} 
+                        <span>{{ 'Valida da {data}'|translate:{data:denominazioni.created_at | date:'full':'it'} }}</span>
+                    </div>
                 </mat-list-item>
             </ng-container>
             <ng-template #empty>
                 <mat-list-item>
-                    <div mat-line style="font-size:14px">{{ 'Non ci sono vecchie denominazioni'|translate }}</div>
+                    <div mat-line><span>{{ 'Non ci sono vecchie denominazioni'|translate }}</span></div>
                 </mat-list-item>
             </ng-template>
         </mat-list>
-    </div>
-    <div style="width: 70%">
-        <mat-list>
-            <div mat-subheader>{{ 'Municipalità attuale'|translate }}</div>
-                <mat-list-item *ngFor="let municipalita of row.municipalita_attuale">
-                  <div mat-line>{{ municipalita.municipalita.municipalita.nome }}</div>
-                  <div mat-line>{{ 'Valida da {data}'|translate:{data:municipalita.municipalita.inizio_validita | date:'full':'it'} }}</div>
-                </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'Vecchie municipalita'|translate }}</div>
-            <ng-container *ngIf="row.vecchie_municipalita.length != 0; else empty1">
-                <mat-list-item *ngFor="let municipalita of row.vecchie_municipalita">
-                    <div mat-line>{{ municipalita.municipalita.municipalita.nome }}</div>
-                    <div mat-line>{{ 'Valida fino a {data}'|translate:{data:municipalita.municipalita.fine_validita | date:'full':'it'} }}</div>
+        <mat-list class="flex-1">
+            <div mat-subheader>{{ 'Vecchie municipalità associate'|translate }}</div>
+            <ng-container *ngIf="row.municipalita_vecchie.length != 0; else empty1">
+                <mat-list-item *ngFor="let municipalita of row.municipalita_vecchie">
+                    <div mat-line>{{ municipalita.municipalita.nome }}</div>
+                    <div mat-line><span>{{ 'Valida fino a {data}'|translate:{data:municipalita.fine_validita | date:'full':'it'} }}</span></div>
                   </mat-list-item>
             </ng-container>
             <ng-template #empty1>
                 <mat-list-item>
-                    <div mat-line style="font-size:14px">{{ 'Non ci sono vecchie municipalità'|translate }}</div>
+                    <div mat-line><span>{{ 'Non ci sono vecchie composizione'|translate }}</span></div>
                 </mat-list-item>
             </ng-template>
         </mat-list>

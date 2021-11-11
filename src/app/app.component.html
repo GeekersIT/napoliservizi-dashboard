@@ -23,13 +23,13 @@
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="pisMenu">{{ 'P.I.S.'|translate }}</button>
         <mat-menu #pisMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Interventi straordinari'|translate }}</button>
-            <button mat-menu-item>{{ 'Interventi sul campo'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">{{ 'Interventi straordinari'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button>
             <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button>
-            <button mat-menu-item>{{ 'Gestione squadre'|translate }}</button>
-            <button mat-menu-item>{{ 'Pre segnalazioni'|translate }}</button>
-            <button mat-menu-item>{{ 'Segnalazioni provvisorie'|translate }}</button>
-            <button mat-menu-item>{{ 'Segnalazioni protocollate'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/squadre'">{{ 'Gestione squadre'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">{{ 'Segnalazioni provvisorie'|translate }}</button>
+            <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">{{ 'Segnalazioni protocollate'|translate }}</button>
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="sisMenu">{{ 'S.I.S.'|translate }}</button>
         <mat-menu #sisMenu="matMenu" yPosition="above">
@@ -102,25 +102,25 @@
             <mat-divider></mat-divider>
             <div mat-subheader>{{ 'P.I.S.'|translate }}</div>
             <mat-list-item >
-                <button mat-menu-item>{{ 'Interventi straordinari'|translate }}</button>
+                <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">{{ 'Interventi straordinari'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-menu-item>{{ 'Interventi sul campo'|translate }}</button>
+                <button mat-menu-item  [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
                 <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-menu-item>{{ 'Gestione squadre'|translate }}</button>
+                <button mat-menu-item [routerLink]="'/pis/squadre'">{{ 'Gestione squadre'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-menu-item>{{ 'Pre segnalazioni'|translate }}</button>
+                <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-menu-item>{{ 'Segnalazioni provvisorie'|translate }}</button>
+                <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">{{ 'Segnalazioni provvisorie'|translate }}</button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-menu-item>{{ 'Segnalazioni protocollate'|translate }}</button>
+                <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">{{ 'Segnalazioni protocollate'|translate }}</button>
             </mat-list-item>
             <mat-divider></mat-divider>
             <div mat-subheader>{{ 'S.I.S.'|translate }}</div>
