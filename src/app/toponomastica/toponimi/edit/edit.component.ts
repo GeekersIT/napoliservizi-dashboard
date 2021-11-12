@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { distinctUntilChanged, map, mergeMap, startWith } from 'rxjs/operators';
 import { ToponimoObj } from 'src/app/_core/_models/toponomastica/toponimo.interface';
-import { Assegnazione_Toponimo_Constraint, Assegnazione_Toponimo_Update_Column, DeleteToponimoGQL, DugSelectGQL, MunicipalitaSelectGQL, QuartiereSelectGQL, TipologiaSelectGQL, Toponimo_Insert_Input, UpdateToponimoGQL } from 'src/app/_core/_services/generated/graphql';
+import { Assegnazione_Toponimo_Constraint, Assegnazione_Toponimo_Update_Column, DugSelectGQL, MunicipalitaSelectGQL, QuartiereSelectGQL, TipologiaSelectGQL, Toponimo_Insert_Input, UpdateToponimoGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-toponimi-edit',
@@ -180,7 +180,6 @@ export class ToponimiEditComponent implements OnInit {
     private _quartiereSelectGQL: QuartiereSelectGQL,
     private _municipalitaSelectGQL: MunicipalitaSelectGQL,
     private _updateToponimoGQL: UpdateToponimoGQL,
-    private _deleteQuartiereGQL: DeleteToponimoGQL,
     private _dugSelectGQL: DugSelectGQL,
     private _tipologiaSelectGQL: TipologiaSelectGQL,
     private _translateService: TranslateService,
@@ -253,10 +252,6 @@ export class ToponimiEditComponent implements OnInit {
       }
     }: toponimo;
     this._updateToponimoGQL.mutate({toponimo}).subscribe(d => this.dialogRef.close(d));
-  }
-
-  delete(){
-    this._deleteQuartiereGQL.mutate({id: this.data.id}).subscribe(d => this.dialogRef.close(d),e => this.dialogRef.close(e));
   }
 
 }

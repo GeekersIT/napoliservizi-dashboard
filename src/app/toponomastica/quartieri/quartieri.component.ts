@@ -6,9 +6,10 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
+import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
-import { MunicipalitaSelectGQL, QuartieriGQL, QuartieriSubscription } from 'src/app/_core/_services/generated/graphql';
+import { DeleteQuartiereGQL, MunicipalitaSelectGQL, QuartieriGQL, QuartieriSubscription } from 'src/app/_core/_services/generated/graphql';
 import { QuartieriEditComponent } from './edit/edit.component';
 
 @Component({
@@ -58,6 +59,7 @@ export class QuartieriComponent implements OnInit {
   constructor(
     private _quartieriGQL: QuartieriGQL,
     private _municipalitaSelectGQL: MunicipalitaSelectGQL,
+    private _deleteQuartiereGQL: DeleteQuartiereGQL,
     private _translateService: TranslateService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -114,19 +116,32 @@ export class QuartieriComponent implements OnInit {
   }
 
   openDialog(row?:QuartiereObj) {
-    const dialogRef = this.dialog.open(QuartieriEditComponent, {
+    this.dialog.open(QuartieriEditComponent, {
       height: '50%',
       minHeight: '400px',
       width: '50%',
       data: row
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if(result.message){
-        if(result.message.includes('Foreign key violation')){
-          this._snackBar.open(this._translateService.instant('Non è possibile eliminare il quartiere perchè è parte di una municipalità o lo è stato in passato.'), this._translateService.instant('Ho capito!'));
-        }
+  }
+
+  delete(row?:QuartiereObj){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: this._translateService.instant('Attenzione'),
+        content: this._translateService.instant('Procedendo all\'elemizione non sarà più possibile tornare indietro.')
       }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._deleteQuartiereGQL.mutate({id:row!.id}).subscribe({
+          error: (e) => {
+            if(e.message.includes('Foreign key violation')){
+              this._snackBar.open(this._translateService.instant('Non è possibile eliminare il quartiere perchè è parte di una municipalità o lo è stato in passato.'), this._translateService.instant('Ho capito!'));
+            }
+          }
+        });
+      }
+    })
   }
 
 }

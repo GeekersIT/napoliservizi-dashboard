@@ -1,6 +1,10 @@
+import { I } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'form-component',
@@ -18,15 +22,26 @@ export class FormComponent implements OnInit {
   @Output() resetEvent = new EventEmitter<boolean>();
 
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+    private _translateService: TranslateService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  resetModel(){
-    if(this.options.resetModel) this.options.resetModel();
-    this.resetEvent.emit(true);
+  resetModel(){   
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: this._translateService.instant('Attenzione'),
+        content: this._translateService.instant('Procedendo al reset del form tutto i campi verranno riportati allo stato originale.')
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if(this.options.resetModel) this.options.resetModel();
+        this.resetEvent.emit(true);
+      }
+    })
   }
-
-
 }

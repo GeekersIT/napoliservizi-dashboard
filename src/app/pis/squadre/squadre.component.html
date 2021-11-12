@@ -70,6 +70,10 @@
         <mat-icon>edit</mat-icon>
         {{ 'Modifica'|translate }}
     </button>
+    <button mat-stroked-button color="warn" (click)="delete(row)">
+        <mat-icon>delete_forever</mat-icon>
+        {{ 'Elimina'|translate }}
+    </button>
 </ng-template>
 
 

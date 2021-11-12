@@ -1,0 +1,29 @@
+
+<button mat-raised-button color="accent" type="button" (click)="toggleOrientation()" style="margin-bottom: 20px;"> 
+  {{ 'Visualizza in {formato}'|translate:{formato:to.orientation||'horizontal'} }}
+</button>
+<mat-stepper [orientation]="to.orientation||'horizontal'" [labelPosition]="to.labelPosition||'bottom'" [@.disabled]="true">
+    <mat-step
+      *ngFor="let step of field.fieldGroup; let index = index; let last = last;">
+      <ng-template matStepLabel>{{ step.templateOptions!.label }}</ng-template>
+      <br />
+      <formly-field [field]="step"></formly-field>
+
+      <div>
+        <button mat-icon-button matStepperPrevious *ngIf="index !== 0" type="button" #tooltip="matTooltip"
+        matTooltip="{{ 'Sezione precedente'|translate }}"
+        [matTooltipPosition]="'left'">
+          <mat-icon *ngIf="(to.orientation||'horizontal')=='horizontal'">navigate_before</mat-icon>
+          <mat-icon *ngIf="(to.orientation||'horizontal')=='vertical'">expand_less</mat-icon>
+        </button>
+
+
+        <button mat-icon-button matStepperNext *ngIf="!last" [disabled]="!isValid(step)" type="button" #tooltip="matTooltip"
+        matTooltip="{{ 'Sezione successiva'|translate }}"
+        [matTooltipPosition]="'left'">
+        <mat-icon *ngIf="(to.orientation||'horizontal')=='horizontal'">chevron_right</mat-icon>
+        <mat-icon *ngIf="(to.orientation||'horizontal')=='vertical'">expand_more</mat-icon>
+        </button>
+      </div>
+    </mat-step>
+</mat-stepper>

@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { QuartiereSelectGQL, UpdateMunicipalitaGQL, DeleteMunicipalitaGQL, Municipalita_Insert_Input, Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column } from 'src/app/_core/_services/generated/graphql';
+import { QuartiereSelectGQL, UpdateMunicipalitaGQL, Municipalita_Insert_Input, Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column } from 'src/app/_core/_services/generated/graphql';
 import { FormArray, FormGroup } from '@angular/forms';
 import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { QuartiereSelectObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
@@ -78,7 +78,6 @@ export class MunicipalitaEditComponent implements OnInit {
   
   constructor(
     private _updateMunicipalitaGQL: UpdateMunicipalitaGQL,
-    private _deleteMunicipalitaGQL: DeleteMunicipalitaGQL,
     private _quartiereSelectGQL: QuartiereSelectGQL,
     private _translateService: TranslateService,
     public dialogRef: MatDialogRef<MunicipalitaEditComponent>,
@@ -143,10 +142,6 @@ export class MunicipalitaEditComponent implements OnInit {
     this._updateMunicipalitaGQL.mutate({municipalita}).subscribe(d => this.dialogRef.close(d));
 
 
-  }
-
-  delete(){
-    this._deleteMunicipalitaGQL.mutate({id: this.data.id}).subscribe(d => this.dialogRef.close(d));
   }
 
 }

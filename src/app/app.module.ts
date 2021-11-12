@@ -29,6 +29,8 @@ import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ConfirmDialogComponent } from './_core/_components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(localeIt);
 
@@ -64,7 +66,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,8 +99,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
     GraphQLModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyMaterialModule
+    FormlyModule.forRoot({ 
+      extras: { lazyRender: true },
+
+    }),
+    FormlyMaterialModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },

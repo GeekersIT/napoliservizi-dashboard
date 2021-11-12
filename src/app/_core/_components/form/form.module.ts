@@ -9,6 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { RepeatSectionFormlyModule } from '../../_formly/repeat-section-formly/repeat-section-formly.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
+import { AddonsFormlyModule } from '../../_formly/addons/addons.module';
+import { StepperFormlyModule } from '../../_formly/stepper-formly/stepper-formly.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -25,7 +28,10 @@ import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
     TranslateModule,
     MatButtonModule,
     NgScrollbarModule,
-    FormlyMatToggleModule
+    FormlyMatToggleModule,
+    AddonsFormlyModule,
+    StepperFormlyModule,
+    MatDialogModule
   ],
   exports: [ FormComponent ]
 })

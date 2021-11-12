@@ -5,7 +5,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
-import { Assegnazione_Squadra_Constraint, Assegnazione_Squadra_Update_Column, DeleteSquadraPisGQL, OperatorePisSelectGQL, Squadra_Insert_Input, UpdateSquadraPisGQL } from 'src/app/_core/_services/generated/graphql';
+import { Assegnazione_Squadra_Constraint, Assegnazione_Squadra_Update_Column, OperatorePisSelectGQL, Squadra_Insert_Input, UpdateSquadraPisGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-squadre-edit',
@@ -122,7 +122,6 @@ export class SquadraEditComponent implements OnInit {
   
   constructor(
     private _updateSquadraPisGQL: UpdateSquadraPisGQL,
-    private _deleteSquadraPisGQL: DeleteSquadraPisGQL,
     private _operatorePisSelectGQL: OperatorePisSelectGQL,
     private _translateService: TranslateService,
     public dialogRef: MatDialogRef<SquadraEditComponent>,
@@ -202,10 +201,6 @@ export class SquadraEditComponent implements OnInit {
     }} : squadra;
 
     this._updateSquadraPisGQL.mutate({squadra}).subscribe(d => this.dialogRef.close(d));
-  }
-
-  delete(){
-    this._deleteSquadraPisGQL.mutate({id: this.data.id}).subscribe(d => this.dialogRef.close(d));
   }
 
 }

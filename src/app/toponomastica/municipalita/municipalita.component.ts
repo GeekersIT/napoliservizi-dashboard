@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
+import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
-import { MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
+import { DeleteMunicipalitaGQL, MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 
 @Component({
@@ -58,6 +60,8 @@ export class MunicipalitaComponent implements OnInit {
     private _municipalitaGQL: MunicipalitaGQL,
     private _quartiereSelectGQL: QuartiereSelectGQL,
     private _translateService: TranslateService,
+    private _deleteMunicipalitaGQL: DeleteMunicipalitaGQL,
+    private _snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {
     this.dataSource = new DataSource();
@@ -109,16 +113,32 @@ export class MunicipalitaComponent implements OnInit {
   }
 
   openDialog(row?:MunicipalitaObj) {
-    const dialogRef = this.dialog.open(MunicipalitaEditComponent, {
+    this.dialog.open(MunicipalitaEditComponent, {
       height: '50%',
       minHeight: '400px',
       width: '50%',
       data: row
     });
-    dialogRef.afterClosed().subscribe((result) => {
-        console.log(result);
-    });
   }
 
+  delete(row?:MunicipalitaObj){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: this._translateService.instant('Attenzione'),
+        content: this._translateService.instant('Procedendo all\'elemizione non sarà più possibile tornare indietro.')
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._deleteMunicipalitaGQL.mutate({id:row!.id}).subscribe({
+          error: (e) => {
+            if(e.message.includes('Foreign key violation')){
+              this._snackBar.open(this._translateService.instant('Non è possibile eliminare la municipalità perché è associata ad altri elementi.'), this._translateService.instant('Ho capito!'));
+            }
+          }
+        });
+      }
+    })
+  }
 
 }

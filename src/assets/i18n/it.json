@@ -2,6 +2,7 @@
     "Nessun risultato per la ricerca {filter}": "Nessun risultato per la ricerca \"{filter}\"",
     "Valida fino a {data}": "Valida fino a {data}",
     "Valida da {data}": "Valida da {data}",
+    "Visualizza in {formato}": " Visualizza in {formato, select, horizontal{orizzontale} vertical{verticale}  other{}}",
     "MAT_PAGINATOR": {
         "FIRST_PAGE": "Prima pagina",
         "ITEMS_PER_PAGE": "Elementi per pagina",

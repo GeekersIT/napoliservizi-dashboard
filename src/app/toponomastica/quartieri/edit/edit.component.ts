@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { MunicipalitaSelectObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
-import { Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column, DeleteQuartiereGQL, MunicipalitaSelectGQL, Quartiere_Insert_Input, UpdateQuartiereGQL } from 'src/app/_core/_services/generated/graphql';
+import { Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column, MunicipalitaSelectGQL, Quartiere_Insert_Input, UpdateQuartiereGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-quartieri-edit',
@@ -79,7 +79,6 @@ export class QuartieriEditComponent implements OnInit {
   constructor(
     private _municipalitaSelectGQL: MunicipalitaSelectGQL,
     private _updateQuartiereGQL: UpdateQuartiereGQL,
-    private _deleteQuartiereGQL: DeleteQuartiereGQL,
     private _translateService: TranslateService,
     public dialogRef: MatDialogRef<QuartieriEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: QuartiereObj
@@ -146,10 +145,6 @@ export class QuartieriEditComponent implements OnInit {
     });
 
 
-  }
-
-  delete(){
-    this._deleteQuartiereGQL.mutate({id: this.data.id}).subscribe(d => this.dialogRef.close(d),e => this.dialogRef.close(e));
   }
 
 }

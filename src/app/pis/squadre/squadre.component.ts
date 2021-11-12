@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
+import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
-import { SquadrePisGQL, SquadrePisSubscription } from 'src/app/_core/_services/generated/graphql';
+import { DeleteSquadraPisGQL, SquadrePisGQL, SquadrePisSubscription } from 'src/app/_core/_services/generated/graphql';
 import { SquadraEditComponent } from './edit/edit.component';
 
 @Component({
@@ -48,6 +49,7 @@ export class SquadreComponent implements OnInit {
     private _translateService: TranslateService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
+    private _deleteSquadraPisGQL: DeleteSquadraPisGQL
 
   ) {
     this.dataSource = new DataSource();
@@ -76,19 +78,32 @@ export class SquadreComponent implements OnInit {
   }
 
   openDialog(row?:SquadraPisObj) {
-    const dialogRef = this.dialog.open(SquadraEditComponent, {
+    this.dialog.open(SquadraEditComponent, {
       height: '50%',
       minHeight: '400px',
       width: '50%',
       data: row
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if(result.message){
-        if(result.message.includes('Foreign key violation')){
-          this._snackBar.open(this._translateService.instant('Non è possibile eliminare il toponimo perchè è parte di un quartiere o lo è stato in passato.'), this._translateService.instant('Ho capito!'));
-        }
+  }
+
+  delete(row?:SquadraPisObj){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: this._translateService.instant('Attenzione'),
+        content: this._translateService.instant('Procedendo all\'elemizione non sarà più possibile tornare indietro.')
       }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this._deleteSquadraPisGQL.mutate({id:row!.id}).subscribe({
+          error: (e) => {
+            if(e.message.includes('Foreign key violation')){
+              this._snackBar.open(this._translateService.instant('Non è possibile eliminare la squadra perchè ha degli interventi associati.'), this._translateService.instant('Ho capito!'));
+            }
+          }
+        });
+      }
+    })
   }
 
 }
