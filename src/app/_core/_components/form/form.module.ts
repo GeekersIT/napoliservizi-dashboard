@@ -14,8 +14,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PrefixSuffixAddonsFormlyModule } from '../../_formly/_addons/prefix-suffix/prefix-suffix.module';
 import { ClearAddonsFormlyModule } from '../../_formly/_addons/clear/clear.module';
 
-
-
 @NgModule({
   declarations: [
     FormComponent

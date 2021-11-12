@@ -9,12 +9,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-
+import { AutocompleteFormlyDirective } from './autocomplete-formly.directive';
 
 @NgModule({
   declarations: [
-    AutocompleteFormlyComponent
+    AutocompleteFormlyComponent,
+    AutocompleteFormlyDirective
   ],
   imports: [
     CommonModule,

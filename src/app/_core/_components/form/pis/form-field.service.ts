@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { TranslateService } from "@ngx-translate/core";
-import { distinctUntilChanged, map, mergeMap, of, startWith } from "rxjs";
+import { distinctUntilChanged, map, mergeMap, Observable, of, startWith } from "rxjs";
 import { ForceSelectionMatch } from "src/app/_core/_formly/_validators/force-selection.match";
 import { MunicipalitaSelectGQL, QuartiereSelectGQL, SpecificaPosizionamentoToponimoSelectGQL, TipologiaPosizionamentoToponimoSelectGQL, ToponimoSelectGQL } from "src/app/_core/_services/generated/graphql";
 
@@ -36,6 +36,7 @@ export class LocalizzazioneFormFieldService {
         templateOptions: {
           required: params?.required === undefined ? true : params?.required,
           multiple: params?.multiple === undefined ? false : params?.multiple,
+
           filter: (term:any) => term && typeof term === 'string' ? this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita.filter(m => m.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita)),
         },
         validators: {
@@ -56,9 +57,12 @@ export class LocalizzazioneFormFieldService {
         templateOptions: {
           required: params?.required === undefined ? true : params?.required,
           multiple: params?.multiple === undefined ? false : params?.multiple,
+          ...(params?.root ? {
+            filter: (term:any) => of([]),
+          } : {} ),
           ...(!params?.root ? {
-            filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere)),
-          } : {})
+          filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere)),
+          } : {} )
         },
         validators: {
           validation: [ForceSelectionMatch],
@@ -67,40 +71,35 @@ export class LocalizzazioneFormFieldService {
           hooks: {
             onInit: (field) => {
               const municipalita = field!.form!.get(params?.root!);
-              field!.templateOptions!.filter = (term:any) => term && typeof term === 'string' ? 
-              municipalita!.valueChanges.pipe(
-                startWith(municipalita!.value),
-                distinctUntilChanged(),
-                mergeMap(municipalita => {
-                  return municipalita!==null ?
-                    this._quartiereSelectGQL.subscribe({
-                      where: {
-                        municipalita: {
-                          municipalita_id: {
-                            _eq: municipalita.id
-                          }
-                        }
+
+              municipalita!.valueChanges.subscribe(municipalita => {
+
+                console.log(municipalita);
+
+                field!.templateOptions!.reset.next({});
+                
+                field!.templateOptions!.filter = (term:any) => term && typeof term === 'string' ?
+                this._quartiereSelectGQL.subscribe({
+                  where: {
+                    municipalita: {
+                      municipalita_id: {
+                        _eq: municipalita.id
                       }
-                    }).pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : of([]);
-                }),
-              )
-              : 
-              municipalita!.valueChanges.pipe(
-                startWith(municipalita!.value),
-                distinctUntilChanged(),
-                mergeMap(municipalita => {
-                  return municipalita!==null ?
-                    this._quartiereSelectGQL.subscribe({
-                      where: {
-                        municipalita: {
-                          municipalita_id: {
-                            _eq: municipalita.id
-                          }
-                        }
+                    }
+                  }
+                }).pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) :
+                this._quartiereSelectGQL.subscribe({
+                  where: {
+                    municipalita: {
+                      municipalita_id: {
+                        _eq: municipalita.id
                       }
-                    }).pipe(map(result => result.data?.quartiere)) : of([]);
-                }),
-              );
+                    }
+                  }
+                }).pipe(map(result => result.data?.quartiere));
+              });
+              
+              
             }
           },
         } :{}),
@@ -120,9 +119,7 @@ export class LocalizzazioneFormFieldService {
           required: params?.required === undefined ? true : params?.required,
           multiple: params?.multiple === undefined ? false : params?.multiple,
           displayWith: (e:any) => e ? (e.dug ? e.dug.nome+" " : "")+e.nome : '',
-          ...(!params?.root ? {
-            filter: (term:any) => term && typeof term === 'string' ? this._toponimoSelectGQL.subscribe().pipe(map(result => result.data?.toponimo.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._toponimoSelectGQL.subscribe().pipe(map(result => result.data?.toponimo)),
-          } : {})
+          filter: (term:any) => term && typeof term === 'string' ? this._toponimoSelectGQL.subscribe().pipe(map(result => result.data?.toponimo.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._toponimoSelectGQL.subscribe().pipe(map(result => result.data?.toponimo)),
         },
         validators: {
           validation: [ForceSelectionMatch],
@@ -131,40 +128,29 @@ export class LocalizzazioneFormFieldService {
           hooks: {
             onInit: (field) => {
               const quartiere = field!.form!.get(params?.root!);
-              field!.templateOptions!.filter = (term:any) => term && typeof term === 'string' ? 
-              quartiere!.valueChanges.pipe(
-                startWith(quartiere!.value),
-                distinctUntilChanged(),
-                mergeMap(quartiere => {
-                  return quartiere!==null ?
-                    this._toponimoSelectGQL.subscribe({
-                      where: {
-                        assegnazioni: {
-                          quartiere_id: {
-                            _eq: quartiere.id
-                          }
-                        }
+
+              quartiere!.valueChanges.subscribe(quartiere => {
+                field!.templateOptions!.reset.next({});
+                field!.templateOptions!.filter = (term:any) => term && typeof term === 'string' ?
+                this._toponimoSelectGQL.subscribe({
+                  where: {
+                    assegnazioni: {
+                      quartiere_id: {
+                        _eq: quartiere.id
                       }
-                    }).pipe(map(result => result.data?.toponimo.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : of([]);
-                }),
-              )
-              : 
-              quartiere!.valueChanges.pipe(
-                startWith(quartiere!.value),
-                distinctUntilChanged(),
-                mergeMap(quartiere => {
-                  return quartiere!==null ?
-                    this._toponimoSelectGQL.subscribe({
-                      where: {
-                        assegnazioni: {
-                          quartiere_id: {
-                            _eq: quartiere.id
-                          }
-                        }
+                    }
+                  }
+                }).pipe(map(result => result.data?.toponimo.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) :
+                this._toponimoSelectGQL.subscribe({
+                  where: {
+                    assegnazioni: {
+                      quartiere_id: {
+                        _eq: quartiere.id
                       }
-                    }).pipe(map(result => result.data?.toponimo)) : of([]);
-                }),
-              );
+                    }
+                  }
+                }).pipe(map(result => result.data?.toponimo));
+              });
             }
           },
         } :{}),

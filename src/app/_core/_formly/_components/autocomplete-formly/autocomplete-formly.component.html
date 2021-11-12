@@ -8,8 +8,9 @@
   [placeholder]="to.placeholder||''"
   [errorStateMatcher]="errorStateMatcher">
 
-<mat-autocomplete #auto="matAutocomplete" [displayWith]="to.displayFn">
-  <mat-option *ngFor="let value of filter | async" [value]="value" >
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="to.displayFn" showPanel="true"
+(optionsScroll)="onScroll()">
+  <mat-option *ngFor="let value of paginated$ | async" [value]="value" >
     <span *ngIf="to.multiple==false; else multipleOptions">
           {{ to.displayWith(value) }}
     </span>

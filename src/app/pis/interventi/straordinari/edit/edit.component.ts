@@ -32,8 +32,8 @@ export class InterventiStraordinariEditComponent implements OnInit {
             this._localizzazioneFormFieldService.getMunicipalita({key:'municipalita_id', clazz:'flex-1'}),
             this._localizzazioneFormFieldService.getQuartieri({key:'quartieri_id', clazz:'flex-1', root: 'municipalita_id' }),
           ]},
-          this._localizzazioneFormFieldService.getToponimi({key:'toponimo_id', root: 'quartieri_id' }),
-          this._localizzazioneFormFieldService.getPosizionamentoToponimo({key:'posizionamento_toponimo_punto_iniziale', groupLabel: this._translateService.instant('Punto iniziale')}),
+          // this._localizzazioneFormFieldService.getToponimi({key:'toponimo_id', root: 'quartieri_id' }),
+          // this._localizzazioneFormFieldService.getPosizionamentoToponimo({key:'posizionamento_toponimo_punto_iniziale', groupLabel: this._translateService.instant('Punto iniziale')}),
           // this._localizzazioneFormFieldService.getPosizionamentoToponimo({key:'posizionamento_toponimo_punto_finale', groupLabel: this._translateService.instant('Punto finale')}),
         ]},
       {
@@ -66,17 +66,19 @@ export class InterventiStraordinariEditComponent implements OnInit {
             expressionProperties: {
               'templateOptions.label': this._translateService.stream('Data inserimento'),
             },
-          },{
-            key: 'priorita_id',
-            type: 'autocomplete',
-            templateOptions: {
-              multiple: false,
-              filter: (term:any) => term && typeof term === 'string' ? this._prioritaSelectGQL.subscribe().pipe(map(result => result.data?._priorita.filter(e => e.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._prioritaSelectGQL.subscribe().pipe(map(result => result.data?._priorita)),
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Priorità'),
-            },
-          },{
+          },
+          // {
+          //   key: 'priorita_id',
+          //   type: 'autocomplete',
+          //   templateOptions: {
+          //     multiple: false,
+          //     filter: (term:any) => term && typeof term === 'string' ? this._prioritaSelectGQL.subscribe().pipe(map(result => result.data?._priorita.filter(e => e.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._prioritaSelectGQL.subscribe().pipe(map(result => result.data?._priorita)),
+          //   },
+          //   expressionProperties: {
+          //     'templateOptions.label': this._translateService.stream('Priorità'),
+          //   },
+          // },
+          {
             fieldGroupClassName: 'display-flex',
             fieldGroup: [{
               key: 'data_inizio_lavori',
