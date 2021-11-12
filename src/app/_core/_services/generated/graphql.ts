@@ -8219,6 +8219,13 @@ export type QuartiereSelectSubscriptionVariables = Exact<{
 
 export type QuartiereSelectSubscription = { __typename?: 'subscription_root', quartiere: Array<{ __typename?: 'quartiere', id: number, nome: string, municipalita: Array<{ __typename?: 'assegnazione_quartiere', municipalita_id: number }> }> };
 
+export type ToponimoSelectSubscriptionVariables = Exact<{
+  where?: Maybe<Toponimo_Bool_Exp>;
+}>;
+
+
+export type ToponimoSelectSubscription = { __typename?: 'subscription_root', toponimo: Array<{ __typename?: 'toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'dug', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'assegnazione_toponimo', quartiere_id: number }> }> };
+
 export type DugSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -8742,6 +8749,33 @@ export const QuartiereSelectDocument = gql`
   })
   export class QuartiereSelectGQL extends Apollo.Subscription<QuartiereSelectSubscription, QuartiereSelectSubscriptionVariables> {
     document = QuartiereSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ToponimoSelectDocument = gql`
+    subscription ToponimoSelect($where: toponimo_bool_exp = {}) {
+  toponimo(order_by: {nome: asc}, where: $where) {
+    id
+    nome
+    dug {
+      id
+      nome
+    }
+    codice
+    assegnazioni {
+      quartiere_id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ToponimoSelectGQL extends Apollo.Subscription<ToponimoSelectSubscription, ToponimoSelectSubscriptionVariables> {
+    document = ToponimoSelectDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

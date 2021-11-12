@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { MatIconModule } from '@angular/material/icon';
-import { FormlyWrapperAddons } from './addons.wrapper';
-import { addonsExtension } from './addons.extension';
+import { FormlyWrapperClearAddon } from './clear.wrapper';
+import { clearExtension } from './clear.extension';
 
 
 
 @NgModule({
   declarations: [
-    FormlyWrapperAddons,
+    FormlyWrapperClearAddon,
   ],
   imports: [
     CommonModule,
@@ -19,14 +19,14 @@ import { addonsExtension } from './addons.extension';
       { 
         extras: { lazyRender: true },
         wrappers: [
-          { name: 'addons', component: FormlyWrapperAddons },
+          { name: 'clear', component: FormlyWrapperClearAddon },
         ],
         extensions: [
-          { name: 'addons', extension: { onPopulate: addonsExtension } },
+          { name: 'clear', extension: { onPopulate: clearExtension } },
         ],
       }
     ),
     MatIconModule
   ]
 })
-export class AddonsFormlyModule { }
+export class ClearAddonsFormlyModule { }

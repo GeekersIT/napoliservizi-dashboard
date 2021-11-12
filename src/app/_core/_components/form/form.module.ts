@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormComponent } from './form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
-import { AutocompleteFormlyModule } from '../../_formly/autocomplete-formly/autocomplete-formly.module';
+import { AutocompleteFormlyModule } from '../../_formly/_components/autocomplete-formly/autocomplete-formly.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RepeatSectionFormlyModule } from '../../_formly/repeat-section-formly/repeat-section-formly.module';
+import { RepeatSectionFormlyModule } from '../../_formly/_components/repeat-section-formly/repeat-section-formly.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
-import { AddonsFormlyModule } from '../../_formly/addons/addons.module';
-import { StepperFormlyModule } from '../../_formly/stepper-formly/stepper-formly.module';
+import { StepperFormlyModule } from '../../_formly/_components/stepper-formly/stepper-formly.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PrefixSuffixAddonsFormlyModule } from '../../_formly/_addons/prefix-suffix/prefix-suffix.module';
+import { ClearAddonsFormlyModule } from '../../_formly/_addons/clear/clear.module';
 
 
 
@@ -29,7 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     NgScrollbarModule,
     FormlyMatToggleModule,
-    AddonsFormlyModule,
+    PrefixSuffixAddonsFormlyModule,
+    ClearAddonsFormlyModule,
     StepperFormlyModule,
     MatDialogModule
   ],

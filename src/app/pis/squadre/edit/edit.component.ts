@@ -103,7 +103,7 @@ export class SquadraEditComponent implements OnInit {
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Capo squadra'),
-            'templateOptions.disabled': (model: any, _formState: any) => {
+            'templateOptions.disabled': (model: any, formState: any) => {
               let a = this.model.membri.filter((m:any)=>m.caposquadra==true);
               if(model.membro===undefined){
                 return true;

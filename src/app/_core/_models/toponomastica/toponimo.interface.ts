@@ -1,3 +1,19 @@
+export interface ToponimoSelectObj{
+    __typename?: 'toponimo';
+    id: number;
+    nome: string;
+    dug?: {
+        __typename?: "dug" | undefined; 
+        id: number; 
+        nome: string; 
+    } | null | undefined;
+    codice?: string | null | undefined; 
+    assegnazioni: {
+        __typename?: "assegnazione_toponimo" | undefined; 
+        municipalita_id: number
+    }[]
+}
+
 export interface ToponimoObj{ 
     id: number; 
     nome?: string; 

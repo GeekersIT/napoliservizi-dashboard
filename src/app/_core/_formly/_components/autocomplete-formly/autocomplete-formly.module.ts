@@ -24,7 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FormlyModule.forChild({ 
       types: [
         { name: 'autocomplete', component: AutocompleteFormlyComponent, wrappers: ['form-field'] },
-      ], 
+      ],
     }),
     TranslateModule,
     MatChipsModule,

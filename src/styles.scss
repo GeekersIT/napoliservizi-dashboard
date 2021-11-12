@@ -138,19 +138,16 @@ $subbar: 64px;
 
 .flex-6 { flex: 6; }
 
-[class*="flex-"] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
 
-[class*="flex-"]:first-child {
-  padding-left: 0;
+formly-group.display-flex {
+  formly-field:not(:empty){
+    padding-left: 10px;
+  }
+  
+  formly-field:not(:empty):first-child {
+    padding-left: 0;
+  }
 }
-
-[class*="flex-"]:last-child {
-  padding-right: 0px;
-}
-
 
 .mat-dialog-container{
   padding: 0!important;
@@ -172,4 +169,10 @@ $subbar: 64px;
   button:last-child{
     margin-right: 0px;
   }
+}
+
+
+.mat-form-field-wrapper{
+  margin: 0!important;
+  padding-bottom: 0.5em!important;
 }

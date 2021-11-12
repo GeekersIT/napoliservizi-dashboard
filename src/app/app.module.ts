@@ -101,7 +101,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatFormFieldModule,
     FormlyModule.forRoot({ 
       extras: { lazyRender: true },
-
     }),
     FormlyMaterialModule,
     MatDialogModule

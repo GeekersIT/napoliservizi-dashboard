@@ -15,6 +15,21 @@ subscription QuartiereSelect($where: quartiere_bool_exp = {}) {
   }
 }
 
+subscription ToponimoSelect($where: toponimo_bool_exp = {}) {
+  toponimo(order_by: {nome: asc}, where: $where) {
+    id
+    nome
+    dug{
+      id
+      nome
+    }
+    codice
+    assegnazioni {
+      quartiere_id
+    }
+  }
+}
+
 subscription DugSelect {
   dug(order_by: {nome: asc}) {
     id

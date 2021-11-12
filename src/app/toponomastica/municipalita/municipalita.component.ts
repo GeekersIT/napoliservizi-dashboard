@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
+import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { DeleteMunicipalitaGQL, MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
@@ -24,17 +25,9 @@ export class MunicipalitaComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   options: FormlyFormOptions = {};
   model: any = {};
-  fields: FormlyFieldConfig[] = [{
-    key: 'quartiere',
-    type: 'autocomplete',
-    templateOptions: {
-      multiple: true,
-      filter: (term:any) => term && typeof term === 'string' ? this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._quartiereSelectGQL.subscribe().pipe(map(result => result.data?.quartiere)),
-    },
-    expressionProperties: {
-      'templateOptions.label': this._translateService.stream('Quartiere'),
-    },
-  }];
+  fields: FormlyFieldConfig[] = [
+    this._formFieldService.getQuartieri({multiple:true,required:false})
+  ];
   defaultSort = {
     column: "nome",
     direction: "asc"
@@ -58,7 +51,7 @@ export class MunicipalitaComponent implements OnInit {
 
   constructor(
     private _municipalitaGQL: MunicipalitaGQL,
-    private _quartiereSelectGQL: QuartiereSelectGQL,
+    private _formFieldService: LocalizzazioneFormFieldService,
     private _translateService: TranslateService,
     private _deleteMunicipalitaGQL: DeleteMunicipalitaGQL,
     private _snackBar: MatSnackBar,
