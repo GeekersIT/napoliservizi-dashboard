@@ -5,7 +5,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { distinctUntilChanged, map, mergeMap, startWith } from 'rxjs/operators';
-import { ToponimoObj } from 'src/app/_core/_models/toponimo.interface';
+import { ToponimoObj } from 'src/app/_core/_models/toponomastica/toponimo.interface';
 import { Assegnazione_Toponimo_Constraint, Assegnazione_Toponimo_Update_Column, DeleteToponimoGQL, DugSelectGQL, MunicipalitaSelectGQL, QuartiereSelectGQL, TipologiaSelectGQL, Toponimo_Insert_Input, UpdateToponimoGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({

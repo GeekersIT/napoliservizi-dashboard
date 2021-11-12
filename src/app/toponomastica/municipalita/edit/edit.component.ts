@@ -4,11 +4,9 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
 import { QuartiereSelectGQL, UpdateMunicipalitaGQL, DeleteMunicipalitaGQL, Municipalita_Insert_Input, Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column } from 'src/app/_core/_services/generated/graphql';
-import * as _ from 'lodash';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { MunicipalitaObj } from 'src/app/_core/_models/municipalita.interface';
-import { QuartiereSelectObj } from 'src/app/_core/_models/quartiere.interface';
-import { of } from 'zen-observable';
+import { FormArray, FormGroup } from '@angular/forms';
+import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
+import { QuartiereSelectObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
 
 @Component({
   selector: 'app-municipalita-edit',

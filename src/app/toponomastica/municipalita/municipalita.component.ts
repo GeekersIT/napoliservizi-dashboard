@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
-import { MunicipalitaObj } from 'src/app/_core/_models/municipalita.interface';
+import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 

@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
-import { OperatorePisObj } from 'src/app/_core/_models/squadra-pis.interface';
+import { OperatorePisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
 import { DeleteOperatorePisGQL, Membro_Insert_Input, UpdateOperatorePisGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({

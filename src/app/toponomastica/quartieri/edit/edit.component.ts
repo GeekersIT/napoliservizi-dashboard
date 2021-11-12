@@ -4,8 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { MunicipalitaSelectObj } from 'src/app/_core/_models/municipalita.interface';
-import { QuartiereObj } from 'src/app/_core/_models/quartiere.interface';
+import { MunicipalitaSelectObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
+import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
 import { Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column, DeleteQuartiereGQL, MunicipalitaSelectGQL, Quartiere_Insert_Input, UpdateQuartiereGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({

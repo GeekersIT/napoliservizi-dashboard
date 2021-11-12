@@ -1,0 +1,32 @@
+subscription PrioritaSelect {
+  _priorita(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+subscription TipologiaPosizionamentoToponimoSelect {
+  _tipologia_posizionamento_toponimo(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+subscription SpecificaPosizionamentoToponimoSelect {
+  _specifica_posizionamento_toponimo(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+
+subscription OperatorePisSelect {
+  membro(order_by: {nome: asc}) {
+    id
+    nome
+    cognome
+    matricola
+    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
+      aggregate {
+        count
+      }
+    }
+  }
+}

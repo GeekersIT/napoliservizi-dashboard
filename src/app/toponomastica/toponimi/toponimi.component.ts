@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
-import { ToponimoObj } from 'src/app/_core/_models/toponimo.interface';
+import { ToponimoObj } from 'src/app/_core/_models/toponomastica/toponimo.interface';
 import { DugSelectGQL, MunicipalitaSelectGQL, QuartiereSelectGQL, TipologiaSelectGQL, ToponimiGQL, ToponimiSubscription } from 'src/app/_core/_services/generated/graphql';
 import { ToponimiEditComponent } from './edit/edit.component';
 

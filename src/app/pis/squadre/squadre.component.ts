@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
-import { SquadraPisObj } from 'src/app/_core/_models/squadra-pis.interface';
+import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
 import { SquadrePisGQL, SquadrePisSubscription } from 'src/app/_core/_services/generated/graphql';
 import { SquadraEditComponent } from './edit/edit.component';
 

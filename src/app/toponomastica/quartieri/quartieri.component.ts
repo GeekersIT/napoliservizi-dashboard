@@ -5,10 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
-import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
-import { QuartiereObj } from 'src/app/_core/_models/quartiere.interface';
+import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
 import { MunicipalitaSelectGQL, QuartieriGQL, QuartieriSubscription } from 'src/app/_core/_services/generated/graphql';
 import { QuartieriEditComponent } from './edit/edit.component';
 

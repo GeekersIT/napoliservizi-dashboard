@@ -1,0 +1,58 @@
+subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = {}) {
+  intervento_straordinario(where: $where) {
+    id
+    municipalita_id
+    municipalita_storica
+    quartiere_id
+    quartiere_storico
+    toponimo_id
+    toponimo_storico
+    posizionamento_toponimo_punto_iniziale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      valore
+      note
+      geoloc
+    }
+    posizionamento_toponimo_punto_finale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      valore
+      note
+      geoloc
+    }
+    data_inserimento
+    priorita {
+      id
+      nome
+    }
+    data_inizio_lavori
+    data_fine_lavori
+    tipologia_intervento
+    lavori_effettuati
+    stato_fine_lavori
+  }
+}
+
+
+mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_insert_input!] = {}, $on_conflict: intervento_straordinario_on_conflict = {constraint: intervento_straordinario_pkey}) {
+  insert_intervento_straordinario(objects: $intervento, on_conflict: $on_conflict) {
+    returning {
+      id
+    }
+  }
+}

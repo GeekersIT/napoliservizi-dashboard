@@ -28,18 +28,3 @@ subscription TipologiaSelect {
     nome
   }
 }
-
-
-subscription OperatorePisSelect {
-  membro(order_by: {nome: asc}) {
-    id
-    nome
-    cognome
-    matricola
-    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
-      aggregate {
-        count
-      }
-    }
-  }
-}

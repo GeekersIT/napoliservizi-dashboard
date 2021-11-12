@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
-import { SquadraPisObj } from 'src/app/_core/_models/squadra-pis.interface';
+import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
 import { Assegnazione_Squadra_Constraint, Assegnazione_Squadra_Update_Column, DeleteSquadraPisGQL, OperatorePisSelectGQL, Squadra_Insert_Input, UpdateSquadraPisGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
@@ -41,32 +41,37 @@ export class SquadraEditComponent implements OnInit {
     expressionProperties: {
       'templateOptions.addText': this._translateService.stream('Aggiungi operatore'),
     },
-    // validators: {
-    //   quartieriDuplicati: {
-    //     expression: (control:FormArray) => {
-    //       let array = control.value.filter((q:any) => q!==undefined && q!==null).map((q:any) => q.id);
-    //       if(array.filter((a:any) => a === null).length >0){
-    //         return true;
-    //       }
-
-    //       let ids = [];
-
-    //       for(var i = 0; i < array.length; i++){
-    //         if(array.filter((a:any) => a == array[i]).length>1)
-    //           ids.push(i);        
-    //       }
-    //       if(ids.length>0){
-    //         ids.forEach(id => {
-    //           control.controls[id].setErrors({
-    //             duplicate: true
-    //           })
-    //         })
-    //         return false;
-    //       }
-    //       return true;
-    //     }
-    //   }
-    // },
+    validators: {
+      assegnazioniDuplicate: {
+        expression: (control:FormArray) => {
+          control.controls.forEach((c:any) => {
+            if(c.controls.membro){
+              if(c.controls.membro.value!==null)
+                c.controls.membro.setErrors(null);
+            }
+          })
+          let array = control.value.filter((q:any) => q!==undefined && q!==null && q.membro!==undefined && q.membro!==null).map((q:any) => { return q.membro.id});         
+          if(array.filter((a:any) => a === null).length >0){
+            return true;
+          }
+          let ids = [];
+          for(var i = 0; i < array.length; i++){
+            if(array.filter((a:any) => a == array[i]).length>1)
+              ids.push(i);
+          }
+          if(ids.length>0){
+            ids.forEach(id => {
+              let fg: FormGroup = control.controls[id] as FormGroup;
+              fg.controls.membro.setErrors({
+                duplicate: true
+              })
+            })
+            return false;
+          }
+          return true;
+        }
+      }
+    },
     fieldArray: {
       fieldGroupClassName: 'display-flex',
       fieldGroup: [
@@ -82,6 +87,11 @@ export class SquadraEditComponent implements OnInit {
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Operatore'),
+          },
+          validation: {
+            messages: {
+              duplicate: (error:any, field: FormlyFieldConfig) => this._translateService.instant('Non ci possono essere operatori duplicati')
+            }
           }
         },{
           className: 'flex-1',

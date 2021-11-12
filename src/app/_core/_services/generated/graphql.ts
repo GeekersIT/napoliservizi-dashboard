@@ -12,7 +12,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  timestamp: any;
+  geography: any;
+  geometry: any;
+  jsonb: any;
   timestamptz: any;
 };
 
@@ -73,6 +75,615 @@ export type String_Comparison_Exp = {
   _regex?: Maybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
   _similar?: Maybe<Scalars['String']>;
+};
+
+/** columns and relationships of "_priorita" */
+export type _Priorita = {
+  __typename?: '_priorita';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_priorita" */
+export type _Priorita_Aggregate = {
+  __typename?: '_priorita_aggregate';
+  aggregate?: Maybe<_Priorita_Aggregate_Fields>;
+  nodes: Array<_Priorita>;
+};
+
+/** aggregate fields of "_priorita" */
+export type _Priorita_Aggregate_Fields = {
+  __typename?: '_priorita_aggregate_fields';
+  avg?: Maybe<_Priorita_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Priorita_Max_Fields>;
+  min?: Maybe<_Priorita_Min_Fields>;
+  stddev?: Maybe<_Priorita_Stddev_Fields>;
+  stddev_pop?: Maybe<_Priorita_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Priorita_Stddev_Samp_Fields>;
+  sum?: Maybe<_Priorita_Sum_Fields>;
+  var_pop?: Maybe<_Priorita_Var_Pop_Fields>;
+  var_samp?: Maybe<_Priorita_Var_Samp_Fields>;
+  variance?: Maybe<_Priorita_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_priorita" */
+export type _Priorita_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Priorita_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Priorita_Avg_Fields = {
+  __typename?: '_priorita_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_priorita". All fields are combined with a logical 'AND'. */
+export type _Priorita_Bool_Exp = {
+  _and?: Maybe<Array<_Priorita_Bool_Exp>>;
+  _not?: Maybe<_Priorita_Bool_Exp>;
+  _or?: Maybe<Array<_Priorita_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_priorita" */
+export enum _Priorita_Constraint {
+  /** unique or primary key constraint */
+  PrioritaPkey = '_priorita_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_priorita" */
+export type _Priorita_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_priorita" */
+export type _Priorita_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Priorita_Max_Fields = {
+  __typename?: '_priorita_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Priorita_Min_Fields = {
+  __typename?: '_priorita_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_priorita" */
+export type _Priorita_Mutation_Response = {
+  __typename?: '_priorita_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Priorita>;
+};
+
+/** input type for inserting object relation for remote table "_priorita" */
+export type _Priorita_Obj_Rel_Insert_Input = {
+  data: _Priorita_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Priorita_On_Conflict>;
+};
+
+/** on conflict condition type for table "_priorita" */
+export type _Priorita_On_Conflict = {
+  constraint: _Priorita_Constraint;
+  update_columns?: Array<_Priorita_Update_Column>;
+  where?: Maybe<_Priorita_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_priorita". */
+export type _Priorita_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _priorita */
+export type _Priorita_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_priorita" */
+export enum _Priorita_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_priorita" */
+export type _Priorita_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Priorita_Stddev_Fields = {
+  __typename?: '_priorita_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Priorita_Stddev_Pop_Fields = {
+  __typename?: '_priorita_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Priorita_Stddev_Samp_Fields = {
+  __typename?: '_priorita_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Priorita_Sum_Fields = {
+  __typename?: '_priorita_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_priorita" */
+export enum _Priorita_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Priorita_Var_Pop_Fields = {
+  __typename?: '_priorita_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Priorita_Var_Samp_Fields = {
+  __typename?: '_priorita_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Priorita_Variance_Fields = {
+  __typename?: '_priorita_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo = {
+  __typename?: '_specifica_posizionamento_toponimo';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Aggregate = {
+  __typename?: '_specifica_posizionamento_toponimo_aggregate';
+  aggregate?: Maybe<_Specifica_Posizionamento_Toponimo_Aggregate_Fields>;
+  nodes: Array<_Specifica_Posizionamento_Toponimo>;
+};
+
+/** aggregate fields of "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Aggregate_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_aggregate_fields';
+  avg?: Maybe<_Specifica_Posizionamento_Toponimo_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Specifica_Posizionamento_Toponimo_Max_Fields>;
+  min?: Maybe<_Specifica_Posizionamento_Toponimo_Min_Fields>;
+  stddev?: Maybe<_Specifica_Posizionamento_Toponimo_Stddev_Fields>;
+  stddev_pop?: Maybe<_Specifica_Posizionamento_Toponimo_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Specifica_Posizionamento_Toponimo_Stddev_Samp_Fields>;
+  sum?: Maybe<_Specifica_Posizionamento_Toponimo_Sum_Fields>;
+  var_pop?: Maybe<_Specifica_Posizionamento_Toponimo_Var_Pop_Fields>;
+  var_samp?: Maybe<_Specifica_Posizionamento_Toponimo_Var_Samp_Fields>;
+  variance?: Maybe<_Specifica_Posizionamento_Toponimo_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Specifica_Posizionamento_Toponimo_Avg_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_specifica_posizionamento_toponimo". All fields are combined with a logical 'AND'. */
+export type _Specifica_Posizionamento_Toponimo_Bool_Exp = {
+  _and?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Bool_Exp>>;
+  _not?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+  _or?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_specifica_posizionamento_toponimo" */
+export enum _Specifica_Posizionamento_Toponimo_Constraint {
+  /** unique or primary key constraint */
+  SpecificaPosizionamentoToponimoPkey = '_specifica_posizionamento_toponimo_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Specifica_Posizionamento_Toponimo_Max_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Specifica_Posizionamento_Toponimo_Min_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Mutation_Response = {
+  __typename?: '_specifica_posizionamento_toponimo_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Specifica_Posizionamento_Toponimo>;
+};
+
+/** input type for inserting object relation for remote table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Obj_Rel_Insert_Input = {
+  data: _Specifica_Posizionamento_Toponimo_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Specifica_Posizionamento_Toponimo_On_Conflict>;
+};
+
+/** on conflict condition type for table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_On_Conflict = {
+  constraint: _Specifica_Posizionamento_Toponimo_Constraint;
+  update_columns?: Array<_Specifica_Posizionamento_Toponimo_Update_Column>;
+  where?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_specifica_posizionamento_toponimo". */
+export type _Specifica_Posizionamento_Toponimo_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _specifica_posizionamento_toponimo */
+export type _Specifica_Posizionamento_Toponimo_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_specifica_posizionamento_toponimo" */
+export enum _Specifica_Posizionamento_Toponimo_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_specifica_posizionamento_toponimo" */
+export type _Specifica_Posizionamento_Toponimo_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Specifica_Posizionamento_Toponimo_Stddev_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Specifica_Posizionamento_Toponimo_Stddev_Pop_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Specifica_Posizionamento_Toponimo_Stddev_Samp_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Specifica_Posizionamento_Toponimo_Sum_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_specifica_posizionamento_toponimo" */
+export enum _Specifica_Posizionamento_Toponimo_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Specifica_Posizionamento_Toponimo_Var_Pop_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Specifica_Posizionamento_Toponimo_Var_Samp_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Specifica_Posizionamento_Toponimo_Variance_Fields = {
+  __typename?: '_specifica_posizionamento_toponimo_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo = {
+  __typename?: '_tipologia_posizionamento_toponimo';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Aggregate = {
+  __typename?: '_tipologia_posizionamento_toponimo_aggregate';
+  aggregate?: Maybe<_Tipologia_Posizionamento_Toponimo_Aggregate_Fields>;
+  nodes: Array<_Tipologia_Posizionamento_Toponimo>;
+};
+
+/** aggregate fields of "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Aggregate_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_aggregate_fields';
+  avg?: Maybe<_Tipologia_Posizionamento_Toponimo_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Tipologia_Posizionamento_Toponimo_Max_Fields>;
+  min?: Maybe<_Tipologia_Posizionamento_Toponimo_Min_Fields>;
+  stddev?: Maybe<_Tipologia_Posizionamento_Toponimo_Stddev_Fields>;
+  stddev_pop?: Maybe<_Tipologia_Posizionamento_Toponimo_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Tipologia_Posizionamento_Toponimo_Stddev_Samp_Fields>;
+  sum?: Maybe<_Tipologia_Posizionamento_Toponimo_Sum_Fields>;
+  var_pop?: Maybe<_Tipologia_Posizionamento_Toponimo_Var_Pop_Fields>;
+  var_samp?: Maybe<_Tipologia_Posizionamento_Toponimo_Var_Samp_Fields>;
+  variance?: Maybe<_Tipologia_Posizionamento_Toponimo_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Tipologia_Posizionamento_Toponimo_Avg_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_tipologia_posizionamento_toponimo". All fields are combined with a logical 'AND'. */
+export type _Tipologia_Posizionamento_Toponimo_Bool_Exp = {
+  _and?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Bool_Exp>>;
+  _not?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+  _or?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_tipologia_posizionamento_toponimo" */
+export enum _Tipologia_Posizionamento_Toponimo_Constraint {
+  /** unique or primary key constraint */
+  TipologiaPosizionamentoToponimoPkey = '_tipologia_posizionamento_toponimo_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Tipologia_Posizionamento_Toponimo_Max_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Tipologia_Posizionamento_Toponimo_Min_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Mutation_Response = {
+  __typename?: '_tipologia_posizionamento_toponimo_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Tipologia_Posizionamento_Toponimo>;
+};
+
+/** input type for inserting object relation for remote table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Obj_Rel_Insert_Input = {
+  data: _Tipologia_Posizionamento_Toponimo_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Tipologia_Posizionamento_Toponimo_On_Conflict>;
+};
+
+/** on conflict condition type for table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_On_Conflict = {
+  constraint: _Tipologia_Posizionamento_Toponimo_Constraint;
+  update_columns?: Array<_Tipologia_Posizionamento_Toponimo_Update_Column>;
+  where?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_tipologia_posizionamento_toponimo". */
+export type _Tipologia_Posizionamento_Toponimo_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _tipologia_posizionamento_toponimo */
+export type _Tipologia_Posizionamento_Toponimo_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_tipologia_posizionamento_toponimo" */
+export enum _Tipologia_Posizionamento_Toponimo_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_tipologia_posizionamento_toponimo" */
+export type _Tipologia_Posizionamento_Toponimo_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Tipologia_Posizionamento_Toponimo_Stddev_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Tipologia_Posizionamento_Toponimo_Stddev_Pop_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Tipologia_Posizionamento_Toponimo_Stddev_Samp_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Tipologia_Posizionamento_Toponimo_Sum_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_tipologia_posizionamento_toponimo" */
+export enum _Tipologia_Posizionamento_Toponimo_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Tipologia_Posizionamento_Toponimo_Var_Pop_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Tipologia_Posizionamento_Toponimo_Var_Samp_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Tipologia_Posizionamento_Toponimo_Variance_Fields = {
+  __typename?: '_tipologia_posizionamento_toponimo_variance_fields';
+  id?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "assegnazione_quartiere" */
@@ -410,7 +1021,7 @@ export type Assegnazione_Quartiere_Variance_Order_By = {
 export type Assegnazione_Squadra = {
   __typename?: 'assegnazione_squadra';
   caposquadra: Scalars['Boolean'];
-  fine_validita?: Maybe<Scalars['timestamp']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
   id: Scalars['Int'];
   inizio_validita: Scalars['timestamptz'];
   /** An object relationship */
@@ -494,7 +1105,7 @@ export type Assegnazione_Squadra_Bool_Exp = {
   _not?: Maybe<Assegnazione_Squadra_Bool_Exp>;
   _or?: Maybe<Array<Assegnazione_Squadra_Bool_Exp>>;
   caposquadra?: Maybe<Boolean_Comparison_Exp>;
-  fine_validita?: Maybe<Timestamp_Comparison_Exp>;
+  fine_validita?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   inizio_validita?: Maybe<Timestamptz_Comparison_Exp>;
   membro?: Maybe<Membro_Bool_Exp>;
@@ -519,7 +1130,7 @@ export type Assegnazione_Squadra_Inc_Input = {
 /** input type for inserting data into table "assegnazione_squadra" */
 export type Assegnazione_Squadra_Insert_Input = {
   caposquadra?: Maybe<Scalars['Boolean']>;
-  fine_validita?: Maybe<Scalars['timestamp']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
   membro?: Maybe<Membro_Obj_Rel_Insert_Input>;
@@ -531,7 +1142,7 @@ export type Assegnazione_Squadra_Insert_Input = {
 /** aggregate max on columns */
 export type Assegnazione_Squadra_Max_Fields = {
   __typename?: 'assegnazione_squadra_max_fields';
-  fine_validita?: Maybe<Scalars['timestamp']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
   membro_id?: Maybe<Scalars['Int']>;
@@ -550,7 +1161,7 @@ export type Assegnazione_Squadra_Max_Order_By = {
 /** aggregate min on columns */
 export type Assegnazione_Squadra_Min_Fields = {
   __typename?: 'assegnazione_squadra_min_fields';
-  fine_validita?: Maybe<Scalars['timestamp']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
   membro_id?: Maybe<Scalars['Int']>;
@@ -618,7 +1229,7 @@ export enum Assegnazione_Squadra_Select_Column {
 /** input type for updating data in table "assegnazione_squadra" */
 export type Assegnazione_Squadra_Set_Input = {
   caposquadra?: Maybe<Scalars['Boolean']>;
-  fine_validita?: Maybe<Scalars['timestamp']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
   membro_id?: Maybe<Scalars['Int']>;
@@ -1315,11 +1926,558 @@ export type Dug_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+export type Geography_Cast_Exp = {
+  geometry?: Maybe<Geometry_Comparison_Exp>;
+};
+
+/** Boolean expression to compare columns of type "geography". All fields are combined with logical 'AND'. */
+export type Geography_Comparison_Exp = {
+  _cast?: Maybe<Geography_Cast_Exp>;
+  _eq?: Maybe<Scalars['geography']>;
+  _gt?: Maybe<Scalars['geography']>;
+  _gte?: Maybe<Scalars['geography']>;
+  _in?: Maybe<Array<Scalars['geography']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['geography']>;
+  _lte?: Maybe<Scalars['geography']>;
+  _neq?: Maybe<Scalars['geography']>;
+  _nin?: Maybe<Array<Scalars['geography']>>;
+  /** is the column within a given distance from the given geography value */
+  _st_d_within?: Maybe<St_D_Within_Geography_Input>;
+  /** does the column spatially intersect the given geography value */
+  _st_intersects?: Maybe<Scalars['geography']>;
+};
+
+export type Geometry_Cast_Exp = {
+  geography?: Maybe<Geography_Comparison_Exp>;
+};
+
+/** Boolean expression to compare columns of type "geometry". All fields are combined with logical 'AND'. */
+export type Geometry_Comparison_Exp = {
+  _cast?: Maybe<Geometry_Cast_Exp>;
+  _eq?: Maybe<Scalars['geometry']>;
+  _gt?: Maybe<Scalars['geometry']>;
+  _gte?: Maybe<Scalars['geometry']>;
+  _in?: Maybe<Array<Scalars['geometry']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['geometry']>;
+  _lte?: Maybe<Scalars['geometry']>;
+  _neq?: Maybe<Scalars['geometry']>;
+  _nin?: Maybe<Array<Scalars['geometry']>>;
+  /** is the column within a given 3D distance from the given geometry value */
+  _st_3d_d_within?: Maybe<St_D_Within_Input>;
+  /** does the column spatially intersect the given geometry value in 3D */
+  _st_3d_intersects?: Maybe<Scalars['geometry']>;
+  /** does the column contain the given geometry value */
+  _st_contains?: Maybe<Scalars['geometry']>;
+  /** does the column cross the given geometry value */
+  _st_crosses?: Maybe<Scalars['geometry']>;
+  /** is the column within a given distance from the given geometry value */
+  _st_d_within?: Maybe<St_D_Within_Input>;
+  /** is the column equal to given geometry value (directionality is ignored) */
+  _st_equals?: Maybe<Scalars['geometry']>;
+  /** does the column spatially intersect the given geometry value */
+  _st_intersects?: Maybe<Scalars['geometry']>;
+  /** does the column 'spatially overlap' (intersect but not completely contain) the given geometry value */
+  _st_overlaps?: Maybe<Scalars['geometry']>;
+  /** does the column have atleast one point in common with the given geometry value */
+  _st_touches?: Maybe<Scalars['geometry']>;
+  /** is the column contained in the given geometry value */
+  _st_within?: Maybe<Scalars['geometry']>;
+};
+
+/** columns and relationships of "intervento_straordinario" */
+export type Intervento_Straordinario = {
+  __typename?: 'intervento_straordinario';
+  created_at: Scalars['timestamptz'];
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inserimento?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['Int'];
+  lavori_effettuati?: Maybe<Scalars['String']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  municipalita_storica?: Maybe<Scalars['jsonb']>;
+  /** An object relationship */
+  posizionamento_toponimo_punto_finale?: Maybe<Posizionamento_Toponimo>;
+  /** An object relationship */
+  posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo>;
+  /** An object relationship */
+  priorita?: Maybe<_Priorita>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  quartiere_storico?: Maybe<Scalars['jsonb']>;
+  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  tipologia_intervento?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  toponimo_storico?: Maybe<Scalars['jsonb']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+
+/** columns and relationships of "intervento_straordinario" */
+export type Intervento_StraordinarioMunicipalita_StoricaArgs = {
+  path?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "intervento_straordinario" */
+export type Intervento_StraordinarioQuartiere_StoricoArgs = {
+  path?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "intervento_straordinario" */
+export type Intervento_StraordinarioToponimo_StoricoArgs = {
+  path?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "intervento_straordinario" */
+export type Intervento_Straordinario_Aggregate = {
+  __typename?: 'intervento_straordinario_aggregate';
+  aggregate?: Maybe<Intervento_Straordinario_Aggregate_Fields>;
+  nodes: Array<Intervento_Straordinario>;
+};
+
+/** aggregate fields of "intervento_straordinario" */
+export type Intervento_Straordinario_Aggregate_Fields = {
+  __typename?: 'intervento_straordinario_aggregate_fields';
+  avg?: Maybe<Intervento_Straordinario_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Intervento_Straordinario_Max_Fields>;
+  min?: Maybe<Intervento_Straordinario_Min_Fields>;
+  stddev?: Maybe<Intervento_Straordinario_Stddev_Fields>;
+  stddev_pop?: Maybe<Intervento_Straordinario_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Intervento_Straordinario_Stddev_Samp_Fields>;
+  sum?: Maybe<Intervento_Straordinario_Sum_Fields>;
+  var_pop?: Maybe<Intervento_Straordinario_Var_Pop_Fields>;
+  var_samp?: Maybe<Intervento_Straordinario_Var_Samp_Fields>;
+  variance?: Maybe<Intervento_Straordinario_Variance_Fields>;
+};
+
+
+/** aggregate fields of "intervento_straordinario" */
+export type Intervento_Straordinario_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Intervento_Straordinario_Append_Input = {
+  municipalita_storica?: Maybe<Scalars['jsonb']>;
+  quartiere_storico?: Maybe<Scalars['jsonb']>;
+  toponimo_storico?: Maybe<Scalars['jsonb']>;
+};
+
+/** aggregate avg on columns */
+export type Intervento_Straordinario_Avg_Fields = {
+  __typename?: 'intervento_straordinario_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "intervento_straordinario". All fields are combined with a logical 'AND'. */
+export type Intervento_Straordinario_Bool_Exp = {
+  _and?: Maybe<Array<Intervento_Straordinario_Bool_Exp>>;
+  _not?: Maybe<Intervento_Straordinario_Bool_Exp>;
+  _or?: Maybe<Array<Intervento_Straordinario_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  data_fine_lavori?: Maybe<Timestamptz_Comparison_Exp>;
+  data_inizio_lavori?: Maybe<Timestamptz_Comparison_Exp>;
+  data_inserimento?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  lavori_effettuati?: Maybe<String_Comparison_Exp>;
+  municipalita_id?: Maybe<Int_Comparison_Exp>;
+  municipalita_storica?: Maybe<Jsonb_Comparison_Exp>;
+  posizionamento_toponimo_punto_finale?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+  posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+  priorita?: Maybe<_Priorita_Bool_Exp>;
+  priorita_id?: Maybe<Int_Comparison_Exp>;
+  punto_finale_posizionamento_id?: Maybe<Int_Comparison_Exp>;
+  punto_iniziale_posizionamento_id?: Maybe<Int_Comparison_Exp>;
+  quartiere_id?: Maybe<Int_Comparison_Exp>;
+  quartiere_storico?: Maybe<Jsonb_Comparison_Exp>;
+  stato_fine_lavori?: Maybe<Boolean_Comparison_Exp>;
+  tipologia_intervento?: Maybe<String_Comparison_Exp>;
+  toponimo_id?: Maybe<Int_Comparison_Exp>;
+  toponimo_storico?: Maybe<Jsonb_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "intervento_straordinario" */
+export enum Intervento_Straordinario_Constraint {
+  /** unique or primary key constraint */
+  InterventoStraordinarioPkey = 'intervento_straordinario_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Intervento_Straordinario_Delete_At_Path_Input = {
+  municipalita_storica?: Maybe<Array<Scalars['String']>>;
+  quartiere_storico?: Maybe<Array<Scalars['String']>>;
+  toponimo_storico?: Maybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Intervento_Straordinario_Delete_Elem_Input = {
+  municipalita_storica?: Maybe<Scalars['Int']>;
+  quartiere_storico?: Maybe<Scalars['Int']>;
+  toponimo_storico?: Maybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Intervento_Straordinario_Delete_Key_Input = {
+  municipalita_storica?: Maybe<Scalars['String']>;
+  quartiere_storico?: Maybe<Scalars['String']>;
+  toponimo_storico?: Maybe<Scalars['String']>;
+};
+
+/** input type for incrementing numeric columns in table "intervento_straordinario" */
+export type Intervento_Straordinario_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "intervento_straordinario" */
+export type Intervento_Straordinario_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inserimento?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  lavori_effettuati?: Maybe<Scalars['String']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  municipalita_storica?: Maybe<Scalars['jsonb']>;
+  posizionamento_toponimo_punto_finale?: Maybe<Posizionamento_Toponimo_Obj_Rel_Insert_Input>;
+  posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Obj_Rel_Insert_Input>;
+  priorita?: Maybe<_Priorita_Obj_Rel_Insert_Input>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  quartiere_storico?: Maybe<Scalars['jsonb']>;
+  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  tipologia_intervento?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  toponimo_storico?: Maybe<Scalars['jsonb']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Intervento_Straordinario_Max_Fields = {
+  __typename?: 'intervento_straordinario_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inserimento?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  lavori_effettuati?: Maybe<Scalars['String']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  tipologia_intervento?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Intervento_Straordinario_Min_Fields = {
+  __typename?: 'intervento_straordinario_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inserimento?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  lavori_effettuati?: Maybe<Scalars['String']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  tipologia_intervento?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "intervento_straordinario" */
+export type Intervento_Straordinario_Mutation_Response = {
+  __typename?: 'intervento_straordinario_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Intervento_Straordinario>;
+};
+
+/** on conflict condition type for table "intervento_straordinario" */
+export type Intervento_Straordinario_On_Conflict = {
+  constraint: Intervento_Straordinario_Constraint;
+  update_columns?: Array<Intervento_Straordinario_Update_Column>;
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "intervento_straordinario". */
+export type Intervento_Straordinario_Order_By = {
+  created_at?: Maybe<Order_By>;
+  data_fine_lavori?: Maybe<Order_By>;
+  data_inizio_lavori?: Maybe<Order_By>;
+  data_inserimento?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  lavori_effettuati?: Maybe<Order_By>;
+  municipalita_id?: Maybe<Order_By>;
+  municipalita_storica?: Maybe<Order_By>;
+  posizionamento_toponimo_punto_finale?: Maybe<Posizionamento_Toponimo_Order_By>;
+  posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Order_By>;
+  priorita?: Maybe<_Priorita_Order_By>;
+  priorita_id?: Maybe<Order_By>;
+  punto_finale_posizionamento_id?: Maybe<Order_By>;
+  punto_iniziale_posizionamento_id?: Maybe<Order_By>;
+  quartiere_id?: Maybe<Order_By>;
+  quartiere_storico?: Maybe<Order_By>;
+  stato_fine_lavori?: Maybe<Order_By>;
+  tipologia_intervento?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+  toponimo_storico?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: intervento_straordinario */
+export type Intervento_Straordinario_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Intervento_Straordinario_Prepend_Input = {
+  municipalita_storica?: Maybe<Scalars['jsonb']>;
+  quartiere_storico?: Maybe<Scalars['jsonb']>;
+  toponimo_storico?: Maybe<Scalars['jsonb']>;
+};
+
+/** select columns of table "intervento_straordinario" */
+export enum Intervento_Straordinario_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DataFineLavori = 'data_fine_lavori',
+  /** column name */
+  DataInizioLavori = 'data_inizio_lavori',
+  /** column name */
+  DataInserimento = 'data_inserimento',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LavoriEffettuati = 'lavori_effettuati',
+  /** column name */
+  MunicipalitaId = 'municipalita_id',
+  /** column name */
+  MunicipalitaStorica = 'municipalita_storica',
+  /** column name */
+  PrioritaId = 'priorita_id',
+  /** column name */
+  PuntoFinalePosizionamentoId = 'punto_finale_posizionamento_id',
+  /** column name */
+  PuntoInizialePosizionamentoId = 'punto_iniziale_posizionamento_id',
+  /** column name */
+  QuartiereId = 'quartiere_id',
+  /** column name */
+  QuartiereStorico = 'quartiere_storico',
+  /** column name */
+  StatoFineLavori = 'stato_fine_lavori',
+  /** column name */
+  TipologiaIntervento = 'tipologia_intervento',
+  /** column name */
+  ToponimoId = 'toponimo_id',
+  /** column name */
+  ToponimoStorico = 'toponimo_storico',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "intervento_straordinario" */
+export type Intervento_Straordinario_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inserimento?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  lavori_effettuati?: Maybe<Scalars['String']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  municipalita_storica?: Maybe<Scalars['jsonb']>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  quartiere_storico?: Maybe<Scalars['jsonb']>;
+  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  tipologia_intervento?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  toponimo_storico?: Maybe<Scalars['jsonb']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Intervento_Straordinario_Stddev_Fields = {
+  __typename?: 'intervento_straordinario_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Intervento_Straordinario_Stddev_Pop_Fields = {
+  __typename?: 'intervento_straordinario_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Intervento_Straordinario_Stddev_Samp_Fields = {
+  __typename?: 'intervento_straordinario_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Intervento_Straordinario_Sum_Fields = {
+  __typename?: 'intervento_straordinario_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  municipalita_id?: Maybe<Scalars['Int']>;
+  priorita_id?: Maybe<Scalars['Int']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Int']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
+  quartiere_id?: Maybe<Scalars['Int']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "intervento_straordinario" */
+export enum Intervento_Straordinario_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DataFineLavori = 'data_fine_lavori',
+  /** column name */
+  DataInizioLavori = 'data_inizio_lavori',
+  /** column name */
+  DataInserimento = 'data_inserimento',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LavoriEffettuati = 'lavori_effettuati',
+  /** column name */
+  MunicipalitaId = 'municipalita_id',
+  /** column name */
+  MunicipalitaStorica = 'municipalita_storica',
+  /** column name */
+  PrioritaId = 'priorita_id',
+  /** column name */
+  PuntoFinalePosizionamentoId = 'punto_finale_posizionamento_id',
+  /** column name */
+  PuntoInizialePosizionamentoId = 'punto_iniziale_posizionamento_id',
+  /** column name */
+  QuartiereId = 'quartiere_id',
+  /** column name */
+  QuartiereStorico = 'quartiere_storico',
+  /** column name */
+  StatoFineLavori = 'stato_fine_lavori',
+  /** column name */
+  TipologiaIntervento = 'tipologia_intervento',
+  /** column name */
+  ToponimoId = 'toponimo_id',
+  /** column name */
+  ToponimoStorico = 'toponimo_storico',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Intervento_Straordinario_Var_Pop_Fields = {
+  __typename?: 'intervento_straordinario_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Intervento_Straordinario_Var_Samp_Fields = {
+  __typename?: 'intervento_straordinario_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Intervento_Straordinario_Variance_Fields = {
+  __typename?: 'intervento_straordinario_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  municipalita_id?: Maybe<Scalars['Float']>;
+  priorita_id?: Maybe<Scalars['Float']>;
+  punto_finale_posizionamento_id?: Maybe<Scalars['Float']>;
+  punto_iniziale_posizionamento_id?: Maybe<Scalars['Float']>;
+  quartiere_id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
+export type Jsonb_Comparison_Exp = {
+  /** is the column contained in the given json value */
+  _contained_in?: Maybe<Scalars['jsonb']>;
+  /** does the column contain the given json value at the top level */
+  _contains?: Maybe<Scalars['jsonb']>;
+  _eq?: Maybe<Scalars['jsonb']>;
+  _gt?: Maybe<Scalars['jsonb']>;
+  _gte?: Maybe<Scalars['jsonb']>;
+  /** does the string exist as a top-level key in the column */
+  _has_key?: Maybe<Scalars['String']>;
+  /** do all of these strings exist as top-level keys in the column */
+  _has_keys_all?: Maybe<Array<Scalars['String']>>;
+  /** do any of these strings exist as top-level keys in the column */
+  _has_keys_any?: Maybe<Array<Scalars['String']>>;
+  _in?: Maybe<Array<Scalars['jsonb']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['jsonb']>;
+  _lte?: Maybe<Scalars['jsonb']>;
+  _neq?: Maybe<Scalars['jsonb']>;
+  _nin?: Maybe<Array<Scalars['jsonb']>>;
+};
+
 /** columns and relationships of "membro" */
 export type Membro = {
   __typename?: 'membro';
   cognome: Scalars['String'];
-  created_at?: Maybe<Scalars['timestamptz']>;
+  created_at: Scalars['timestamptz'];
   id: Scalars['Int'];
   matricola: Scalars['String'];
   nome: Scalars['String'];
@@ -1327,7 +2485,7 @@ export type Membro = {
   squadre: Array<Assegnazione_Squadra>;
   /** An aggregate relationship */
   squadre_aggregate: Assegnazione_Squadra_Aggregate;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  updated_at: Scalars['timestamptz'];
 };
 
 
@@ -1827,6 +2985,18 @@ export type Municipalita_Variance_Fields = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete data from the table: "_priorita" */
+  delete__priorita?: Maybe<_Priorita_Mutation_Response>;
+  /** delete single row from the table: "_priorita" */
+  delete__priorita_by_pk?: Maybe<_Priorita>;
+  /** delete data from the table: "_specifica_posizionamento_toponimo" */
+  delete__specifica_posizionamento_toponimo?: Maybe<_Specifica_Posizionamento_Toponimo_Mutation_Response>;
+  /** delete single row from the table: "_specifica_posizionamento_toponimo" */
+  delete__specifica_posizionamento_toponimo_by_pk?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  /** delete data from the table: "_tipologia_posizionamento_toponimo" */
+  delete__tipologia_posizionamento_toponimo?: Maybe<_Tipologia_Posizionamento_Toponimo_Mutation_Response>;
+  /** delete single row from the table: "_tipologia_posizionamento_toponimo" */
+  delete__tipologia_posizionamento_toponimo_by_pk?: Maybe<_Tipologia_Posizionamento_Toponimo>;
   /** delete data from the table: "assegnazione_quartiere" */
   delete_assegnazione_quartiere?: Maybe<Assegnazione_Quartiere_Mutation_Response>;
   /** delete single row from the table: "assegnazione_quartiere" */
@@ -1843,6 +3013,10 @@ export type Mutation_Root = {
   delete_dug?: Maybe<Dug_Mutation_Response>;
   /** delete single row from the table: "dug" */
   delete_dug_by_pk?: Maybe<Dug>;
+  /** delete data from the table: "intervento_straordinario" */
+  delete_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
+  /** delete single row from the table: "intervento_straordinario" */
+  delete_intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
   /** delete data from the table: "membro" */
   delete_membro?: Maybe<Membro_Mutation_Response>;
   /** delete single row from the table: "membro" */
@@ -1851,6 +3025,10 @@ export type Mutation_Root = {
   delete_municipalita?: Maybe<Municipalita_Mutation_Response>;
   /** delete single row from the table: "municipalita" */
   delete_municipalita_by_pk?: Maybe<Municipalita>;
+  /** delete data from the table: "posizionamento_toponimo" */
+  delete_posizionamento_toponimo?: Maybe<Posizionamento_Toponimo_Mutation_Response>;
+  /** delete single row from the table: "posizionamento_toponimo" */
+  delete_posizionamento_toponimo_by_pk?: Maybe<Posizionamento_Toponimo>;
   /** delete data from the table: "quartiere" */
   delete_quartiere?: Maybe<Quartiere_Mutation_Response>;
   /** delete single row from the table: "quartiere" */
@@ -1887,6 +3065,18 @@ export type Mutation_Root = {
   delete_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** delete single row from the table: "vecchio_toponimo" */
   delete_vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+  /** insert data into the table: "_priorita" */
+  insert__priorita?: Maybe<_Priorita_Mutation_Response>;
+  /** insert a single row into the table: "_priorita" */
+  insert__priorita_one?: Maybe<_Priorita>;
+  /** insert data into the table: "_specifica_posizionamento_toponimo" */
+  insert__specifica_posizionamento_toponimo?: Maybe<_Specifica_Posizionamento_Toponimo_Mutation_Response>;
+  /** insert a single row into the table: "_specifica_posizionamento_toponimo" */
+  insert__specifica_posizionamento_toponimo_one?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  /** insert data into the table: "_tipologia_posizionamento_toponimo" */
+  insert__tipologia_posizionamento_toponimo?: Maybe<_Tipologia_Posizionamento_Toponimo_Mutation_Response>;
+  /** insert a single row into the table: "_tipologia_posizionamento_toponimo" */
+  insert__tipologia_posizionamento_toponimo_one?: Maybe<_Tipologia_Posizionamento_Toponimo>;
   /** insert data into the table: "assegnazione_quartiere" */
   insert_assegnazione_quartiere?: Maybe<Assegnazione_Quartiere_Mutation_Response>;
   /** insert a single row into the table: "assegnazione_quartiere" */
@@ -1903,6 +3093,10 @@ export type Mutation_Root = {
   insert_dug?: Maybe<Dug_Mutation_Response>;
   /** insert a single row into the table: "dug" */
   insert_dug_one?: Maybe<Dug>;
+  /** insert data into the table: "intervento_straordinario" */
+  insert_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
+  /** insert a single row into the table: "intervento_straordinario" */
+  insert_intervento_straordinario_one?: Maybe<Intervento_Straordinario>;
   /** insert data into the table: "membro" */
   insert_membro?: Maybe<Membro_Mutation_Response>;
   /** insert a single row into the table: "membro" */
@@ -1911,6 +3105,10 @@ export type Mutation_Root = {
   insert_municipalita?: Maybe<Municipalita_Mutation_Response>;
   /** insert a single row into the table: "municipalita" */
   insert_municipalita_one?: Maybe<Municipalita>;
+  /** insert data into the table: "posizionamento_toponimo" */
+  insert_posizionamento_toponimo?: Maybe<Posizionamento_Toponimo_Mutation_Response>;
+  /** insert a single row into the table: "posizionamento_toponimo" */
+  insert_posizionamento_toponimo_one?: Maybe<Posizionamento_Toponimo>;
   /** insert data into the table: "quartiere" */
   insert_quartiere?: Maybe<Quartiere_Mutation_Response>;
   /** insert a single row into the table: "quartiere" */
@@ -1947,6 +3145,18 @@ export type Mutation_Root = {
   insert_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** insert a single row into the table: "vecchio_toponimo" */
   insert_vecchio_toponimo_one?: Maybe<Vecchio_Toponimo>;
+  /** update data of the table: "_priorita" */
+  update__priorita?: Maybe<_Priorita_Mutation_Response>;
+  /** update single row of the table: "_priorita" */
+  update__priorita_by_pk?: Maybe<_Priorita>;
+  /** update data of the table: "_specifica_posizionamento_toponimo" */
+  update__specifica_posizionamento_toponimo?: Maybe<_Specifica_Posizionamento_Toponimo_Mutation_Response>;
+  /** update single row of the table: "_specifica_posizionamento_toponimo" */
+  update__specifica_posizionamento_toponimo_by_pk?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  /** update data of the table: "_tipologia_posizionamento_toponimo" */
+  update__tipologia_posizionamento_toponimo?: Maybe<_Tipologia_Posizionamento_Toponimo_Mutation_Response>;
+  /** update single row of the table: "_tipologia_posizionamento_toponimo" */
+  update__tipologia_posizionamento_toponimo_by_pk?: Maybe<_Tipologia_Posizionamento_Toponimo>;
   /** update data of the table: "assegnazione_quartiere" */
   update_assegnazione_quartiere?: Maybe<Assegnazione_Quartiere_Mutation_Response>;
   /** update single row of the table: "assegnazione_quartiere" */
@@ -1963,6 +3173,10 @@ export type Mutation_Root = {
   update_dug?: Maybe<Dug_Mutation_Response>;
   /** update single row of the table: "dug" */
   update_dug_by_pk?: Maybe<Dug>;
+  /** update data of the table: "intervento_straordinario" */
+  update_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
+  /** update single row of the table: "intervento_straordinario" */
+  update_intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
   /** update data of the table: "membro" */
   update_membro?: Maybe<Membro_Mutation_Response>;
   /** update single row of the table: "membro" */
@@ -1971,6 +3185,10 @@ export type Mutation_Root = {
   update_municipalita?: Maybe<Municipalita_Mutation_Response>;
   /** update single row of the table: "municipalita" */
   update_municipalita_by_pk?: Maybe<Municipalita>;
+  /** update data of the table: "posizionamento_toponimo" */
+  update_posizionamento_toponimo?: Maybe<Posizionamento_Toponimo_Mutation_Response>;
+  /** update single row of the table: "posizionamento_toponimo" */
+  update_posizionamento_toponimo_by_pk?: Maybe<Posizionamento_Toponimo>;
   /** update data of the table: "quartiere" */
   update_quartiere?: Maybe<Quartiere_Mutation_Response>;
   /** update single row of the table: "quartiere" */
@@ -2007,6 +3225,42 @@ export type Mutation_Root = {
   update_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** update single row of the table: "vecchio_toponimo" */
   update_vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__PrioritaArgs = {
+  where: _Priorita_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Priorita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Specifica_Posizionamento_ToponimoArgs = {
+  where: _Specifica_Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Specifica_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Tipologia_Posizionamento_ToponimoArgs = {
+  where: _Tipologia_Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Tipologia_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -2059,6 +3313,18 @@ export type Mutation_RootDelete_Dug_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Intervento_StraordinarioArgs = {
+  where: Intervento_Straordinario_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Intervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_MembroArgs = {
   where: Membro_Bool_Exp;
 };
@@ -2078,6 +3344,18 @@ export type Mutation_RootDelete_MunicipalitaArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Municipalita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Posizionamento_ToponimoArgs = {
+  where: Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Posizionamento_Toponimo_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -2191,6 +3469,48 @@ export type Mutation_RootDelete_Vecchio_Toponimo_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert__PrioritaArgs = {
+  objects: Array<_Priorita_Insert_Input>;
+  on_conflict?: Maybe<_Priorita_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Priorita_OneArgs = {
+  object: _Priorita_Insert_Input;
+  on_conflict?: Maybe<_Priorita_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Specifica_Posizionamento_ToponimoArgs = {
+  objects: Array<_Specifica_Posizionamento_Toponimo_Insert_Input>;
+  on_conflict?: Maybe<_Specifica_Posizionamento_Toponimo_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Specifica_Posizionamento_Toponimo_OneArgs = {
+  object: _Specifica_Posizionamento_Toponimo_Insert_Input;
+  on_conflict?: Maybe<_Specifica_Posizionamento_Toponimo_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Tipologia_Posizionamento_ToponimoArgs = {
+  objects: Array<_Tipologia_Posizionamento_Toponimo_Insert_Input>;
+  on_conflict?: Maybe<_Tipologia_Posizionamento_Toponimo_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Tipologia_Posizionamento_Toponimo_OneArgs = {
+  object: _Tipologia_Posizionamento_Toponimo_Insert_Input;
+  on_conflict?: Maybe<_Tipologia_Posizionamento_Toponimo_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Assegnazione_QuartiereArgs = {
   objects: Array<Assegnazione_Quartiere_Insert_Input>;
   on_conflict?: Maybe<Assegnazione_Quartiere_On_Conflict>;
@@ -2247,6 +3567,20 @@ export type Mutation_RootInsert_Dug_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Intervento_StraordinarioArgs = {
+  objects: Array<Intervento_Straordinario_Insert_Input>;
+  on_conflict?: Maybe<Intervento_Straordinario_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Intervento_Straordinario_OneArgs = {
+  object: Intervento_Straordinario_Insert_Input;
+  on_conflict?: Maybe<Intervento_Straordinario_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_MembroArgs = {
   objects: Array<Membro_Insert_Input>;
   on_conflict?: Maybe<Membro_On_Conflict>;
@@ -2271,6 +3605,20 @@ export type Mutation_RootInsert_MunicipalitaArgs = {
 export type Mutation_RootInsert_Municipalita_OneArgs = {
   object: Municipalita_Insert_Input;
   on_conflict?: Maybe<Municipalita_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Posizionamento_ToponimoArgs = {
+  objects: Array<Posizionamento_Toponimo_Insert_Input>;
+  on_conflict?: Maybe<Posizionamento_Toponimo_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Posizionamento_Toponimo_OneArgs = {
+  object: Posizionamento_Toponimo_Insert_Input;
+  on_conflict?: Maybe<Posizionamento_Toponimo_On_Conflict>;
 };
 
 
@@ -2401,6 +3749,54 @@ export type Mutation_RootInsert_Vecchio_Toponimo_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate__PrioritaArgs = {
+  _inc?: Maybe<_Priorita_Inc_Input>;
+  _set?: Maybe<_Priorita_Set_Input>;
+  where: _Priorita_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Priorita_By_PkArgs = {
+  _inc?: Maybe<_Priorita_Inc_Input>;
+  _set?: Maybe<_Priorita_Set_Input>;
+  pk_columns: _Priorita_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Specifica_Posizionamento_ToponimoArgs = {
+  _inc?: Maybe<_Specifica_Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<_Specifica_Posizionamento_Toponimo_Set_Input>;
+  where: _Specifica_Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Specifica_Posizionamento_Toponimo_By_PkArgs = {
+  _inc?: Maybe<_Specifica_Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<_Specifica_Posizionamento_Toponimo_Set_Input>;
+  pk_columns: _Specifica_Posizionamento_Toponimo_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Tipologia_Posizionamento_ToponimoArgs = {
+  _inc?: Maybe<_Tipologia_Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<_Tipologia_Posizionamento_Toponimo_Set_Input>;
+  where: _Tipologia_Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Tipologia_Posizionamento_Toponimo_By_PkArgs = {
+  _inc?: Maybe<_Tipologia_Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<_Tipologia_Posizionamento_Toponimo_Set_Input>;
+  pk_columns: _Tipologia_Posizionamento_Toponimo_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Assegnazione_QuartiereArgs = {
   _inc?: Maybe<Assegnazione_Quartiere_Inc_Input>;
   _set?: Maybe<Assegnazione_Quartiere_Set_Input>;
@@ -2465,6 +3861,32 @@ export type Mutation_RootUpdate_Dug_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Intervento_StraordinarioArgs = {
+  _append?: Maybe<Intervento_Straordinario_Append_Input>;
+  _delete_at_path?: Maybe<Intervento_Straordinario_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<Intervento_Straordinario_Delete_Elem_Input>;
+  _delete_key?: Maybe<Intervento_Straordinario_Delete_Key_Input>;
+  _inc?: Maybe<Intervento_Straordinario_Inc_Input>;
+  _prepend?: Maybe<Intervento_Straordinario_Prepend_Input>;
+  _set?: Maybe<Intervento_Straordinario_Set_Input>;
+  where: Intervento_Straordinario_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Intervento_Straordinario_By_PkArgs = {
+  _append?: Maybe<Intervento_Straordinario_Append_Input>;
+  _delete_at_path?: Maybe<Intervento_Straordinario_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<Intervento_Straordinario_Delete_Elem_Input>;
+  _delete_key?: Maybe<Intervento_Straordinario_Delete_Key_Input>;
+  _inc?: Maybe<Intervento_Straordinario_Inc_Input>;
+  _prepend?: Maybe<Intervento_Straordinario_Prepend_Input>;
+  _set?: Maybe<Intervento_Straordinario_Set_Input>;
+  pk_columns: Intervento_Straordinario_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_MembroArgs = {
   _inc?: Maybe<Membro_Inc_Input>;
   _set?: Maybe<Membro_Set_Input>;
@@ -2493,6 +3915,22 @@ export type Mutation_RootUpdate_Municipalita_By_PkArgs = {
   _inc?: Maybe<Municipalita_Inc_Input>;
   _set?: Maybe<Municipalita_Set_Input>;
   pk_columns: Municipalita_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Posizionamento_ToponimoArgs = {
+  _inc?: Maybe<Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<Posizionamento_Toponimo_Set_Input>;
+  where: Posizionamento_Toponimo_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Posizionamento_Toponimo_By_PkArgs = {
+  _inc?: Maybe<Posizionamento_Toponimo_Inc_Input>;
+  _set?: Maybe<Posizionamento_Toponimo_Set_Input>;
+  pk_columns: Posizionamento_Toponimo_Pk_Columns_Input;
 };
 
 
@@ -2654,6 +4092,279 @@ export enum Order_By {
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
 }
+
+/** columns and relationships of "posizionamento_toponimo" */
+export type Posizionamento_Toponimo = {
+  __typename?: 'posizionamento_toponimo';
+  created_at: Scalars['timestamptz'];
+  geoloc?: Maybe<Scalars['geography']>;
+  id: Scalars['Int'];
+  note?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  specifica?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  tipologia?: Maybe<_Tipologia_Posizionamento_Toponimo>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+  updated_at: Scalars['timestamptz'];
+  valore?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Aggregate = {
+  __typename?: 'posizionamento_toponimo_aggregate';
+  aggregate?: Maybe<Posizionamento_Toponimo_Aggregate_Fields>;
+  nodes: Array<Posizionamento_Toponimo>;
+};
+
+/** aggregate fields of "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Aggregate_Fields = {
+  __typename?: 'posizionamento_toponimo_aggregate_fields';
+  avg?: Maybe<Posizionamento_Toponimo_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Posizionamento_Toponimo_Max_Fields>;
+  min?: Maybe<Posizionamento_Toponimo_Min_Fields>;
+  stddev?: Maybe<Posizionamento_Toponimo_Stddev_Fields>;
+  stddev_pop?: Maybe<Posizionamento_Toponimo_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Posizionamento_Toponimo_Stddev_Samp_Fields>;
+  sum?: Maybe<Posizionamento_Toponimo_Sum_Fields>;
+  var_pop?: Maybe<Posizionamento_Toponimo_Var_Pop_Fields>;
+  var_samp?: Maybe<Posizionamento_Toponimo_Var_Samp_Fields>;
+  variance?: Maybe<Posizionamento_Toponimo_Variance_Fields>;
+};
+
+
+/** aggregate fields of "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Posizionamento_Toponimo_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Posizionamento_Toponimo_Avg_Fields = {
+  __typename?: 'posizionamento_toponimo_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "posizionamento_toponimo". All fields are combined with a logical 'AND'. */
+export type Posizionamento_Toponimo_Bool_Exp = {
+  _and?: Maybe<Array<Posizionamento_Toponimo_Bool_Exp>>;
+  _not?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+  _or?: Maybe<Array<Posizionamento_Toponimo_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  geoloc?: Maybe<Geography_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  specifica?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+  specifica_id?: Maybe<Int_Comparison_Exp>;
+  tipologia?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+  tipoloiga_id?: Maybe<Int_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+  valore?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "posizionamento_toponimo" */
+export enum Posizionamento_Toponimo_Constraint {
+  /** unique or primary key constraint */
+  PosizionamentoToponimoPkey = 'posizionamento_toponimo_pkey'
+}
+
+/** input type for incrementing numeric columns in table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  geoloc?: Maybe<Scalars['geography']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  specifica?: Maybe<_Specifica_Posizionamento_Toponimo_Obj_Rel_Insert_Input>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipologia?: Maybe<_Tipologia_Posizionamento_Toponimo_Obj_Rel_Insert_Input>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  valore?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Posizionamento_Toponimo_Max_Fields = {
+  __typename?: 'posizionamento_toponimo_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  valore?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Posizionamento_Toponimo_Min_Fields = {
+  __typename?: 'posizionamento_toponimo_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  valore?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Mutation_Response = {
+  __typename?: 'posizionamento_toponimo_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Posizionamento_Toponimo>;
+};
+
+/** input type for inserting object relation for remote table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Obj_Rel_Insert_Input = {
+  data: Posizionamento_Toponimo_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Posizionamento_Toponimo_On_Conflict>;
+};
+
+/** on conflict condition type for table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_On_Conflict = {
+  constraint: Posizionamento_Toponimo_Constraint;
+  update_columns?: Array<Posizionamento_Toponimo_Update_Column>;
+  where?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "posizionamento_toponimo". */
+export type Posizionamento_Toponimo_Order_By = {
+  created_at?: Maybe<Order_By>;
+  geoloc?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  specifica?: Maybe<_Specifica_Posizionamento_Toponimo_Order_By>;
+  specifica_id?: Maybe<Order_By>;
+  tipologia?: Maybe<_Tipologia_Posizionamento_Toponimo_Order_By>;
+  tipoloiga_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+  valore?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: posizionamento_toponimo */
+export type Posizionamento_Toponimo_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "posizionamento_toponimo" */
+export enum Posizionamento_Toponimo_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Geoloc = 'geoloc',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  SpecificaId = 'specifica_id',
+  /** column name */
+  TipoloigaId = 'tipoloiga_id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  Valore = 'valore'
+}
+
+/** input type for updating data in table "posizionamento_toponimo" */
+export type Posizionamento_Toponimo_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  geoloc?: Maybe<Scalars['geography']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  valore?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Posizionamento_Toponimo_Stddev_Fields = {
+  __typename?: 'posizionamento_toponimo_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Posizionamento_Toponimo_Stddev_Pop_Fields = {
+  __typename?: 'posizionamento_toponimo_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Posizionamento_Toponimo_Stddev_Samp_Fields = {
+  __typename?: 'posizionamento_toponimo_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Posizionamento_Toponimo_Sum_Fields = {
+  __typename?: 'posizionamento_toponimo_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  specifica_id?: Maybe<Scalars['Int']>;
+  tipoloiga_id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "posizionamento_toponimo" */
+export enum Posizionamento_Toponimo_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Geoloc = 'geoloc',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  SpecificaId = 'specifica_id',
+  /** column name */
+  TipoloigaId = 'tipoloiga_id',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  Valore = 'valore'
+}
+
+/** aggregate var_pop on columns */
+export type Posizionamento_Toponimo_Var_Pop_Fields = {
+  __typename?: 'posizionamento_toponimo_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Posizionamento_Toponimo_Var_Samp_Fields = {
+  __typename?: 'posizionamento_toponimo_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Posizionamento_Toponimo_Variance_Fields = {
+  __typename?: 'posizionamento_toponimo_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  specifica_id?: Maybe<Scalars['Float']>;
+  tipoloiga_id?: Maybe<Scalars['Float']>;
+};
 
 /** columns and relationships of "quartiere" */
 export type Quartiere = {
@@ -2941,6 +4652,24 @@ export type Quartiere_Variance_Fields = {
 
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "_priorita" */
+  _priorita: Array<_Priorita>;
+  /** fetch aggregated fields from the table: "_priorita" */
+  _priorita_aggregate: _Priorita_Aggregate;
+  /** fetch data from the table: "_priorita" using primary key columns */
+  _priorita_by_pk?: Maybe<_Priorita>;
+  /** fetch data from the table: "_specifica_posizionamento_toponimo" */
+  _specifica_posizionamento_toponimo: Array<_Specifica_Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "_specifica_posizionamento_toponimo" */
+  _specifica_posizionamento_toponimo_aggregate: _Specifica_Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "_specifica_posizionamento_toponimo" using primary key columns */
+  _specifica_posizionamento_toponimo_by_pk?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  /** fetch data from the table: "_tipologia_posizionamento_toponimo" */
+  _tipologia_posizionamento_toponimo: Array<_Tipologia_Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "_tipologia_posizionamento_toponimo" */
+  _tipologia_posizionamento_toponimo_aggregate: _Tipologia_Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "_tipologia_posizionamento_toponimo" using primary key columns */
+  _tipologia_posizionamento_toponimo_by_pk?: Maybe<_Tipologia_Posizionamento_Toponimo>;
   /** fetch data from the table: "assegnazione_quartiere" */
   assegnazione_quartiere: Array<Assegnazione_Quartiere>;
   /** fetch aggregated fields from the table: "assegnazione_quartiere" */
@@ -2965,6 +4694,12 @@ export type Query_Root = {
   dug_aggregate: Dug_Aggregate;
   /** fetch data from the table: "dug" using primary key columns */
   dug_by_pk?: Maybe<Dug>;
+  /** fetch data from the table: "intervento_straordinario" */
+  intervento_straordinario: Array<Intervento_Straordinario>;
+  /** fetch aggregated fields from the table: "intervento_straordinario" */
+  intervento_straordinario_aggregate: Intervento_Straordinario_Aggregate;
+  /** fetch data from the table: "intervento_straordinario" using primary key columns */
+  intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
   /** fetch data from the table: "membro" */
   membro: Array<Membro>;
   /** fetch aggregated fields from the table: "membro" */
@@ -2977,6 +4712,12 @@ export type Query_Root = {
   municipalita_aggregate: Municipalita_Aggregate;
   /** fetch data from the table: "municipalita" using primary key columns */
   municipalita_by_pk?: Maybe<Municipalita>;
+  /** fetch data from the table: "posizionamento_toponimo" */
+  posizionamento_toponimo: Array<Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "posizionamento_toponimo" */
+  posizionamento_toponimo_aggregate: Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "posizionamento_toponimo" using primary key columns */
+  posizionamento_toponimo_by_pk?: Maybe<Posizionamento_Toponimo>;
   /** fetch data from the table: "quartiere" */
   quartiere: Array<Quartiere>;
   /** fetch aggregated fields from the table: "quartiere" */
@@ -3031,6 +4772,75 @@ export type Query_Root = {
   vecchio_toponimo_aggregate: Vecchio_Toponimo_Aggregate;
   /** fetch data from the table: "vecchio_toponimo" using primary key columns */
   vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+};
+
+
+export type Query_Root_PrioritaArgs = {
+  distinct_on?: Maybe<Array<_Priorita_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Priorita_Order_By>>;
+  where?: Maybe<_Priorita_Bool_Exp>;
+};
+
+
+export type Query_Root_Priorita_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Priorita_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Priorita_Order_By>>;
+  where?: Maybe<_Priorita_Bool_Exp>;
+};
+
+
+export type Query_Root_Priorita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_Root_Specifica_Posizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_Root_Specifica_Posizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_Root_Specifica_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_Root_Tipologia_Posizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_Root_Tipologia_Posizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_Root_Tipologia_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -3126,6 +4936,29 @@ export type Query_RootDug_By_PkArgs = {
 };
 
 
+export type Query_RootIntervento_StraordinarioArgs = {
+  distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Straordinario_Order_By>>;
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+};
+
+
+export type Query_RootIntervento_Straordinario_AggregateArgs = {
+  distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Straordinario_Order_By>>;
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+};
+
+
+export type Query_RootIntervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootMembroArgs = {
   distinct_on?: Maybe<Array<Membro_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -3168,6 +5001,29 @@ export type Query_RootMunicipalita_AggregateArgs = {
 
 
 export type Query_RootMunicipalita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPosizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_RootPosizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Query_RootPosizionamento_Toponimo_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -3644,8 +5500,37 @@ export type Squadra_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+export type St_D_Within_Geography_Input = {
+  distance: Scalars['Float'];
+  from: Scalars['geography'];
+  use_spheroid?: Maybe<Scalars['Boolean']>;
+};
+
+export type St_D_Within_Input = {
+  distance: Scalars['Float'];
+  from: Scalars['geometry'];
+};
+
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "_priorita" */
+  _priorita: Array<_Priorita>;
+  /** fetch aggregated fields from the table: "_priorita" */
+  _priorita_aggregate: _Priorita_Aggregate;
+  /** fetch data from the table: "_priorita" using primary key columns */
+  _priorita_by_pk?: Maybe<_Priorita>;
+  /** fetch data from the table: "_specifica_posizionamento_toponimo" */
+  _specifica_posizionamento_toponimo: Array<_Specifica_Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "_specifica_posizionamento_toponimo" */
+  _specifica_posizionamento_toponimo_aggregate: _Specifica_Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "_specifica_posizionamento_toponimo" using primary key columns */
+  _specifica_posizionamento_toponimo_by_pk?: Maybe<_Specifica_Posizionamento_Toponimo>;
+  /** fetch data from the table: "_tipologia_posizionamento_toponimo" */
+  _tipologia_posizionamento_toponimo: Array<_Tipologia_Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "_tipologia_posizionamento_toponimo" */
+  _tipologia_posizionamento_toponimo_aggregate: _Tipologia_Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "_tipologia_posizionamento_toponimo" using primary key columns */
+  _tipologia_posizionamento_toponimo_by_pk?: Maybe<_Tipologia_Posizionamento_Toponimo>;
   /** fetch data from the table: "assegnazione_quartiere" */
   assegnazione_quartiere: Array<Assegnazione_Quartiere>;
   /** fetch aggregated fields from the table: "assegnazione_quartiere" */
@@ -3670,6 +5555,12 @@ export type Subscription_Root = {
   dug_aggregate: Dug_Aggregate;
   /** fetch data from the table: "dug" using primary key columns */
   dug_by_pk?: Maybe<Dug>;
+  /** fetch data from the table: "intervento_straordinario" */
+  intervento_straordinario: Array<Intervento_Straordinario>;
+  /** fetch aggregated fields from the table: "intervento_straordinario" */
+  intervento_straordinario_aggregate: Intervento_Straordinario_Aggregate;
+  /** fetch data from the table: "intervento_straordinario" using primary key columns */
+  intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
   /** fetch data from the table: "membro" */
   membro: Array<Membro>;
   /** fetch aggregated fields from the table: "membro" */
@@ -3682,6 +5573,12 @@ export type Subscription_Root = {
   municipalita_aggregate: Municipalita_Aggregate;
   /** fetch data from the table: "municipalita" using primary key columns */
   municipalita_by_pk?: Maybe<Municipalita>;
+  /** fetch data from the table: "posizionamento_toponimo" */
+  posizionamento_toponimo: Array<Posizionamento_Toponimo>;
+  /** fetch aggregated fields from the table: "posizionamento_toponimo" */
+  posizionamento_toponimo_aggregate: Posizionamento_Toponimo_Aggregate;
+  /** fetch data from the table: "posizionamento_toponimo" using primary key columns */
+  posizionamento_toponimo_by_pk?: Maybe<Posizionamento_Toponimo>;
   /** fetch data from the table: "quartiere" */
   quartiere: Array<Quartiere>;
   /** fetch aggregated fields from the table: "quartiere" */
@@ -3736,6 +5633,75 @@ export type Subscription_Root = {
   vecchio_toponimo_aggregate: Vecchio_Toponimo_Aggregate;
   /** fetch data from the table: "vecchio_toponimo" using primary key columns */
   vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+};
+
+
+export type Subscription_Root_PrioritaArgs = {
+  distinct_on?: Maybe<Array<_Priorita_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Priorita_Order_By>>;
+  where?: Maybe<_Priorita_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Priorita_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Priorita_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Priorita_Order_By>>;
+  where?: Maybe<_Priorita_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Priorita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_Root_Specifica_Posizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Specifica_Posizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Specifica_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Specifica_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Specifica_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_Root_Tipologia_Posizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Tipologia_Posizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Tipologia_Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<_Tipologia_Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Tipologia_Posizionamento_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -3831,6 +5797,29 @@ export type Subscription_RootDug_By_PkArgs = {
 };
 
 
+export type Subscription_RootIntervento_StraordinarioArgs = {
+  distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Straordinario_Order_By>>;
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+};
+
+
+export type Subscription_RootIntervento_Straordinario_AggregateArgs = {
+  distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Straordinario_Order_By>>;
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+};
+
+
+export type Subscription_RootIntervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootMembroArgs = {
   distinct_on?: Maybe<Array<Membro_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -3873,6 +5862,29 @@ export type Subscription_RootMunicipalita_AggregateArgs = {
 
 
 export type Subscription_RootMunicipalita_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPosizionamento_ToponimoArgs = {
+  distinct_on?: Maybe<Array<Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_RootPosizionamento_Toponimo_AggregateArgs = {
+  distinct_on?: Maybe<Array<Posizionamento_Toponimo_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Posizionamento_Toponimo_Order_By>>;
+  where?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
+};
+
+
+export type Subscription_RootPosizionamento_Toponimo_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -4284,19 +6296,6 @@ export type Test_Variance_Fields = {
   count?: Maybe<Scalars['Float']>;
   dcount?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-};
-
-/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
-export type Timestamp_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamp']>;
-  _gt?: Maybe<Scalars['timestamp']>;
-  _gte?: Maybe<Scalars['timestamp']>;
-  _in?: Maybe<Array<Scalars['timestamp']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['timestamp']>;
-  _lte?: Maybe<Scalars['timestamp']>;
-  _neq?: Maybe<Scalars['timestamp']>;
-  _nin?: Maybe<Array<Scalars['timestamp']>>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -5127,7 +7126,7 @@ export type Vecchia_Municipalita_Variance_Order_By = {
 /** columns and relationships of "vecchia_squadra" */
 export type Vecchia_Squadra = {
   __typename?: 'vecchia_squadra';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  created_at: Scalars['timestamptz'];
   id: Scalars['Int'];
   nome: Scalars['String'];
   protezione_civile: Scalars['Boolean'];
@@ -6089,6 +8088,83 @@ export type Vecchio_Toponimo_Variance_Order_By = {
   toponimo_id?: Maybe<Order_By>;
 };
 
+export type InterventiStraordinariSubscriptionVariables = Exact<{
+  where?: Maybe<Intervento_Straordinario_Bool_Exp>;
+}>;
+
+
+export type InterventiStraordinariSubscription = { __typename?: 'subscription_root', intervento_straordinario: Array<{ __typename?: 'intervento_straordinario', id: number, municipalita_id?: number | null | undefined, municipalita_storica?: any | null | undefined, quartiere_id?: number | null | undefined, quartiere_storico?: any | null | undefined, toponimo_id?: number | null | undefined, toponimo_storico?: any | null | undefined, data_inserimento?: any | null | undefined, data_inizio_lavori?: any | null | undefined, data_fine_lavori?: any | null | undefined, tipologia_intervento?: string | null | undefined, lavori_effettuati?: string | null | undefined, stato_fine_lavori?: boolean | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', id: number, valore?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_finale?: { __typename?: 'posizionamento_toponimo', id: number, valore?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined }> };
+
+export type UpdateInterventoStraordinarioMutationVariables = Exact<{
+  intervento?: Maybe<Array<Intervento_Straordinario_Insert_Input> | Intervento_Straordinario_Insert_Input>;
+  on_conflict?: Maybe<Intervento_Straordinario_On_Conflict>;
+}>;
+
+
+export type UpdateInterventoStraordinarioMutation = { __typename?: 'mutation_root', insert_intervento_straordinario?: { __typename?: 'intervento_straordinario_mutation_response', returning: Array<{ __typename?: 'intervento_straordinario', id: number }> } | null | undefined };
+
+export type PrioritaSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrioritaSelectSubscription = { __typename?: 'subscription_root', _priorita: Array<{ __typename?: '_priorita', id: number, nome: string }> };
+
+export type TipologiaPosizionamentoToponimoSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TipologiaPosizionamentoToponimoSelectSubscription = { __typename?: 'subscription_root', _tipologia_posizionamento_toponimo: Array<{ __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string }> };
+
+export type SpecificaPosizionamentoToponimoSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SpecificaPosizionamentoToponimoSelectSubscription = { __typename?: 'subscription_root', _specifica_posizionamento_toponimo: Array<{ __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string }> };
+
+export type OperatorePisSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type OperatorePisSelectSubscription = { __typename?: 'subscription_root', membro: Array<{ __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string, squadre_aggregate: { __typename?: 'assegnazione_squadra_aggregate', aggregate?: { __typename?: 'assegnazione_squadra_aggregate_fields', count: number } | null | undefined } }> };
+
+export type SquadrePisSubscriptionVariables = Exact<{
+  where?: Maybe<Squadra_Bool_Exp>;
+}>;
+
+
+export type SquadrePisSubscription = { __typename?: 'subscription_root', squadra: Array<{ __typename?: 'squadra', id: number, nome: string, protezione_civile: boolean, updated_at: any, vecchie_denominazioni: Array<{ __typename?: 'vecchia_squadra', nome: string, created_at: any }>, membri: Array<{ __typename?: 'assegnazione_squadra', id: number, caposquadra: boolean, inizio_validita: any, fine_validita?: any | null | undefined, membro: { __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string } }> }> };
+
+export type UpdateSquadraPisMutationVariables = Exact<{
+  squadra?: Maybe<Array<Squadra_Insert_Input> | Squadra_Insert_Input>;
+}>;
+
+
+export type UpdateSquadraPisMutation = { __typename?: 'mutation_root', insert_squadra?: { __typename?: 'squadra_mutation_response', affected_rows: number } | null | undefined };
+
+export type DeleteSquadraPisMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteSquadraPisMutation = { __typename?: 'mutation_root', delete_squadra?: { __typename?: 'squadra_mutation_response', affected_rows: number } | null | undefined };
+
+export type OperatoriPisSubscriptionVariables = Exact<{
+  where?: Maybe<Membro_Bool_Exp>;
+}>;
+
+
+export type OperatoriPisSubscription = { __typename?: 'subscription_root', membro: Array<{ __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string, squadre: Array<{ __typename?: 'assegnazione_squadra', id: number, caposquadra: boolean, inizio_validita: any, fine_validita?: any | null | undefined, squadra: { __typename?: 'squadra', id: number, nome: string, protezione_civile: boolean } }> }> };
+
+export type UpdateOperatorePisMutationVariables = Exact<{
+  membro?: Maybe<Array<Membro_Insert_Input> | Membro_Insert_Input>;
+}>;
+
+
+export type UpdateOperatorePisMutation = { __typename?: 'mutation_root', insert_membro?: { __typename?: 'membro_mutation_response', affected_rows: number } | null | undefined };
+
+export type DeleteOperatorePisMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteOperatorePisMutation = { __typename?: 'mutation_root', delete_membro?: { __typename?: 'membro_mutation_response', affected_rows: number } | null | undefined };
+
 export type MunicipalitaSubscriptionVariables = Exact<{
   where?: Maybe<Municipalita_Bool_Exp>;
 }>;
@@ -6153,53 +8229,6 @@ export type TipologiaSelectSubscriptionVariables = Exact<{ [key: string]: never;
 
 export type TipologiaSelectSubscription = { __typename?: 'subscription_root', tipologia: Array<{ __typename?: 'tipologia', id: number, nome: string }> };
 
-export type OperatorePisSelectSubscriptionVariables = Exact<{ [key: string]: never; }>;
-
-
-export type OperatorePisSelectSubscription = { __typename?: 'subscription_root', membro: Array<{ __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string, squadre_aggregate: { __typename?: 'assegnazione_squadra_aggregate', aggregate?: { __typename?: 'assegnazione_squadra_aggregate_fields', count: number } | null | undefined } }> };
-
-export type SquadrePisSubscriptionVariables = Exact<{
-  where?: Maybe<Squadra_Bool_Exp>;
-}>;
-
-
-export type SquadrePisSubscription = { __typename?: 'subscription_root', squadra: Array<{ __typename?: 'squadra', id: number, nome: string, protezione_civile: boolean, updated_at: any, vecchie_denominazioni: Array<{ __typename?: 'vecchia_squadra', nome: string, created_at?: any | null | undefined }>, membri: Array<{ __typename?: 'assegnazione_squadra', id: number, caposquadra: boolean, inizio_validita: any, fine_validita?: any | null | undefined, membro: { __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string } }> }> };
-
-export type UpdateSquadraPisMutationVariables = Exact<{
-  squadra?: Maybe<Array<Squadra_Insert_Input> | Squadra_Insert_Input>;
-}>;
-
-
-export type UpdateSquadraPisMutation = { __typename?: 'mutation_root', insert_squadra?: { __typename?: 'squadra_mutation_response', affected_rows: number } | null | undefined };
-
-export type DeleteSquadraPisMutationVariables = Exact<{
-  id: Scalars['Int'];
-}>;
-
-
-export type DeleteSquadraPisMutation = { __typename?: 'mutation_root', delete_squadra?: { __typename?: 'squadra_mutation_response', affected_rows: number } | null | undefined };
-
-export type OperatoriPisSubscriptionVariables = Exact<{
-  where?: Maybe<Membro_Bool_Exp>;
-}>;
-
-
-export type OperatoriPisSubscription = { __typename?: 'subscription_root', membro: Array<{ __typename?: 'membro', id: number, nome: string, cognome: string, matricola: string, squadre: Array<{ __typename?: 'assegnazione_squadra', id: number, caposquadra: boolean, inizio_validita: any, fine_validita?: any | null | undefined, squadra: { __typename?: 'squadra', id: number, nome: string, protezione_civile: boolean } }> }> };
-
-export type UpdateOperatorePisMutationVariables = Exact<{
-  membro?: Maybe<Array<Membro_Insert_Input> | Membro_Insert_Input>;
-}>;
-
-
-export type UpdateOperatorePisMutation = { __typename?: 'mutation_root', insert_membro?: { __typename?: 'membro_mutation_response', affected_rows: number } | null | undefined };
-
-export type DeleteOperatorePisMutationVariables = Exact<{
-  id: Scalars['Int'];
-}>;
-
-
-export type DeleteOperatorePisMutation = { __typename?: 'mutation_root', delete_membro?: { __typename?: 'membro_mutation_response', affected_rows: number } | null | undefined };
-
 export type ToponimiSubscriptionVariables = Exact<{
   where?: Maybe<Toponimo_Bool_Exp>;
 }>;
@@ -6221,6 +8250,318 @@ export type DeleteToponimoMutationVariables = Exact<{
 
 export type DeleteToponimoMutation = { __typename?: 'mutation_root', delete_toponimo?: { __typename?: 'toponimo_mutation_response', affected_rows: number } | null | undefined };
 
+export const InterventiStraordinariDocument = gql`
+    subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = {}) {
+  intervento_straordinario(where: $where) {
+    id
+    municipalita_id
+    municipalita_storica
+    quartiere_id
+    quartiere_storico
+    toponimo_id
+    toponimo_storico
+    posizionamento_toponimo_punto_iniziale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      valore
+      note
+      geoloc
+    }
+    posizionamento_toponimo_punto_finale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      valore
+      note
+      geoloc
+    }
+    data_inserimento
+    priorita {
+      id
+      nome
+    }
+    data_inizio_lavori
+    data_fine_lavori
+    tipologia_intervento
+    lavori_effettuati
+    stato_fine_lavori
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InterventiStraordinariGQL extends Apollo.Subscription<InterventiStraordinariSubscription, InterventiStraordinariSubscriptionVariables> {
+    document = InterventiStraordinariDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateInterventoStraordinarioDocument = gql`
+    mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_insert_input!] = {}, $on_conflict: intervento_straordinario_on_conflict = {constraint: intervento_straordinario_pkey}) {
+  insert_intervento_straordinario(objects: $intervento, on_conflict: $on_conflict) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateInterventoStraordinarioGQL extends Apollo.Mutation<UpdateInterventoStraordinarioMutation, UpdateInterventoStraordinarioMutationVariables> {
+    document = UpdateInterventoStraordinarioDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PrioritaSelectDocument = gql`
+    subscription PrioritaSelect {
+  _priorita(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PrioritaSelectGQL extends Apollo.Subscription<PrioritaSelectSubscription, PrioritaSelectSubscriptionVariables> {
+    document = PrioritaSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TipologiaPosizionamentoToponimoSelectDocument = gql`
+    subscription TipologiaPosizionamentoToponimoSelect {
+  _tipologia_posizionamento_toponimo(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TipologiaPosizionamentoToponimoSelectGQL extends Apollo.Subscription<TipologiaPosizionamentoToponimoSelectSubscription, TipologiaPosizionamentoToponimoSelectSubscriptionVariables> {
+    document = TipologiaPosizionamentoToponimoSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SpecificaPosizionamentoToponimoSelectDocument = gql`
+    subscription SpecificaPosizionamentoToponimoSelect {
+  _specifica_posizionamento_toponimo(order_by: {nome: asc}) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SpecificaPosizionamentoToponimoSelectGQL extends Apollo.Subscription<SpecificaPosizionamentoToponimoSelectSubscription, SpecificaPosizionamentoToponimoSelectSubscriptionVariables> {
+    document = SpecificaPosizionamentoToponimoSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const OperatorePisSelectDocument = gql`
+    subscription OperatorePisSelect {
+  membro(order_by: {nome: asc}) {
+    id
+    nome
+    cognome
+    matricola
+    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
+      aggregate {
+        count
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class OperatorePisSelectGQL extends Apollo.Subscription<OperatorePisSelectSubscription, OperatorePisSelectSubscriptionVariables> {
+    document = OperatorePisSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SquadrePisDocument = gql`
+    subscription SquadrePis($where: squadra_bool_exp = {}) {
+  squadra(where: $where) {
+    id
+    nome
+    protezione_civile
+    updated_at
+    vecchie_denominazioni(order_by: {created_at: desc}) {
+      nome
+      created_at
+    }
+    membri(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      caposquadra
+      inizio_validita
+      fine_validita
+      membro {
+        id
+        nome
+        cognome
+        matricola
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SquadrePisGQL extends Apollo.Subscription<SquadrePisSubscription, SquadrePisSubscriptionVariables> {
+    document = SquadrePisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateSquadraPisDocument = gql`
+    mutation UpdateSquadraPis($squadra: [squadra_insert_input!] = {}) {
+  insert_squadra(
+    on_conflict: {constraint: squadra_pkey, update_columns: [nome, protezione_civile]}
+    objects: $squadra
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateSquadraPisGQL extends Apollo.Mutation<UpdateSquadraPisMutation, UpdateSquadraPisMutationVariables> {
+    document = UpdateSquadraPisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteSquadraPisDocument = gql`
+    mutation DeleteSquadraPis($id: Int!) {
+  delete_squadra(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteSquadraPisGQL extends Apollo.Mutation<DeleteSquadraPisMutation, DeleteSquadraPisMutationVariables> {
+    document = DeleteSquadraPisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const OperatoriPisDocument = gql`
+    subscription OperatoriPis($where: membro_bool_exp = {}) {
+  membro(where: $where) {
+    id
+    nome
+    cognome
+    matricola
+    squadre(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      caposquadra
+      inizio_validita
+      fine_validita
+      squadra {
+        id
+        nome
+        protezione_civile
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class OperatoriPisGQL extends Apollo.Subscription<OperatoriPisSubscription, OperatoriPisSubscriptionVariables> {
+    document = OperatoriPisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateOperatorePisDocument = gql`
+    mutation UpdateOperatorePis($membro: [membro_insert_input!] = {}) {
+  insert_membro(
+    on_conflict: {constraint: membro_pkey, update_columns: [nome, cognome, matricola]}
+    objects: $membro
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateOperatorePisGQL extends Apollo.Mutation<UpdateOperatorePisMutation, UpdateOperatorePisMutationVariables> {
+    document = UpdateOperatorePisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteOperatorePisDocument = gql`
+    mutation DeleteOperatorePis($id: Int!) {
+  delete_membro(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteOperatorePisGQL extends Apollo.Mutation<DeleteOperatorePisMutation, DeleteOperatorePisMutationVariables> {
+    document = DeleteOperatorePisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const MunicipalitaDocument = gql`
     subscription Municipalita($where: municipalita_bool_exp = {}) {
   municipalita(where: $where) {
@@ -6439,179 +8780,6 @@ export const TipologiaSelectDocument = gql`
   })
   export class TipologiaSelectGQL extends Apollo.Subscription<TipologiaSelectSubscription, TipologiaSelectSubscriptionVariables> {
     document = TipologiaSelectDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const OperatorePisSelectDocument = gql`
-    subscription OperatorePisSelect {
-  membro(order_by: {nome: asc}) {
-    id
-    nome
-    cognome
-    matricola
-    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
-      aggregate {
-        count
-      }
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class OperatorePisSelectGQL extends Apollo.Subscription<OperatorePisSelectSubscription, OperatorePisSelectSubscriptionVariables> {
-    document = OperatorePisSelectDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SquadrePisDocument = gql`
-    subscription SquadrePis($where: squadra_bool_exp = {}) {
-  squadra(where: $where) {
-    id
-    nome
-    protezione_civile
-    updated_at
-    vecchie_denominazioni(order_by: {created_at: desc}) {
-      nome
-      created_at
-    }
-    membri(order_by: {fine_validita: desc_nulls_first}) {
-      id
-      caposquadra
-      inizio_validita
-      fine_validita
-      membro {
-        id
-        nome
-        cognome
-        matricola
-      }
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SquadrePisGQL extends Apollo.Subscription<SquadrePisSubscription, SquadrePisSubscriptionVariables> {
-    document = SquadrePisDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const UpdateSquadraPisDocument = gql`
-    mutation UpdateSquadraPis($squadra: [squadra_insert_input!] = {}) {
-  insert_squadra(
-    on_conflict: {constraint: squadra_pkey, update_columns: [nome, protezione_civile]}
-    objects: $squadra
-  ) {
-    affected_rows
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UpdateSquadraPisGQL extends Apollo.Mutation<UpdateSquadraPisMutation, UpdateSquadraPisMutationVariables> {
-    document = UpdateSquadraPisDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const DeleteSquadraPisDocument = gql`
-    mutation DeleteSquadraPis($id: Int!) {
-  delete_squadra(where: {id: {_eq: $id}}) {
-    affected_rows
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteSquadraPisGQL extends Apollo.Mutation<DeleteSquadraPisMutation, DeleteSquadraPisMutationVariables> {
-    document = DeleteSquadraPisDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const OperatoriPisDocument = gql`
-    subscription OperatoriPis($where: membro_bool_exp = {}) {
-  membro(where: $where) {
-    id
-    nome
-    cognome
-    matricola
-    squadre(order_by: {fine_validita: desc_nulls_first}) {
-      id
-      caposquadra
-      inizio_validita
-      fine_validita
-      squadra {
-        id
-        nome
-        protezione_civile
-      }
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class OperatoriPisGQL extends Apollo.Subscription<OperatoriPisSubscription, OperatoriPisSubscriptionVariables> {
-    document = OperatoriPisDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const UpdateOperatorePisDocument = gql`
-    mutation UpdateOperatorePis($membro: [membro_insert_input!] = {}) {
-  insert_membro(
-    on_conflict: {constraint: membro_pkey, update_columns: [nome, cognome, matricola]}
-    objects: $membro
-  ) {
-    affected_rows
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UpdateOperatorePisGQL extends Apollo.Mutation<UpdateOperatorePisMutation, UpdateOperatorePisMutationVariables> {
-    document = UpdateOperatorePisDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const DeleteOperatorePisDocument = gql`
-    mutation DeleteOperatorePis($id: Int!) {
-  delete_membro(where: {id: {_eq: $id}}) {
-    affected_rows
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteOperatorePisGQL extends Apollo.Mutation<DeleteOperatorePisMutation, DeleteOperatorePisMutationVariables> {
-    document = DeleteOperatorePisDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
