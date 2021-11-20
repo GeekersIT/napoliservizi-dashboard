@@ -19,7 +19,16 @@ export class InterventiStraordinariComponent implements OnInit {
 
 
   new(){
-    this._updateInterventoStraordinarioGQL.mutate().subscribe((result) => {
+    this._updateInterventoStraordinarioGQL.mutate({
+      intervento: {
+        posizionamento_toponimo_punto_iniziale: {
+          data: {}
+        },
+        posizionamento_toponimo_punto_finale: {
+          data: {}
+        },
+      }
+    }).subscribe((result) => {
       this._router.navigate(['/','pis','interventi','straordinari','edit',result.data?.insert_intervento_straordinario?.returning[0].id]);
     });
 

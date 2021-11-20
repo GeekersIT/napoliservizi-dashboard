@@ -1,4 +1,4 @@
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig } from "@ngx-formly/core";
 
 export function prefixSuffixExtension(field: FormlyFieldConfig) {
   if (!field.templateOptions || (field.wrappers && field.wrappers.indexOf('prefix-suffix') !== -1)) {

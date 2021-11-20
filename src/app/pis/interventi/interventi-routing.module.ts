@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/_core/_guards/auth.guard';
+import { FormDirtyGuard } from 'src/app/_core/_guards/form-dirty.guard';
 import { InterventiCampoComponent } from './campo/campo.component';
 import { InterventiCampoEditComponent } from './campo/edit/edit.component';
 import { InterventiStraordinariEditComponent } from './straordinari/edit/edit.component';
@@ -16,6 +17,7 @@ const routes: Routes = [{
   path: 'straordinari/edit/:id',
   component: InterventiStraordinariEditComponent,
   canActivate: [AuthGuard],
+  canDeactivate: [FormDirtyGuard],
   data: { roles: ['pis-gestione-interventi-edit'] },
 },
 {

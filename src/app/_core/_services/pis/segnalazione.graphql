@@ -1,0 +1,152 @@
+query Segnalazione($id: Int!) {
+  segnalazione(where: {id: {_eq: $id}}) {
+    id
+    municipalita {
+      id
+      nome
+    }
+    quartiere {
+      id
+      nome
+      municipalita {
+        municipalita_id
+      }
+    }
+    toponimo {
+      id
+      nome
+      dug{
+        id
+        nome
+      }
+      codice
+      assegnazioni {
+        quartiere_id
+      }
+    }
+    municipalita_storica
+    quartiere_storico
+    toponimo_storico
+    tecnico_referente {
+      id
+      nome
+      cognome
+      titolo {
+        id
+        nome
+      }
+    }
+    priorita {
+      id
+      nome
+    }
+    protocollo {
+      note
+      numero
+      mittente {
+        id
+        nome
+        sigla
+        codice
+      }
+      id
+      destinatari {
+        id
+        destinatario_interno {
+          id
+          nome
+          codice
+          sigla
+        }
+        destinatario_esterno {
+          id
+          cognome
+          email
+          codice_fiscale
+          nome
+        }
+      }
+      data
+    }
+    stato
+    richiesta_protezione_civile
+    allegati {
+      id
+      file
+      nome
+      tipo
+    }
+    dissesto {
+      id
+      note
+      peso
+      prima_dimensione
+      profondita
+      seconda_dimensione
+      terza_dimensione
+      tipologia {
+        id
+        nome
+      }
+      forma {
+        id
+        nome
+      }
+    }
+    posizionamento_toponimo_punto_iniziale {
+      civico
+      connessione
+      geoloc
+      id
+      ipi
+      km
+      note
+      specifica {
+        id
+        nome
+      }
+      tipologia {
+        id
+        nome
+      }
+    }
+    diario {
+      id
+      messaggio
+      utente
+      allegato {
+        id
+        file
+        nome
+        tipo
+      }
+    }
+    segnalazioni_collegate {
+      id
+      segnalazione {
+        id
+        protocollo {
+          data
+          numero
+        }
+        stato
+      }
+    }
+  }
+}
+
+
+
+mutation UpdateSegnalazione($segnalazione: [segnalazione_insert_input!] = {}, $on_conflict: segnalazione_on_conflict = {constraint: segnalazione_pkey}) {
+  insert_segnalazione(objects: $segnalazione, on_conflict: $on_conflict) {
+    returning {
+      id
+      allegati{
+        id
+        file
+        nome
+        tipo
+      }
+    }
+  }
+}

@@ -25,12 +25,15 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginationIntlService } from './_core/_services/mat-pagination-intl.service';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
-import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
+// import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly';
+// import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './_core/_components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 registerLocaleData(localeIt);
 
@@ -48,6 +51,12 @@ export function formlyValidationConfig(translate: TranslateService) {
           return translate.stream('FORM.VALIDATION.REQUIRED');
         },
       },
+      {
+        name: 'forceSelection',
+        message() {
+          return translate.stream('FORM.VALIDATION.FORCESELECTION');
+        },
+      }
     ],
   };
 }
@@ -63,6 +72,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
       },
     });
 }
+
+export const APP_LOCALE_ID = 'it';
+
 
 @NgModule({
   declarations: [
@@ -85,7 +97,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     HttpClientModule,
     AvatarModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'it',
+      defaultLanguage: APP_LOCALE_ID,
       compiler: {
         provide: TranslateCompiler,
         useClass: TranslateMessageFormatCompiler
@@ -101,25 +113,32 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatFormFieldModule,
     FormlyModule.forRoot({ 
       extras: { lazyRender: true },
+      types: [
+        { name: 'datepicker', defaultOptions: { templateOptions: { datepickerOptions: { datepickerTogglePosition: 'prefix' }}}},
+        { name: 'textarea', defaultOptions: { templateOptions: { row: 5 } } },
+        { name: 'input', defaultOptions: { templateOptions: { step: 0.1 } } }
+      ]
     }),
     FormlyMaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxUiLoaderModule,
+
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
-    { provide: LOCALE_ID, useValue: "it" },
+    { provide: LOCALE_ID, useValue: APP_LOCALE_ID },
     { provide: FORMLY_CONFIG, multi: true, useFactory: formlyValidationConfig, deps: [TranslateService] },
     {
       provide: MatPaginatorIntl,
       useClass: MatPaginationIntlService,
     },
-    { provide: MESSAGE_FORMAT_CONFIG, useValue: { locales: ['it'] }},
+    { provide: MESSAGE_FORMAT_CONFIG, useValue: { locales: [APP_LOCALE_ID] }},
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService]
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

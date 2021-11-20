@@ -1,6 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { FieldArrayType } from '@ngx-formly/core';
 
 @Component({
@@ -9,6 +7,11 @@ import { FieldArrayType } from '@ngx-formly/core';
   styleUrls: ['./repeat-section-formly.component.scss']
 })
 export class RepeatSectionFormlyComponent  extends FieldArrayType {
+
+  a(){
+    setTimeout(() => this.add(), 1000);
+  }
+
 
   delete(i:any){
     this._iter(this.formControl);

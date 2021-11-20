@@ -1,24 +1,25 @@
-subscription PrioritaSelect {
-  _priorita(order_by: {nome: asc}) {
-    id
-    nome
-  }
-}
-subscription TipologiaPosizionamentoToponimoSelect {
-  _tipologia_posizionamento_toponimo(order_by: {nome: asc}) {
-    id
-    nome
-  }
-}
-subscription SpecificaPosizionamentoToponimoSelect {
-  _specifica_posizionamento_toponimo(order_by: {nome: asc}) {
+query PrioritaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _priorita(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
     id
     nome
   }
 }
 
-subscription OperatorePisSelect {
-  membro(order_by: {nome: asc}) {
+query TipologiaPosizionamentoToponimoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _tipologia_posizionamento_toponimo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+    id
+    nome
+  }
+}
+query SpecificaPosizionamentoToponimoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _specifica_posizionamento_toponimo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+    id
+    nome
+  }
+}
+
+query OperatorePisSelect($limit: Int = 10, $offset: Int = 0, $where: membro_bool_exp = {}) {
+  membro(order_by: {nome: asc}, limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -27,6 +28,48 @@ subscription OperatorePisSelect {
       aggregate {
         count
       }
+    }
+  }
+}
+
+
+query FormaDissesoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _forma_dissesto(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+    id
+    nome
+  }
+}
+
+query TipologiaDissesoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _tipologia_dissesto(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+    id
+    nome
+  }
+}
+
+query SezioneProtocolloSelect($where: _sezione_protocollo_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
+  _sezione_protocollo(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
+    id
+    nome
+    sigla
+    codice
+  }
+}
+
+query TitoloSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _titolo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+    id
+    nome
+  }
+}
+
+query SegnalazioneSelect($limit: Int = 10, $offset: Int = 0, $where: segnalazione_bool_exp = {}) {
+  segnalazione(order_by: {protocollo: {numero: asc}}, limit: $limit, offset: $offset, where: $where) {
+    id
+    created_at
+    protocollo {
+      numero
+      data
     }
   }
 }

@@ -6,6 +6,8 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
+const savingTime = 10000;
+
 @Component({
   selector: 'form-component',
   templateUrl: './form.component.html',
@@ -18,8 +20,9 @@ export class FormComponent implements OnInit {
   @Input() fields: FormlyFieldConfig[] = [];
   @Input() actionsTemplate!: TemplateRef<any>;
   @Input() form: FormGroup = new FormGroup({});
-
   @Output() resetEvent = new EventEmitter<boolean>();
+  @Output() changeEvent = new EventEmitter<boolean>();
+  @Output() onSubmit = new EventEmitter<boolean>();
 
 
   constructor(
@@ -28,6 +31,9 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    setInterval(() => this.onSubmit.emit(false), savingTime);
+
   }
 
   resetModel(){   
@@ -41,7 +47,30 @@ export class FormComponent implements OnInit {
       if(result){
         if(this.options.resetModel) this.options.resetModel();
         this.resetEvent.emit(true);
+        // this.changeEvent.emit(false);
       }
     })
+  }
+
+  submit(event:SubmitEvent){
+    if(event.submitter?.getAttribute('name') == 'bozza'){
+      this.onSubmit.emit(true);
+    }else{
+      if(this.form.valid){
+        this.onSubmit.emit(true);
+      }
+    }
+  }
+
+  change(event:any): void {
+    this.changeEvent.emit(true);
+  }
+}
+
+export abstract class Dirty{
+  dirty: boolean = false;
+
+  isDirty(){
+    return this.dirty;
   }
 }

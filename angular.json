@@ -31,10 +31,16 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { 
+                "glob":"**/*",
+                "input":"./node_modules/ngx-formly-material-file/assets/svgs",
+                "output":"/assets/svgs/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ol/ol.css"
             ],
             "scripts": []
           },
@@ -99,10 +105,16 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { 
+                "glob":"**/*",
+                "input":"./node_modules/ngx-formly-material-file/assets/svgs",
+                "output":"/assets/svgs/"
+              }              
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ol/ol.css"
             ],
             "scripts": []
           }

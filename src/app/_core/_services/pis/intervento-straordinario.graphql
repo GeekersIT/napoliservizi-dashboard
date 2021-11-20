@@ -1,11 +1,8 @@
 subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = {}) {
   intervento_straordinario(where: $where) {
     id
-    municipalita_id
     municipalita_storica
-    quartiere_id
     quartiere_storico
-    toponimo_id
     toponimo_storico
     posizionamento_toponimo_punto_iniziale {
       id
@@ -17,7 +14,10 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
         id
         nome
       }
-      valore
+      civico
+      ipi
+      km
+      connessione
       note
       geoloc
     }
@@ -31,7 +31,10 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
         id
         nome
       }
-      valore
+      civico
+      ipi
+      km
+      connessione
       note
       geoloc
     }
@@ -45,14 +48,109 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
     tipologia_intervento
     lavori_effettuati
     stato_fine_lavori
+    allegati{
+      id
+      file
+      nome
+      tipo
+    }
   }
 }
+
+query InterventoStraordinario($id: Int!) {
+  intervento_straordinario(where: {id: {_eq: $id}}) {
+    id
+    municipalita {
+      id
+      nome
+    }
+    quartiere {
+      id
+      nome
+      municipalita {
+        municipalita_id
+      }
+    }
+    toponimo {
+      id
+      nome
+      dug{
+        id
+        nome
+      }
+      codice
+      assegnazioni {
+        quartiere_id
+      }
+    }
+    municipalita_storica
+    quartiere_storico
+    toponimo_storico
+    posizionamento_toponimo_punto_iniziale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      civico
+      ipi
+      km
+      connessione
+      note
+      geoloc
+    }
+    posizionamento_toponimo_punto_finale {
+      id
+      tipologia {
+        id
+        nome
+      }
+      specifica {
+        id
+        nome
+      }
+      civico
+      ipi
+      km
+      connessione
+      note
+      geoloc
+    }
+    data_inserimento
+    priorita {
+      id
+      nome
+    }
+    data_inizio_lavori
+    data_fine_lavori
+    tipologia_intervento
+    lavori_effettuati
+    stato_fine_lavori
+    allegati{
+      id
+      file
+      nome
+      tipo
+    }
+  }
+}
+
 
 
 mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_insert_input!] = {}, $on_conflict: intervento_straordinario_on_conflict = {constraint: intervento_straordinario_pkey}) {
   insert_intervento_straordinario(objects: $intervento, on_conflict: $on_conflict) {
     returning {
       id
+      allegati{
+        id
+        file
+        nome
+        tipo
+      }
     }
   }
 }

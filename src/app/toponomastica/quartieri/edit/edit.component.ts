@@ -3,10 +3,10 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs/operators';
+import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { MunicipalitaSelectObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
-import { Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column, MunicipalitaSelectGQL, Quartiere_Insert_Input, UpdateQuartiereGQL } from 'src/app/_core/_services/generated/graphql';
+import { Assegnazione_Quartiere_Constraint, Assegnazione_Quartiere_Update_Column, Quartiere_Insert_Input, UpdateQuartiereGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-quartieri-edit',
@@ -58,26 +58,27 @@ export class QuartieriEditComponent implements OnInit {
         }
       }
     },
-    fieldArray: {
-      type: 'autocomplete',
-      templateOptions: {
-        required:true,
-        multiple: false,
-        filter: (term:any) => term && typeof term === 'string' ? this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita.filter(m => m.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita)),
-      },
-      expressionProperties: {
-        'templateOptions.label': this._translateService.stream('Municipalità'),
-      },
-      validation: {
-        messages: {
-          duplicate: (error:any, field: FormlyFieldConfig) => this._translateService.instant('Non ci possono essere municipalità duplicati')
-        }
-      }
-    }
+    fieldArray: this._localizzazioneFormFieldService.getMunicipalita()
+    // {
+    //   type: 'autocomplete',
+    //   templateOptions: {
+    //     required:true,
+        
+    //     filter: (term:any) => term && typeof term === 'string' ? this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita.filter(m => m.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita)),
+    //   },
+    //   expressionProperties: {
+    //     'templateOptions.label': this._translateService.stream('Municipalità'),
+    //   },
+    //   validation: {
+    //     messages: {
+    //       duplicate: (error:any, field: FormlyFieldConfig) => this._translateService.instant('Non ci possono essere municipalità duplicati')
+    //     }
+    //   }
+    // }
   }];
   
   constructor(
-    private _municipalitaSelectGQL: MunicipalitaSelectGQL,
+    private _localizzazioneFormFieldService: LocalizzazioneFormFieldService,
     private _updateQuartiereGQL: UpdateQuartiereGQL,
     private _translateService: TranslateService,
     public dialogRef: MatDialogRef<QuartieriEditComponent>,

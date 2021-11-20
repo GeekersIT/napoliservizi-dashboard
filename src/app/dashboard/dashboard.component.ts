@@ -15,9 +15,6 @@ export class DashboardComponent implements OnInit {
   public async ngOnInit() {
     var userProfile = await this.keycloak.loadUserProfile();
 
-    this.keycloak.getUserRoles;
-
-
     console.log(this.keycloak.getUserRoles());
   }
 }

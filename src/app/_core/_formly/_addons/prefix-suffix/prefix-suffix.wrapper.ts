@@ -10,7 +10,7 @@ import { FieldWrapper } from '@ngx-formly/core';
       [ngStyle]="{cursor: to._prefix.onClick ? 'pointer' : 'inherit'}"
       (click)="addonLeftClick($event)"
     >
-      <mat-icon *ngIf="to._prefix.icon">{{ to._prefix.icon }}</mat-icon>
+      <mat-icon *ngIf="to._prefix.icon" [color]="to._prefix.color">{{ to._prefix.icon }}</mat-icon>
       <span *ngIf="to._prefix.text">{{ to._prefix.text }}</span>
     </span>
   </ng-template>
@@ -23,7 +23,7 @@ import { FieldWrapper } from '@ngx-formly/core';
       [ngStyle]="{cursor: to._suffix.onClick ? 'pointer' : 'inherit'}"
       (click)="addonRightClick($event)"
     >
-      <mat-icon *ngIf="to._suffix.icon">{{ to._suffix.icon }}</mat-icon>
+      <mat-icon *ngIf="to._suffix.icon" [color]="to._suffix.color">{{ to._suffix.icon }}</mat-icon>
       <span *ngIf="to._suffix.text">{{ to._suffix.text }}</span>
     </span>
   </ng-template>

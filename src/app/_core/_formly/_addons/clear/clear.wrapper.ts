@@ -1,13 +1,12 @@
 import { Component, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FieldWrapper } from '@ngx-formly/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'formly-wrapper-clear',
   template: `
   <ng-container #fieldComponent></ng-container>
 
-  <ng-template #clearSuffix>
+  <ng-template #clearSuffix *ngIf="!to.disabled">
     <span
       [ngStyle]="{cursor:'pointer'}"
       (click)="clear($event)"
@@ -26,7 +25,8 @@ export class FormlyWrapperClearAddon extends FieldWrapper implements AfterViewIn
 
   clear($event: any) {
     $event.stopPropagation();
-    this.field.formControl?.setValue('');
+    this.formControl.reset();
+    if(this.to.parentReset) this.to.parentReset(this.field);
   }
 
 }

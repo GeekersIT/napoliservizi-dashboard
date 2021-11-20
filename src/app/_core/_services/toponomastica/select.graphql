@@ -1,12 +1,12 @@
-subscription MunicipalitaSelect {
-  municipalita(order_by: {nome: asc}) {
+query MunicipalitaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  municipalita(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
     id
     nome
   }
 }
 
-subscription QuartiereSelect($where: quartiere_bool_exp = {}) {
-  quartiere(order_by: {nome: asc}, where: $where) {
+query QuartiereSelect($where: quartiere_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
+  quartiere(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
     id
     nome
     municipalita {
@@ -15,8 +15,8 @@ subscription QuartiereSelect($where: quartiere_bool_exp = {}) {
   }
 }
 
-subscription ToponimoSelect($where: toponimo_bool_exp = {}) {
-  toponimo(order_by: {nome: asc}, where: $where) {
+query ToponimoSelect($where: toponimo_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
+  toponimo(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
     id
     nome
     dug{
@@ -30,16 +30,26 @@ subscription ToponimoSelect($where: toponimo_bool_exp = {}) {
   }
 }
 
-subscription DugSelect {
-  dug(order_by: {nome: asc}) {
+query DugSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  dug(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
     id
     nome
   }
 }
 
-subscription TipologiaSelect {
-  tipologia(order_by: {nome: asc}) {
+query TipologiaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  tipologia(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
     id
     nome
+  }
+}
+
+query ToponimoNomeSelect($_in: [String!]!) {
+  toponimo(order_by: {nome: asc}, where: {codice: {_in: $_in}}) {
+    nome
+    dug {
+      id
+      nome
+    }
   }
 }

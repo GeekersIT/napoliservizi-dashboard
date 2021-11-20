@@ -2,7 +2,7 @@
     "Nessun risultato per la ricerca {filter}": "Nessun risultato per la ricerca \"{filter}\"",
     "Valida fino a {data}": "Valida fino a {data}",
     "Valida da {data}": "Valida da {data}",
-    "Visualizza in {formato}": "Visualizza in {formato, select, horizontal{orizzontale} vertical{verticale}  other{}}",
+    "Visualizza in {formato}": "Visualizza in {formato, select, horizontal{verticale} vertical{orizzontale}  other{}}",
     "{specifica}": "{specifica, select, 1{Civico} 2{N.} 3{Km} other{}}",
     "MAT_PAGINATOR": {
         "FIRST_PAGE": "Prima pagina",
@@ -11,5 +11,11 @@
         "NEXT_PAGE": "Pagina successiva",
         "PREVIOUS_PAGE": "Pagina precedente",
         "OF": "di"
-    }
+    },
+    "{prima_dimensione}": "{prima_dimensione, select, 1{Asse maggiore} 2{Lunghezza lato} 3{Altezza} 4{Altezza} 5{Altezza} other{Prima dimensione}}",
+    "{seconda_dimensione}": "{seconda_dimensione, select, 1{Asse minore} 3{Larghezza} 4{Base maggiore} 5{Base} other{Seconda dimensione}}",
+    "{terza_dimensione}": "{terza_dimensione, select, 4{Base minore} other{Terza dimensione}}",
+    "Pre segnalazione n. {id} del {data}": "Pre segnalazione n. {id} del {data}",
+    "Segnalazione n. protocollo {id} del {data}": "Segnalazione n. protocollo {id} del {data}"
+
 }

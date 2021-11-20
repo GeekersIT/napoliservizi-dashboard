@@ -49,7 +49,7 @@ $md-accent: (
     300 : #4d8ed4,
     400 : #2675ca,
     500 : #005dc1,
-    600 : #0055bb,
+    600 : #050505,
     700 : #004bb3,
     800 : #0041ab,
     900 : #00309e,
@@ -140,7 +140,7 @@ $subbar: 64px;
 
 
 formly-group.display-flex {
-  formly-field:not(:empty){
+  formly-field:not(:empty):not(.invisible){
     padding-left: 10px;
   }
   
@@ -175,4 +175,31 @@ formly-group.display-flex {
 .mat-form-field-wrapper{
   margin: 0!important;
   padding-bottom: 0.5em!important;
+}
+
+.loading > span.mat-option-text {
+  display: flex;
+  justify-content: center;
+}
+
+.invisible{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+
+
+.hidden{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+
+.mat-raised-button[color='success']{
+  background-color: green;
+  color: white;
 }

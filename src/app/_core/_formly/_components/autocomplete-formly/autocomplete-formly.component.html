@@ -10,6 +10,9 @@
 
 <mat-autocomplete #auto="matAutocomplete" [displayWith]="to.displayFn" showPanel="true"
 (optionsScroll)="onScroll()">
+  <mat-option disabled class="loading" *ngIf="loading|async">
+    <mat-spinner diameter="35"></mat-spinner>
+  </mat-option>
   <mat-option *ngFor="let value of paginated$ | async" [value]="value" >
     <span *ngIf="to.multiple==false; else multipleOptions">
           {{ to.displayWith(value) }}
@@ -24,7 +27,6 @@
       </div>
     </ng-template>
   </mat-option>
-
 </mat-autocomplete>
 
 
@@ -44,7 +46,7 @@
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [formlyAttributes]="field"
       [placeholder]="to.placeholder||''"
-      [errorStateMatcher]="errorStateMatcher"
-      [matChipInputAddOnBlur]="true">
+      [matChipInputAddOnBlur]="true"
+      [errorStateMatcher]="errorStateMatcher">
   </mat-chip-list>
 </ng-template>

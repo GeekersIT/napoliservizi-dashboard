@@ -1,5 +1,7 @@
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component } from '@angular/core';
-import { FieldType, FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FieldType } from '@ngx-formly/material';
 
 @Component({
   selector: 'app-stepper-formly',
@@ -7,6 +9,7 @@ import { FieldType, FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./stepper-formly.component.scss']
 })
 export class StepperFormlyComponent extends FieldType {
+
   isValid(field: FormlyFieldConfig):boolean {
     if (field.key) {
       return field.formControl!.valid;
@@ -23,4 +26,9 @@ export class StepperFormlyComponent extends FieldType {
       this.to.orientation = 'horizontal';
     }
   }
+
+  public onStepChange(event: StepperSelectionEvent): void {
+    this.to.selectionChange.next(event);
+  }
+
 }

@@ -81,9 +81,22 @@ export class SquadraEditComponent implements OnInit {
           type: 'autocomplete',
           templateOptions: {
             required:true,
-            multiple: false,
             displayWith: (e:any) => e ? e.nome+" "+e.cognome+" - "+e.matricola : '',
-            filter: (term:any) => term && typeof term === 'string' ? this._operatorePisSelectGQL.subscribe().pipe(map(result => result.data?.membro.filter(m => m.squadre_aggregate.aggregate?.count==0&&(m.nome+" "+m.cognome+" "+m.matricola).toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._operatorePisSelectGQL.subscribe().pipe(map(result => result.data?.membro.filter(m => m.squadre_aggregate.aggregate?.count == 0))),
+            filter: (term:any, limit:number, offset:number, parent?:any, ) => this._operatorePisSelectGQL.watch({
+              limit: limit,
+              offset: offset,
+              ...(term && typeof term === 'string' ? {
+                where: {
+                  _or: [
+                    { nome: { _ilike: "%"+term+"%"} },
+                    { cognome: { _ilike: "%"+term+"%"} },
+                    { matricola: { _ilike: "%"+term+"%"} }
+                  ]
+                }
+               } : {} )
+            }).valueChanges.pipe(
+              map(result => result.data?.membro.filter(m => m.squadre_aggregate.aggregate?.count==0) ) 
+            ),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Operatore'),

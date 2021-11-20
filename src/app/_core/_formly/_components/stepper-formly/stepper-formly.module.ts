@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { StepperFormlyComponent } from './stepper-formly.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
-import { FormlyModule } from '@ngx-formly/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BehaviorSubject } from 'rxjs';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { FormlyModule } from '@ngx-formly/core';
 
 
 
@@ -21,7 +23,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatStepperModule,
     FormlyModule.forChild({ 
       types: [
-        { name: 'stepper', component: StepperFormlyComponent, wrappers: [] },
+        { 
+          name: 'stepper', 
+          component: StepperFormlyComponent, 
+          wrappers: [],
+          defaultOptions: {
+            templateOptions: {
+              selectionChange: new BehaviorSubject<StepperSelectionEvent|null>(null)
+            },
+          } 
+        },
       ], 
     }),
     TranslateModule,

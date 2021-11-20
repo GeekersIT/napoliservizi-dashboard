@@ -5,11 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
-import { map } from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
+import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
-import { DeleteQuartiereGQL, MunicipalitaSelectGQL, QuartieriGQL, QuartieriSubscription } from 'src/app/_core/_services/generated/graphql';
+import { DeleteQuartiereGQL, QuartieriGQL, QuartieriSubscription } from 'src/app/_core/_services/generated/graphql';
 import { QuartieriEditComponent } from './edit/edit.component';
 
 @Component({
@@ -24,17 +24,9 @@ export class QuartieriComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   options: FormlyFormOptions = {};
   model: any = {};
-  fields: FormlyFieldConfig[] = [{
-    key: 'municipalita',
-    type: 'autocomplete',
-    templateOptions: {
-      multiple: true,
-      filter: (term:any) => term && typeof term === 'string' ? this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita.filter(q => q.nome.toLocaleLowerCase().indexOf(term.toLowerCase()) >= 0))) : this._municipalitaSelectGQL.subscribe().pipe(map(result => result.data?.municipalita)),
-    },
-    expressionProperties: {
-      'templateOptions.label': this._translateService.stream('Municipalità'),
-    },
-  }];
+  fields: FormlyFieldConfig[] = [
+    this._localizzazioneFormFieldService.getMunicipalita({key:"municipalita",multiple: true,required:false}),
+  ];
   defaultSort = {
     column: "nome",
     direction: "asc"
@@ -58,7 +50,7 @@ export class QuartieriComponent implements OnInit {
 
   constructor(
     private _quartieriGQL: QuartieriGQL,
-    private _municipalitaSelectGQL: MunicipalitaSelectGQL,
+    private _localizzazioneFormFieldService: LocalizzazioneFormFieldService,
     private _deleteQuartiereGQL: DeleteQuartiereGQL,
     private _translateService: TranslateService,
     private _snackBar: MatSnackBar,

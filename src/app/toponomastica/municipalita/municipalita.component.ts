@@ -5,12 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
-import { map } from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
-import { DeleteMunicipalitaGQL, MunicipalitaGQL, MunicipalitaSubscription, QuartiereSelectGQL } from 'src/app/_core/_services/generated/graphql';
+import { DeleteMunicipalitaGQL, MunicipalitaGQL, MunicipalitaSubscription } from 'src/app/_core/_services/generated/graphql';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 
 @Component({
@@ -26,7 +25,7 @@ export class MunicipalitaComponent implements OnInit {
   options: FormlyFormOptions = {};
   model: any = {};
   fields: FormlyFieldConfig[] = [
-    this._formFieldService.getQuartieri({multiple:true,required:false})
+    this._formFieldService.getQuartieri({key:"quartiere",multiple:true,required:false})
   ];
   defaultSort = {
     column: "nome",
@@ -80,6 +79,7 @@ export class MunicipalitaComponent implements OnInit {
   }
 
   async applyFilter() {
+
     this.dataSource.isLoading!.next(true);
     this.source.unsubscribe();
     this.source = this._municipalitaGQL.subscribe({where:{
