@@ -126,6 +126,14 @@ $subbar: 64px;
   
 }
 
+.flex-stretch{
+  align-items: stretch;
+}
+
+.space-evenly{
+  justify-content: space-evenly!important;
+}
+
 .flex-1 { flex: 1; }
 
 .flex-2 { flex: 2; }
@@ -172,10 +180,10 @@ formly-group.display-flex {
 }
 
 
-.mat-form-field-wrapper{
-  margin: 0!important;
-  padding-bottom: 0.5em!important;
-}
+// .mat-form-field-wrapper{
+//   margin: 0!important;
+//   padding-bottom: 0.5em!important;
+// }
 
 .loading > span.mat-option-text {
   display: flex;
@@ -202,4 +210,14 @@ formly-group.display-flex {
 .mat-raised-button[color='success']{
   background-color: green;
   color: white;
+}
+
+.mat-stroked-button[color='yellow']{
+  color: rgb(255, 153, 0);
+  // color: white;
+}
+
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: rgba(0, 0, 0, 0.50);
 }

@@ -80,6 +80,209 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>;
 };
 
+/** columns and relationships of "_condizioni_traffico" */
+export type _Condizioni_Traffico = {
+  __typename?: '_condizioni_traffico';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_condizioni_traffico" */
+export type _Condizioni_Traffico_Aggregate = {
+  __typename?: '_condizioni_traffico_aggregate';
+  aggregate?: Maybe<_Condizioni_Traffico_Aggregate_Fields>;
+  nodes: Array<_Condizioni_Traffico>;
+};
+
+/** aggregate fields of "_condizioni_traffico" */
+export type _Condizioni_Traffico_Aggregate_Fields = {
+  __typename?: '_condizioni_traffico_aggregate_fields';
+  avg?: Maybe<_Condizioni_Traffico_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Condizioni_Traffico_Max_Fields>;
+  min?: Maybe<_Condizioni_Traffico_Min_Fields>;
+  stddev?: Maybe<_Condizioni_Traffico_Stddev_Fields>;
+  stddev_pop?: Maybe<_Condizioni_Traffico_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Condizioni_Traffico_Stddev_Samp_Fields>;
+  sum?: Maybe<_Condizioni_Traffico_Sum_Fields>;
+  var_pop?: Maybe<_Condizioni_Traffico_Var_Pop_Fields>;
+  var_samp?: Maybe<_Condizioni_Traffico_Var_Samp_Fields>;
+  variance?: Maybe<_Condizioni_Traffico_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_condizioni_traffico" */
+export type _Condizioni_Traffico_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Condizioni_Traffico_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Condizioni_Traffico_Avg_Fields = {
+  __typename?: '_condizioni_traffico_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_condizioni_traffico". All fields are combined with a logical 'AND'. */
+export type _Condizioni_Traffico_Bool_Exp = {
+  _and?: Maybe<Array<_Condizioni_Traffico_Bool_Exp>>;
+  _not?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+  _or?: Maybe<Array<_Condizioni_Traffico_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_condizioni_traffico" */
+export enum _Condizioni_Traffico_Constraint {
+  /** unique or primary key constraint */
+  CondizioniTrafficoPkey = '_condizioni_traffico_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_condizioni_traffico" */
+export type _Condizioni_Traffico_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_condizioni_traffico" */
+export type _Condizioni_Traffico_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Condizioni_Traffico_Max_Fields = {
+  __typename?: '_condizioni_traffico_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Condizioni_Traffico_Min_Fields = {
+  __typename?: '_condizioni_traffico_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_condizioni_traffico" */
+export type _Condizioni_Traffico_Mutation_Response = {
+  __typename?: '_condizioni_traffico_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Condizioni_Traffico>;
+};
+
+/** input type for inserting object relation for remote table "_condizioni_traffico" */
+export type _Condizioni_Traffico_Obj_Rel_Insert_Input = {
+  data: _Condizioni_Traffico_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Condizioni_Traffico_On_Conflict>;
+};
+
+/** on conflict condition type for table "_condizioni_traffico" */
+export type _Condizioni_Traffico_On_Conflict = {
+  constraint: _Condizioni_Traffico_Constraint;
+  update_columns?: Array<_Condizioni_Traffico_Update_Column>;
+  where?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_condizioni_traffico". */
+export type _Condizioni_Traffico_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _condizioni_traffico */
+export type _Condizioni_Traffico_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_condizioni_traffico" */
+export enum _Condizioni_Traffico_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_condizioni_traffico" */
+export type _Condizioni_Traffico_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Condizioni_Traffico_Stddev_Fields = {
+  __typename?: '_condizioni_traffico_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Condizioni_Traffico_Stddev_Pop_Fields = {
+  __typename?: '_condizioni_traffico_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Condizioni_Traffico_Stddev_Samp_Fields = {
+  __typename?: '_condizioni_traffico_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Condizioni_Traffico_Sum_Fields = {
+  __typename?: '_condizioni_traffico_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_condizioni_traffico" */
+export enum _Condizioni_Traffico_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Condizioni_Traffico_Var_Pop_Fields = {
+  __typename?: '_condizioni_traffico_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Condizioni_Traffico_Var_Samp_Fields = {
+  __typename?: '_condizioni_traffico_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Condizioni_Traffico_Variance_Fields = {
+  __typename?: '_condizioni_traffico_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
 /** columns and relationships of "_forma_dissesto" */
 export type _Forma_Dissesto = {
   __typename?: '_forma_dissesto';
@@ -280,6 +483,412 @@ export type _Forma_Dissesto_Var_Samp_Fields = {
 /** aggregate variance on columns */
 export type _Forma_Dissesto_Variance_Fields = {
   __typename?: '_forma_dissesto_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "_giorni_trascorsi" */
+export type _Giorni_Trascorsi = {
+  __typename?: '_giorni_trascorsi';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Aggregate = {
+  __typename?: '_giorni_trascorsi_aggregate';
+  aggregate?: Maybe<_Giorni_Trascorsi_Aggregate_Fields>;
+  nodes: Array<_Giorni_Trascorsi>;
+};
+
+/** aggregate fields of "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Aggregate_Fields = {
+  __typename?: '_giorni_trascorsi_aggregate_fields';
+  avg?: Maybe<_Giorni_Trascorsi_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Giorni_Trascorsi_Max_Fields>;
+  min?: Maybe<_Giorni_Trascorsi_Min_Fields>;
+  stddev?: Maybe<_Giorni_Trascorsi_Stddev_Fields>;
+  stddev_pop?: Maybe<_Giorni_Trascorsi_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Giorni_Trascorsi_Stddev_Samp_Fields>;
+  sum?: Maybe<_Giorni_Trascorsi_Sum_Fields>;
+  var_pop?: Maybe<_Giorni_Trascorsi_Var_Pop_Fields>;
+  var_samp?: Maybe<_Giorni_Trascorsi_Var_Samp_Fields>;
+  variance?: Maybe<_Giorni_Trascorsi_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Giorni_Trascorsi_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Giorni_Trascorsi_Avg_Fields = {
+  __typename?: '_giorni_trascorsi_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_giorni_trascorsi". All fields are combined with a logical 'AND'. */
+export type _Giorni_Trascorsi_Bool_Exp = {
+  _and?: Maybe<Array<_Giorni_Trascorsi_Bool_Exp>>;
+  _not?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+  _or?: Maybe<Array<_Giorni_Trascorsi_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_giorni_trascorsi" */
+export enum _Giorni_Trascorsi_Constraint {
+  /** unique or primary key constraint */
+  GiorniTrascorsiPkey = '_giorni_trascorsi_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Giorni_Trascorsi_Max_Fields = {
+  __typename?: '_giorni_trascorsi_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Giorni_Trascorsi_Min_Fields = {
+  __typename?: '_giorni_trascorsi_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Mutation_Response = {
+  __typename?: '_giorni_trascorsi_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Giorni_Trascorsi>;
+};
+
+/** input type for inserting object relation for remote table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Obj_Rel_Insert_Input = {
+  data: _Giorni_Trascorsi_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Giorni_Trascorsi_On_Conflict>;
+};
+
+/** on conflict condition type for table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_On_Conflict = {
+  constraint: _Giorni_Trascorsi_Constraint;
+  update_columns?: Array<_Giorni_Trascorsi_Update_Column>;
+  where?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_giorni_trascorsi". */
+export type _Giorni_Trascorsi_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _giorni_trascorsi */
+export type _Giorni_Trascorsi_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_giorni_trascorsi" */
+export enum _Giorni_Trascorsi_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_giorni_trascorsi" */
+export type _Giorni_Trascorsi_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Giorni_Trascorsi_Stddev_Fields = {
+  __typename?: '_giorni_trascorsi_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Giorni_Trascorsi_Stddev_Pop_Fields = {
+  __typename?: '_giorni_trascorsi_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Giorni_Trascorsi_Stddev_Samp_Fields = {
+  __typename?: '_giorni_trascorsi_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Giorni_Trascorsi_Sum_Fields = {
+  __typename?: '_giorni_trascorsi_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_giorni_trascorsi" */
+export enum _Giorni_Trascorsi_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Giorni_Trascorsi_Var_Pop_Fields = {
+  __typename?: '_giorni_trascorsi_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Giorni_Trascorsi_Var_Samp_Fields = {
+  __typename?: '_giorni_trascorsi_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Giorni_Trascorsi_Variance_Fields = {
+  __typename?: '_giorni_trascorsi_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "_materiale" */
+export type _Materiale = {
+  __typename?: '_materiale';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "_materiale" */
+export type _Materiale_Aggregate = {
+  __typename?: '_materiale_aggregate';
+  aggregate?: Maybe<_Materiale_Aggregate_Fields>;
+  nodes: Array<_Materiale>;
+};
+
+/** aggregate fields of "_materiale" */
+export type _Materiale_Aggregate_Fields = {
+  __typename?: '_materiale_aggregate_fields';
+  avg?: Maybe<_Materiale_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<_Materiale_Max_Fields>;
+  min?: Maybe<_Materiale_Min_Fields>;
+  stddev?: Maybe<_Materiale_Stddev_Fields>;
+  stddev_pop?: Maybe<_Materiale_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<_Materiale_Stddev_Samp_Fields>;
+  sum?: Maybe<_Materiale_Sum_Fields>;
+  var_pop?: Maybe<_Materiale_Var_Pop_Fields>;
+  var_samp?: Maybe<_Materiale_Var_Samp_Fields>;
+  variance?: Maybe<_Materiale_Variance_Fields>;
+};
+
+
+/** aggregate fields of "_materiale" */
+export type _Materiale_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<_Materiale_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type _Materiale_Avg_Fields = {
+  __typename?: '_materiale_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "_materiale". All fields are combined with a logical 'AND'. */
+export type _Materiale_Bool_Exp = {
+  _and?: Maybe<Array<_Materiale_Bool_Exp>>;
+  _not?: Maybe<_Materiale_Bool_Exp>;
+  _or?: Maybe<Array<_Materiale_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "_materiale" */
+export enum _Materiale_Constraint {
+  /** unique or primary key constraint */
+  MaterialePkey = '_materiale_pkey'
+}
+
+/** input type for incrementing numeric columns in table "_materiale" */
+export type _Materiale_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "_materiale" */
+export type _Materiale_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type _Materiale_Max_Fields = {
+  __typename?: '_materiale_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type _Materiale_Min_Fields = {
+  __typename?: '_materiale_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "_materiale" */
+export type _Materiale_Mutation_Response = {
+  __typename?: '_materiale_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<_Materiale>;
+};
+
+/** input type for inserting object relation for remote table "_materiale" */
+export type _Materiale_Obj_Rel_Insert_Input = {
+  data: _Materiale_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<_Materiale_On_Conflict>;
+};
+
+/** on conflict condition type for table "_materiale" */
+export type _Materiale_On_Conflict = {
+  constraint: _Materiale_Constraint;
+  update_columns?: Array<_Materiale_Update_Column>;
+  where?: Maybe<_Materiale_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "_materiale". */
+export type _Materiale_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: _materiale */
+export type _Materiale_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "_materiale" */
+export enum _Materiale_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "_materiale" */
+export type _Materiale_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type _Materiale_Stddev_Fields = {
+  __typename?: '_materiale_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type _Materiale_Stddev_Pop_Fields = {
+  __typename?: '_materiale_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type _Materiale_Stddev_Samp_Fields = {
+  __typename?: '_materiale_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type _Materiale_Sum_Fields = {
+  __typename?: '_materiale_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "_materiale" */
+export enum _Materiale_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type _Materiale_Var_Pop_Fields = {
+  __typename?: '_materiale_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type _Materiale_Var_Samp_Fields = {
+  __typename?: '_materiale_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type _Materiale_Variance_Fields = {
+  __typename?: '_materiale_variance_fields';
   id?: Maybe<Scalars['Float']>;
 };
 
@@ -962,6 +1571,7 @@ export enum _Stato_Segnalazione_Enum {
   Bozza = 'BOZZA',
   Completata = 'COMPLETATA',
   Pre = 'PRE',
+  Protocollazione = 'PROTOCOLLAZIONE',
   Rimandata = 'RIMANDATA',
   Risolta = 'RISOLTA',
   Sospesa = 'SOSPESA'
@@ -1041,6 +1651,7 @@ export type _Tipologia_Dissesto = {
   __typename?: '_tipologia_dissesto';
   created_at: Scalars['timestamptz'];
   id: Scalars['Int'];
+  intervento?: Maybe<Scalars['String']>;
   nome: Scalars['String'];
   updated_at: Scalars['timestamptz'];
 };
@@ -1088,6 +1699,7 @@ export type _Tipologia_Dissesto_Bool_Exp = {
   _or?: Maybe<Array<_Tipologia_Dissesto_Bool_Exp>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  intervento?: Maybe<String_Comparison_Exp>;
   nome?: Maybe<String_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
@@ -1107,6 +1719,7 @@ export type _Tipologia_Dissesto_Inc_Input = {
 export type _Tipologia_Dissesto_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  intervento?: Maybe<Scalars['String']>;
   nome?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1116,6 +1729,7 @@ export type _Tipologia_Dissesto_Max_Fields = {
   __typename?: '_tipologia_dissesto_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  intervento?: Maybe<Scalars['String']>;
   nome?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1125,6 +1739,7 @@ export type _Tipologia_Dissesto_Min_Fields = {
   __typename?: '_tipologia_dissesto_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  intervento?: Maybe<Scalars['String']>;
   nome?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1156,6 +1771,7 @@ export type _Tipologia_Dissesto_On_Conflict = {
 export type _Tipologia_Dissesto_Order_By = {
   created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  intervento?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
 };
@@ -1172,6 +1788,8 @@ export enum _Tipologia_Dissesto_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Intervento = 'intervento',
+  /** column name */
   Nome = 'nome',
   /** column name */
   UpdatedAt = 'updated_at'
@@ -1181,6 +1799,7 @@ export enum _Tipologia_Dissesto_Select_Column {
 export type _Tipologia_Dissesto_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  intervento?: Maybe<Scalars['String']>;
   nome?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1215,6 +1834,8 @@ export enum _Tipologia_Dissesto_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Id = 'id',
+  /** column name */
+  Intervento = 'intervento',
   /** column name */
   Nome = 'nome',
   /** column name */
@@ -1652,6 +2273,7 @@ export type Allegato = {
   delete: Scalars['Boolean'];
   file: Scalars['String'];
   id: Scalars['Int'];
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   nome: Scalars['String'];
   segnalazione_id?: Maybe<Scalars['Int']>;
@@ -1715,6 +2337,7 @@ export type Allegato_Arr_Rel_Insert_Input = {
 export type Allegato_Avg_Fields = {
   __typename?: 'allegato_avg_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -1722,6 +2345,7 @@ export type Allegato_Avg_Fields = {
 /** order by avg() on columns of table "allegato" */
 export type Allegato_Avg_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1735,6 +2359,7 @@ export type Allegato_Bool_Exp = {
   delete?: Maybe<Boolean_Comparison_Exp>;
   file?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
   intervento_straordinario_id?: Maybe<Int_Comparison_Exp>;
   nome?: Maybe<String_Comparison_Exp>;
   segnalazione_id?: Maybe<Int_Comparison_Exp>;
@@ -1751,6 +2376,7 @@ export enum Allegato_Constraint {
 /** input type for incrementing numeric columns in table "allegato" */
 export type Allegato_Inc_Input = {
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
 };
@@ -1761,6 +2387,7 @@ export type Allegato_Insert_Input = {
   delete?: Maybe<Scalars['Boolean']>;
   file?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
@@ -1774,6 +2401,7 @@ export type Allegato_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   file?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
@@ -1786,6 +2414,7 @@ export type Allegato_Max_Order_By = {
   created_at?: Maybe<Order_By>;
   file?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
@@ -1799,6 +2428,7 @@ export type Allegato_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   file?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
@@ -1811,6 +2441,7 @@ export type Allegato_Min_Order_By = {
   created_at?: Maybe<Order_By>;
   file?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
@@ -1847,6 +2478,7 @@ export type Allegato_Order_By = {
   delete?: Maybe<Order_By>;
   file?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
@@ -1870,6 +2502,8 @@ export enum Allegato_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
   InterventoStraordinarioId = 'intervento_straordinario_id',
   /** column name */
   Nome = 'nome',
@@ -1887,6 +2521,7 @@ export type Allegato_Set_Input = {
   delete?: Maybe<Scalars['Boolean']>;
   file?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
@@ -1898,6 +2533,7 @@ export type Allegato_Set_Input = {
 export type Allegato_Stddev_Fields = {
   __typename?: 'allegato_stddev_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -1905,6 +2541,7 @@ export type Allegato_Stddev_Fields = {
 /** order by stddev() on columns of table "allegato" */
 export type Allegato_Stddev_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1913,6 +2550,7 @@ export type Allegato_Stddev_Order_By = {
 export type Allegato_Stddev_Pop_Fields = {
   __typename?: 'allegato_stddev_pop_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -1920,6 +2558,7 @@ export type Allegato_Stddev_Pop_Fields = {
 /** order by stddev_pop() on columns of table "allegato" */
 export type Allegato_Stddev_Pop_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1928,6 +2567,7 @@ export type Allegato_Stddev_Pop_Order_By = {
 export type Allegato_Stddev_Samp_Fields = {
   __typename?: 'allegato_stddev_samp_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -1935,6 +2575,7 @@ export type Allegato_Stddev_Samp_Fields = {
 /** order by stddev_samp() on columns of table "allegato" */
 export type Allegato_Stddev_Samp_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1943,6 +2584,7 @@ export type Allegato_Stddev_Samp_Order_By = {
 export type Allegato_Sum_Fields = {
   __typename?: 'allegato_sum_fields';
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   intervento_straordinario_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
 };
@@ -1950,6 +2592,7 @@ export type Allegato_Sum_Fields = {
 /** order by sum() on columns of table "allegato" */
 export type Allegato_Sum_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1964,6 +2607,8 @@ export enum Allegato_Update_Column {
   File = 'file',
   /** column name */
   Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
   /** column name */
   InterventoStraordinarioId = 'intervento_straordinario_id',
   /** column name */
@@ -1980,6 +2625,7 @@ export enum Allegato_Update_Column {
 export type Allegato_Var_Pop_Fields = {
   __typename?: 'allegato_var_pop_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -1987,6 +2633,7 @@ export type Allegato_Var_Pop_Fields = {
 /** order by var_pop() on columns of table "allegato" */
 export type Allegato_Var_Pop_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -1995,6 +2642,7 @@ export type Allegato_Var_Pop_Order_By = {
 export type Allegato_Var_Samp_Fields = {
   __typename?: 'allegato_var_samp_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -2002,6 +2650,7 @@ export type Allegato_Var_Samp_Fields = {
 /** order by var_samp() on columns of table "allegato" */
 export type Allegato_Var_Samp_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -2010,6 +2659,7 @@ export type Allegato_Var_Samp_Order_By = {
 export type Allegato_Variance_Fields = {
   __typename?: 'allegato_variance_fields';
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   intervento_straordinario_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
@@ -2017,6 +2667,7 @@ export type Allegato_Variance_Fields = {
 /** order by variance() on columns of table "allegato" */
 export type Allegato_Variance_Order_By = {
   id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
   intervento_straordinario_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -2356,6 +3007,7 @@ export type Assegnazione_Quartiere_Variance_Order_By = {
 export type Assegnazione_Squadra = {
   __typename?: 'assegnazione_squadra';
   caposquadra: Scalars['Boolean'];
+  delete?: Maybe<Scalars['Boolean']>;
   fine_validita?: Maybe<Scalars['timestamptz']>;
   id: Scalars['Int'];
   inizio_validita: Scalars['timestamptz'];
@@ -2440,6 +3092,7 @@ export type Assegnazione_Squadra_Bool_Exp = {
   _not?: Maybe<Assegnazione_Squadra_Bool_Exp>;
   _or?: Maybe<Array<Assegnazione_Squadra_Bool_Exp>>;
   caposquadra?: Maybe<Boolean_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
   fine_validita?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   inizio_validita?: Maybe<Timestamptz_Comparison_Exp>;
@@ -2465,6 +3118,7 @@ export type Assegnazione_Squadra_Inc_Input = {
 /** input type for inserting data into table "assegnazione_squadra" */
 export type Assegnazione_Squadra_Insert_Input = {
   caposquadra?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
@@ -2531,6 +3185,7 @@ export type Assegnazione_Squadra_On_Conflict = {
 /** Ordering options when selecting data from "assegnazione_squadra". */
 export type Assegnazione_Squadra_Order_By = {
   caposquadra?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
   fine_validita?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inizio_validita?: Maybe<Order_By>;
@@ -2550,6 +3205,8 @@ export enum Assegnazione_Squadra_Select_Column {
   /** column name */
   Caposquadra = 'caposquadra',
   /** column name */
+  Delete = 'delete',
+  /** column name */
   FineValidita = 'fine_validita',
   /** column name */
   Id = 'id',
@@ -2564,6 +3221,7 @@ export enum Assegnazione_Squadra_Select_Column {
 /** input type for updating data in table "assegnazione_squadra" */
 export type Assegnazione_Squadra_Set_Input = {
   caposquadra?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   fine_validita?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   inizio_validita?: Maybe<Scalars['timestamptz']>;
@@ -2635,6 +3293,8 @@ export type Assegnazione_Squadra_Sum_Order_By = {
 export enum Assegnazione_Squadra_Update_Column {
   /** column name */
   Caposquadra = 'caposquadra',
+  /** column name */
+  Delete = 'delete',
   /** column name */
   FineValidita = 'fine_validita',
   /** column name */
@@ -3056,6 +3716,349 @@ export type Assegnazione_Toponimo_Variance_Order_By = {
   municipalita_id?: Maybe<Order_By>;
   quartiere_id?: Maybe<Order_By>;
   toponimo_id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "attrezzature_impiegate" */
+export type Attrezzature_Impiegate = {
+  __typename?: 'attrezzature_impiegate';
+  created_at: Scalars['timestamptz'];
+  delete?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  intervento_id: Scalars['Int'];
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Aggregate = {
+  __typename?: 'attrezzature_impiegate_aggregate';
+  aggregate?: Maybe<Attrezzature_Impiegate_Aggregate_Fields>;
+  nodes: Array<Attrezzature_Impiegate>;
+};
+
+/** aggregate fields of "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Aggregate_Fields = {
+  __typename?: 'attrezzature_impiegate_aggregate_fields';
+  avg?: Maybe<Attrezzature_Impiegate_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Attrezzature_Impiegate_Max_Fields>;
+  min?: Maybe<Attrezzature_Impiegate_Min_Fields>;
+  stddev?: Maybe<Attrezzature_Impiegate_Stddev_Fields>;
+  stddev_pop?: Maybe<Attrezzature_Impiegate_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Attrezzature_Impiegate_Stddev_Samp_Fields>;
+  sum?: Maybe<Attrezzature_Impiegate_Sum_Fields>;
+  var_pop?: Maybe<Attrezzature_Impiegate_Var_Pop_Fields>;
+  var_samp?: Maybe<Attrezzature_Impiegate_Var_Samp_Fields>;
+  variance?: Maybe<Attrezzature_Impiegate_Variance_Fields>;
+};
+
+
+/** aggregate fields of "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Aggregate_Order_By = {
+  avg?: Maybe<Attrezzature_Impiegate_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Attrezzature_Impiegate_Max_Order_By>;
+  min?: Maybe<Attrezzature_Impiegate_Min_Order_By>;
+  stddev?: Maybe<Attrezzature_Impiegate_Stddev_Order_By>;
+  stddev_pop?: Maybe<Attrezzature_Impiegate_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Attrezzature_Impiegate_Stddev_Samp_Order_By>;
+  sum?: Maybe<Attrezzature_Impiegate_Sum_Order_By>;
+  var_pop?: Maybe<Attrezzature_Impiegate_Var_Pop_Order_By>;
+  var_samp?: Maybe<Attrezzature_Impiegate_Var_Samp_Order_By>;
+  variance?: Maybe<Attrezzature_Impiegate_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Arr_Rel_Insert_Input = {
+  data: Array<Attrezzature_Impiegate_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Attrezzature_Impiegate_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Attrezzature_Impiegate_Avg_Fields = {
+  __typename?: 'attrezzature_impiegate_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "attrezzature_impiegate". All fields are combined with a logical 'AND'. */
+export type Attrezzature_Impiegate_Bool_Exp = {
+  _and?: Maybe<Array<Attrezzature_Impiegate_Bool_Exp>>;
+  _not?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+  _or?: Maybe<Array<Attrezzature_Impiegate_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  quantita?: Maybe<Float8_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "attrezzature_impiegate" */
+export enum Attrezzature_Impiegate_Constraint {
+  /** unique or primary key constraint */
+  AttrezzatureImpiegatePkey = 'attrezzature_impiegate_pkey'
+}
+
+/** input type for incrementing numeric columns in table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** input type for inserting data into table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Attrezzature_Impiegate_Max_Fields = {
+  __typename?: 'attrezzature_impiegate_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Attrezzature_Impiegate_Min_Fields = {
+  __typename?: 'attrezzature_impiegate_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Mutation_Response = {
+  __typename?: 'attrezzature_impiegate_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Attrezzature_Impiegate>;
+};
+
+/** on conflict condition type for table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_On_Conflict = {
+  constraint: Attrezzature_Impiegate_Constraint;
+  update_columns?: Array<Attrezzature_Impiegate_Update_Column>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "attrezzature_impiegate". */
+export type Attrezzature_Impiegate_Order_By = {
+  created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: attrezzature_impiegate */
+export type Attrezzature_Impiegate_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "attrezzature_impiegate" */
+export enum Attrezzature_Impiegate_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Attrezzature_Impiegate_Stddev_Fields = {
+  __typename?: 'attrezzature_impiegate_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Attrezzature_Impiegate_Stddev_Pop_Fields = {
+  __typename?: 'attrezzature_impiegate_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Attrezzature_Impiegate_Stddev_Samp_Fields = {
+  __typename?: 'attrezzature_impiegate_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Attrezzature_Impiegate_Sum_Fields = {
+  __typename?: 'attrezzature_impiegate_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** order by sum() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** update columns of table "attrezzature_impiegate" */
+export enum Attrezzature_Impiegate_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Attrezzature_Impiegate_Var_Pop_Fields = {
+  __typename?: 'attrezzature_impiegate_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Attrezzature_Impiegate_Var_Samp_Fields = {
+  __typename?: 'attrezzature_impiegate_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Attrezzature_Impiegate_Variance_Fields = {
+  __typename?: 'attrezzature_impiegate_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "attrezzature_impiegate" */
+export type Attrezzature_Impiegate_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
 };
 
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
@@ -3585,6 +4588,8 @@ export type Diario = {
   created_at: Scalars['timestamptz'];
   id: Scalars['Int'];
   messaggio?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  segnalazione: Segnalazione;
   segnalazione_id: Scalars['Int'];
   utente: Scalars['jsonb'];
 };
@@ -3677,6 +4682,7 @@ export type Diario_Bool_Exp = {
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   messaggio?: Maybe<String_Comparison_Exp>;
+  segnalazione?: Maybe<Segnalazione_Bool_Exp>;
   segnalazione_id?: Maybe<Int_Comparison_Exp>;
   utente?: Maybe<Jsonb_Comparison_Exp>;
 };
@@ -3716,6 +4722,7 @@ export type Diario_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
   messaggio?: Maybe<Scalars['String']>;
+  segnalazione?: Maybe<Segnalazione_Obj_Rel_Insert_Input>;
   segnalazione_id?: Maybe<Scalars['Int']>;
   utente?: Maybe<Scalars['jsonb']>;
 };
@@ -3781,6 +4788,7 @@ export type Diario_Order_By = {
   created_at?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   messaggio?: Maybe<Order_By>;
+  segnalazione?: Maybe<Segnalazione_Order_By>;
   segnalazione_id?: Maybe<Order_By>;
   utente?: Maybe<Order_By>;
 };
@@ -4498,6 +5506,411 @@ export type Dug_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** columns and relationships of "evento" */
+export type Evento = {
+  __typename?: 'evento';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  note?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  protocollo?: Maybe<Protocollo>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  risolutore?: Maybe<Segnalazione>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id: Scalars['Int'];
+  /** An object relationship */
+  squadra?: Maybe<Squadra>;
+  squadra_id?: Maybe<Scalars['Int']>;
+  stato: _Stato_Segnalazione_Enum;
+};
+
+/** aggregated selection of "evento" */
+export type Evento_Aggregate = {
+  __typename?: 'evento_aggregate';
+  aggregate?: Maybe<Evento_Aggregate_Fields>;
+  nodes: Array<Evento>;
+};
+
+/** aggregate fields of "evento" */
+export type Evento_Aggregate_Fields = {
+  __typename?: 'evento_aggregate_fields';
+  avg?: Maybe<Evento_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Evento_Max_Fields>;
+  min?: Maybe<Evento_Min_Fields>;
+  stddev?: Maybe<Evento_Stddev_Fields>;
+  stddev_pop?: Maybe<Evento_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Evento_Stddev_Samp_Fields>;
+  sum?: Maybe<Evento_Sum_Fields>;
+  var_pop?: Maybe<Evento_Var_Pop_Fields>;
+  var_samp?: Maybe<Evento_Var_Samp_Fields>;
+  variance?: Maybe<Evento_Variance_Fields>;
+};
+
+
+/** aggregate fields of "evento" */
+export type Evento_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Evento_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "evento" */
+export type Evento_Aggregate_Order_By = {
+  avg?: Maybe<Evento_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Evento_Max_Order_By>;
+  min?: Maybe<Evento_Min_Order_By>;
+  stddev?: Maybe<Evento_Stddev_Order_By>;
+  stddev_pop?: Maybe<Evento_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Evento_Stddev_Samp_Order_By>;
+  sum?: Maybe<Evento_Sum_Order_By>;
+  var_pop?: Maybe<Evento_Var_Pop_Order_By>;
+  var_samp?: Maybe<Evento_Var_Samp_Order_By>;
+  variance?: Maybe<Evento_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "evento" */
+export type Evento_Arr_Rel_Insert_Input = {
+  data: Array<Evento_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Evento_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Evento_Avg_Fields = {
+  __typename?: 'evento_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "evento" */
+export type Evento_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "evento". All fields are combined with a logical 'AND'. */
+export type Evento_Bool_Exp = {
+  _and?: Maybe<Array<Evento_Bool_Exp>>;
+  _not?: Maybe<Evento_Bool_Exp>;
+  _or?: Maybe<Array<Evento_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  protocollo?: Maybe<Protocollo_Bool_Exp>;
+  protocollo_id?: Maybe<Int_Comparison_Exp>;
+  risolutore?: Maybe<Segnalazione_Bool_Exp>;
+  risoluzione_id?: Maybe<Int_Comparison_Exp>;
+  segnalazione_id?: Maybe<Int_Comparison_Exp>;
+  squadra?: Maybe<Squadra_Bool_Exp>;
+  squadra_id?: Maybe<Int_Comparison_Exp>;
+  stato?: Maybe<_Stato_Segnalazione_Enum_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "evento" */
+export enum Evento_Constraint {
+  /** unique or primary key constraint */
+  EventoPkey = 'evento_pkey'
+}
+
+/** input type for incrementing numeric columns in table "evento" */
+export type Evento_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "evento" */
+export type Evento_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  protocollo?: Maybe<Protocollo_Obj_Rel_Insert_Input>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risolutore?: Maybe<Segnalazione_Obj_Rel_Insert_Input>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra?: Maybe<Squadra_Obj_Rel_Insert_Input>;
+  squadra_id?: Maybe<Scalars['Int']>;
+  stato?: Maybe<_Stato_Segnalazione_Enum>;
+};
+
+/** aggregate max on columns */
+export type Evento_Max_Fields = {
+  __typename?: 'evento_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "evento" */
+export type Evento_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Evento_Min_Fields = {
+  __typename?: 'evento_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "evento" */
+export type Evento_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "evento" */
+export type Evento_Mutation_Response = {
+  __typename?: 'evento_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Evento>;
+};
+
+/** on conflict condition type for table "evento" */
+export type Evento_On_Conflict = {
+  constraint: Evento_Constraint;
+  update_columns?: Array<Evento_Update_Column>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "evento". */
+export type Evento_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  protocollo?: Maybe<Protocollo_Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risolutore?: Maybe<Segnalazione_Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra?: Maybe<Squadra_Order_By>;
+  squadra_id?: Maybe<Order_By>;
+  stato?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: evento */
+export type Evento_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "evento" */
+export enum Evento_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  ProtocolloId = 'protocollo_id',
+  /** column name */
+  RisoluzioneId = 'risoluzione_id',
+  /** column name */
+  SegnalazioneId = 'segnalazione_id',
+  /** column name */
+  SquadraId = 'squadra_id',
+  /** column name */
+  Stato = 'stato'
+}
+
+/** input type for updating data in table "evento" */
+export type Evento_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra_id?: Maybe<Scalars['Int']>;
+  stato?: Maybe<_Stato_Segnalazione_Enum>;
+};
+
+/** aggregate stddev on columns */
+export type Evento_Stddev_Fields = {
+  __typename?: 'evento_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "evento" */
+export type Evento_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Evento_Stddev_Pop_Fields = {
+  __typename?: 'evento_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "evento" */
+export type Evento_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Evento_Stddev_Samp_Fields = {
+  __typename?: 'evento_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "evento" */
+export type Evento_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Evento_Sum_Fields = {
+  __typename?: 'evento_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  protocollo_id?: Maybe<Scalars['Int']>;
+  risoluzione_id?: Maybe<Scalars['Int']>;
+  segnalazione_id?: Maybe<Scalars['Int']>;
+  squadra_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "evento" */
+export type Evento_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "evento" */
+export enum Evento_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  ProtocolloId = 'protocollo_id',
+  /** column name */
+  RisoluzioneId = 'risoluzione_id',
+  /** column name */
+  SegnalazioneId = 'segnalazione_id',
+  /** column name */
+  SquadraId = 'squadra_id',
+  /** column name */
+  Stato = 'stato'
+}
+
+/** aggregate var_pop on columns */
+export type Evento_Var_Pop_Fields = {
+  __typename?: 'evento_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "evento" */
+export type Evento_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Evento_Var_Samp_Fields = {
+  __typename?: 'evento_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "evento" */
+export type Evento_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Evento_Variance_Fields = {
+  __typename?: 'evento_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  protocollo_id?: Maybe<Scalars['Float']>;
+  risoluzione_id?: Maybe<Scalars['Float']>;
+  segnalazione_id?: Maybe<Scalars['Float']>;
+  squadra_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "evento" */
+export type Evento_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  protocollo_id?: Maybe<Order_By>;
+  risoluzione_id?: Maybe<Order_By>;
+  segnalazione_id?: Maybe<Order_By>;
+  squadra_id?: Maybe<Order_By>;
+};
+
 /** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
 export type Float8_Comparison_Exp = {
   _eq?: Maybe<Scalars['float8']>;
@@ -4571,6 +5984,387 @@ export type Geometry_Comparison_Exp = {
   _st_within?: Maybe<Scalars['geometry']>;
 };
 
+/** columns and relationships of "intervento" */
+export type Intervento = {
+  __typename?: 'intervento';
+  /** An array relationship */
+  allegati: Array<Allegato>;
+  /** An aggregate relationship */
+  allegati_aggregate: Allegato_Aggregate;
+  assistenza_pm?: Maybe<Scalars['Boolean']>;
+  /** An array relationship */
+  attrezzature_impiegate: Array<Attrezzature_Impiegate>;
+  /** An aggregate relationship */
+  attrezzature_impiegate_aggregate: Attrezzature_Impiegate_Aggregate;
+  /** An object relationship */
+  condizioni_traffico?: Maybe<_Condizioni_Traffico>;
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  created_at: Scalars['timestamptz'];
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  difformita?: Maybe<Scalars['String']>;
+  dissesto_difforme?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  giorni_trascorsi?: Maybe<_Giorni_Trascorsi>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
+  /** An array relationship */
+  materiali_dissesto: Array<Materiale_Dissesto>;
+  /** An aggregate relationship */
+  materiali_dissesto_aggregate: Materiale_Dissesto_Aggregate;
+  note?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  segnaletica_lasciata: Array<Segnaletica_Lasciata>;
+  /** An aggregate relationship */
+  segnaletica_lasciata_aggregate: Segnaletica_Lasciata_Aggregate;
+  updated_at: Scalars['timestamptz'];
+  /** An array relationship */
+  veicoli_impiegati: Array<Veicoli_Impiegati>;
+  /** An aggregate relationship */
+  veicoli_impiegati_aggregate: Veicoli_Impiegati_Aggregate;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoAllegatiArgs = {
+  distinct_on?: Maybe<Array<Allegato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Allegato_Order_By>>;
+  where?: Maybe<Allegato_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoAllegati_AggregateArgs = {
+  distinct_on?: Maybe<Array<Allegato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Allegato_Order_By>>;
+  where?: Maybe<Allegato_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoAttrezzature_ImpiegateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoAttrezzature_Impiegate_AggregateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoMateriali_DissestoArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoMateriali_Dissesto_AggregateArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoSegnaletica_LasciataArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoSegnaletica_Lasciata_AggregateArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoVeicoli_ImpiegatiArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+
+/** columns and relationships of "intervento" */
+export type InterventoVeicoli_Impiegati_AggregateArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+/** aggregated selection of "intervento" */
+export type Intervento_Aggregate = {
+  __typename?: 'intervento_aggregate';
+  aggregate?: Maybe<Intervento_Aggregate_Fields>;
+  nodes: Array<Intervento>;
+};
+
+/** aggregate fields of "intervento" */
+export type Intervento_Aggregate_Fields = {
+  __typename?: 'intervento_aggregate_fields';
+  avg?: Maybe<Intervento_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Intervento_Max_Fields>;
+  min?: Maybe<Intervento_Min_Fields>;
+  stddev?: Maybe<Intervento_Stddev_Fields>;
+  stddev_pop?: Maybe<Intervento_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Intervento_Stddev_Samp_Fields>;
+  sum?: Maybe<Intervento_Sum_Fields>;
+  var_pop?: Maybe<Intervento_Var_Pop_Fields>;
+  var_samp?: Maybe<Intervento_Var_Samp_Fields>;
+  variance?: Maybe<Intervento_Variance_Fields>;
+};
+
+
+/** aggregate fields of "intervento" */
+export type Intervento_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Intervento_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Intervento_Avg_Fields = {
+  __typename?: 'intervento_avg_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "intervento". All fields are combined with a logical 'AND'. */
+export type Intervento_Bool_Exp = {
+  _and?: Maybe<Array<Intervento_Bool_Exp>>;
+  _not?: Maybe<Intervento_Bool_Exp>;
+  _or?: Maybe<Array<Intervento_Bool_Exp>>;
+  allegati?: Maybe<Allegato_Bool_Exp>;
+  assistenza_pm?: Maybe<Boolean_Comparison_Exp>;
+  attrezzature_impiegate?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+  condizioni_traffico?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+  condizioni_traffico_id?: Maybe<Int_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  data_fine_lavori?: Maybe<Timestamptz_Comparison_Exp>;
+  data_inizio_lavori?: Maybe<Timestamptz_Comparison_Exp>;
+  difformita?: Maybe<String_Comparison_Exp>;
+  dissesto_difforme?: Maybe<Boolean_Comparison_Exp>;
+  giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+  giorni_trascorsi_id?: Maybe<Int_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  materiali_dissesto?: Maybe<Materiale_Dissesto_Bool_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  segnaletica_lasciata?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+  veicoli_impiegati?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "intervento" */
+export enum Intervento_Constraint {
+  /** unique or primary key constraint */
+  InterventoPkey = 'intervento_pkey'
+}
+
+/** input type for incrementing numeric columns in table "intervento" */
+export type Intervento_Inc_Input = {
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "intervento" */
+export type Intervento_Insert_Input = {
+  allegati?: Maybe<Allegato_Arr_Rel_Insert_Input>;
+  assistenza_pm?: Maybe<Scalars['Boolean']>;
+  attrezzature_impiegate?: Maybe<Attrezzature_Impiegate_Arr_Rel_Insert_Input>;
+  condizioni_traffico?: Maybe<_Condizioni_Traffico_Obj_Rel_Insert_Input>;
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  difformita?: Maybe<Scalars['String']>;
+  dissesto_difforme?: Maybe<Scalars['Boolean']>;
+  giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Obj_Rel_Insert_Input>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  materiali_dissesto?: Maybe<Materiale_Dissesto_Arr_Rel_Insert_Input>;
+  note?: Maybe<Scalars['String']>;
+  segnaletica_lasciata?: Maybe<Segnaletica_Lasciata_Arr_Rel_Insert_Input>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  veicoli_impiegati?: Maybe<Veicoli_Impiegati_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Intervento_Max_Fields = {
+  __typename?: 'intervento_max_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  difformita?: Maybe<Scalars['String']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Intervento_Min_Fields = {
+  __typename?: 'intervento_min_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  difformita?: Maybe<Scalars['String']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "intervento" */
+export type Intervento_Mutation_Response = {
+  __typename?: 'intervento_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Intervento>;
+};
+
+/** input type for inserting object relation for remote table "intervento" */
+export type Intervento_Obj_Rel_Insert_Input = {
+  data: Intervento_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: Maybe<Intervento_On_Conflict>;
+};
+
+/** on conflict condition type for table "intervento" */
+export type Intervento_On_Conflict = {
+  constraint: Intervento_Constraint;
+  update_columns?: Array<Intervento_Update_Column>;
+  where?: Maybe<Intervento_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "intervento". */
+export type Intervento_Order_By = {
+  allegati_aggregate?: Maybe<Allegato_Aggregate_Order_By>;
+  assistenza_pm?: Maybe<Order_By>;
+  attrezzature_impiegate_aggregate?: Maybe<Attrezzature_Impiegate_Aggregate_Order_By>;
+  condizioni_traffico?: Maybe<_Condizioni_Traffico_Order_By>;
+  condizioni_traffico_id?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  data_fine_lavori?: Maybe<Order_By>;
+  data_inizio_lavori?: Maybe<Order_By>;
+  difformita?: Maybe<Order_By>;
+  dissesto_difforme?: Maybe<Order_By>;
+  giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Order_By>;
+  giorni_trascorsi_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  materiali_dissesto_aggregate?: Maybe<Materiale_Dissesto_Aggregate_Order_By>;
+  note?: Maybe<Order_By>;
+  segnaletica_lasciata_aggregate?: Maybe<Segnaletica_Lasciata_Aggregate_Order_By>;
+  updated_at?: Maybe<Order_By>;
+  veicoli_impiegati_aggregate?: Maybe<Veicoli_Impiegati_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: intervento */
+export type Intervento_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "intervento" */
+export enum Intervento_Select_Column {
+  /** column name */
+  AssistenzaPm = 'assistenza_pm',
+  /** column name */
+  CondizioniTrafficoId = 'condizioni_traffico_id',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DataFineLavori = 'data_fine_lavori',
+  /** column name */
+  DataInizioLavori = 'data_inizio_lavori',
+  /** column name */
+  Difformita = 'difformita',
+  /** column name */
+  DissestoDifforme = 'dissesto_difforme',
+  /** column name */
+  GiorniTrascorsiId = 'giorni_trascorsi_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "intervento" */
+export type Intervento_Set_Input = {
+  assistenza_pm?: Maybe<Scalars['Boolean']>;
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  data_fine_lavori?: Maybe<Scalars['timestamptz']>;
+  data_inizio_lavori?: Maybe<Scalars['timestamptz']>;
+  difformita?: Maybe<Scalars['String']>;
+  dissesto_difforme?: Maybe<Scalars['Boolean']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Intervento_Stddev_Fields = {
+  __typename?: 'intervento_stddev_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Intervento_Stddev_Pop_Fields = {
+  __typename?: 'intervento_stddev_pop_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Intervento_Stddev_Samp_Fields = {
+  __typename?: 'intervento_stddev_samp_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
 /** columns and relationships of "intervento_straordinario" */
 export type Intervento_Straordinario = {
   __typename?: 'intervento_straordinario';
@@ -4599,7 +6393,7 @@ export type Intervento_Straordinario = {
   quartiere?: Maybe<Quartiere>;
   quartiere_id?: Maybe<Scalars['Int']>;
   quartiere_storico?: Maybe<Scalars['jsonb']>;
-  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  stato: _Stato_Segnalazione_Enum;
   tipologia_intervento?: Maybe<Scalars['String']>;
   toponimo?: Maybe<Toponimo>;
   toponimo_id?: Maybe<Scalars['Int']>;
@@ -4716,7 +6510,7 @@ export type Intervento_Straordinario_Bool_Exp = {
   punto_iniziale_posizionamento_id?: Maybe<Int_Comparison_Exp>;
   quartiere_id?: Maybe<Int_Comparison_Exp>;
   quartiere_storico?: Maybe<Jsonb_Comparison_Exp>;
-  stato_fine_lavori?: Maybe<Boolean_Comparison_Exp>;
+  stato?: Maybe<_Stato_Segnalazione_Enum_Comparison_Exp>;
   tipologia_intervento?: Maybe<String_Comparison_Exp>;
   toponimo_id?: Maybe<Int_Comparison_Exp>;
   toponimo_storico?: Maybe<Jsonb_Comparison_Exp>;
@@ -4780,7 +6574,7 @@ export type Intervento_Straordinario_Insert_Input = {
   punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
   quartiere_id?: Maybe<Scalars['Int']>;
   quartiere_storico?: Maybe<Scalars['jsonb']>;
-  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  stato?: Maybe<_Stato_Segnalazione_Enum>;
   tipologia_intervento?: Maybe<Scalars['String']>;
   toponimo_id?: Maybe<Scalars['Int']>;
   toponimo_storico?: Maybe<Scalars['jsonb']>;
@@ -4860,7 +6654,7 @@ export type Intervento_Straordinario_Order_By = {
   punto_iniziale_posizionamento_id?: Maybe<Order_By>;
   quartiere_id?: Maybe<Order_By>;
   quartiere_storico?: Maybe<Order_By>;
-  stato_fine_lavori?: Maybe<Order_By>;
+  stato?: Maybe<Order_By>;
   tipologia_intervento?: Maybe<Order_By>;
   toponimo_id?: Maybe<Order_By>;
   toponimo_storico?: Maybe<Order_By>;
@@ -4908,7 +6702,7 @@ export enum Intervento_Straordinario_Select_Column {
   /** column name */
   QuartiereStorico = 'quartiere_storico',
   /** column name */
-  StatoFineLavori = 'stato_fine_lavori',
+  Stato = 'stato',
   /** column name */
   TipologiaIntervento = 'tipologia_intervento',
   /** column name */
@@ -4934,7 +6728,7 @@ export type Intervento_Straordinario_Set_Input = {
   punto_iniziale_posizionamento_id?: Maybe<Scalars['Int']>;
   quartiere_id?: Maybe<Scalars['Int']>;
   quartiere_storico?: Maybe<Scalars['jsonb']>;
-  stato_fine_lavori?: Maybe<Scalars['Boolean']>;
+  stato?: Maybe<_Stato_Segnalazione_Enum>;
   tipologia_intervento?: Maybe<Scalars['String']>;
   toponimo_id?: Maybe<Scalars['Int']>;
   toponimo_storico?: Maybe<Scalars['jsonb']>;
@@ -5018,7 +6812,7 @@ export enum Intervento_Straordinario_Update_Column {
   /** column name */
   QuartiereStorico = 'quartiere_storico',
   /** column name */
-  StatoFineLavori = 'stato_fine_lavori',
+  Stato = 'stato',
   /** column name */
   TipologiaIntervento = 'tipologia_intervento',
   /** column name */
@@ -5065,6 +6859,64 @@ export type Intervento_Straordinario_Variance_Fields = {
   toponimo_id?: Maybe<Scalars['Float']>;
 };
 
+/** aggregate sum on columns */
+export type Intervento_Sum_Fields = {
+  __typename?: 'intervento_sum_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Int']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "intervento" */
+export enum Intervento_Update_Column {
+  /** column name */
+  AssistenzaPm = 'assistenza_pm',
+  /** column name */
+  CondizioniTrafficoId = 'condizioni_traffico_id',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DataFineLavori = 'data_fine_lavori',
+  /** column name */
+  DataInizioLavori = 'data_inizio_lavori',
+  /** column name */
+  Difformita = 'difformita',
+  /** column name */
+  DissestoDifforme = 'dissesto_difforme',
+  /** column name */
+  GiorniTrascorsiId = 'giorni_trascorsi_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Intervento_Var_Pop_Fields = {
+  __typename?: 'intervento_var_pop_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Intervento_Var_Samp_Fields = {
+  __typename?: 'intervento_var_samp_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Intervento_Variance_Fields = {
+  __typename?: 'intervento_variance_fields';
+  condizioni_traffico_id?: Maybe<Scalars['Float']>;
+  giorni_trascorsi_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
 /** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
 export type Jsonb_Comparison_Exp = {
   /** is the column contained in the given json value */
@@ -5086,6 +6938,384 @@ export type Jsonb_Comparison_Exp = {
   _lte?: Maybe<Scalars['jsonb']>;
   _neq?: Maybe<Scalars['jsonb']>;
   _nin?: Maybe<Array<Scalars['jsonb']>>;
+};
+
+/** columns and relationships of "materiale_dissesto" */
+export type Materiale_Dissesto = {
+  __typename?: 'materiale_dissesto';
+  altro?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  delete?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  intervento_id: Scalars['Int'];
+  /** An object relationship */
+  materiale?: Maybe<_Materiale>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "materiale_dissesto" */
+export type Materiale_Dissesto_Aggregate = {
+  __typename?: 'materiale_dissesto_aggregate';
+  aggregate?: Maybe<Materiale_Dissesto_Aggregate_Fields>;
+  nodes: Array<Materiale_Dissesto>;
+};
+
+/** aggregate fields of "materiale_dissesto" */
+export type Materiale_Dissesto_Aggregate_Fields = {
+  __typename?: 'materiale_dissesto_aggregate_fields';
+  avg?: Maybe<Materiale_Dissesto_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Materiale_Dissesto_Max_Fields>;
+  min?: Maybe<Materiale_Dissesto_Min_Fields>;
+  stddev?: Maybe<Materiale_Dissesto_Stddev_Fields>;
+  stddev_pop?: Maybe<Materiale_Dissesto_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Materiale_Dissesto_Stddev_Samp_Fields>;
+  sum?: Maybe<Materiale_Dissesto_Sum_Fields>;
+  var_pop?: Maybe<Materiale_Dissesto_Var_Pop_Fields>;
+  var_samp?: Maybe<Materiale_Dissesto_Var_Samp_Fields>;
+  variance?: Maybe<Materiale_Dissesto_Variance_Fields>;
+};
+
+
+/** aggregate fields of "materiale_dissesto" */
+export type Materiale_Dissesto_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "materiale_dissesto" */
+export type Materiale_Dissesto_Aggregate_Order_By = {
+  avg?: Maybe<Materiale_Dissesto_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Materiale_Dissesto_Max_Order_By>;
+  min?: Maybe<Materiale_Dissesto_Min_Order_By>;
+  stddev?: Maybe<Materiale_Dissesto_Stddev_Order_By>;
+  stddev_pop?: Maybe<Materiale_Dissesto_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Materiale_Dissesto_Stddev_Samp_Order_By>;
+  sum?: Maybe<Materiale_Dissesto_Sum_Order_By>;
+  var_pop?: Maybe<Materiale_Dissesto_Var_Pop_Order_By>;
+  var_samp?: Maybe<Materiale_Dissesto_Var_Samp_Order_By>;
+  variance?: Maybe<Materiale_Dissesto_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "materiale_dissesto" */
+export type Materiale_Dissesto_Arr_Rel_Insert_Input = {
+  data: Array<Materiale_Dissesto_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Materiale_Dissesto_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Materiale_Dissesto_Avg_Fields = {
+  __typename?: 'materiale_dissesto_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "materiale_dissesto". All fields are combined with a logical 'AND'. */
+export type Materiale_Dissesto_Bool_Exp = {
+  _and?: Maybe<Array<Materiale_Dissesto_Bool_Exp>>;
+  _not?: Maybe<Materiale_Dissesto_Bool_Exp>;
+  _or?: Maybe<Array<Materiale_Dissesto_Bool_Exp>>;
+  altro?: Maybe<String_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
+  materiale?: Maybe<_Materiale_Bool_Exp>;
+  materiale_id?: Maybe<Int_Comparison_Exp>;
+  quantita?: Maybe<Float8_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "materiale_dissesto" */
+export enum Materiale_Dissesto_Constraint {
+  /** unique or primary key constraint */
+  MaterialeDissestoPkey = 'materiale_dissesto_pkey'
+}
+
+/** input type for incrementing numeric columns in table "materiale_dissesto" */
+export type Materiale_Dissesto_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** input type for inserting data into table "materiale_dissesto" */
+export type Materiale_Dissesto_Insert_Input = {
+  altro?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale?: Maybe<_Materiale_Obj_Rel_Insert_Input>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Materiale_Dissesto_Max_Fields = {
+  __typename?: 'materiale_dissesto_max_fields';
+  altro?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Max_Order_By = {
+  altro?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Materiale_Dissesto_Min_Fields = {
+  __typename?: 'materiale_dissesto_min_fields';
+  altro?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Min_Order_By = {
+  altro?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "materiale_dissesto" */
+export type Materiale_Dissesto_Mutation_Response = {
+  __typename?: 'materiale_dissesto_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Materiale_Dissesto>;
+};
+
+/** on conflict condition type for table "materiale_dissesto" */
+export type Materiale_Dissesto_On_Conflict = {
+  constraint: Materiale_Dissesto_Constraint;
+  update_columns?: Array<Materiale_Dissesto_Update_Column>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "materiale_dissesto". */
+export type Materiale_Dissesto_Order_By = {
+  altro?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale?: Maybe<_Materiale_Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: materiale_dissesto */
+export type Materiale_Dissesto_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "materiale_dissesto" */
+export enum Materiale_Dissesto_Select_Column {
+  /** column name */
+  Altro = 'altro',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  MaterialeId = 'materiale_id',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "materiale_dissesto" */
+export type Materiale_Dissesto_Set_Input = {
+  altro?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Materiale_Dissesto_Stddev_Fields = {
+  __typename?: 'materiale_dissesto_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Materiale_Dissesto_Stddev_Pop_Fields = {
+  __typename?: 'materiale_dissesto_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Materiale_Dissesto_Stddev_Samp_Fields = {
+  __typename?: 'materiale_dissesto_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Materiale_Dissesto_Sum_Fields = {
+  __typename?: 'materiale_dissesto_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** order by sum() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** update columns of table "materiale_dissesto" */
+export enum Materiale_Dissesto_Update_Column {
+  /** column name */
+  Altro = 'altro',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  MaterialeId = 'materiale_id',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Materiale_Dissesto_Var_Pop_Fields = {
+  __typename?: 'materiale_dissesto_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Materiale_Dissesto_Var_Samp_Fields = {
+  __typename?: 'materiale_dissesto_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Materiale_Dissesto_Variance_Fields = {
+  __typename?: 'materiale_dissesto_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "materiale_dissesto" */
+export type Materiale_Dissesto_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "membro" */
@@ -5600,10 +7830,22 @@ export type Municipalita_Variance_Fields = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete data from the table: "_condizioni_traffico" */
+  delete__condizioni_traffico?: Maybe<_Condizioni_Traffico_Mutation_Response>;
+  /** delete single row from the table: "_condizioni_traffico" */
+  delete__condizioni_traffico_by_pk?: Maybe<_Condizioni_Traffico>;
   /** delete data from the table: "_forma_dissesto" */
   delete__forma_dissesto?: Maybe<_Forma_Dissesto_Mutation_Response>;
   /** delete single row from the table: "_forma_dissesto" */
   delete__forma_dissesto_by_pk?: Maybe<_Forma_Dissesto>;
+  /** delete data from the table: "_giorni_trascorsi" */
+  delete__giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Mutation_Response>;
+  /** delete single row from the table: "_giorni_trascorsi" */
+  delete__giorni_trascorsi_by_pk?: Maybe<_Giorni_Trascorsi>;
+  /** delete data from the table: "_materiale" */
+  delete__materiale?: Maybe<_Materiale_Mutation_Response>;
+  /** delete single row from the table: "_materiale" */
+  delete__materiale_by_pk?: Maybe<_Materiale>;
   /** delete data from the table: "_priorita" */
   delete__priorita?: Maybe<_Priorita_Mutation_Response>;
   /** delete single row from the table: "_priorita" */
@@ -5648,6 +7890,10 @@ export type Mutation_Root = {
   delete_assegnazione_toponimo?: Maybe<Assegnazione_Toponimo_Mutation_Response>;
   /** delete single row from the table: "assegnazione_toponimo" */
   delete_assegnazione_toponimo_by_pk?: Maybe<Assegnazione_Toponimo>;
+  /** delete data from the table: "attrezzature_impiegate" */
+  delete_attrezzature_impiegate?: Maybe<Attrezzature_Impiegate_Mutation_Response>;
+  /** delete single row from the table: "attrezzature_impiegate" */
+  delete_attrezzature_impiegate_by_pk?: Maybe<Attrezzature_Impiegate>;
   /** delete data from the table: "civico" */
   delete_civico?: Maybe<Civico_Mutation_Response>;
   /** delete single row from the table: "civico" */
@@ -5668,10 +7914,22 @@ export type Mutation_Root = {
   delete_dug?: Maybe<Dug_Mutation_Response>;
   /** delete single row from the table: "dug" */
   delete_dug_by_pk?: Maybe<Dug>;
+  /** delete data from the table: "evento" */
+  delete_evento?: Maybe<Evento_Mutation_Response>;
+  /** delete single row from the table: "evento" */
+  delete_evento_by_pk?: Maybe<Evento>;
+  /** delete data from the table: "intervento" */
+  delete_intervento?: Maybe<Intervento_Mutation_Response>;
+  /** delete single row from the table: "intervento" */
+  delete_intervento_by_pk?: Maybe<Intervento>;
   /** delete data from the table: "intervento_straordinario" */
   delete_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
   /** delete single row from the table: "intervento_straordinario" */
   delete_intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
+  /** delete data from the table: "materiale_dissesto" */
+  delete_materiale_dissesto?: Maybe<Materiale_Dissesto_Mutation_Response>;
+  /** delete single row from the table: "materiale_dissesto" */
+  delete_materiale_dissesto_by_pk?: Maybe<Materiale_Dissesto>;
   /** delete data from the table: "membro" */
   delete_membro?: Maybe<Membro_Mutation_Response>;
   /** delete single row from the table: "membro" */
@@ -5708,6 +7966,10 @@ export type Mutation_Root = {
   delete_segnalazione_collegata?: Maybe<Segnalazione_Collegata_Mutation_Response>;
   /** delete single row from the table: "segnalazione_collegata" */
   delete_segnalazione_collegata_by_pk?: Maybe<Segnalazione_Collegata>;
+  /** delete data from the table: "segnaletica_lasciata" */
+  delete_segnaletica_lasciata?: Maybe<Segnaletica_Lasciata_Mutation_Response>;
+  /** delete single row from the table: "segnaletica_lasciata" */
+  delete_segnaletica_lasciata_by_pk?: Maybe<Segnaletica_Lasciata>;
   /** delete data from the table: "sostegno_ipi" */
   delete_sostegno_ipi?: Maybe<Sostegno_Ipi_Mutation_Response>;
   /** delete single row from the table: "sostegno_ipi" */
@@ -5748,10 +8010,26 @@ export type Mutation_Root = {
   delete_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** delete single row from the table: "vecchio_toponimo" */
   delete_vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+  /** delete data from the table: "veicoli_impiegati" */
+  delete_veicoli_impiegati?: Maybe<Veicoli_Impiegati_Mutation_Response>;
+  /** delete single row from the table: "veicoli_impiegati" */
+  delete_veicoli_impiegati_by_pk?: Maybe<Veicoli_Impiegati>;
+  /** insert data into the table: "_condizioni_traffico" */
+  insert__condizioni_traffico?: Maybe<_Condizioni_Traffico_Mutation_Response>;
+  /** insert a single row into the table: "_condizioni_traffico" */
+  insert__condizioni_traffico_one?: Maybe<_Condizioni_Traffico>;
   /** insert data into the table: "_forma_dissesto" */
   insert__forma_dissesto?: Maybe<_Forma_Dissesto_Mutation_Response>;
   /** insert a single row into the table: "_forma_dissesto" */
   insert__forma_dissesto_one?: Maybe<_Forma_Dissesto>;
+  /** insert data into the table: "_giorni_trascorsi" */
+  insert__giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Mutation_Response>;
+  /** insert a single row into the table: "_giorni_trascorsi" */
+  insert__giorni_trascorsi_one?: Maybe<_Giorni_Trascorsi>;
+  /** insert data into the table: "_materiale" */
+  insert__materiale?: Maybe<_Materiale_Mutation_Response>;
+  /** insert a single row into the table: "_materiale" */
+  insert__materiale_one?: Maybe<_Materiale>;
   /** insert data into the table: "_priorita" */
   insert__priorita?: Maybe<_Priorita_Mutation_Response>;
   /** insert a single row into the table: "_priorita" */
@@ -5796,6 +8074,10 @@ export type Mutation_Root = {
   insert_assegnazione_toponimo?: Maybe<Assegnazione_Toponimo_Mutation_Response>;
   /** insert a single row into the table: "assegnazione_toponimo" */
   insert_assegnazione_toponimo_one?: Maybe<Assegnazione_Toponimo>;
+  /** insert data into the table: "attrezzature_impiegate" */
+  insert_attrezzature_impiegate?: Maybe<Attrezzature_Impiegate_Mutation_Response>;
+  /** insert a single row into the table: "attrezzature_impiegate" */
+  insert_attrezzature_impiegate_one?: Maybe<Attrezzature_Impiegate>;
   /** insert data into the table: "civico" */
   insert_civico?: Maybe<Civico_Mutation_Response>;
   /** insert a single row into the table: "civico" */
@@ -5816,10 +8098,22 @@ export type Mutation_Root = {
   insert_dug?: Maybe<Dug_Mutation_Response>;
   /** insert a single row into the table: "dug" */
   insert_dug_one?: Maybe<Dug>;
+  /** insert data into the table: "evento" */
+  insert_evento?: Maybe<Evento_Mutation_Response>;
+  /** insert a single row into the table: "evento" */
+  insert_evento_one?: Maybe<Evento>;
+  /** insert data into the table: "intervento" */
+  insert_intervento?: Maybe<Intervento_Mutation_Response>;
+  /** insert a single row into the table: "intervento" */
+  insert_intervento_one?: Maybe<Intervento>;
   /** insert data into the table: "intervento_straordinario" */
   insert_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
   /** insert a single row into the table: "intervento_straordinario" */
   insert_intervento_straordinario_one?: Maybe<Intervento_Straordinario>;
+  /** insert data into the table: "materiale_dissesto" */
+  insert_materiale_dissesto?: Maybe<Materiale_Dissesto_Mutation_Response>;
+  /** insert a single row into the table: "materiale_dissesto" */
+  insert_materiale_dissesto_one?: Maybe<Materiale_Dissesto>;
   /** insert data into the table: "membro" */
   insert_membro?: Maybe<Membro_Mutation_Response>;
   /** insert a single row into the table: "membro" */
@@ -5856,6 +8150,10 @@ export type Mutation_Root = {
   insert_segnalazione_collegata_one?: Maybe<Segnalazione_Collegata>;
   /** insert a single row into the table: "segnalazione" */
   insert_segnalazione_one?: Maybe<Segnalazione>;
+  /** insert data into the table: "segnaletica_lasciata" */
+  insert_segnaletica_lasciata?: Maybe<Segnaletica_Lasciata_Mutation_Response>;
+  /** insert a single row into the table: "segnaletica_lasciata" */
+  insert_segnaletica_lasciata_one?: Maybe<Segnaletica_Lasciata>;
   /** insert data into the table: "sostegno_ipi" */
   insert_sostegno_ipi?: Maybe<Sostegno_Ipi_Mutation_Response>;
   /** insert a single row into the table: "sostegno_ipi" */
@@ -5896,10 +8194,26 @@ export type Mutation_Root = {
   insert_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** insert a single row into the table: "vecchio_toponimo" */
   insert_vecchio_toponimo_one?: Maybe<Vecchio_Toponimo>;
+  /** insert data into the table: "veicoli_impiegati" */
+  insert_veicoli_impiegati?: Maybe<Veicoli_Impiegati_Mutation_Response>;
+  /** insert a single row into the table: "veicoli_impiegati" */
+  insert_veicoli_impiegati_one?: Maybe<Veicoli_Impiegati>;
+  /** update data of the table: "_condizioni_traffico" */
+  update__condizioni_traffico?: Maybe<_Condizioni_Traffico_Mutation_Response>;
+  /** update single row of the table: "_condizioni_traffico" */
+  update__condizioni_traffico_by_pk?: Maybe<_Condizioni_Traffico>;
   /** update data of the table: "_forma_dissesto" */
   update__forma_dissesto?: Maybe<_Forma_Dissesto_Mutation_Response>;
   /** update single row of the table: "_forma_dissesto" */
   update__forma_dissesto_by_pk?: Maybe<_Forma_Dissesto>;
+  /** update data of the table: "_giorni_trascorsi" */
+  update__giorni_trascorsi?: Maybe<_Giorni_Trascorsi_Mutation_Response>;
+  /** update single row of the table: "_giorni_trascorsi" */
+  update__giorni_trascorsi_by_pk?: Maybe<_Giorni_Trascorsi>;
+  /** update data of the table: "_materiale" */
+  update__materiale?: Maybe<_Materiale_Mutation_Response>;
+  /** update single row of the table: "_materiale" */
+  update__materiale_by_pk?: Maybe<_Materiale>;
   /** update data of the table: "_priorita" */
   update__priorita?: Maybe<_Priorita_Mutation_Response>;
   /** update single row of the table: "_priorita" */
@@ -5944,6 +8258,10 @@ export type Mutation_Root = {
   update_assegnazione_toponimo?: Maybe<Assegnazione_Toponimo_Mutation_Response>;
   /** update single row of the table: "assegnazione_toponimo" */
   update_assegnazione_toponimo_by_pk?: Maybe<Assegnazione_Toponimo>;
+  /** update data of the table: "attrezzature_impiegate" */
+  update_attrezzature_impiegate?: Maybe<Attrezzature_Impiegate_Mutation_Response>;
+  /** update single row of the table: "attrezzature_impiegate" */
+  update_attrezzature_impiegate_by_pk?: Maybe<Attrezzature_Impiegate>;
   /** update data of the table: "civico" */
   update_civico?: Maybe<Civico_Mutation_Response>;
   /** update single row of the table: "civico" */
@@ -5964,10 +8282,22 @@ export type Mutation_Root = {
   update_dug?: Maybe<Dug_Mutation_Response>;
   /** update single row of the table: "dug" */
   update_dug_by_pk?: Maybe<Dug>;
+  /** update data of the table: "evento" */
+  update_evento?: Maybe<Evento_Mutation_Response>;
+  /** update single row of the table: "evento" */
+  update_evento_by_pk?: Maybe<Evento>;
+  /** update data of the table: "intervento" */
+  update_intervento?: Maybe<Intervento_Mutation_Response>;
+  /** update single row of the table: "intervento" */
+  update_intervento_by_pk?: Maybe<Intervento>;
   /** update data of the table: "intervento_straordinario" */
   update_intervento_straordinario?: Maybe<Intervento_Straordinario_Mutation_Response>;
   /** update single row of the table: "intervento_straordinario" */
   update_intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
+  /** update data of the table: "materiale_dissesto" */
+  update_materiale_dissesto?: Maybe<Materiale_Dissesto_Mutation_Response>;
+  /** update single row of the table: "materiale_dissesto" */
+  update_materiale_dissesto_by_pk?: Maybe<Materiale_Dissesto>;
   /** update data of the table: "membro" */
   update_membro?: Maybe<Membro_Mutation_Response>;
   /** update single row of the table: "membro" */
@@ -6004,6 +8334,10 @@ export type Mutation_Root = {
   update_segnalazione_collegata?: Maybe<Segnalazione_Collegata_Mutation_Response>;
   /** update single row of the table: "segnalazione_collegata" */
   update_segnalazione_collegata_by_pk?: Maybe<Segnalazione_Collegata>;
+  /** update data of the table: "segnaletica_lasciata" */
+  update_segnaletica_lasciata?: Maybe<Segnaletica_Lasciata_Mutation_Response>;
+  /** update single row of the table: "segnaletica_lasciata" */
+  update_segnaletica_lasciata_by_pk?: Maybe<Segnaletica_Lasciata>;
   /** update data of the table: "sostegno_ipi" */
   update_sostegno_ipi?: Maybe<Sostegno_Ipi_Mutation_Response>;
   /** update single row of the table: "sostegno_ipi" */
@@ -6044,6 +8378,22 @@ export type Mutation_Root = {
   update_vecchio_toponimo?: Maybe<Vecchio_Toponimo_Mutation_Response>;
   /** update single row of the table: "vecchio_toponimo" */
   update_vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+  /** update data of the table: "veicoli_impiegati" */
+  update_veicoli_impiegati?: Maybe<Veicoli_Impiegati_Mutation_Response>;
+  /** update single row of the table: "veicoli_impiegati" */
+  update_veicoli_impiegati_by_pk?: Maybe<Veicoli_Impiegati>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Condizioni_TrafficoArgs = {
+  where: _Condizioni_Traffico_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Condizioni_Traffico_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -6055,6 +8405,30 @@ export type Mutation_RootDelete__Forma_DissestoArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete__Forma_Dissesto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Giorni_TrascorsiArgs = {
+  where: _Giorni_Trascorsi_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Giorni_Trascorsi_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__MaterialeArgs = {
+  where: _Materiale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete__Materiale_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -6192,6 +8566,18 @@ export type Mutation_RootDelete_Assegnazione_Toponimo_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Attrezzature_ImpiegateArgs = {
+  where: Attrezzature_Impiegate_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Attrezzature_Impiegate_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_CivicoArgs = {
   where: Civico_Bool_Exp;
 };
@@ -6252,6 +8638,30 @@ export type Mutation_RootDelete_Dug_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_EventoArgs = {
+  where: Evento_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Evento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_InterventoArgs = {
+  where: Intervento_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Intervento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Intervento_StraordinarioArgs = {
   where: Intervento_Straordinario_Bool_Exp;
 };
@@ -6259,6 +8669,18 @@ export type Mutation_RootDelete_Intervento_StraordinarioArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Intervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Materiale_DissestoArgs = {
+  where: Materiale_Dissesto_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Materiale_Dissesto_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -6367,6 +8789,19 @@ export type Mutation_RootDelete_Segnalazione_CollegataArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Segnalazione_Collegata_By_PkArgs = {
+  segnalazione_collegata_id: Scalars['Int'];
+  segnalazione_id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Segnaletica_LasciataArgs = {
+  where: Segnaletica_Lasciata_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Segnaletica_Lasciata_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -6492,6 +8927,32 @@ export type Mutation_RootDelete_Vecchio_Toponimo_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Veicoli_ImpiegatiArgs = {
+  where: Veicoli_Impiegati_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Veicoli_Impiegati_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Condizioni_TrafficoArgs = {
+  objects: Array<_Condizioni_Traffico_Insert_Input>;
+  on_conflict?: Maybe<_Condizioni_Traffico_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Condizioni_Traffico_OneArgs = {
+  object: _Condizioni_Traffico_Insert_Input;
+  on_conflict?: Maybe<_Condizioni_Traffico_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert__Forma_DissestoArgs = {
   objects: Array<_Forma_Dissesto_Insert_Input>;
   on_conflict?: Maybe<_Forma_Dissesto_On_Conflict>;
@@ -6502,6 +8963,34 @@ export type Mutation_RootInsert__Forma_DissestoArgs = {
 export type Mutation_RootInsert__Forma_Dissesto_OneArgs = {
   object: _Forma_Dissesto_Insert_Input;
   on_conflict?: Maybe<_Forma_Dissesto_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Giorni_TrascorsiArgs = {
+  objects: Array<_Giorni_Trascorsi_Insert_Input>;
+  on_conflict?: Maybe<_Giorni_Trascorsi_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Giorni_Trascorsi_OneArgs = {
+  object: _Giorni_Trascorsi_Insert_Input;
+  on_conflict?: Maybe<_Giorni_Trascorsi_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__MaterialeArgs = {
+  objects: Array<_Materiale_Insert_Input>;
+  on_conflict?: Maybe<_Materiale_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert__Materiale_OneArgs = {
+  object: _Materiale_Insert_Input;
+  on_conflict?: Maybe<_Materiale_On_Conflict>;
 };
 
 
@@ -6660,6 +9149,20 @@ export type Mutation_RootInsert_Assegnazione_Toponimo_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Attrezzature_ImpiegateArgs = {
+  objects: Array<Attrezzature_Impiegate_Insert_Input>;
+  on_conflict?: Maybe<Attrezzature_Impiegate_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Attrezzature_Impiegate_OneArgs = {
+  object: Attrezzature_Impiegate_Insert_Input;
+  on_conflict?: Maybe<Attrezzature_Impiegate_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_CivicoArgs = {
   objects: Array<Civico_Insert_Input>;
   on_conflict?: Maybe<Civico_On_Conflict>;
@@ -6730,6 +9233,34 @@ export type Mutation_RootInsert_Dug_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_EventoArgs = {
+  objects: Array<Evento_Insert_Input>;
+  on_conflict?: Maybe<Evento_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Evento_OneArgs = {
+  object: Evento_Insert_Input;
+  on_conflict?: Maybe<Evento_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_InterventoArgs = {
+  objects: Array<Intervento_Insert_Input>;
+  on_conflict?: Maybe<Intervento_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Intervento_OneArgs = {
+  object: Intervento_Insert_Input;
+  on_conflict?: Maybe<Intervento_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Intervento_StraordinarioArgs = {
   objects: Array<Intervento_Straordinario_Insert_Input>;
   on_conflict?: Maybe<Intervento_Straordinario_On_Conflict>;
@@ -6740,6 +9271,20 @@ export type Mutation_RootInsert_Intervento_StraordinarioArgs = {
 export type Mutation_RootInsert_Intervento_Straordinario_OneArgs = {
   object: Intervento_Straordinario_Insert_Input;
   on_conflict?: Maybe<Intervento_Straordinario_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Materiale_DissestoArgs = {
+  objects: Array<Materiale_Dissesto_Insert_Input>;
+  on_conflict?: Maybe<Materiale_Dissesto_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Materiale_Dissesto_OneArgs = {
+  object: Materiale_Dissesto_Insert_Input;
+  on_conflict?: Maybe<Materiale_Dissesto_On_Conflict>;
 };
 
 
@@ -6866,6 +9411,20 @@ export type Mutation_RootInsert_Segnalazione_Collegata_OneArgs = {
 export type Mutation_RootInsert_Segnalazione_OneArgs = {
   object: Segnalazione_Insert_Input;
   on_conflict?: Maybe<Segnalazione_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Segnaletica_LasciataArgs = {
+  objects: Array<Segnaletica_Lasciata_Insert_Input>;
+  on_conflict?: Maybe<Segnaletica_Lasciata_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Segnaletica_Lasciata_OneArgs = {
+  object: Segnaletica_Lasciata_Insert_Input;
+  on_conflict?: Maybe<Segnaletica_Lasciata_On_Conflict>;
 };
 
 
@@ -7010,6 +9569,36 @@ export type Mutation_RootInsert_Vecchio_Toponimo_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Veicoli_ImpiegatiArgs = {
+  objects: Array<Veicoli_Impiegati_Insert_Input>;
+  on_conflict?: Maybe<Veicoli_Impiegati_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Veicoli_Impiegati_OneArgs = {
+  object: Veicoli_Impiegati_Insert_Input;
+  on_conflict?: Maybe<Veicoli_Impiegati_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Condizioni_TrafficoArgs = {
+  _inc?: Maybe<_Condizioni_Traffico_Inc_Input>;
+  _set?: Maybe<_Condizioni_Traffico_Set_Input>;
+  where: _Condizioni_Traffico_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Condizioni_Traffico_By_PkArgs = {
+  _inc?: Maybe<_Condizioni_Traffico_Inc_Input>;
+  _set?: Maybe<_Condizioni_Traffico_Set_Input>;
+  pk_columns: _Condizioni_Traffico_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate__Forma_DissestoArgs = {
   _inc?: Maybe<_Forma_Dissesto_Inc_Input>;
   _set?: Maybe<_Forma_Dissesto_Set_Input>;
@@ -7022,6 +9611,38 @@ export type Mutation_RootUpdate__Forma_Dissesto_By_PkArgs = {
   _inc?: Maybe<_Forma_Dissesto_Inc_Input>;
   _set?: Maybe<_Forma_Dissesto_Set_Input>;
   pk_columns: _Forma_Dissesto_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Giorni_TrascorsiArgs = {
+  _inc?: Maybe<_Giorni_Trascorsi_Inc_Input>;
+  _set?: Maybe<_Giorni_Trascorsi_Set_Input>;
+  where: _Giorni_Trascorsi_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Giorni_Trascorsi_By_PkArgs = {
+  _inc?: Maybe<_Giorni_Trascorsi_Inc_Input>;
+  _set?: Maybe<_Giorni_Trascorsi_Set_Input>;
+  pk_columns: _Giorni_Trascorsi_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__MaterialeArgs = {
+  _inc?: Maybe<_Materiale_Inc_Input>;
+  _set?: Maybe<_Materiale_Set_Input>;
+  where: _Materiale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate__Materiale_By_PkArgs = {
+  _inc?: Maybe<_Materiale_Inc_Input>;
+  _set?: Maybe<_Materiale_Set_Input>;
+  pk_columns: _Materiale_Pk_Columns_Input;
 };
 
 
@@ -7200,6 +9821,22 @@ export type Mutation_RootUpdate_Assegnazione_Toponimo_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Attrezzature_ImpiegateArgs = {
+  _inc?: Maybe<Attrezzature_Impiegate_Inc_Input>;
+  _set?: Maybe<Attrezzature_Impiegate_Set_Input>;
+  where: Attrezzature_Impiegate_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Attrezzature_Impiegate_By_PkArgs = {
+  _inc?: Maybe<Attrezzature_Impiegate_Inc_Input>;
+  _set?: Maybe<Attrezzature_Impiegate_Set_Input>;
+  pk_columns: Attrezzature_Impiegate_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_CivicoArgs = {
   _inc?: Maybe<Civico_Inc_Input>;
   _set?: Maybe<Civico_Set_Input>;
@@ -7290,6 +9927,38 @@ export type Mutation_RootUpdate_Dug_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_EventoArgs = {
+  _inc?: Maybe<Evento_Inc_Input>;
+  _set?: Maybe<Evento_Set_Input>;
+  where: Evento_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Evento_By_PkArgs = {
+  _inc?: Maybe<Evento_Inc_Input>;
+  _set?: Maybe<Evento_Set_Input>;
+  pk_columns: Evento_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_InterventoArgs = {
+  _inc?: Maybe<Intervento_Inc_Input>;
+  _set?: Maybe<Intervento_Set_Input>;
+  where: Intervento_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Intervento_By_PkArgs = {
+  _inc?: Maybe<Intervento_Inc_Input>;
+  _set?: Maybe<Intervento_Set_Input>;
+  pk_columns: Intervento_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Intervento_StraordinarioArgs = {
   _append?: Maybe<Intervento_Straordinario_Append_Input>;
   _delete_at_path?: Maybe<Intervento_Straordinario_Delete_At_Path_Input>;
@@ -7312,6 +9981,22 @@ export type Mutation_RootUpdate_Intervento_Straordinario_By_PkArgs = {
   _prepend?: Maybe<Intervento_Straordinario_Prepend_Input>;
   _set?: Maybe<Intervento_Straordinario_Set_Input>;
   pk_columns: Intervento_Straordinario_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Materiale_DissestoArgs = {
+  _inc?: Maybe<Materiale_Dissesto_Inc_Input>;
+  _set?: Maybe<Materiale_Dissesto_Set_Input>;
+  where: Materiale_Dissesto_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Materiale_Dissesto_By_PkArgs = {
+  _inc?: Maybe<Materiale_Dissesto_Inc_Input>;
+  _set?: Maybe<Materiale_Dissesto_Set_Input>;
+  pk_columns: Materiale_Dissesto_Pk_Columns_Input;
 };
 
 
@@ -7466,6 +10151,22 @@ export type Mutation_RootUpdate_Segnalazione_Collegata_By_PkArgs = {
   _inc?: Maybe<Segnalazione_Collegata_Inc_Input>;
   _set?: Maybe<Segnalazione_Collegata_Set_Input>;
   pk_columns: Segnalazione_Collegata_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Segnaletica_LasciataArgs = {
+  _inc?: Maybe<Segnaletica_Lasciata_Inc_Input>;
+  _set?: Maybe<Segnaletica_Lasciata_Set_Input>;
+  where: Segnaletica_Lasciata_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Segnaletica_Lasciata_By_PkArgs = {
+  _inc?: Maybe<Segnaletica_Lasciata_Inc_Input>;
+  _set?: Maybe<Segnaletica_Lasciata_Set_Input>;
+  pk_columns: Segnaletica_Lasciata_Pk_Columns_Input;
 };
 
 
@@ -7626,6 +10327,22 @@ export type Mutation_RootUpdate_Vecchio_Toponimo_By_PkArgs = {
   _inc?: Maybe<Vecchio_Toponimo_Inc_Input>;
   _set?: Maybe<Vecchio_Toponimo_Set_Input>;
   pk_columns: Vecchio_Toponimo_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Veicoli_ImpiegatiArgs = {
+  _inc?: Maybe<Veicoli_Impiegati_Inc_Input>;
+  _set?: Maybe<Veicoli_Impiegati_Set_Input>;
+  where: Veicoli_Impiegati_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Veicoli_Impiegati_By_PkArgs = {
+  _inc?: Maybe<Veicoli_Impiegati_Inc_Input>;
+  _set?: Maybe<Veicoli_Impiegati_Set_Input>;
+  pk_columns: Veicoli_Impiegati_Pk_Columns_Input;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -8060,10 +10777,12 @@ export enum Protocollo_Constraint {
 export type Protocollo_Destinatario = {
   __typename?: 'protocollo_destinatario';
   created_at: Scalars['timestamptz'];
+  delete: Scalars['Boolean'];
   /** An object relationship */
   destinatario_esterno?: Maybe<Protocollo_Destinatario_Esterno>;
   /** An object relationship */
   destinatario_interno?: Maybe<_Sezione_Protocollo>;
+  e_esterno: Scalars['Boolean'];
   esterno_id?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
   interno_id?: Maybe<Scalars['Int']>;
@@ -8146,8 +10865,10 @@ export type Protocollo_Destinatario_Bool_Exp = {
   _not?: Maybe<Protocollo_Destinatario_Bool_Exp>;
   _or?: Maybe<Array<Protocollo_Destinatario_Bool_Exp>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
   destinatario_esterno?: Maybe<Protocollo_Destinatario_Esterno_Bool_Exp>;
   destinatario_interno?: Maybe<_Sezione_Protocollo_Bool_Exp>;
+  e_esterno?: Maybe<Boolean_Comparison_Exp>;
   esterno_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   interno_id?: Maybe<Int_Comparison_Exp>;
@@ -8408,8 +11129,10 @@ export type Protocollo_Destinatario_Inc_Input = {
 /** input type for inserting data into table "protocollo_destinatario" */
 export type Protocollo_Destinatario_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
   destinatario_esterno?: Maybe<Protocollo_Destinatario_Esterno_Obj_Rel_Insert_Input>;
   destinatario_interno?: Maybe<_Sezione_Protocollo_Obj_Rel_Insert_Input>;
+  e_esterno?: Maybe<Scalars['Boolean']>;
   esterno_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   interno_id?: Maybe<Scalars['Int']>;
@@ -8478,8 +11201,10 @@ export type Protocollo_Destinatario_On_Conflict = {
 /** Ordering options when selecting data from "protocollo_destinatario". */
 export type Protocollo_Destinatario_Order_By = {
   created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
   destinatario_esterno?: Maybe<Protocollo_Destinatario_Esterno_Order_By>;
   destinatario_interno?: Maybe<_Sezione_Protocollo_Order_By>;
+  e_esterno?: Maybe<Order_By>;
   esterno_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   interno_id?: Maybe<Order_By>;
@@ -8497,6 +11222,10 @@ export enum Protocollo_Destinatario_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Delete = 'delete',
+  /** column name */
+  EEsterno = 'e_esterno',
+  /** column name */
   EsternoId = 'esterno_id',
   /** column name */
   Id = 'id',
@@ -8511,6 +11240,8 @@ export enum Protocollo_Destinatario_Select_Column {
 /** input type for updating data in table "protocollo_destinatario" */
 export type Protocollo_Destinatario_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  e_esterno?: Maybe<Scalars['Boolean']>;
   esterno_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   interno_id?: Maybe<Scalars['Int']>;
@@ -8590,6 +11321,10 @@ export type Protocollo_Destinatario_Sum_Order_By = {
 export enum Protocollo_Destinatario_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  EEsterno = 'e_esterno',
   /** column name */
   EsternoId = 'esterno_id',
   /** column name */
@@ -9101,12 +11836,30 @@ export type Quartiere_Variance_Fields = {
 
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "_condizioni_traffico" */
+  _condizioni_traffico: Array<_Condizioni_Traffico>;
+  /** fetch aggregated fields from the table: "_condizioni_traffico" */
+  _condizioni_traffico_aggregate: _Condizioni_Traffico_Aggregate;
+  /** fetch data from the table: "_condizioni_traffico" using primary key columns */
+  _condizioni_traffico_by_pk?: Maybe<_Condizioni_Traffico>;
   /** fetch data from the table: "_forma_dissesto" */
   _forma_dissesto: Array<_Forma_Dissesto>;
   /** fetch aggregated fields from the table: "_forma_dissesto" */
   _forma_dissesto_aggregate: _Forma_Dissesto_Aggregate;
   /** fetch data from the table: "_forma_dissesto" using primary key columns */
   _forma_dissesto_by_pk?: Maybe<_Forma_Dissesto>;
+  /** fetch data from the table: "_giorni_trascorsi" */
+  _giorni_trascorsi: Array<_Giorni_Trascorsi>;
+  /** fetch aggregated fields from the table: "_giorni_trascorsi" */
+  _giorni_trascorsi_aggregate: _Giorni_Trascorsi_Aggregate;
+  /** fetch data from the table: "_giorni_trascorsi" using primary key columns */
+  _giorni_trascorsi_by_pk?: Maybe<_Giorni_Trascorsi>;
+  /** fetch data from the table: "_materiale" */
+  _materiale: Array<_Materiale>;
+  /** fetch aggregated fields from the table: "_materiale" */
+  _materiale_aggregate: _Materiale_Aggregate;
+  /** fetch data from the table: "_materiale" using primary key columns */
+  _materiale_by_pk?: Maybe<_Materiale>;
   /** fetch data from the table: "_priorita" */
   _priorita: Array<_Priorita>;
   /** fetch aggregated fields from the table: "_priorita" */
@@ -9173,6 +11926,12 @@ export type Query_Root = {
   assegnazione_toponimo_aggregate: Assegnazione_Toponimo_Aggregate;
   /** fetch data from the table: "assegnazione_toponimo" using primary key columns */
   assegnazione_toponimo_by_pk?: Maybe<Assegnazione_Toponimo>;
+  /** An array relationship */
+  attrezzature_impiegate: Array<Attrezzature_Impiegate>;
+  /** An aggregate relationship */
+  attrezzature_impiegate_aggregate: Attrezzature_Impiegate_Aggregate;
+  /** fetch data from the table: "attrezzature_impiegate" using primary key columns */
+  attrezzature_impiegate_by_pk?: Maybe<Attrezzature_Impiegate>;
   /** fetch data from the table: "civico" */
   civico: Array<Civico>;
   /** fetch aggregated fields from the table: "civico" */
@@ -9185,9 +11944,9 @@ export type Query_Root = {
   connessione_grafo_aggregate: Connessione_Grafo_Aggregate;
   /** fetch data from the table: "connessione_grafo" using primary key columns */
   connessione_grafo_by_pk?: Maybe<Connessione_Grafo>;
-  /** fetch data from the table: "diario" */
+  /** An array relationship */
   diario: Array<Diario>;
-  /** fetch aggregated fields from the table: "diario" */
+  /** An aggregate relationship */
   diario_aggregate: Diario_Aggregate;
   /** fetch data from the table: "diario" using primary key columns */
   diario_by_pk?: Maybe<Diario>;
@@ -9203,12 +11962,30 @@ export type Query_Root = {
   dug_aggregate: Dug_Aggregate;
   /** fetch data from the table: "dug" using primary key columns */
   dug_by_pk?: Maybe<Dug>;
+  /** fetch data from the table: "evento" */
+  evento: Array<Evento>;
+  /** fetch aggregated fields from the table: "evento" */
+  evento_aggregate: Evento_Aggregate;
+  /** fetch data from the table: "evento" using primary key columns */
+  evento_by_pk?: Maybe<Evento>;
+  /** fetch data from the table: "intervento" */
+  intervento: Array<Intervento>;
+  /** fetch aggregated fields from the table: "intervento" */
+  intervento_aggregate: Intervento_Aggregate;
+  /** fetch data from the table: "intervento" using primary key columns */
+  intervento_by_pk?: Maybe<Intervento>;
   /** fetch data from the table: "intervento_straordinario" */
   intervento_straordinario: Array<Intervento_Straordinario>;
   /** fetch aggregated fields from the table: "intervento_straordinario" */
   intervento_straordinario_aggregate: Intervento_Straordinario_Aggregate;
   /** fetch data from the table: "intervento_straordinario" using primary key columns */
   intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
+  /** fetch data from the table: "materiale_dissesto" */
+  materiale_dissesto: Array<Materiale_Dissesto>;
+  /** fetch aggregated fields from the table: "materiale_dissesto" */
+  materiale_dissesto_aggregate: Materiale_Dissesto_Aggregate;
+  /** fetch data from the table: "materiale_dissesto" using primary key columns */
+  materiale_dissesto_by_pk?: Maybe<Materiale_Dissesto>;
   /** fetch data from the table: "membro" */
   membro: Array<Membro>;
   /** fetch aggregated fields from the table: "membro" */
@@ -9263,6 +12040,12 @@ export type Query_Root = {
   segnalazione_collegata_aggregate: Segnalazione_Collegata_Aggregate;
   /** fetch data from the table: "segnalazione_collegata" using primary key columns */
   segnalazione_collegata_by_pk?: Maybe<Segnalazione_Collegata>;
+  /** An array relationship */
+  segnaletica_lasciata: Array<Segnaletica_Lasciata>;
+  /** An aggregate relationship */
+  segnaletica_lasciata_aggregate: Segnaletica_Lasciata_Aggregate;
+  /** fetch data from the table: "segnaletica_lasciata" using primary key columns */
+  segnaletica_lasciata_by_pk?: Maybe<Segnaletica_Lasciata>;
   /** fetch data from the table: "sostegno_ipi" */
   sostegno_ipi: Array<Sostegno_Ipi>;
   /** fetch aggregated fields from the table: "sostegno_ipi" */
@@ -9323,6 +12106,35 @@ export type Query_Root = {
   vecchio_toponimo_aggregate: Vecchio_Toponimo_Aggregate;
   /** fetch data from the table: "vecchio_toponimo" using primary key columns */
   vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+  /** An array relationship */
+  veicoli_impiegati: Array<Veicoli_Impiegati>;
+  /** An aggregate relationship */
+  veicoli_impiegati_aggregate: Veicoli_Impiegati_Aggregate;
+  /** fetch data from the table: "veicoli_impiegati" using primary key columns */
+  veicoli_impiegati_by_pk?: Maybe<Veicoli_Impiegati>;
+};
+
+
+export type Query_Root_Condizioni_TrafficoArgs = {
+  distinct_on?: Maybe<Array<_Condizioni_Traffico_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Condizioni_Traffico_Order_By>>;
+  where?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+};
+
+
+export type Query_Root_Condizioni_Traffico_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Condizioni_Traffico_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Condizioni_Traffico_Order_By>>;
+  where?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+};
+
+
+export type Query_Root_Condizioni_Traffico_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -9345,6 +12157,52 @@ export type Query_Root_Forma_Dissesto_AggregateArgs = {
 
 
 export type Query_Root_Forma_Dissesto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_Root_Giorni_TrascorsiArgs = {
+  distinct_on?: Maybe<Array<_Giorni_Trascorsi_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Giorni_Trascorsi_Order_By>>;
+  where?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+};
+
+
+export type Query_Root_Giorni_Trascorsi_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Giorni_Trascorsi_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Giorni_Trascorsi_Order_By>>;
+  where?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+};
+
+
+export type Query_Root_Giorni_Trascorsi_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_Root_MaterialeArgs = {
+  distinct_on?: Maybe<Array<_Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Materiale_Order_By>>;
+  where?: Maybe<_Materiale_Bool_Exp>;
+};
+
+
+export type Query_Root_Materiale_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Materiale_Order_By>>;
+  where?: Maybe<_Materiale_Bool_Exp>;
+};
+
+
+export type Query_Root_Materiale_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -9602,6 +12460,29 @@ export type Query_RootAssegnazione_Toponimo_By_PkArgs = {
 };
 
 
+export type Query_RootAttrezzature_ImpiegateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+export type Query_RootAttrezzature_Impiegate_AggregateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+export type Query_RootAttrezzature_Impiegate_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootCivicoArgs = {
   distinct_on?: Maybe<Array<Civico_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -9717,6 +12598,52 @@ export type Query_RootDug_By_PkArgs = {
 };
 
 
+export type Query_RootEventoArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+
+export type Query_RootEvento_AggregateArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+
+export type Query_RootEvento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootInterventoArgs = {
+  distinct_on?: Maybe<Array<Intervento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Order_By>>;
+  where?: Maybe<Intervento_Bool_Exp>;
+};
+
+
+export type Query_RootIntervento_AggregateArgs = {
+  distinct_on?: Maybe<Array<Intervento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Order_By>>;
+  where?: Maybe<Intervento_Bool_Exp>;
+};
+
+
+export type Query_RootIntervento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootIntervento_StraordinarioArgs = {
   distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -9736,6 +12663,29 @@ export type Query_RootIntervento_Straordinario_AggregateArgs = {
 
 
 export type Query_RootIntervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootMateriale_DissestoArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+export type Query_RootMateriale_Dissesto_AggregateArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+export type Query_RootMateriale_Dissesto_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -9943,6 +12893,30 @@ export type Query_RootSegnalazione_Collegata_AggregateArgs = {
 
 
 export type Query_RootSegnalazione_Collegata_By_PkArgs = {
+  segnalazione_collegata_id: Scalars['Int'];
+  segnalazione_id: Scalars['Int'];
+};
+
+
+export type Query_RootSegnaletica_LasciataArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+export type Query_RootSegnaletica_Lasciata_AggregateArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+export type Query_RootSegnaletica_Lasciata_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -10176,6 +13150,29 @@ export type Query_RootVecchio_Toponimo_By_PkArgs = {
   id: Scalars['Int'];
 };
 
+
+export type Query_RootVeicoli_ImpiegatiArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+
+export type Query_RootVeicoli_Impiegati_AggregateArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+
+export type Query_RootVeicoli_Impiegati_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
 /** columns and relationships of "segnalazione" */
 export type Segnalazione = {
   __typename?: 'segnalazione';
@@ -10184,14 +13181,22 @@ export type Segnalazione = {
   /** An aggregate relationship */
   allegati_aggregate: Allegato_Aggregate;
   created_at: Scalars['timestamptz'];
-  /** fetch data from the table: "diario" */
+  data?: Maybe<Scalars['timestamptz']>;
+  /** An array relationship */
   diario: Array<Diario>;
-  /** fetch aggregated fields from the table: "diario" */
+  /** An aggregate relationship */
   diario_aggregate: Diario_Aggregate;
   /** An object relationship */
   dissesto?: Maybe<Dissesto>;
   dissesto_id?: Maybe<Scalars['Int']>;
+  /** An array relationship */
+  eventi: Array<Evento>;
+  /** An aggregate relationship */
+  eventi_aggregate: Evento_Aggregate;
   id: Scalars['Int'];
+  /** An object relationship */
+  intervento?: Maybe<Intervento>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita?: Maybe<Municipalita>;
   municipalita_id?: Maybe<Scalars['Int']>;
   municipalita_storica?: Maybe<Scalars['jsonb']>;
@@ -10260,6 +13265,26 @@ export type SegnalazioneDiario_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Diario_Order_By>>;
   where?: Maybe<Diario_Bool_Exp>;
+};
+
+
+/** columns and relationships of "segnalazione" */
+export type SegnalazioneEventiArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+
+/** columns and relationships of "segnalazione" */
+export type SegnalazioneEventi_AggregateArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
 };
 
 
@@ -10342,6 +13367,7 @@ export type Segnalazione_Avg_Fields = {
   __typename?: 'segnalazione_avg_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -10358,10 +13384,14 @@ export type Segnalazione_Bool_Exp = {
   _or?: Maybe<Array<Segnalazione_Bool_Exp>>;
   allegati?: Maybe<Allegato_Bool_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  data?: Maybe<Timestamptz_Comparison_Exp>;
   diario?: Maybe<Diario_Bool_Exp>;
   dissesto?: Maybe<Dissesto_Bool_Exp>;
   dissesto_id?: Maybe<Int_Comparison_Exp>;
+  eventi?: Maybe<Evento_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  intervento?: Maybe<Intervento_Bool_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
   municipalita_id?: Maybe<Int_Comparison_Exp>;
   municipalita_storica?: Maybe<Jsonb_Comparison_Exp>;
   posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Bool_Exp>;
@@ -10385,11 +13415,13 @@ export type Segnalazione_Bool_Exp = {
 /** columns and relationships of "segnalazione_collegata" */
 export type Segnalazione_Collegata = {
   __typename?: 'segnalazione_collegata';
-  id: Scalars['Int'];
+  created_at: Scalars['timestamptz'];
+  delete: Scalars['Boolean'];
   /** An object relationship */
-  segnalazione?: Maybe<Segnalazione>;
-  segnalazione_collegata_id?: Maybe<Scalars['Int']>;
+  segnalazione: Segnalazione;
+  segnalazione_collegata_id: Scalars['Int'];
   segnalazione_id: Scalars['Int'];
+  updated_at: Scalars['timestamptz'];
 };
 
 /** aggregated selection of "segnalazione_collegata" */
@@ -10447,14 +13479,12 @@ export type Segnalazione_Collegata_Arr_Rel_Insert_Input = {
 /** aggregate avg on columns */
 export type Segnalazione_Collegata_Avg_Fields = {
   __typename?: 'segnalazione_collegata_avg_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Avg_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10464,10 +13494,12 @@ export type Segnalazione_Collegata_Bool_Exp = {
   _and?: Maybe<Array<Segnalazione_Collegata_Bool_Exp>>;
   _not?: Maybe<Segnalazione_Collegata_Bool_Exp>;
   _or?: Maybe<Array<Segnalazione_Collegata_Bool_Exp>>;
-  id?: Maybe<Int_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
   segnalazione?: Maybe<Segnalazione_Bool_Exp>;
   segnalazione_collegata_id?: Maybe<Int_Comparison_Exp>;
   segnalazione_id?: Maybe<Int_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "segnalazione_collegata" */
@@ -10478,47 +13510,52 @@ export enum Segnalazione_Collegata_Constraint {
 
 /** input type for incrementing numeric columns in table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Insert_Input = {
-  id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
   segnalazione?: Maybe<Segnalazione_Obj_Rel_Insert_Input>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type Segnalazione_Collegata_Max_Fields = {
   __typename?: 'segnalazione_collegata_max_fields';
-  id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Max_Order_By = {
-  id?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Segnalazione_Collegata_Min_Fields = {
   __typename?: 'segnalazione_collegata_min_fields';
-  id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Min_Order_By = {
-  id?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "segnalazione_collegata" */
@@ -10539,45 +13576,52 @@ export type Segnalazione_Collegata_On_Conflict = {
 
 /** Ordering options when selecting data from "segnalazione_collegata". */
 export type Segnalazione_Collegata_Order_By = {
-  id?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
   segnalazione?: Maybe<Segnalazione_Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: segnalazione_collegata */
 export type Segnalazione_Collegata_Pk_Columns_Input = {
-  id: Scalars['Int'];
+  segnalazione_collegata_id: Scalars['Int'];
+  segnalazione_id: Scalars['Int'];
 };
 
 /** select columns of table "segnalazione_collegata" */
 export enum Segnalazione_Collegata_Select_Column {
   /** column name */
-  Id = 'id',
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
   /** column name */
   SegnalazioneCollegataId = 'segnalazione_collegata_id',
   /** column name */
-  SegnalazioneId = 'segnalazione_id'
+  SegnalazioneId = 'segnalazione_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Set_Input = {
-  id?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate stddev on columns */
 export type Segnalazione_Collegata_Stddev_Fields = {
   __typename?: 'segnalazione_collegata_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10585,14 +13629,12 @@ export type Segnalazione_Collegata_Stddev_Order_By = {
 /** aggregate stddev_pop on columns */
 export type Segnalazione_Collegata_Stddev_Pop_Fields = {
   __typename?: 'segnalazione_collegata_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10600,14 +13642,12 @@ export type Segnalazione_Collegata_Stddev_Pop_Order_By = {
 /** aggregate stddev_samp on columns */
 export type Segnalazione_Collegata_Stddev_Samp_Fields = {
   __typename?: 'segnalazione_collegata_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10615,14 +13655,12 @@ export type Segnalazione_Collegata_Stddev_Samp_Order_By = {
 /** aggregate sum on columns */
 export type Segnalazione_Collegata_Sum_Fields = {
   __typename?: 'segnalazione_collegata_sum_fields';
-  id?: Maybe<Scalars['Int']>;
   segnalazione_collegata_id?: Maybe<Scalars['Int']>;
   segnalazione_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Sum_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10630,24 +13668,26 @@ export type Segnalazione_Collegata_Sum_Order_By = {
 /** update columns of table "segnalazione_collegata" */
 export enum Segnalazione_Collegata_Update_Column {
   /** column name */
-  Id = 'id',
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
   /** column name */
   SegnalazioneCollegataId = 'segnalazione_collegata_id',
   /** column name */
-  SegnalazioneId = 'segnalazione_id'
+  SegnalazioneId = 'segnalazione_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 /** aggregate var_pop on columns */
 export type Segnalazione_Collegata_Var_Pop_Fields = {
   __typename?: 'segnalazione_collegata_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10655,14 +13695,12 @@ export type Segnalazione_Collegata_Var_Pop_Order_By = {
 /** aggregate var_samp on columns */
 export type Segnalazione_Collegata_Var_Samp_Fields = {
   __typename?: 'segnalazione_collegata_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10670,14 +13708,12 @@ export type Segnalazione_Collegata_Var_Samp_Order_By = {
 /** aggregate variance on columns */
 export type Segnalazione_Collegata_Variance_Fields = {
   __typename?: 'segnalazione_collegata_variance_fields';
-  id?: Maybe<Scalars['Float']>;
   segnalazione_collegata_id?: Maybe<Scalars['Float']>;
   segnalazione_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "segnalazione_collegata" */
 export type Segnalazione_Collegata_Variance_Order_By = {
-  id?: Maybe<Order_By>;
   segnalazione_collegata_id?: Maybe<Order_By>;
   segnalazione_id?: Maybe<Order_By>;
 };
@@ -10713,6 +13749,7 @@ export type Segnalazione_Delete_Key_Input = {
 export type Segnalazione_Inc_Input = {
   dissesto_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   priorita_id?: Maybe<Scalars['Int']>;
   protocollo_id?: Maybe<Scalars['Int']>;
@@ -10726,10 +13763,14 @@ export type Segnalazione_Inc_Input = {
 export type Segnalazione_Insert_Input = {
   allegati?: Maybe<Allegato_Arr_Rel_Insert_Input>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  data?: Maybe<Scalars['timestamptz']>;
   diario?: Maybe<Diario_Arr_Rel_Insert_Input>;
   dissesto?: Maybe<Dissesto_Obj_Rel_Insert_Input>;
   dissesto_id?: Maybe<Scalars['Int']>;
+  eventi?: Maybe<Evento_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
+  intervento?: Maybe<Intervento_Obj_Rel_Insert_Input>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   municipalita_storica?: Maybe<Scalars['jsonb']>;
   posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Obj_Rel_Insert_Input>;
@@ -10754,8 +13795,10 @@ export type Segnalazione_Insert_Input = {
 export type Segnalazione_Max_Fields = {
   __typename?: 'segnalazione_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  data?: Maybe<Scalars['timestamptz']>;
   dissesto_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   priorita_id?: Maybe<Scalars['Int']>;
   protocollo_id?: Maybe<Scalars['Int']>;
@@ -10770,8 +13813,10 @@ export type Segnalazione_Max_Fields = {
 export type Segnalazione_Min_Fields = {
   __typename?: 'segnalazione_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  data?: Maybe<Scalars['timestamptz']>;
   dissesto_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   priorita_id?: Maybe<Scalars['Int']>;
   protocollo_id?: Maybe<Scalars['Int']>;
@@ -10809,10 +13854,14 @@ export type Segnalazione_On_Conflict = {
 export type Segnalazione_Order_By = {
   allegati_aggregate?: Maybe<Allegato_Aggregate_Order_By>;
   created_at?: Maybe<Order_By>;
+  data?: Maybe<Order_By>;
   diario_aggregate?: Maybe<Diario_Aggregate_Order_By>;
   dissesto?: Maybe<Dissesto_Order_By>;
   dissesto_id?: Maybe<Order_By>;
+  eventi_aggregate?: Maybe<Evento_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  intervento?: Maybe<Intervento_Order_By>;
+  intervento_id?: Maybe<Order_By>;
   municipalita_id?: Maybe<Order_By>;
   municipalita_storica?: Maybe<Order_By>;
   posizionamento_toponimo_punto_iniziale?: Maybe<Posizionamento_Toponimo_Order_By>;
@@ -10850,9 +13899,13 @@ export enum Segnalazione_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Data = 'data',
+  /** column name */
   DissestoId = 'dissesto_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
   /** column name */
   MunicipalitaId = 'municipalita_id',
   /** column name */
@@ -10884,8 +13937,10 @@ export enum Segnalazione_Select_Column {
 /** input type for updating data in table "segnalazione" */
 export type Segnalazione_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  data?: Maybe<Scalars['timestamptz']>;
   dissesto_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   municipalita_storica?: Maybe<Scalars['jsonb']>;
   priorita_id?: Maybe<Scalars['Int']>;
@@ -10906,6 +13961,7 @@ export type Segnalazione_Stddev_Fields = {
   __typename?: 'segnalazione_stddev_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -10920,6 +13976,7 @@ export type Segnalazione_Stddev_Pop_Fields = {
   __typename?: 'segnalazione_stddev_pop_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -10934,6 +13991,7 @@ export type Segnalazione_Stddev_Samp_Fields = {
   __typename?: 'segnalazione_stddev_samp_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -10948,6 +14006,7 @@ export type Segnalazione_Sum_Fields = {
   __typename?: 'segnalazione_sum_fields';
   dissesto_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
   municipalita_id?: Maybe<Scalars['Int']>;
   priorita_id?: Maybe<Scalars['Int']>;
   protocollo_id?: Maybe<Scalars['Int']>;
@@ -10962,9 +14021,13 @@ export enum Segnalazione_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Data = 'data',
+  /** column name */
   DissestoId = 'dissesto_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
   /** column name */
   MunicipalitaId = 'municipalita_id',
   /** column name */
@@ -10998,6 +14061,7 @@ export type Segnalazione_Var_Pop_Fields = {
   __typename?: 'segnalazione_var_pop_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -11012,6 +14076,7 @@ export type Segnalazione_Var_Samp_Fields = {
   __typename?: 'segnalazione_var_samp_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -11026,6 +14091,7 @@ export type Segnalazione_Variance_Fields = {
   __typename?: 'segnalazione_variance_fields';
   dissesto_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
   municipalita_id?: Maybe<Scalars['Float']>;
   priorita_id?: Maybe<Scalars['Float']>;
   protocollo_id?: Maybe<Scalars['Float']>;
@@ -11033,6 +14099,349 @@ export type Segnalazione_Variance_Fields = {
   quartiere_id?: Maybe<Scalars['Float']>;
   tecnico_referente_id?: Maybe<Scalars['Float']>;
   toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "segnaletica_lasciata" */
+export type Segnaletica_Lasciata = {
+  __typename?: 'segnaletica_lasciata';
+  created_at: Scalars['timestamptz'];
+  delete?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  intervento_id: Scalars['Int'];
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Aggregate = {
+  __typename?: 'segnaletica_lasciata_aggregate';
+  aggregate?: Maybe<Segnaletica_Lasciata_Aggregate_Fields>;
+  nodes: Array<Segnaletica_Lasciata>;
+};
+
+/** aggregate fields of "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Aggregate_Fields = {
+  __typename?: 'segnaletica_lasciata_aggregate_fields';
+  avg?: Maybe<Segnaletica_Lasciata_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Segnaletica_Lasciata_Max_Fields>;
+  min?: Maybe<Segnaletica_Lasciata_Min_Fields>;
+  stddev?: Maybe<Segnaletica_Lasciata_Stddev_Fields>;
+  stddev_pop?: Maybe<Segnaletica_Lasciata_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Segnaletica_Lasciata_Stddev_Samp_Fields>;
+  sum?: Maybe<Segnaletica_Lasciata_Sum_Fields>;
+  var_pop?: Maybe<Segnaletica_Lasciata_Var_Pop_Fields>;
+  var_samp?: Maybe<Segnaletica_Lasciata_Var_Samp_Fields>;
+  variance?: Maybe<Segnaletica_Lasciata_Variance_Fields>;
+};
+
+
+/** aggregate fields of "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Aggregate_Order_By = {
+  avg?: Maybe<Segnaletica_Lasciata_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Segnaletica_Lasciata_Max_Order_By>;
+  min?: Maybe<Segnaletica_Lasciata_Min_Order_By>;
+  stddev?: Maybe<Segnaletica_Lasciata_Stddev_Order_By>;
+  stddev_pop?: Maybe<Segnaletica_Lasciata_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Segnaletica_Lasciata_Stddev_Samp_Order_By>;
+  sum?: Maybe<Segnaletica_Lasciata_Sum_Order_By>;
+  var_pop?: Maybe<Segnaletica_Lasciata_Var_Pop_Order_By>;
+  var_samp?: Maybe<Segnaletica_Lasciata_Var_Samp_Order_By>;
+  variance?: Maybe<Segnaletica_Lasciata_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Arr_Rel_Insert_Input = {
+  data: Array<Segnaletica_Lasciata_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Segnaletica_Lasciata_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Segnaletica_Lasciata_Avg_Fields = {
+  __typename?: 'segnaletica_lasciata_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "segnaletica_lasciata". All fields are combined with a logical 'AND'. */
+export type Segnaletica_Lasciata_Bool_Exp = {
+  _and?: Maybe<Array<Segnaletica_Lasciata_Bool_Exp>>;
+  _not?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+  _or?: Maybe<Array<Segnaletica_Lasciata_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  quantita?: Maybe<Float8_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "segnaletica_lasciata" */
+export enum Segnaletica_Lasciata_Constraint {
+  /** unique or primary key constraint */
+  SegnaleticaLasciataPkey = 'segnaletica_lasciata_pkey'
+}
+
+/** input type for incrementing numeric columns in table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** input type for inserting data into table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Segnaletica_Lasciata_Max_Fields = {
+  __typename?: 'segnaletica_lasciata_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Segnaletica_Lasciata_Min_Fields = {
+  __typename?: 'segnaletica_lasciata_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Mutation_Response = {
+  __typename?: 'segnaletica_lasciata_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Segnaletica_Lasciata>;
+};
+
+/** on conflict condition type for table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_On_Conflict = {
+  constraint: Segnaletica_Lasciata_Constraint;
+  update_columns?: Array<Segnaletica_Lasciata_Update_Column>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "segnaletica_lasciata". */
+export type Segnaletica_Lasciata_Order_By = {
+  created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: segnaletica_lasciata */
+export type Segnaletica_Lasciata_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "segnaletica_lasciata" */
+export enum Segnaletica_Lasciata_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  quantita?: Maybe<Scalars['float8']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Segnaletica_Lasciata_Stddev_Fields = {
+  __typename?: 'segnaletica_lasciata_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Segnaletica_Lasciata_Stddev_Pop_Fields = {
+  __typename?: 'segnaletica_lasciata_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Segnaletica_Lasciata_Stddev_Samp_Fields = {
+  __typename?: 'segnaletica_lasciata_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Segnaletica_Lasciata_Sum_Fields = {
+  __typename?: 'segnaletica_lasciata_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  quantita?: Maybe<Scalars['float8']>;
+};
+
+/** order by sum() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** update columns of table "segnaletica_lasciata" */
+export enum Segnaletica_Lasciata_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  Quantita = 'quantita',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Segnaletica_Lasciata_Var_Pop_Fields = {
+  __typename?: 'segnaletica_lasciata_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Segnaletica_Lasciata_Var_Samp_Fields = {
+  __typename?: 'segnaletica_lasciata_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Segnaletica_Lasciata_Variance_Fields = {
+  __typename?: 'segnaletica_lasciata_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+  quantita?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "segnaletica_lasciata" */
+export type Segnaletica_Lasciata_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  quantita?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "sostegno_ipi" */
@@ -11684,12 +15093,30 @@ export type St_D_Within_Input = {
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "_condizioni_traffico" */
+  _condizioni_traffico: Array<_Condizioni_Traffico>;
+  /** fetch aggregated fields from the table: "_condizioni_traffico" */
+  _condizioni_traffico_aggregate: _Condizioni_Traffico_Aggregate;
+  /** fetch data from the table: "_condizioni_traffico" using primary key columns */
+  _condizioni_traffico_by_pk?: Maybe<_Condizioni_Traffico>;
   /** fetch data from the table: "_forma_dissesto" */
   _forma_dissesto: Array<_Forma_Dissesto>;
   /** fetch aggregated fields from the table: "_forma_dissesto" */
   _forma_dissesto_aggregate: _Forma_Dissesto_Aggregate;
   /** fetch data from the table: "_forma_dissesto" using primary key columns */
   _forma_dissesto_by_pk?: Maybe<_Forma_Dissesto>;
+  /** fetch data from the table: "_giorni_trascorsi" */
+  _giorni_trascorsi: Array<_Giorni_Trascorsi>;
+  /** fetch aggregated fields from the table: "_giorni_trascorsi" */
+  _giorni_trascorsi_aggregate: _Giorni_Trascorsi_Aggregate;
+  /** fetch data from the table: "_giorni_trascorsi" using primary key columns */
+  _giorni_trascorsi_by_pk?: Maybe<_Giorni_Trascorsi>;
+  /** fetch data from the table: "_materiale" */
+  _materiale: Array<_Materiale>;
+  /** fetch aggregated fields from the table: "_materiale" */
+  _materiale_aggregate: _Materiale_Aggregate;
+  /** fetch data from the table: "_materiale" using primary key columns */
+  _materiale_by_pk?: Maybe<_Materiale>;
   /** fetch data from the table: "_priorita" */
   _priorita: Array<_Priorita>;
   /** fetch aggregated fields from the table: "_priorita" */
@@ -11756,6 +15183,12 @@ export type Subscription_Root = {
   assegnazione_toponimo_aggregate: Assegnazione_Toponimo_Aggregate;
   /** fetch data from the table: "assegnazione_toponimo" using primary key columns */
   assegnazione_toponimo_by_pk?: Maybe<Assegnazione_Toponimo>;
+  /** An array relationship */
+  attrezzature_impiegate: Array<Attrezzature_Impiegate>;
+  /** An aggregate relationship */
+  attrezzature_impiegate_aggregate: Attrezzature_Impiegate_Aggregate;
+  /** fetch data from the table: "attrezzature_impiegate" using primary key columns */
+  attrezzature_impiegate_by_pk?: Maybe<Attrezzature_Impiegate>;
   /** fetch data from the table: "civico" */
   civico: Array<Civico>;
   /** fetch aggregated fields from the table: "civico" */
@@ -11768,9 +15201,9 @@ export type Subscription_Root = {
   connessione_grafo_aggregate: Connessione_Grafo_Aggregate;
   /** fetch data from the table: "connessione_grafo" using primary key columns */
   connessione_grafo_by_pk?: Maybe<Connessione_Grafo>;
-  /** fetch data from the table: "diario" */
+  /** An array relationship */
   diario: Array<Diario>;
-  /** fetch aggregated fields from the table: "diario" */
+  /** An aggregate relationship */
   diario_aggregate: Diario_Aggregate;
   /** fetch data from the table: "diario" using primary key columns */
   diario_by_pk?: Maybe<Diario>;
@@ -11786,12 +15219,30 @@ export type Subscription_Root = {
   dug_aggregate: Dug_Aggregate;
   /** fetch data from the table: "dug" using primary key columns */
   dug_by_pk?: Maybe<Dug>;
+  /** fetch data from the table: "evento" */
+  evento: Array<Evento>;
+  /** fetch aggregated fields from the table: "evento" */
+  evento_aggregate: Evento_Aggregate;
+  /** fetch data from the table: "evento" using primary key columns */
+  evento_by_pk?: Maybe<Evento>;
+  /** fetch data from the table: "intervento" */
+  intervento: Array<Intervento>;
+  /** fetch aggregated fields from the table: "intervento" */
+  intervento_aggregate: Intervento_Aggregate;
+  /** fetch data from the table: "intervento" using primary key columns */
+  intervento_by_pk?: Maybe<Intervento>;
   /** fetch data from the table: "intervento_straordinario" */
   intervento_straordinario: Array<Intervento_Straordinario>;
   /** fetch aggregated fields from the table: "intervento_straordinario" */
   intervento_straordinario_aggregate: Intervento_Straordinario_Aggregate;
   /** fetch data from the table: "intervento_straordinario" using primary key columns */
   intervento_straordinario_by_pk?: Maybe<Intervento_Straordinario>;
+  /** fetch data from the table: "materiale_dissesto" */
+  materiale_dissesto: Array<Materiale_Dissesto>;
+  /** fetch aggregated fields from the table: "materiale_dissesto" */
+  materiale_dissesto_aggregate: Materiale_Dissesto_Aggregate;
+  /** fetch data from the table: "materiale_dissesto" using primary key columns */
+  materiale_dissesto_by_pk?: Maybe<Materiale_Dissesto>;
   /** fetch data from the table: "membro" */
   membro: Array<Membro>;
   /** fetch aggregated fields from the table: "membro" */
@@ -11846,6 +15297,12 @@ export type Subscription_Root = {
   segnalazione_collegata_aggregate: Segnalazione_Collegata_Aggregate;
   /** fetch data from the table: "segnalazione_collegata" using primary key columns */
   segnalazione_collegata_by_pk?: Maybe<Segnalazione_Collegata>;
+  /** An array relationship */
+  segnaletica_lasciata: Array<Segnaletica_Lasciata>;
+  /** An aggregate relationship */
+  segnaletica_lasciata_aggregate: Segnaletica_Lasciata_Aggregate;
+  /** fetch data from the table: "segnaletica_lasciata" using primary key columns */
+  segnaletica_lasciata_by_pk?: Maybe<Segnaletica_Lasciata>;
   /** fetch data from the table: "sostegno_ipi" */
   sostegno_ipi: Array<Sostegno_Ipi>;
   /** fetch aggregated fields from the table: "sostegno_ipi" */
@@ -11906,6 +15363,35 @@ export type Subscription_Root = {
   vecchio_toponimo_aggregate: Vecchio_Toponimo_Aggregate;
   /** fetch data from the table: "vecchio_toponimo" using primary key columns */
   vecchio_toponimo_by_pk?: Maybe<Vecchio_Toponimo>;
+  /** An array relationship */
+  veicoli_impiegati: Array<Veicoli_Impiegati>;
+  /** An aggregate relationship */
+  veicoli_impiegati_aggregate: Veicoli_Impiegati_Aggregate;
+  /** fetch data from the table: "veicoli_impiegati" using primary key columns */
+  veicoli_impiegati_by_pk?: Maybe<Veicoli_Impiegati>;
+};
+
+
+export type Subscription_Root_Condizioni_TrafficoArgs = {
+  distinct_on?: Maybe<Array<_Condizioni_Traffico_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Condizioni_Traffico_Order_By>>;
+  where?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Condizioni_Traffico_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Condizioni_Traffico_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Condizioni_Traffico_Order_By>>;
+  where?: Maybe<_Condizioni_Traffico_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Condizioni_Traffico_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -11928,6 +15414,52 @@ export type Subscription_Root_Forma_Dissesto_AggregateArgs = {
 
 
 export type Subscription_Root_Forma_Dissesto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_Root_Giorni_TrascorsiArgs = {
+  distinct_on?: Maybe<Array<_Giorni_Trascorsi_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Giorni_Trascorsi_Order_By>>;
+  where?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Giorni_Trascorsi_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Giorni_Trascorsi_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Giorni_Trascorsi_Order_By>>;
+  where?: Maybe<_Giorni_Trascorsi_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Giorni_Trascorsi_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_Root_MaterialeArgs = {
+  distinct_on?: Maybe<Array<_Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Materiale_Order_By>>;
+  where?: Maybe<_Materiale_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Materiale_AggregateArgs = {
+  distinct_on?: Maybe<Array<_Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<_Materiale_Order_By>>;
+  where?: Maybe<_Materiale_Bool_Exp>;
+};
+
+
+export type Subscription_Root_Materiale_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -12185,6 +15717,29 @@ export type Subscription_RootAssegnazione_Toponimo_By_PkArgs = {
 };
 
 
+export type Subscription_RootAttrezzature_ImpiegateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+export type Subscription_RootAttrezzature_Impiegate_AggregateArgs = {
+  distinct_on?: Maybe<Array<Attrezzature_Impiegate_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Attrezzature_Impiegate_Order_By>>;
+  where?: Maybe<Attrezzature_Impiegate_Bool_Exp>;
+};
+
+
+export type Subscription_RootAttrezzature_Impiegate_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootCivicoArgs = {
   distinct_on?: Maybe<Array<Civico_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -12300,6 +15855,52 @@ export type Subscription_RootDug_By_PkArgs = {
 };
 
 
+export type Subscription_RootEventoArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+
+export type Subscription_RootEvento_AggregateArgs = {
+  distinct_on?: Maybe<Array<Evento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Evento_Order_By>>;
+  where?: Maybe<Evento_Bool_Exp>;
+};
+
+
+export type Subscription_RootEvento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootInterventoArgs = {
+  distinct_on?: Maybe<Array<Intervento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Order_By>>;
+  where?: Maybe<Intervento_Bool_Exp>;
+};
+
+
+export type Subscription_RootIntervento_AggregateArgs = {
+  distinct_on?: Maybe<Array<Intervento_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Intervento_Order_By>>;
+  where?: Maybe<Intervento_Bool_Exp>;
+};
+
+
+export type Subscription_RootIntervento_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootIntervento_StraordinarioArgs = {
   distinct_on?: Maybe<Array<Intervento_Straordinario_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -12319,6 +15920,29 @@ export type Subscription_RootIntervento_Straordinario_AggregateArgs = {
 
 
 export type Subscription_RootIntervento_Straordinario_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootMateriale_DissestoArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+export type Subscription_RootMateriale_Dissesto_AggregateArgs = {
+  distinct_on?: Maybe<Array<Materiale_Dissesto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Materiale_Dissesto_Order_By>>;
+  where?: Maybe<Materiale_Dissesto_Bool_Exp>;
+};
+
+
+export type Subscription_RootMateriale_Dissesto_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -12526,6 +16150,30 @@ export type Subscription_RootSegnalazione_Collegata_AggregateArgs = {
 
 
 export type Subscription_RootSegnalazione_Collegata_By_PkArgs = {
+  segnalazione_collegata_id: Scalars['Int'];
+  segnalazione_id: Scalars['Int'];
+};
+
+
+export type Subscription_RootSegnaletica_LasciataArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+export type Subscription_RootSegnaletica_Lasciata_AggregateArgs = {
+  distinct_on?: Maybe<Array<Segnaletica_Lasciata_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Segnaletica_Lasciata_Order_By>>;
+  where?: Maybe<Segnaletica_Lasciata_Bool_Exp>;
+};
+
+
+export type Subscription_RootSegnaletica_Lasciata_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -12756,6 +16404,29 @@ export type Subscription_RootVecchio_Toponimo_AggregateArgs = {
 
 
 export type Subscription_RootVecchio_Toponimo_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootVeicoli_ImpiegatiArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+
+export type Subscription_RootVeicoli_Impiegati_AggregateArgs = {
+  distinct_on?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Veicoli_Impiegati_Order_By>>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+
+export type Subscription_RootVeicoli_Impiegati_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -14991,6 +18662,319 @@ export type Vecchio_Toponimo_Variance_Order_By = {
   toponimo_id?: Maybe<Order_By>;
 };
 
+/** columns and relationships of "veicoli_impiegati" */
+export type Veicoli_Impiegati = {
+  __typename?: 'veicoli_impiegati';
+  created_at: Scalars['timestamptz'];
+  delete?: Maybe<Scalars['Boolean']>;
+  id: Scalars['Int'];
+  intervento_id: Scalars['Int'];
+  targa?: Maybe<Scalars['String']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "veicoli_impiegati" */
+export type Veicoli_Impiegati_Aggregate = {
+  __typename?: 'veicoli_impiegati_aggregate';
+  aggregate?: Maybe<Veicoli_Impiegati_Aggregate_Fields>;
+  nodes: Array<Veicoli_Impiegati>;
+};
+
+/** aggregate fields of "veicoli_impiegati" */
+export type Veicoli_Impiegati_Aggregate_Fields = {
+  __typename?: 'veicoli_impiegati_aggregate_fields';
+  avg?: Maybe<Veicoli_Impiegati_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Veicoli_Impiegati_Max_Fields>;
+  min?: Maybe<Veicoli_Impiegati_Min_Fields>;
+  stddev?: Maybe<Veicoli_Impiegati_Stddev_Fields>;
+  stddev_pop?: Maybe<Veicoli_Impiegati_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Veicoli_Impiegati_Stddev_Samp_Fields>;
+  sum?: Maybe<Veicoli_Impiegati_Sum_Fields>;
+  var_pop?: Maybe<Veicoli_Impiegati_Var_Pop_Fields>;
+  var_samp?: Maybe<Veicoli_Impiegati_Var_Samp_Fields>;
+  variance?: Maybe<Veicoli_Impiegati_Variance_Fields>;
+};
+
+
+/** aggregate fields of "veicoli_impiegati" */
+export type Veicoli_Impiegati_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Veicoli_Impiegati_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Aggregate_Order_By = {
+  avg?: Maybe<Veicoli_Impiegati_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Veicoli_Impiegati_Max_Order_By>;
+  min?: Maybe<Veicoli_Impiegati_Min_Order_By>;
+  stddev?: Maybe<Veicoli_Impiegati_Stddev_Order_By>;
+  stddev_pop?: Maybe<Veicoli_Impiegati_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Veicoli_Impiegati_Stddev_Samp_Order_By>;
+  sum?: Maybe<Veicoli_Impiegati_Sum_Order_By>;
+  var_pop?: Maybe<Veicoli_Impiegati_Var_Pop_Order_By>;
+  var_samp?: Maybe<Veicoli_Impiegati_Var_Samp_Order_By>;
+  variance?: Maybe<Veicoli_Impiegati_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Arr_Rel_Insert_Input = {
+  data: Array<Veicoli_Impiegati_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: Maybe<Veicoli_Impiegati_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Veicoli_Impiegati_Avg_Fields = {
+  __typename?: 'veicoli_impiegati_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "veicoli_impiegati". All fields are combined with a logical 'AND'. */
+export type Veicoli_Impiegati_Bool_Exp = {
+  _and?: Maybe<Array<Veicoli_Impiegati_Bool_Exp>>;
+  _not?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+  _or?: Maybe<Array<Veicoli_Impiegati_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  delete?: Maybe<Boolean_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  intervento_id?: Maybe<Int_Comparison_Exp>;
+  targa?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "veicoli_impiegati" */
+export enum Veicoli_Impiegati_Constraint {
+  /** unique or primary key constraint */
+  VeicoliImpiegatiPkey = 'veicoli_impiegati_pkey'
+}
+
+/** input type for incrementing numeric columns in table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  targa?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Veicoli_Impiegati_Max_Fields = {
+  __typename?: 'veicoli_impiegati_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  targa?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  targa?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Veicoli_Impiegati_Min_Fields = {
+  __typename?: 'veicoli_impiegati_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  targa?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  targa?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Mutation_Response = {
+  __typename?: 'veicoli_impiegati_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Veicoli_Impiegati>;
+};
+
+/** on conflict condition type for table "veicoli_impiegati" */
+export type Veicoli_Impiegati_On_Conflict = {
+  constraint: Veicoli_Impiegati_Constraint;
+  update_columns?: Array<Veicoli_Impiegati_Update_Column>;
+  where?: Maybe<Veicoli_Impiegati_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "veicoli_impiegati". */
+export type Veicoli_Impiegati_Order_By = {
+  created_at?: Maybe<Order_By>;
+  delete?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+  targa?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: veicoli_impiegati */
+export type Veicoli_Impiegati_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "veicoli_impiegati" */
+export enum Veicoli_Impiegati_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Targa = 'targa',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  delete?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+  targa?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Veicoli_Impiegati_Stddev_Fields = {
+  __typename?: 'veicoli_impiegati_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Veicoli_Impiegati_Stddev_Pop_Fields = {
+  __typename?: 'veicoli_impiegati_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Veicoli_Impiegati_Stddev_Samp_Fields = {
+  __typename?: 'veicoli_impiegati_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Veicoli_Impiegati_Sum_Fields = {
+  __typename?: 'veicoli_impiegati_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  intervento_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "veicoli_impiegati" */
+export enum Veicoli_Impiegati_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Delete = 'delete',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterventoId = 'intervento_id',
+  /** column name */
+  Targa = 'targa',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Veicoli_Impiegati_Var_Pop_Fields = {
+  __typename?: 'veicoli_impiegati_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Veicoli_Impiegati_Var_Samp_Fields = {
+  __typename?: 'veicoli_impiegati_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Veicoli_Impiegati_Variance_Fields = {
+  __typename?: 'veicoli_impiegati_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  intervento_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "veicoli_impiegati" */
+export type Veicoli_Impiegati_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  intervento_id?: Maybe<Order_By>;
+};
+
 export type CiviciSelectQueryVariables = Exact<{
   fk_t_code?: Maybe<String_Comparison_Exp>;
   limit?: Maybe<Scalars['Int']>;
@@ -15020,19 +19004,33 @@ export type ConnessioniGrafoSelectQueryVariables = Exact<{
 
 export type ConnessioniGrafoSelectQuery = { __typename?: 'query_root', connessione_grafo: Array<{ __typename?: 'connessione_grafo', id: any, fk_t_code?: string | null | undefined, geom?: any | null | undefined }> };
 
+export type DiarioSubscriptionVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DiarioSubscription = { __typename?: 'subscription_root', diario: Array<{ __typename?: 'diario', created_at: any, messaggio?: string | null | undefined, utente: any, allegato?: { __typename?: 'allegato', file: string, id: number, nome: string, tipo: string, created_at: any } | null | undefined }> };
+
+export type InsertDiarioMutationVariables = Exact<{
+  objects?: Maybe<Array<Diario_Insert_Input> | Diario_Insert_Input>;
+}>;
+
+
+export type InsertDiarioMutation = { __typename?: 'mutation_root', insert_diario?: { __typename?: 'diario_mutation_response', affected_rows: number } | null | undefined };
+
 export type InterventiStraordinariSubscriptionVariables = Exact<{
   where?: Maybe<Intervento_Straordinario_Bool_Exp>;
 }>;
 
 
-export type InterventiStraordinariSubscription = { __typename?: 'subscription_root', intervento_straordinario: Array<{ __typename?: 'intervento_straordinario', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data_inserimento?: any | null | undefined, data_inizio_lavori?: any | null | undefined, data_fine_lavori?: any | null | undefined, tipologia_intervento?: string | null | undefined, lavori_effettuati?: string | null | undefined, stato_fine_lavori?: boolean | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_finale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> };
+export type InterventiStraordinariSubscription = { __typename?: 'subscription_root', intervento_straordinario: Array<{ __typename?: 'intervento_straordinario', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data_inserimento?: any | null | undefined, data_inizio_lavori?: any | null | undefined, data_fine_lavori?: any | null | undefined, tipologia_intervento?: string | null | undefined, lavori_effettuati?: string | null | undefined, stato: _Stato_Segnalazione_Enum, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_finale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> };
 
 export type InterventoStraordinarioQueryVariables = Exact<{
-  id: Scalars['Int'];
+  where: Intervento_Straordinario_Bool_Exp;
 }>;
 
 
-export type InterventoStraordinarioQuery = { __typename?: 'query_root', intervento_straordinario: Array<{ __typename?: 'intervento_straordinario', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data_inserimento?: any | null | undefined, data_inizio_lavori?: any | null | undefined, data_fine_lavori?: any | null | undefined, tipologia_intervento?: string | null | undefined, lavori_effettuati?: string | null | undefined, stato_fine_lavori?: boolean | null | undefined, municipalita?: { __typename?: 'municipalita', id: number, nome: string } | null | undefined, quartiere?: { __typename?: 'quartiere', id: number, nome: string, municipalita: Array<{ __typename?: 'assegnazione_quartiere', municipalita_id: number }> } | null | undefined, toponimo?: { __typename?: 'toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'dug', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'assegnazione_toponimo', quartiere_id: number }> } | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_finale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> };
+export type InterventoStraordinarioQuery = { __typename?: 'query_root', intervento_straordinario: Array<{ __typename?: 'intervento_straordinario', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data_inserimento?: any | null | undefined, data_inizio_lavori?: any | null | undefined, data_fine_lavori?: any | null | undefined, tipologia_intervento?: string | null | undefined, lavori_effettuati?: string | null | undefined, stato: _Stato_Segnalazione_Enum, municipalita?: { __typename?: 'municipalita', id: number, nome: string } | null | undefined, quartiere?: { __typename?: 'quartiere', id: number, nome: string, municipalita: Array<{ __typename?: 'assegnazione_quartiere', municipalita_id: number }> } | null | undefined, toponimo?: { __typename?: 'toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'dug', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'assegnazione_toponimo', quartiere_id: number }> } | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_finale?: { __typename?: 'posizionamento_toponimo', id: number, civico?: string | null | undefined, ipi?: string | null | undefined, km?: string | null | undefined, connessione?: string | null | undefined, note?: string | null | undefined, geoloc?: any | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> };
 
 export type UpdateInterventoStraordinarioMutationVariables = Exact<{
   intervento?: Maybe<Array<Intervento_Straordinario_Insert_Input> | Intervento_Straordinario_Insert_Input>;
@@ -15042,12 +19040,26 @@ export type UpdateInterventoStraordinarioMutationVariables = Exact<{
 
 export type UpdateInterventoStraordinarioMutation = { __typename?: 'mutation_root', insert_intervento_straordinario?: { __typename?: 'intervento_straordinario_mutation_response', returning: Array<{ __typename?: 'intervento_straordinario', id: number, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> } | null | undefined };
 
-export type SegnalazioneQueryVariables = Exact<{
+export type DeleteInterventoStraordinarioMutationVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type SegnalazioneQuery = { __typename?: 'query_root', segnalazione: Array<{ __typename?: 'segnalazione', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, stato: _Stato_Segnalazione_Enum, richiesta_protezione_civile?: boolean | null | undefined, municipalita?: { __typename?: 'municipalita', id: number, nome: string } | null | undefined, quartiere?: { __typename?: 'quartiere', id: number, nome: string, municipalita: Array<{ __typename?: 'assegnazione_quartiere', municipalita_id: number }> } | null | undefined, toponimo?: { __typename?: 'toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'dug', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'assegnazione_toponimo', quartiere_id: number }> } | null | undefined, tecnico_referente?: { __typename?: 'tecnico_referente', id: number, nome?: string | null | undefined, cognome?: string | null | undefined, titolo?: { __typename?: '_titolo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, protocollo?: { __typename?: 'protocollo', note?: string | null | undefined, numero?: string | null | undefined, id: number, data?: any | null | undefined, mittente?: { __typename?: '_sezione_protocollo', id: number, nome: string, sigla?: string | null | undefined, codice: string } | null | undefined, destinatari: Array<{ __typename?: 'protocollo_destinatario', id: number, destinatario_interno?: { __typename?: '_sezione_protocollo', id: number, nome: string, codice: string, sigla?: string | null | undefined } | null | undefined, destinatario_esterno?: { __typename?: 'protocollo_destinatario_esterno', id: number, cognome?: string | null | undefined, email?: string | null | undefined, codice_fiscale?: string | null | undefined, nome?: string | null | undefined } | null | undefined }> } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }>, dissesto?: { __typename?: 'dissesto', id: number, note?: string | null | undefined, peso?: any | null | undefined, prima_dimensione?: any | null | undefined, profondita?: any | null | undefined, seconda_dimensione?: any | null | undefined, terza_dimensione?: any | null | undefined, tipologia?: { __typename?: '_tipologia_dissesto', id: number, nome: string } | null | undefined, forma?: { __typename?: '_forma_dissesto', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', civico?: string | null | undefined, connessione?: string | null | undefined, geoloc?: any | null | undefined, id: number, ipi?: string | null | undefined, km?: string | null | undefined, note?: string | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, diario: Array<{ __typename?: 'diario', id: number, messaggio?: string | null | undefined, utente: any, allegato?: { __typename?: 'allegato', id: number, file: string, nome: string, tipo: string } | null | undefined }>, segnalazioni_collegate: Array<{ __typename?: 'segnalazione_collegata', id: number, segnalazione?: { __typename?: 'segnalazione', id: number, stato: _Stato_Segnalazione_Enum, protocollo?: { __typename?: 'protocollo', data?: any | null | undefined, numero?: string | null | undefined } | null | undefined } | null | undefined }> }> };
+export type DeleteInterventoStraordinarioMutation = { __typename?: 'mutation_root', delete_intervento_straordinario?: { __typename?: 'intervento_straordinario_mutation_response', affected_rows: number } | null | undefined };
+
+export type SegnalazioniSubscriptionVariables = Exact<{
+  where?: Maybe<Segnalazione_Bool_Exp>;
+}>;
+
+
+export type SegnalazioniSubscription = { __typename?: 'subscription_root', segnalazione: Array<{ __typename?: 'segnalazione', id: number, municipalita_id?: number | null | undefined, quartiere_id?: number | null | undefined, toponimo_id?: number | null | undefined, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data?: any | null | undefined, stato: _Stato_Segnalazione_Enum, richiesta_protezione_civile?: boolean | null | undefined, tecnico_referente?: { __typename?: 'tecnico_referente', id: number, nome?: string | null | undefined, cognome?: string | null | undefined, titolo?: { __typename?: '_titolo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, protocollo?: { __typename?: 'protocollo', note?: string | null | undefined, numero?: string | null | undefined, id: number, data?: any | null | undefined, mittente?: { __typename?: '_sezione_protocollo', id: number, nome: string, sigla?: string | null | undefined, codice: string } | null | undefined, destinatari: Array<{ __typename?: 'protocollo_destinatario', id: number, e_esterno: boolean, destinatario_interno?: { __typename?: '_sezione_protocollo', id: number, nome: string, codice: string, sigla?: string | null | undefined } | null | undefined, destinatario_esterno?: { __typename?: 'protocollo_destinatario_esterno', id: number, cognome?: string | null | undefined, email?: string | null | undefined, codice_fiscale?: string | null | undefined, nome?: string | null | undefined } | null | undefined }> } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }>, dissesto?: { __typename?: 'dissesto', id: number, note?: string | null | undefined, peso?: any | null | undefined, prima_dimensione?: any | null | undefined, profondita?: any | null | undefined, seconda_dimensione?: any | null | undefined, terza_dimensione?: any | null | undefined, tipologia?: { __typename?: '_tipologia_dissesto', id: number, nome: string } | null | undefined, forma?: { __typename?: '_forma_dissesto', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', civico?: string | null | undefined, connessione?: string | null | undefined, geoloc?: any | null | undefined, id: number, ipi?: string | null | undefined, km?: string | null | undefined, note?: string | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, diario: Array<{ __typename?: 'diario', id: number, messaggio?: string | null | undefined, utente: any, allegato?: { __typename?: 'allegato', id: number, file: string, nome: string, tipo: string } | null | undefined }>, segnalazioni_collegate: Array<{ __typename?: 'segnalazione_collegata', segnalazione: { __typename?: 'segnalazione', id: number, created_at: any, stato: _Stato_Segnalazione_Enum, protocollo?: { __typename?: 'protocollo', data?: any | null | undefined, numero?: string | null | undefined } | null | undefined } }>, eventi: Array<{ __typename?: 'evento', stato: _Stato_Segnalazione_Enum, note?: string | null | undefined, created_at: any, squadra?: { __typename?: 'squadra', nome: string } | null | undefined, protocollo?: { __typename?: 'protocollo', numero?: string | null | undefined, data?: any | null | undefined, note?: string | null | undefined } | null | undefined, risolutore?: { __typename?: 'segnalazione', protocollo?: { __typename?: 'protocollo', numero?: string | null | undefined, data?: any | null | undefined } | null | undefined } | null | undefined }>, intervento?: { __typename?: 'intervento', id: number, assistenza_pm?: boolean | null | undefined, data_fine_lavori?: any | null | undefined, data_inizio_lavori?: any | null | undefined, difformita?: string | null | undefined, dissesto_difforme?: boolean | null | undefined, note?: string | null | undefined, condizioni_traffico?: { __typename?: '_condizioni_traffico', nome: string, id: number } | null | undefined, attrezzature_impiegate: Array<{ __typename?: 'attrezzature_impiegate', id: number, nome?: string | null | undefined, quantita?: any | null | undefined }>, giorni_trascorsi?: { __typename?: '_giorni_trascorsi', id: number, nome: string } | null | undefined, materiali_dissesto: Array<{ __typename?: 'materiale_dissesto', id: number, quantita?: any | null | undefined, altro?: string | null | undefined, materiale?: { __typename?: '_materiale', id: number, nome: string } | null | undefined }>, segnaletica_lasciata: Array<{ __typename?: 'segnaletica_lasciata', id: number, nome?: string | null | undefined, quantita?: any | null | undefined }>, veicoli_impiegati: Array<{ __typename?: 'veicoli_impiegati', id: number, targa?: string | null | undefined }>, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> } | null | undefined }> };
+
+export type SegnalazioneQueryVariables = Exact<{
+  where: Segnalazione_Bool_Exp;
+}>;
+
+
+export type SegnalazioneQuery = { __typename?: 'query_root', segnalazione: Array<{ __typename?: 'segnalazione', id: number, municipalita_storica?: any | null | undefined, quartiere_storico?: any | null | undefined, toponimo_storico?: any | null | undefined, data?: any | null | undefined, stato: _Stato_Segnalazione_Enum, richiesta_protezione_civile?: boolean | null | undefined, municipalita?: { __typename?: 'municipalita', id: number, nome: string } | null | undefined, quartiere?: { __typename?: 'quartiere', id: number, nome: string, municipalita: Array<{ __typename?: 'assegnazione_quartiere', municipalita_id: number }> } | null | undefined, toponimo?: { __typename?: 'toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'dug', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'assegnazione_toponimo', quartiere_id: number }> } | null | undefined, tecnico_referente?: { __typename?: 'tecnico_referente', id: number, nome?: string | null | undefined, cognome?: string | null | undefined, titolo?: { __typename?: '_titolo', id: number, nome: string } | null | undefined } | null | undefined, priorita?: { __typename?: '_priorita', id: number, nome: string } | null | undefined, protocollo?: { __typename?: 'protocollo', note?: string | null | undefined, numero?: string | null | undefined, id: number, data?: any | null | undefined, mittente?: { __typename?: '_sezione_protocollo', id: number, nome: string, sigla?: string | null | undefined, codice: string } | null | undefined, destinatari: Array<{ __typename?: 'protocollo_destinatario', id: number, e_esterno: boolean, destinatario_interno?: { __typename?: '_sezione_protocollo', id: number, nome: string, codice: string, sigla?: string | null | undefined } | null | undefined, destinatario_esterno?: { __typename?: 'protocollo_destinatario_esterno', id: number, cognome?: string | null | undefined, email?: string | null | undefined, codice_fiscale?: string | null | undefined, nome?: string | null | undefined } | null | undefined }> } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }>, dissesto?: { __typename?: 'dissesto', id: number, note?: string | null | undefined, peso?: any | null | undefined, prima_dimensione?: any | null | undefined, profondita?: any | null | undefined, seconda_dimensione?: any | null | undefined, terza_dimensione?: any | null | undefined, tipologia?: { __typename?: '_tipologia_dissesto', id: number, nome: string, intervento?: string | null | undefined } | null | undefined, forma?: { __typename?: '_forma_dissesto', id: number, nome: string } | null | undefined } | null | undefined, posizionamento_toponimo_punto_iniziale?: { __typename?: 'posizionamento_toponimo', civico?: string | null | undefined, connessione?: string | null | undefined, geoloc?: any | null | undefined, id: number, ipi?: string | null | undefined, km?: string | null | undefined, note?: string | null | undefined, specifica?: { __typename?: '_specifica_posizionamento_toponimo', id: number, nome: string } | null | undefined, tipologia?: { __typename?: '_tipologia_posizionamento_toponimo', id: number, nome: string } | null | undefined } | null | undefined, diario: Array<{ __typename?: 'diario', id: number, messaggio?: string | null | undefined, utente: any, allegato?: { __typename?: 'allegato', id: number, file: string, nome: string, tipo: string } | null | undefined }>, segnalazioni_collegate: Array<{ __typename?: 'segnalazione_collegata', segnalazione: { __typename?: 'segnalazione', id: number, created_at: any, stato: _Stato_Segnalazione_Enum, protocollo?: { __typename?: 'protocollo', data?: any | null | undefined, numero?: string | null | undefined } | null | undefined } }>, eventi: Array<{ __typename?: 'evento', stato: _Stato_Segnalazione_Enum, note?: string | null | undefined, created_at: any, squadra?: { __typename?: 'squadra', nome: string } | null | undefined, protocollo?: { __typename?: 'protocollo', numero?: string | null | undefined, data?: any | null | undefined, note?: string | null | undefined } | null | undefined, risolutore?: { __typename?: 'segnalazione', protocollo?: { __typename?: 'protocollo', numero?: string | null | undefined, data?: any | null | undefined } | null | undefined } | null | undefined }>, intervento?: { __typename?: 'intervento', id: number, assistenza_pm?: boolean | null | undefined, data_fine_lavori?: any | null | undefined, data_inizio_lavori?: any | null | undefined, difformita?: string | null | undefined, dissesto_difforme?: boolean | null | undefined, note?: string | null | undefined, condizioni_traffico?: { __typename?: '_condizioni_traffico', nome: string, id: number } | null | undefined, attrezzature_impiegate: Array<{ __typename?: 'attrezzature_impiegate', id: number, nome?: string | null | undefined, quantita?: any | null | undefined }>, giorni_trascorsi?: { __typename?: '_giorni_trascorsi', id: number, nome: string } | null | undefined, materiali_dissesto: Array<{ __typename?: 'materiale_dissesto', id: number, quantita?: any | null | undefined, altro?: string | null | undefined, materiale?: { __typename?: '_materiale', id: number, nome: string } | null | undefined }>, segnaletica_lasciata: Array<{ __typename?: 'segnaletica_lasciata', id: number, nome?: string | null | undefined, quantita?: any | null | undefined }>, veicoli_impiegati: Array<{ __typename?: 'veicoli_impiegati', id: number, targa?: string | null | undefined }>, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> } | null | undefined }> };
 
 export type UpdateSegnalazioneMutationVariables = Exact<{
   segnalazione?: Maybe<Array<Segnalazione_Insert_Input> | Segnalazione_Insert_Input>;
@@ -15055,7 +19067,14 @@ export type UpdateSegnalazioneMutationVariables = Exact<{
 }>;
 
 
-export type UpdateSegnalazioneMutation = { __typename?: 'mutation_root', insert_segnalazione?: { __typename?: 'segnalazione_mutation_response', returning: Array<{ __typename?: 'segnalazione', id: number, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> }> } | null | undefined };
+export type UpdateSegnalazioneMutation = { __typename?: 'mutation_root', insert_segnalazione?: { __typename?: 'segnalazione_mutation_response', returning: Array<{ __typename?: 'segnalazione', id: number, protocollo?: { __typename?: 'protocollo', destinatari: Array<{ __typename?: 'protocollo_destinatario', id: number, destinatario_esterno?: { __typename?: 'protocollo_destinatario_esterno', id: number } | null | undefined }> } | null | undefined, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }>, segnalazioni_collegate: Array<{ __typename?: 'segnalazione_collegata', segnalazione: { __typename?: 'segnalazione', id: number } }>, intervento?: { __typename?: 'intervento', attrezzature_impiegate: Array<{ __typename?: 'attrezzature_impiegate', id: number }>, materiali_dissesto: Array<{ __typename?: 'materiale_dissesto', id: number }>, segnaletica_lasciata: Array<{ __typename?: 'segnaletica_lasciata', id: number }>, veicoli_impiegati: Array<{ __typename?: 'veicoli_impiegati', id: number }>, allegati: Array<{ __typename?: 'allegato', id: number, file: string, nome: string, tipo: string }> } | null | undefined }> } | null | undefined };
+
+export type DeleteSegnalazioneMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteSegnalazioneMutation = { __typename?: 'mutation_root', delete_segnalazione?: { __typename?: 'segnalazione_mutation_response', affected_rows: number } | null | undefined };
 
 export type PrioritaSelectQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
@@ -15109,7 +19128,7 @@ export type TipologiaDissesoSelectQueryVariables = Exact<{
 }>;
 
 
-export type TipologiaDissesoSelectQuery = { __typename?: 'query_root', _tipologia_dissesto: Array<{ __typename?: '_tipologia_dissesto', id: number, nome: string }> };
+export type TipologiaDissesoSelectQuery = { __typename?: 'query_root', _tipologia_dissesto: Array<{ __typename?: '_tipologia_dissesto', id: number, nome: string, intervento?: string | null | undefined }> };
 
 export type SezioneProtocolloSelectQueryVariables = Exact<{
   where?: Maybe<_Sezione_Protocollo_Bool_Exp>;
@@ -15137,6 +19156,42 @@ export type SegnalazioneSelectQueryVariables = Exact<{
 
 
 export type SegnalazioneSelectQuery = { __typename?: 'query_root', segnalazione: Array<{ __typename?: 'segnalazione', id: number, created_at: any, protocollo?: { __typename?: 'protocollo', numero?: string | null | undefined, data?: any | null | undefined } | null | undefined }> };
+
+export type SquadrePisSelectQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  where?: Maybe<Squadra_Bool_Exp>;
+}>;
+
+
+export type SquadrePisSelectQuery = { __typename?: 'query_root', squadra: Array<{ __typename?: 'squadra', id: number, nome: string, protezione_civile: boolean }> };
+
+export type CondizioniTrafficoSelectQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  nome?: Maybe<String_Comparison_Exp>;
+}>;
+
+
+export type CondizioniTrafficoSelectQuery = { __typename?: 'query_root', _condizioni_traffico: Array<{ __typename?: '_condizioni_traffico', id: number, nome: string }> };
+
+export type GiorniTrascorsiSelectQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  nome?: Maybe<String_Comparison_Exp>;
+}>;
+
+
+export type GiorniTrascorsiSelectQuery = { __typename?: 'query_root', _giorni_trascorsi: Array<{ __typename?: '_giorni_trascorsi', id: number, nome: string }> };
+
+export type MaterialeSelectQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  nome?: Maybe<String_Comparison_Exp>;
+}>;
+
+
+export type MaterialeSelectQuery = { __typename?: 'query_root', _materiale: Array<{ __typename?: '_materiale', id: number, nome: string }> };
 
 export type SquadrePisSubscriptionVariables = Exact<{
   where?: Maybe<Squadra_Bool_Exp>;
@@ -15367,6 +19422,51 @@ export const ConnessioniGrafoSelectDocument = gql`
       super(apollo);
     }
   }
+export const DiarioDocument = gql`
+    subscription Diario($id: Int!) {
+  diario(where: {segnalazione_id: {_eq: $id}}, order_by: {created_at: desc}) {
+    created_at
+    messaggio
+    allegato {
+      file
+      id
+      nome
+      tipo
+      created_at
+    }
+    utente
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DiarioGQL extends Apollo.Subscription<DiarioSubscription, DiarioSubscriptionVariables> {
+    document = DiarioDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const InsertDiarioDocument = gql`
+    mutation InsertDiario($objects: [diario_insert_input!] = {}) {
+  insert_diario(objects: $objects) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class InsertDiarioGQL extends Apollo.Mutation<InsertDiarioMutation, InsertDiarioMutationVariables> {
+    document = InsertDiarioDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const InterventiStraordinariDocument = gql`
     subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = {}) {
   intervento_straordinario(where: $where) {
@@ -15417,7 +19517,7 @@ export const InterventiStraordinariDocument = gql`
     data_fine_lavori
     tipologia_intervento
     lavori_effettuati
-    stato_fine_lavori
+    stato
     allegati {
       id
       file
@@ -15439,8 +19539,8 @@ export const InterventiStraordinariDocument = gql`
     }
   }
 export const InterventoStraordinarioDocument = gql`
-    query InterventoStraordinario($id: Int!) {
-  intervento_straordinario(where: {id: {_eq: $id}}) {
+    query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
+  intervento_straordinario(where: $where) {
     id
     municipalita {
       id
@@ -15511,7 +19611,7 @@ export const InterventoStraordinarioDocument = gql`
     data_fine_lavori
     tipologia_intervento
     lavori_effettuati
-    stato_fine_lavori
+    stato
     allegati {
       id
       file
@@ -15558,36 +19658,35 @@ export const UpdateInterventoStraordinarioDocument = gql`
       super(apollo);
     }
   }
-export const SegnalazioneDocument = gql`
-    query Segnalazione($id: Int!) {
-  segnalazione(where: {id: {_eq: $id}}) {
+export const DeleteInterventoStraordinarioDocument = gql`
+    mutation DeleteInterventoStraordinario($id: Int!) {
+  delete_intervento_straordinario(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteInterventoStraordinarioGQL extends Apollo.Mutation<DeleteInterventoStraordinarioMutation, DeleteInterventoStraordinarioMutationVariables> {
+    document = DeleteInterventoStraordinarioDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SegnalazioniDocument = gql`
+    subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
+  segnalazione(where: $where) {
     id
-    municipalita {
-      id
-      nome
-    }
-    quartiere {
-      id
-      nome
-      municipalita {
-        municipalita_id
-      }
-    }
-    toponimo {
-      id
-      nome
-      dug {
-        id
-        nome
-      }
-      codice
-      assegnazioni {
-        quartiere_id
-      }
-    }
+    municipalita_id
+    quartiere_id
+    toponimo_id
     municipalita_storica
     quartiere_storico
     toponimo_storico
+    data
     tecnico_referente {
       id
       nome
@@ -15613,6 +19712,7 @@ export const SegnalazioneDocument = gql`
       id
       destinatari {
         id
+        e_esterno
         destinatario_interno {
           id
           nome
@@ -15683,14 +19783,296 @@ export const SegnalazioneDocument = gql`
       }
     }
     segnalazioni_collegate {
-      id
       segnalazione {
         id
+        created_at
         protocollo {
           data
           numero
         }
         stato
+      }
+    }
+    eventi {
+      stato
+      note
+      squadra {
+        nome
+      }
+      protocollo {
+        numero
+        data
+        note
+      }
+      created_at
+      risolutore {
+        protocollo {
+          numero
+          data
+        }
+      }
+    }
+    intervento {
+      id
+      assistenza_pm
+      condizioni_traffico {
+        nome
+        id
+      }
+      attrezzature_impiegate {
+        id
+        nome
+        quantita
+      }
+      data_fine_lavori
+      data_inizio_lavori
+      difformita
+      dissesto_difforme
+      giorni_trascorsi {
+        id
+        nome
+      }
+      materiali_dissesto {
+        id
+        materiale {
+          id
+          nome
+        }
+        quantita
+        altro
+      }
+      segnaletica_lasciata {
+        id
+        nome
+        quantita
+      }
+      note
+      veicoli_impiegati {
+        id
+        targa
+      }
+      allegati {
+        id
+        file
+        nome
+        tipo
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SegnalazioniGQL extends Apollo.Subscription<SegnalazioniSubscription, SegnalazioniSubscriptionVariables> {
+    document = SegnalazioniDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SegnalazioneDocument = gql`
+    query Segnalazione($where: segnalazione_bool_exp!) {
+  segnalazione(where: $where) {
+    id
+    municipalita {
+      id
+      nome
+    }
+    quartiere {
+      id
+      nome
+      municipalita {
+        municipalita_id
+      }
+    }
+    toponimo {
+      id
+      nome
+      dug {
+        id
+        nome
+      }
+      codice
+      assegnazioni {
+        quartiere_id
+      }
+    }
+    municipalita_storica
+    quartiere_storico
+    toponimo_storico
+    data
+    tecnico_referente {
+      id
+      nome
+      cognome
+      titolo {
+        id
+        nome
+      }
+    }
+    priorita {
+      id
+      nome
+    }
+    protocollo {
+      note
+      numero
+      mittente {
+        id
+        nome
+        sigla
+        codice
+      }
+      id
+      destinatari {
+        id
+        e_esterno
+        destinatario_interno {
+          id
+          nome
+          codice
+          sigla
+        }
+        destinatario_esterno {
+          id
+          cognome
+          email
+          codice_fiscale
+          nome
+        }
+      }
+      data
+    }
+    stato
+    richiesta_protezione_civile
+    allegati {
+      id
+      file
+      nome
+      tipo
+    }
+    dissesto {
+      id
+      note
+      peso
+      prima_dimensione
+      profondita
+      seconda_dimensione
+      terza_dimensione
+      tipologia {
+        id
+        nome
+        intervento
+      }
+      forma {
+        id
+        nome
+      }
+    }
+    posizionamento_toponimo_punto_iniziale {
+      civico
+      connessione
+      geoloc
+      id
+      ipi
+      km
+      note
+      specifica {
+        id
+        nome
+      }
+      tipologia {
+        id
+        nome
+      }
+    }
+    diario {
+      id
+      messaggio
+      utente
+      allegato {
+        id
+        file
+        nome
+        tipo
+      }
+    }
+    segnalazioni_collegate {
+      segnalazione {
+        id
+        created_at
+        protocollo {
+          data
+          numero
+        }
+        stato
+      }
+    }
+    eventi {
+      stato
+      note
+      squadra {
+        nome
+      }
+      protocollo {
+        numero
+        data
+        note
+      }
+      created_at
+      risolutore {
+        protocollo {
+          numero
+          data
+        }
+      }
+    }
+    intervento {
+      id
+      assistenza_pm
+      condizioni_traffico {
+        nome
+        id
+      }
+      attrezzature_impiegate {
+        id
+        nome
+        quantita
+      }
+      data_fine_lavori
+      data_inizio_lavori
+      difformita
+      dissesto_difforme
+      giorni_trascorsi {
+        id
+        nome
+      }
+      materiali_dissesto {
+        id
+        materiale {
+          id
+          nome
+        }
+        quantita
+        altro
+      }
+      segnaletica_lasciata {
+        id
+        nome
+        quantita
+      }
+      note
+      veicoli_impiegati {
+        id
+        targa
+      }
+      allegati {
+        id
+        file
+        nome
+        tipo
       }
     }
   }
@@ -15712,11 +20094,44 @@ export const UpdateSegnalazioneDocument = gql`
   insert_segnalazione(objects: $segnalazione, on_conflict: $on_conflict) {
     returning {
       id
+      protocollo {
+        destinatari {
+          id
+          destinatario_esterno {
+            id
+          }
+        }
+      }
       allegati {
         id
         file
         nome
         tipo
+      }
+      segnalazioni_collegate {
+        segnalazione {
+          id
+        }
+      }
+      intervento {
+        attrezzature_impiegate {
+          id
+        }
+        materiali_dissesto {
+          id
+        }
+        segnaletica_lasciata {
+          id
+        }
+        veicoli_impiegati {
+          id
+        }
+        allegati {
+          id
+          file
+          nome
+          tipo
+        }
       }
     }
   }
@@ -15728,6 +20143,24 @@ export const UpdateSegnalazioneDocument = gql`
   })
   export class UpdateSegnalazioneGQL extends Apollo.Mutation<UpdateSegnalazioneMutation, UpdateSegnalazioneMutationVariables> {
     document = UpdateSegnalazioneDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteSegnalazioneDocument = gql`
+    mutation DeleteSegnalazione($id: Int!) {
+  delete_segnalazione(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteSegnalazioneGQL extends Apollo.Mutation<DeleteSegnalazioneMutation, DeleteSegnalazioneMutationVariables> {
+    document = DeleteSegnalazioneDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -15865,6 +20298,7 @@ export const TipologiaDissesoSelectDocument = gql`
   ) {
     id
     nome
+    intervento
   }
 }
     `;
@@ -15952,6 +20386,98 @@ export const SegnalazioneSelectDocument = gql`
   })
   export class SegnalazioneSelectGQL extends Apollo.Query<SegnalazioneSelectQuery, SegnalazioneSelectQueryVariables> {
     document = SegnalazioneSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SquadrePisSelectDocument = gql`
+    query SquadrePisSelect($limit: Int = 10, $offset: Int = 0, $where: squadra_bool_exp = {}) {
+  squadra(order_by: {nome: asc}, limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    protezione_civile
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SquadrePisSelectGQL extends Apollo.Query<SquadrePisSelectQuery, SquadrePisSelectQueryVariables> {
+    document = SquadrePisSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CondizioniTrafficoSelectDocument = gql`
+    query CondizioniTrafficoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _condizioni_traffico(
+    order_by: {nome: asc}
+    limit: $limit
+    offset: $offset
+    where: {nome: $nome}
+  ) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CondizioniTrafficoSelectGQL extends Apollo.Query<CondizioniTrafficoSelectQuery, CondizioniTrafficoSelectQueryVariables> {
+    document = CondizioniTrafficoSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GiorniTrascorsiSelectDocument = gql`
+    query GiorniTrascorsiSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _giorni_trascorsi(
+    order_by: {nome: asc}
+    limit: $limit
+    offset: $offset
+    where: {nome: $nome}
+  ) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GiorniTrascorsiSelectGQL extends Apollo.Query<GiorniTrascorsiSelectQuery, GiorniTrascorsiSelectQueryVariables> {
+    document = GiorniTrascorsiSelectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MaterialeSelectDocument = gql`
+    query MaterialeSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  _materiale(
+    order_by: {nome: asc}
+    limit: $limit
+    offset: $offset
+    where: {nome: $nome}
+  ) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MaterialeSelectGQL extends Apollo.Query<MaterialeSelectQuery, MaterialeSelectQueryVariables> {
+    document = MaterialeSelectDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

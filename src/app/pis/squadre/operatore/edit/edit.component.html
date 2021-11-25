@@ -1,4 +1,4 @@
-<form-component [scrollable]="true" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="actionsTemplate" [form]="form"></form-component>
+<form-component [scrollable]="false" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="actionsTemplate" [form]="form"></form-component>
 <ng-template #actionsTemplate>
     <button mat-button color="accent" (click)="save()" [disabled]="!form.valid">{{ 'Salva'|translate }}</button>
     <button mat-button mat-dialog-close color="warn">{{ 'Chiudi'|translate }}</button>

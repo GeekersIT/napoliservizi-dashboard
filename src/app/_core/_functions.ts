@@ -57,3 +57,15 @@ export async function fileListToBase64(fileList:any) {
     // array with base64 strings
     return files;
   }
+
+
+  export function b64toBlob(b64Data:string, contentType=''){
+    var byteString = atob(b64Data.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: contentType });
+  }

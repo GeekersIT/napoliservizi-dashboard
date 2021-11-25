@@ -8,5 +8,9 @@ import { FieldType } from '@ngx-formly/material';
   styleUrls: ['./file-upload-fornly.component.scss']
 })
 export class FileUploadFornlyComponent extends FieldType {
-  formControl!: FormControl;
+  toControl(absCtrl: AbstractControl): FormControl {
+    const ctrl = absCtrl as FormControl;
+    // if(!ctrl) throw;
+    return ctrl;
+  }
 }

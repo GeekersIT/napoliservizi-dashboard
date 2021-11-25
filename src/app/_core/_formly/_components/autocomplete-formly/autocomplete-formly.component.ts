@@ -3,7 +3,7 @@ import { MatInput } from '@angular/material/input';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, mergeMap, scan, startWith, switchMap, takeWhile, tap } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FieldType } from '@ngx-formly/material';
 
@@ -15,7 +15,7 @@ import { FieldType } from '@ngx-formly/material';
 export class AutocompleteFormlyComponent extends FieldType implements OnInit, AfterViewInit  {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedData: any[] = new Array<any>();    
-  formControl!: FormControl;
+  // formControl!: FormControl;
   @ViewChild(MatInput) formFieldControl!: MatInput;
   @ViewChild(MatAutocompleteTrigger) autocomplete!: MatAutocompleteTrigger;
 
@@ -80,7 +80,7 @@ export class AutocompleteFormlyComponent extends FieldType implements OnInit, Af
   }
 
   ngAfterViewInit() {
-    // super.ngAfterViewInit();
+    super.ngAfterViewInit();
     (<any> this.autocomplete)._formField = this.formField;
   }
 
@@ -111,6 +111,11 @@ export class AutocompleteFormlyComponent extends FieldType implements OnInit, Af
     this.nextPage$.next({});
   }
 
+  toControl(absCtrl: AbstractControl): FormControl {
+    const ctrl = absCtrl as FormControl;
+    // if(!ctrl) throw;
+    return ctrl;
+  }
 }
 
 

@@ -25,8 +25,6 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginationIntlService } from './_core/_services/mat-pagination-intl.service';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
-// import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly';
-// import { FormlyMaterialModule } from '@ngx-formly/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './_core/_components/confirm-dialog/confirm-dialog.component';
@@ -115,7 +113,7 @@ export const APP_LOCALE_ID = 'it';
       extras: { lazyRender: true },
       types: [
         { name: 'datepicker', defaultOptions: { templateOptions: { datepickerOptions: { datepickerTogglePosition: 'prefix' }}}},
-        { name: 'textarea', defaultOptions: { templateOptions: { row: 5 } } },
+        { name: 'textarea', defaultOptions: { templateOptions: { rows: 5 } } },
         { name: 'input', defaultOptions: { templateOptions: { step: 0.1 } } }
       ]
     }),

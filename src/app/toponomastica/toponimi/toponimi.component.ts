@@ -12,6 +12,7 @@ import { ToponimoObj } from 'src/app/_core/_models/toponomastica/toponimo.interf
 import { DeleteToponimoGQL, DugSelectGQL, TipologiaSelectGQL, ToponimiGQL, ToponimiSubscription } from 'src/app/_core/_services/generated/graphql';
 import { ToponimiEditComponent } from './edit/edit.component';
 import { SubscriptionResult } from 'apollo-angular';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-toponimi',
@@ -109,7 +110,8 @@ export class ToponimiComponent implements OnInit {
     private _toponimiGQL: ToponimiGQL,
     private _translateService: TranslateService,
     private _snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _loaderService: NgxUiLoaderService,
   ) {
     this.dataSource = new DataSource();
   }
@@ -187,12 +189,15 @@ export class ToponimiComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        this._loaderService.start();
         this._deleteToponimoGQL.mutate({id:row!.id}).subscribe({
           error: (e) => {
+            this._loaderService.stop();
             if(e.message.includes('Foreign key violation')){
               this._snackBar.open(this._translateService.instant('Non è possibile eliminare il toponimo perchè è parte di un quartiere o lo è stato in passato.'), this._translateService.instant('Ho capito!'));
             }
-          }
+          },
+          complete: () => this._loaderService.stop()
         });
       }
     })

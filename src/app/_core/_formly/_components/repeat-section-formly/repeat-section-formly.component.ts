@@ -8,10 +8,6 @@ import { FieldArrayType } from '@ngx-formly/core';
 })
 export class RepeatSectionFormlyComponent  extends FieldArrayType {
 
-  a(){
-    setTimeout(() => this.add(), 1000);
-  }
-
 
   delete(i:any){
     this._iter(this.formControl);

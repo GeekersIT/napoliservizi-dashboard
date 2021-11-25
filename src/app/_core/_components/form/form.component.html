@@ -1,29 +1,24 @@
-
-
-
-<div class="h">
+<div class="h" *ngIf="scrollable; else noScroll">
     <ng-scrollbar>
-        <form [formGroup]="form" (ngSubmit)="submit($event)">
-            <mat-toolbar style="z-index: 20;">
-                <span class="spacer"></span>
-                <!-- <button type="button" mat-stroked-button color="warn" (click)="resetModel()">{{'Reset'|translate}}</button> -->
-                <ng-container *ngTemplateOutlet="actionsTemplate;"></ng-container>
-            </mat-toolbar>
-            <br />
-            <formly-form style="margin:24px;" [model]="model" [fields]="fields" [options]="options" [form]="form" (modelChange)="change($event)"></formly-form>
-        </form>
+        <ng-container *ngTemplateOutlet="formRef;"></ng-container>
     </ng-scrollbar>
 </div>
+<ng-template #noScroll>
+    <ng-container *ngTemplateOutlet="formRef;"></ng-container>
+</ng-template>
 
-
-<!-- <ng-template #noScroll>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <mat-toolbar >
+<ng-template #formRef>
+    <form [formGroup]="form" (ngSubmit)="submit($event)">
+        <mat-toolbar style="z-index: 20;">
             <span class="spacer"></span>
-            <button type="button" mat-button (click)="resetModel()">{{'Reset'|translate}}</button>
+            <button type="button" mat-stroked-button color="yellow" (click)="resetModel()" *ngIf="reset">
+                {{'Ripristina'|translate}}
+            </button>
             <ng-container *ngTemplateOutlet="actionsTemplate;"></ng-container>
         </mat-toolbar>
         <br />
-        <formly-form style="margin:24px;" [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+        <div class="form-container">
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form" (modelChange)="change($event)"></formly-form>
+        </div>
     </form>
-</ng-template> -->
+</ng-template>

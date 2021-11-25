@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { map } from 'rxjs/operators';
+import { Dirty } from 'src/app/_core/_components/form/form.component';
 import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
 import { Assegnazione_Squadra_Constraint, Assegnazione_Squadra_Update_Column, OperatorePisSelectGQL, Squadra_Insert_Input, UpdateSquadraPisGQL } from 'src/app/_core/_services/generated/graphql';
 
@@ -12,7 +13,7 @@ import { Assegnazione_Squadra_Constraint, Assegnazione_Squadra_Update_Column, Op
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class SquadraEditComponent implements OnInit {
+export class SquadraEditComponent extends Dirty implements OnInit  {
   options: FormlyFormOptions = {};
   form: FormGroup = new FormGroup({});
   model: any = {};
@@ -140,6 +141,7 @@ export class SquadraEditComponent implements OnInit {
     public dialogRef: MatDialogRef<SquadraEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: SquadraPisObj
   ) {
+    super();
     if(this.data)
       this.model = {
         ...this.model, 
@@ -160,7 +162,7 @@ export class SquadraEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  save(){
+  save(event:any){
     const oldMembri = this.data ? this.data.membri : [];
     const newMembri = this.model.membri ? this.model.membri : [];
 
@@ -215,5 +217,4 @@ export class SquadraEditComponent implements OnInit {
 
     this._updateSquadraPisGQL.mutate({squadra}).subscribe(d => this.dialogRef.close(d));
   }
-
 }

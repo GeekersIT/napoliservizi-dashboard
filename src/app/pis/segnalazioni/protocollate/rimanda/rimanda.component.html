@@ -1,0 +1,10 @@
+<mat-toolbar>
+    <span>{{ 'Rimanda provvisorie'|translate }}</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<form-component [autosave]="false" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="actionsTemplate" [form]="form" (onSubmit)="save($event)" (changeEvent)="change($event)"></form-component>
+<ng-template #actionsTemplate>
+    <!-- <button mat-stroked-button color="accent" type="submit" name="bozza"><mat-icon *ngIf="saving">save</mat-icon> {{ 'Salva in bozza'|translate }}</button> -->
+    <button mat-raised-button color="success" type="submit" name="def">{{ 'Rimanda'|translate }}</button>
+</ng-template>

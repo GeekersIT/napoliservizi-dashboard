@@ -4,13 +4,13 @@
     <mat-icon *ngIf="to.orientation=='horizontal'">more_vert</mat-icon>
     <mat-icon *ngIf="to.orientation=='vertical'">more_horiz</mat-icon>
   </button>
-  <mat-stepper style="margin-top: -40px;" [orientation]="to.orientation||'horizontal'" [labelPosition]="to.labelPosition||'bottom'" [@.disabled]="true" (selectionChange)="onStepChange($event)">
+  <mat-stepper 
+    [selectedIndex]="to.activeStep" style="margin-top: -40px;" [orientation]="to.orientation||'horizontal'" [labelPosition]="to.labelPosition||'bottom'" [@.disabled]="true" 
+    (selectionChange)="onStepChange($event)">
     <ng-template matStepperIcon="number">
       <mat-icon>more_horiz</mat-icon>
-    </ng-template>    
-    
-    
-      <mat-step 
+    </ng-template>
+      <mat-step [aria-label]="step.key+''||''"
         [hasError]="!isValid(step)"
         *ngFor="let step of field.fieldGroup; let index = index; let last = last;">
         <ng-template matStepLabel>{{ step.templateOptions!.label }}</ng-template>

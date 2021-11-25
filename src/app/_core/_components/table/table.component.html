@@ -18,6 +18,12 @@
         <mat-button-toggle (click)="exporter.exportTable('csv')" matTooltip="{{ 'Esporta in CSV'|translate }}">
             <mat-icon>view_list</mat-icon>
         </mat-button-toggle>
+        <mat-button-toggle matTooltip="{{ 'Risoluzione multipla'|translate }}" *ngIf="selectionRef.show" (click)="toggleSelection()">
+            <mat-icon>rule</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle matTooltip="{{ 'Risolvi'|translate }}" *ngIf="selectionRef.active" (click)="selectionRef.action(selection.selected)">
+            <mat-icon>gavel</mat-icon>
+        </mat-button-toggle>
     </mat-button-toggle-group>
     <mat-form-field appearance="outline">
         <mat-label>{{ 'Cerca'|translate }}</mat-label>
@@ -40,6 +46,27 @@
 
 <mat-progress-bar *ngIf="dataSource.isLoading|async"  mode="query"></mat-progress-bar>
 <table mat-table [dataSource]="source" matSort matTableExporter #exporter="matTableExporter" multiTemplateDataRows [matSortActive]="defaultSort.column" [matSortDirection]="defaultSort.direction" matSortDisableClear>
+  
+        <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+        </td>
+    </ng-container>
+
+
+
 
     <ng-container [matColumnDef]="'expands'" >
         <th mat-header-cell *matHeaderCellDef></th>
@@ -69,6 +96,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
         class="element-row"
         [class.expanded-row]="expandedElement === row"
+        (click)="selectionToggle(row)"
     ></tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 

@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DataSource } from './data-source.model';
+import { SelectionModel } from '@angular/cdk/collections';
+import { I } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'table-component',
@@ -21,6 +23,11 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  @Input() selectionRef: any = {
+    show: false,
+    action: () => {},
+    active: false
+  };
   @Input() expandsTemplate: TemplateRef<any>|undefined = undefined;
   @Input() actionsTemplate: TemplateRef<any>|undefined = undefined;
   @Input() filterTemplate: TemplateRef<any>|undefined = undefined;
@@ -32,6 +39,10 @@ export class TableComponent implements OnInit {
   @Input() columns!: Array<any>;
 
   source: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+
+  selection = new SelectionModel<any>(true, []);
+
+
   expandedElement: any | null;
   displayedColumns!: string[];
   pageSize: number = 10;
@@ -84,6 +95,49 @@ export class TableComponent implements OnInit {
     this.paginator.length = this.pageSize;
     this.paginator.pageSize = this.pageSize;
     this.source.paginator = this.paginator;
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.source.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.source.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  toggleSelection(){
+    if(this.selectionRef.show){
+      let index = this.displayedColumns.indexOf('select');
+      if(index>-1){
+        this.selectionRef.active = false;
+        this.displayedColumns.splice(index,1)
+      }else{
+        this.selectionRef.active = true;
+        this.displayedColumns = ['select'].concat(this.displayedColumns)
+      }
+    }
+  }
+
+
+  selectionToggle(row:any){
+    if(this.selectionRef.active) this.selection.toggle(row)
   }
 
 }

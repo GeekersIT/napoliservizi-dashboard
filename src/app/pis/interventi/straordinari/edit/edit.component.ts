@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { BehaviorSubject, firstValueFrom, map, mergeMap } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { marker } from 'src/app/_core/_formly/_components/mappa-formly/mappa-formly.component';
 import { base64ListToFile, fileListToBase64 } from 'src/app/_core/_functions';
-import { Allegato_Constraint, Allegato_Update_Column, CiviciSelectGQL, ConnessioniGrafoSelectGQL, InterventoStraordinarioGQL, Intervento_Straordinario_Constraint, Intervento_Straordinario_Update_Column, MunicipalitaSelectGQL, Posizionamento_Toponimo_Constraint, Posizionamento_Toponimo_Update_Column, PrioritaSelectGQL, QuartiereSelectGQL, SostegniIpiSelectGQL, SpecificaPosizionamentoToponimoSelectGQL, TipologiaPosizionamentoToponimoSelectGQL, ToponimoNomeSelectGQL, ToponimoSelectGQL, UpdateInterventoStraordinarioGQL } from 'src/app/_core/_services/generated/graphql';
+import { Allegato_Constraint, Allegato_Update_Column, CiviciSelectGQL, ConnessioniGrafoSelectGQL, InterventoStraordinarioGQL, Intervento_Straordinario_Constraint, Intervento_Straordinario_Update_Column, MunicipalitaSelectGQL, Posizionamento_Toponimo_Constraint, Posizionamento_Toponimo_Update_Column, PrioritaSelectGQL, QuartiereSelectGQL, SostegniIpiSelectGQL, SpecificaPosizionamentoToponimoSelectGQL, TipologiaPosizionamentoToponimoSelectGQL, ToponimoNomeSelectGQL, ToponimoSelectGQL, UpdateInterventoStraordinarioGQL, _Stato_Segnalazione_Enum } from 'src/app/_core/_services/generated/graphql';
 import { Dirty } from 'src/app/_core/_components/form/form.component';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
@@ -22,7 +22,11 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
   model: any = {};
   options: FormlyFormOptions = {};
   id: number;
-  allegati: Array<any> = [];
+
+  startData: any = {
+    allegati: []
+  }
+
   saving: boolean = false;
 
   fields: FormlyFieldConfig[] = [{
@@ -30,14 +34,15 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
     templateOptions:{
       orientation:'horizontal'
     },
-    fieldGroup: [{        
-        expressionProperties: {
-          'templateOptions.label': this._translateService.stream('Localizzazione segnalazione'),
-        },
-        fieldGroup: [{
-          fieldGroupClassName: 'display-flex',
-          fieldGroup: [
-            {
+    fieldGroup: [
+        {
+          expressionProperties: {
+            "templateOptions.label": this._translateService.stream('Localizzazione intervento')
+          },
+          key: 'localizzazione',
+          fieldGroup: [{
+            fieldGroupClassName: 'display-flex',
+            fieldGroup: [{
               className: 'flex-1',
               type: 'autocomplete',
               key: 'municipalita',
@@ -84,7 +89,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               },
               hooks: {
                 onInit: (field) => {
-                  field!.templateOptions!.parent = field?.parent?.fieldGroup?.find(f => f.key === 'municipalita')?.formControl;
+                  field!.templateOptions!.parent = field?.parent?.fieldGroup![0].formControl;
                 }
               },
               expressionProperties: {
@@ -112,26 +117,26 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
                   map(result => result.data?.toponimo ) 
                 ),
                 parentReset: (field: FormlyFieldConfig) => {
-
+                  // LOCALIZZAZIONE PUNTO INIZIALE
                   field.parent?.parent?.fieldGroup![1].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![0].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![3].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![3].formControl?.reset();
-
+                  
+                  //LOCALIZZAZIONE PUNTO FINALE
                   field.parent?.parent?.fieldGroup![2].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![0].formControl?.reset();
                   field.parent?.parent?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl?.reset();
                   field.parent?.parent?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![3].formControl?.reset();
                   field.parent?.parent?.fieldGroup![2].fieldGroup![3].formControl?.reset();
-
                 }
               },
               hooks: {
                 onInit: (field) => {             
-                  field!.templateOptions!.parent = field?.parent?.fieldGroup?.find(f => f.key === 'quartiere')?.formControl
+                  field!.templateOptions!.parent = field?.parent?.fieldGroup![1].formControl
                 }
               },
               expressionProperties: {
@@ -140,8 +145,9 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
             }]
           },{
             key: 'posizionamento_toponimo_punto_iniziale',
-            hideExpression: (model: any, formState:any, field: FormlyFieldConfig | undefined) => field?.parent?.parent?.fieldGroup![0].fieldGroup![0].fieldGroup![2].formControl?.value == null,
-            fieldGroup: [{
+            hideExpression: (model: any, formState:any, field: FormlyFieldConfig | undefined) => field?.parent?.fieldGroup![0].fieldGroup![2].formControl?.value == null,
+            fieldGroup: [
+              {
                 className: 'section-label',
                 template: '<h3><b>'+this._translateService.instant('Punto iniziale')+'</b></h3>',
               },{
@@ -169,7 +175,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               },
             },{
               fieldGroup: [{
-                hideExpression: (model: any, formState:any) => !(model.tipologia && [1,2].includes(model.tipologia.id)),
+                hideExpression: (model: any, formState:any, field?: FormlyFieldConfig) => !(field?.parent?.parent?.fieldGroup![1].formControl?.value && [1,2].includes(field?.parent?.parent?.fieldGroup[1].formControl?.value.id)),
                 fieldGroupClassName: 'display-flex',
                 fieldGroup: [{
                   className: 'flex-1',
@@ -213,7 +219,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
                   },
                   hooks: {
                     onInit: (field) => {
-                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                     }
                   },
                   hideExpression: (model: any, formState:any) => !(model.specifica && [1].includes(model.specifica.id)),
@@ -245,7 +251,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
                   },
                   hooks: {
                     onInit: (field) => {
-                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                     }
                   },
                   hideExpression: (model: any, formState:any) => !(model.specifica && [2].includes(model.specifica.id)),
@@ -297,10 +303,10 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               },
               hooks: {
                 onInit: (field) => {
-                  field!.templateOptions!.parent = field?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                  field!.templateOptions!.parent = field?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                 }
               },
-              hideExpression: (model: any, formState:any) => !(model.tipologia && [3,4].includes(model.tipologia.id)),
+              hideExpression: (model: any, formState:any, field?: FormlyFieldConfig) => !(field?.parent?.fieldGroup![1].formControl?.value && [3,4].includes(field?.parent?.fieldGroup[1].formControl?.value.id)),
               expressionProperties: {
                 'templateOptions.label': (model: any, formState: any) => this._translateService.instant('Incrocio'),
               },
@@ -320,12 +326,12 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               className: 'hidden',
               type: 'input',
               templateOptions: {
-                required:true,
+                readonly:true,
               },
             }]
           },{
             key: 'posizionamento_toponimo_punto_finale',
-            hideExpression: (model: any, formState:any, field: FormlyFieldConfig | undefined) => field?.parent?.parent?.fieldGroup![0].fieldGroup![0].fieldGroup![2].formControl?.value == null,
+            hideExpression: (model: any, formState:any, field: FormlyFieldConfig | undefined) => field?.parent?.fieldGroup![0].fieldGroup![2].formControl?.value == null,
             fieldGroup: [
               {
                 className: 'section-label',
@@ -355,7 +361,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               },
             },{
               fieldGroup: [{
-                hideExpression: (model: any, formState:any) => !(model.tipologia && [1,2].includes(model.tipologia.id)),
+                hideExpression: (model: any, formState:any, field?: FormlyFieldConfig) => !(field?.parent?.parent?.fieldGroup![1].formControl?.value && [1,2].includes(field?.parent?.parent?.fieldGroup[1].formControl?.value.id)),
                 fieldGroupClassName: 'display-flex',
                 fieldGroup: [{
                   className: 'flex-1',
@@ -399,7 +405,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
                   },
                   hooks: {
                     onInit: (field) => {
-                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                     }
                   },
                   hideExpression: (model: any, formState:any) => !(model.specifica && [1].includes(model.specifica.id)),
@@ -431,7 +437,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
                   },
                   hooks: {
                     onInit: (field) => {
-                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                      field!.templateOptions!.parent = field?.parent?.parent?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                     }
                   },
                   hideExpression: (model: any, formState:any) => !(model.specifica && [2].includes(model.specifica.id)),
@@ -483,10 +489,10 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               },
               hooks: {
                 onInit: (field) => {
-                  field!.templateOptions!.parent = field?.parent?.parent?.fieldGroup![0].fieldGroup?.find(f => f.key == 'toponimo')?.formControl
+                  field!.templateOptions!.parent = field?.parent?.parent?.fieldGroup![0].fieldGroup![2].formControl
                 }
               },
-              hideExpression: (model: any, formState:any) => !(model.tipologia && [3,4].includes(model.tipologia.id)),
+              hideExpression: (model: any, formState:any, field?: FormlyFieldConfig) => !(field?.parent?.fieldGroup![1].formControl?.value && [3,4].includes(field?.parent?.fieldGroup[1].formControl?.value.id)),
               expressionProperties: {
                 'templateOptions.label': (model: any, formState: any) => this._translateService.instant('Incrocio'),
               },
@@ -506,322 +512,240 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
               className: 'hidden',
               type: 'input',
               templateOptions: {
-                required:true,
+                readonly:true,
               },
             }]
-          }
-        ]
-      },{
-        expressionProperties: {
-          'templateOptions.label': this._translateService.stream('Geo-localizzazione'),
-        },
-        fieldGroup: [{
-          fieldGroupClassName: 'display-flex',
-          key: 'punto_iniziale_geoloc',
-          fieldGroup: [{
-            className: 'flex-1',
-            key: 'label_punto_iniziale',
-            type: 'input',
-            defaultValue: 'Punto iniziale',
-            templateOptions: {
-              disabled: true,
-              _prefix: {
-                icon: "place",
-                color: "accent"
-              }
-            },
-          },{
-            key: 'latitudine',
-            className: 'flex-6',
-            type: 'input',
-            templateOptions: {
-              required: true,
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Latitutidine'),
-            }
-          },{
-            key: 'longitudine',
-            className: 'flex-6',
-            type: 'input',
-            templateOptions: {
-              required: true,
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Longitudine'),
-            }
           }]
         },{
-          fieldGroupClassName: 'display-flex',
-          key: 'punto_finale_geoloc',
+          expressionProperties: {
+            'templateOptions.label': this._translateService.stream('Geo-localizzazione'),
+          },
+          key: 'geolocalizzazione',
           fieldGroup: [{
-            className: 'flex-1',
-            key: 'label_punto_finale',
-            type: 'input',
-            defaultValue: 'Punto finale',
+            key: 'mappa',
+            type: 'mappa',
             templateOptions: {
-              disabled: true,
-              _prefix: {
-                icon: "place",
-                color: "warn"
+              lazyLoading: true
+            },
+            hooks: {
+              onInit: (field) => {
+                let punto_iniziale = field?.formControl?.value.find((f:marker) => f.key == 'punto_iniziale');
+                let punto_finale = field?.formControl?.value.find((f:marker) => f.key == 'punto_finale');
+                // CIVICO punto iniziale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: s.geom.coordinates[0],
+                      longitudine: s.geom.coordinates[1]
+                    })
+                  }else if(punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });
+                // IPI punto iniziale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: s.geom.coordinates[0][0],
+                      longitudine: s.geom.coordinates[0][1]
+                    })
+                  }else if(punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });
+                // CONNESSIONI punto iniziale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![1].fieldGroup![3].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: s.geom.coordinates[0],
+                      longitudine: s.geom.coordinates[1],
+                      propagate: true
+                    })
+                  }else if(punto_iniziale){
+                    punto_iniziale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });
+    
+                // CIVICO punto finale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: s.geom.coordinates[0],
+                      longitudine: s.geom.coordinates[1]
+                    })
+                  }else if(punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });
+                // IPI punto finale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: s.geom.coordinates[0][0],
+                      longitudine: s.geom.coordinates[0][1]
+                    })
+                  }else if(punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });
+                // CONNESSIONI punto finale
+                field?.parent?.parent?.fieldGroup?.find(f => f.key == 'localizzazione')?.fieldGroup![2].fieldGroup![3].formControl!.valueChanges.subscribe(s => {
+                  if(s && typeof s != 'string' && punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: s.geom.coordinates[0],
+                      longitudine: s.geom.coordinates[1],
+                      propagate: true
+                    })
+                  }else if(punto_finale){
+                    punto_finale.punto.next({
+                      latitudine: null,
+                      longitudine: null
+                    })
+                  }
+                });            
               }
-            },
-          },{
-            key: 'latitudine',
-            className: 'flex-6',
-            type: 'input',
-            templateOptions: {
-              required: true,
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Latitutidine'),
-            },
-          },{
-            key: 'longitudine',
-            className: 'flex-6',
-            type: 'input',
-            templateOptions: {
-              required: true,
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Longitudine'),
             },
           }]
         },{
-          key: 'mappa',
-          type: 'mappa',
-          templateOptions: {
-            markers: [
-              { key: 'punto_iniziale', coord: new BehaviorSubject<{lat:number,lon:number,propagate:boolean}>({lat:0,lon:0,propagate:false}), color: '#005dc1' },
-              { key: 'punto_finale', coord: new BehaviorSubject<{lat:number,lon:number,propagate:boolean}>({lat:0,lon:0,propagate:false}), color: '#f44336' },
-            ]
-          },
-          hooks: {
-            onInit: (field) => {
-              let punto_iniziale = field?.templateOptions!.markers.find((f:marker) => f.key == 'punto_iniziale');
-              let punto_finale = field?.templateOptions!.markers.find((f:marker) => f.key == 'punto_finale');
-              // CIVICO punto iniziale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_iniziale.coord.next({
-                    lat: s.geom.coordinates[0],
-                    lon: s.geom.coordinates[1],
-                    propagate: true
-                  })
-                }
-              });
-              // CIVICO punto finale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_finale.coord.next({
-                    lat: s.geom.coordinates[0],
-                    lon: s.geom.coordinates[1],
-                    propagate: true
-                  })
-                }
-              });
-              // IPI punto iniziale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_iniziale.coord.next({
-                    lat: s.geom.coordinates[0][0],
-                    lon: s.geom.coordinates[0][1],
-                    propagate: true
-                  })
-                }
-              });
-              // IPI punto finale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![2].fieldGroup![2].fieldGroup![0].fieldGroup![2].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_finale.coord.next({
-                    lat: s.geom.coordinates[0][0],
-                    lon: s.geom.coordinates[0][1],
-                    propagate: true
-                  })
-                }
-              });
-              // CONNESSIONI punto iniziale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![1].fieldGroup![3].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_iniziale.coord.next({
-                    lat: s.geom.coordinates[0],
-                    lon: s.geom.coordinates[1],
-                    propagate: true
-                  })
-                }
-              });
-              // CONNESSIONI punto finale
-              field?.parent?.parent?.fieldGroup![0].fieldGroup![2].fieldGroup![3].formControl!.valueChanges.subscribe(s => {
-                if(s && typeof s != 'string'){
-                  punto_finale.coord.next({
-                    lat: s.geom.coordinates[0],
-                    lon: s.geom.coordinates[1],
-                    propagate: true
-                  })
-                }
-              });
-              punto_iniziale.coord.subscribe((coord:any) => {                            
-                if(coord.propagate === undefined || coord.propagate == true){
-                  field?.parent?.fieldGroup![0].fieldGroup![1].formControl?.setValue(coord.lat);
-                  field?.parent?.fieldGroup![0].fieldGroup![2].formControl?.setValue(coord.lon);
-                }
-              });
-              punto_finale.coord.subscribe((coord:any) => {
-                if(coord.propagate === undefined || coord.propagate == true){
-                  field?.parent?.fieldGroup![1].fieldGroup![1].formControl?.setValue(coord.lat);
-                  field?.parent?.fieldGroup![1].fieldGroup![2].formControl?.setValue(coord.lon);
-                }
-              });
-              field?.parent?.fieldGroup![0].fieldGroup![1].formControl?.valueChanges.subscribe((lat:any) => {
-                let point = punto_iniziale.coord.value;
-                if(!point.propagate){
-                  point['lat'] = lat;
-                  point['propagate'] = false;
-                  punto_iniziale.coord.next(point);
-                }
-              });
-              field?.parent?.fieldGroup![0].fieldGroup![2].formControl?.valueChanges.subscribe((lon:any) => {
-                let point = punto_iniziale.coord.value;
-                if(!point.propagate){
-                  point['lon'] = lon;
-                  point['propagate'] = false;
-                  punto_iniziale.coord.next(point);
-                }
-              });
-              field?.parent?.fieldGroup![1].fieldGroup![1].formControl?.valueChanges.subscribe((lat:any) => {
-                let point = punto_finale.coord.value;
-                if(!point.propagate){
-                  point['lat'] = lat;
-                  point['propagate'] = false;
-                  punto_finale.coord.next(point);
-                }
-              });
-              field?.parent?.fieldGroup![1].fieldGroup![2].formControl?.valueChanges.subscribe((lon:any) => {
-                let point = punto_finale.coord.value;
-                if(!point.propagate){
-                  point['lon'] = lon;
-                  point['propagate'] = false;
-                  punto_finale.coord.next(point);
-                }
-              });
-            }
-          },
-        }    
-      ],
-    },{
-      expressionProperties: {
-        'templateOptions.label': this._translateService.stream('Allegati'),
-      },
-      fieldGroup: [{
-        key: 'allegati',
-        type: 'file',
-        templateOptions: {
-          uploadUrl: '/upload'
-        },
-        expressionProperties: {
-          'templateOptions.label': this._translateService.stream('Allegati'),
-        },
-      }],
-    },{
-      expressionProperties: {
-        'templateOptions.label': this._translateService.stream('Informazioni intervento'),
-      },
-      fieldGroup: [{
-          key: 'data_inserimento',
-          type: 'datepicker',
-          templateOptions: {
-            required: true,
-          },
           expressionProperties: {
-            'templateOptions.label': this._translateService.stream('Data inserimento')
+            'templateOptions.label': this._translateService.stream('Allegati'),
           },
-        },{
-          key: 'priorita',
-          type: 'autocomplete',
-          templateOptions: {
-            required: true,
-            filter: (term:any, limit:number, offset:number, parent?:any, ) => this._prioritaSelectGQL.watch({
-              limit: limit,
-              offset: offset,
-              ...(term && typeof term === 'string' ? { nome: { _ilike: "%"+term+"%" } } : {} )
-            }).valueChanges.pipe(
-              map(result => result.data?._priorita ) 
-            ),
-          },
-          expressionProperties: {
-            'templateOptions.label': this._translateService.stream('Priorità'),
-          },
-        },{
-          fieldGroupClassName: 'display-flex',
+          key: 'allegati',
           fieldGroup: [{
-            key: 'data_inizio_lavori',
-            className: 'flex-1',
-            type: 'datepicker',
+            key: 'allegati',
+            type: 'file',
             templateOptions: {
-              required: true,
+              uploadUrl: '/upload'
             },
             expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Data inizio lavori'),
-            },
-          },{
-            key: 'data_fine_lavori',
-            className: 'flex-1',
-            type: 'datepicker',
-            templateOptions: {
-              required: true,
-            },
-            expressionProperties: {
-              'templateOptions.label': this._translateService.stream('Data fine lavori'),
+              'templateOptions.label': this._translateService.stream('Allegati'),
             },
           }],
         },{
-          key: 'tipologia_intervento',
-          type: 'textarea',
-          templateOptions: {
-            required: true,
-          },
           expressionProperties: {
-            'templateOptions.label': this._translateService.stream('Tipologia di intervento'),
+            'templateOptions.label': this._translateService.stream('Informazioni intervento'),
           },
-        },{
-          key: 'lavori_effettuati',
-          type: 'textarea',
-          templateOptions: {
-            required: true,        
+          key: 'intervento',
+          fieldGroup: [{
+              key: 'data_inserimento',
+              type: 'datepicker',
+              templateOptions: {
+                required: true,
+              },
+              expressionProperties: {
+                'templateOptions.label': this._translateService.stream('Data inserimento')
+              },
+            },{
+              key: 'priorita',
+              type: 'autocomplete',
+              templateOptions: {
+                required: true,
+                filter: (term:any, limit:number, offset:number, parent?:any, ) => this._prioritaSelectGQL.watch({
+                  limit: limit,
+                  offset: offset,
+                  ...(term && typeof term === 'string' ? { nome: { _ilike: "%"+term+"%" } } : {} )
+                }).valueChanges.pipe(
+                  map(result => result.data?._priorita ) 
+                ),
+              },
+              expressionProperties: {
+                'templateOptions.label': this._translateService.stream('Priorità'),
+              },
+            },{
+              key: 'data_inizio_lavori',
+              type: 'datepicker',
+              templateOptions: {
+                required: true,
+              },
+              expressionProperties: {
+                'templateOptions.label': this._translateService.stream('Data inizio lavori'),
+              },
+            },{
+              key: 'tipologia_intervento',
+              type: 'textarea',
+              templateOptions: {
+                required: true,
+              },
+              expressionProperties: {
+                'templateOptions.label': this._translateService.stream('Tipologia di intervento'),
+              },
+            },{
+              key: 'terminato',
+              type: 'toggle',
+              defaultValue: false,
+              templateOptions: {
+                appearance: 'standard',
+              },
+              expressionProperties: {
+                'templateOptions.label': this._translateService.stream('L\'intervento è terminato?'),
+              }
+            },{
+              hideExpression: (model: any, formState:any, field: FormlyFieldConfig | undefined) => field?.parent?.fieldGroup![4].formControl?.value == false,
+              fieldGroup: [{
+                key: 'data_fine_lavori',
+                type: 'datepicker',
+                templateOptions: {
+                  required: true,        
+                },
+                expressionProperties: {
+                  'templateOptions.label': this._translateService.stream('Data fine lavori'),
+                },
+              },{
+                key: 'lavori_effettuati',
+                type: 'textarea',
+                templateOptions: {
+                  required: true,        
+                },
+                expressionProperties: {
+                  'templateOptions.label': this._translateService.stream('Lavori effettuati'),
+                },
+              }],
+            }],
           },
-          expressionProperties: {
-            'templateOptions.label': this._translateService.stream('Lavori effettuati'),
-          },
-        }],
-      },
-    ],
+      ]
   }];
 
-  async save(event:boolean) {
+  async save(event:any) {
     this.saving = true;
-    if(event) this._loaderService.start();
-    const allegati = await fileListToBase64(this.model.allegati);
+    if(event.loading) this._loaderService.start();
+    const allegati = this.model.allegati.allegati ? await fileListToBase64(this.model.allegati.allegati) : [];
 
-    let d = this.allegati.filter(x => !allegati.map((f:any) => f.file).includes(x.file));
-    let n = allegati.filter((x: any) => !this.allegati.map(f => f.file).includes(x.file));
+    let d = this.startData.allegati.filter((x:any) => !allegati.map((f:any) => f.file).includes(x.file));
+    let n = allegati.filter((x: any) => !this.startData.allegati.map((f:any) => f.file).includes(x.file));
 
     let model = {
-      ...this.model,
-      ...(this.model.municipalita ? { municipalita_id:this.model.municipalita.id } : {}),
-      ...(this.model.municipalita ? { municipalita_storica:this.model.municipalita } : {}),
+      id: this.model.id,
+      ...(event.type == 'def' ? {stato: this.model.intervento.data_fine_lavori ? _Stato_Segnalazione_Enum.Completata : _Stato_Segnalazione_Enum.Aperta }  : {}),
+      ...(this.model.localizzazione.municipalita ? { municipalita_id:this.model.localizzazione.municipalita.id } : {}),
+      ...(this.model.localizzazione.municipalita ? { municipalita_storica:this.model.localizzazione.municipalita } : {}),
 
-      ...(this.model.quartiere ? { quartiere_id:this.model.quartiere.id } : {}),
-      ...(this.model.quartiere ? { quartiere_storico:this.model.quartiere } : {}),
+      ...(this.model.localizzazione.quartiere ? { quartiere_id:this.model.localizzazione.quartiere.id } : {}),
+      ...(this.model.localizzazione.quartiere ? { quartiere_storico:this.model.localizzazione.quartiere } : {}),
 
-      ...(this.model.toponimo ? { toponimo_id:this.model.toponimo.id } : {}),
-      ...(this.model.toponimo ? { toponimo_storico:this.model.toponimo } : {}),
+      ...(this.model.localizzazione.toponimo ? { toponimo_id:this.model.localizzazione.toponimo.id } : {}),
+      ...(this.model.localizzazione.toponimo ? { toponimo_storico:this.model.localizzazione.toponimo } : {}),
       ...(n.length > 0 || d.length > 0 ? {
         allegati: {
           on_conflict: {
             constraint: Allegato_Constraint.AllegatoPkey,
             update_columns: [Allegato_Update_Column.Delete]
           },
-          data: [...n, ...d.map(f => { return {id:f.id, delete: true, file: '', nome: '', tipo: ''}})]
+          data: [...n, ...d.map((f:any) => { return {id:f.id, delete: true, file: '', nome: '', tipo: ''}})]
         }
       } : {}),
       posizionamento_toponimo_punto_iniziale: {
@@ -838,19 +762,20 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
             Posizionamento_Toponimo_Update_Column.SpecificaId
           ]
         },
-        data: {
-          ...this.model.posizionamento_toponimo_punto_iniziale,
-          ...(this.model.posizionamento_toponimo_punto_iniziale.tipologia ? { tipologia_id: this.model.posizionamento_toponimo_punto_iniziale.tipologia.id } : {}),
-          specifica_id: this.model.posizionamento_toponimo_punto_iniziale.specifica ? this.model.posizionamento_toponimo_punto_iniziale.specifica.id : null,
-          civico: this.model.posizionamento_toponimo_punto_iniziale.civico && typeof this.model.posizionamento_toponimo_punto_iniziale.civico === 'object' ? this.model.posizionamento_toponimo_punto_iniziale.civico.civico1 : this.model.posizionamento_toponimo_punto_iniziale.civico,
-          ipi: this.model.posizionamento_toponimo_punto_iniziale.ipi && typeof this.model.posizionamento_toponimo_punto_iniziale.ipi === 'object' ? this.model.posizionamento_toponimo_punto_iniziale.ipi.matricola : this.model.posizionamento_toponimo_punto_iniziale.ipi,
-          connessione: this.model.posizionamento_toponimo_punto_iniziale.connessione && typeof this.model.posizionamento_toponimo_punto_iniziale.connessione === 'object' ? this.model.posizionamento_toponimo_punto_iniziale.connessione.nome : this.model.posizionamento_toponimo_punto_iniziale.connessione,
-          geoloc: {
+        data: (this.model.localizzazione.posizionamento_toponimo_punto_iniziale ? {
+          ...this.model.localizzazione.posizionamento_toponimo_punto_iniziale,
+          ...(this.model.localizzazione.posizionamento_toponimo_punto_iniziale.tipologia ? { tipologia_id: this.model.localizzazione.posizionamento_toponimo_punto_iniziale.tipologia.id } : {}),
+          specifica_id: this.model.localizzazione.posizionamento_toponimo_punto_iniziale.specifica ? this.model.localizzazione.posizionamento_toponimo_punto_iniziale.specifica.id : null,
+          civico: this.model.localizzazione.posizionamento_toponimo_punto_iniziale.civico && typeof this.model.localizzazione.posizionamento_toponimo_punto_iniziale.civico === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_iniziale.civico.civico1 : this.model.localizzazione.posizionamento_toponimo_punto_iniziale.civico,
+          ipi: this.model.localizzazione.posizionamento_toponimo_punto_iniziale.ipi && typeof this.model.localizzazione.posizionamento_toponimo_punto_iniziale.ipi === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_iniziale.ipi.matricola : this.model.localizzazione.posizionamento_toponimo_punto_iniziale.ipi,
+          connessione: this.model.localizzazione.posizionamento_toponimo_punto_iniziale.connessione && typeof this.model.localizzazione.posizionamento_toponimo_punto_iniziale.connessione === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_iniziale.connessione.nome : this.model.localizzazione.posizionamento_toponimo_punto_iniziale.connessione,
+          ...(this.model.geolocalizzazione.mappa![0].punto.value.latitudine && this.model.geolocalizzazione.mappa![0].punto.value.longitudine ? {geoloc: {
             type: 'Point',
-            coordinates: [parseFloat(this.model.punto_iniziale_geoloc.latitudine||0),parseFloat(this.model.punto_iniziale_geoloc.longitudine||0)]
-          }
-        }
+            coordinates: [parseFloat(this.model.geolocalizzazione.mappa![0].punto.value.latitudine),parseFloat(this.model.geolocalizzazione.mappa![0].punto.value.longitudine)]
+          }} : {} ),
+        } : {})
       },
+
       posizionamento_toponimo_punto_finale: {
         on_conflict: {
           constraint: Posizionamento_Toponimo_Constraint.PosizionamentoToponimoPkey,
@@ -865,35 +790,32 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
             Posizionamento_Toponimo_Update_Column.SpecificaId
           ]
         },
-        data: {
-          ...this.model.posizionamento_toponimo_punto_finale,
-          ...(this.model.posizionamento_toponimo_punto_iniziale.tipologia ? { tipologia_id: this.model.posizionamento_toponimo_punto_iniziale.tipologia.id } : {}),
-          specifica_id: this.model.posizionamento_toponimo_punto_finale.specifica ? this.model.posizionamento_toponimo_punto_finale.specifica.id : null,
-          civico: this.model.posizionamento_toponimo_punto_finale.civico && typeof this.model.posizionamento_toponimo_punto_finale.civico === 'object' ? this.model.posizionamento_toponimo_punto_finale.civico.civico1 : this.model.posizionamento_toponimo_punto_finale.civico,
-          ipi: this.model.posizionamento_toponimo_punto_finale.ipi && typeof this.model.posizionamento_toponimo_punto_finale.ipi === 'object' ? this.model.posizionamento_toponimo_punto_finale.ipi.matricola : this.model.posizionamento_toponimo_punto_finale.ipi,
-          connessione: this.model.posizionamento_toponimo_punto_finale.connessione && typeof this.model.posizionamento_toponimo_punto_finale.connessione === 'object' ? this.model.posizionamento_toponimo_punto_finale.connessione.nome : this.model.posizionamento_toponimo_punto_finale.connessione,
-          geoloc: {
+        data: (this.model.localizzazione.posizionamento_toponimo_punto_finale ? {
+          ...this.model.localizzazione.posizionamento_toponimo_punto_finale,
+          ...(this.model.localizzazione.posizionamento_toponimo_punto_finale.tipologia ? { tipologia_id: this.model.localizzazione.posizionamento_toponimo_punto_finale.tipologia.id } : {}),
+          specifica_id: this.model.localizzazione.posizionamento_toponimo_punto_finale.specifica ? this.model.localizzazione.posizionamento_toponimo_punto_finale.specifica.id : null,
+          civico: this.model.localizzazione.posizionamento_toponimo_punto_finale.civico && typeof this.model.localizzazione.posizionamento_toponimo_punto_finale.civico === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_finale.civico.civico1 : this.model.localizzazione.posizionamento_toponimo_punto_finale.civico,
+          ipi: this.model.localizzazione.posizionamento_toponimo_punto_finale.ipi && typeof this.model.localizzazione.posizionamento_toponimo_punto_finale.ipi === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_finale.ipi.matricola : this.model.localizzazione.posizionamento_toponimo_punto_finale.ipi,
+          connessione: this.model.localizzazione.posizionamento_toponimo_punto_finale.connessione && typeof this.model.localizzazione.posizionamento_toponimo_punto_finale.connessione === 'object' ? this.model.localizzazione.posizionamento_toponimo_punto_finale.connessione.nome : this.model.localizzazione.posizionamento_toponimo_punto_finale.connessione,
+          ...(this.model.geolocalizzazione.mappa![1].punto.value.latitudine && this.model.geolocalizzazione.mappa![1].punto.value.longitudine ? {geoloc: {
             type: 'Point',
-            coordinates: [parseFloat(this.model.punto_finale_geoloc.latitudine||0),parseFloat(this.model.punto_finale_geoloc.longitudine||0)]
-          }
-        }
+            coordinates: [parseFloat(this.model.geolocalizzazione.mappa![1].punto.value.latitudine),parseFloat(this.model.geolocalizzazione.mappa![1].punto.value.longitudine)]
+          }} : {} ),
+        } : {})
       },
-      ...(this.model.priorita ? { priorita_id: this.model.priorita.id } : {})
+      ...(this.model.intervento.data_inserimento ? { data_inserimento: new Date(this.model.intervento.data_inserimento) } : {}),
+      ...(this.model.intervento.data_inizio_lavori ? { data_inizio_lavori: new Date(this.model.intervento.data_inizio_lavori) } : {}),
+      ...(this.model.intervento.data_fine_lavori ? { data_fine_lavori: new Date(this.model.intervento.data_fine_lavori) } : {}),
+      ...(this.model.intervento.priorita ? { priorita_id: this.model.intervento.priorita.id } : {}),
+      tipologia_intervento: this.model.intervento.tipologia_intervento,
+      lavori_effettuati: this.model.intervento.lavori_effettuati
     };
-
-    delete model.__typename;
-    delete model.municipalita;
-    delete model.quartiere;
-    delete model.toponimo;
     delete model.posizionamento_toponimo_punto_iniziale.data.__typename;
     delete model.posizionamento_toponimo_punto_iniziale.data.tipologia;
     delete model.posizionamento_toponimo_punto_iniziale.data.specifica;
-    delete model.punto_iniziale_geoloc;
     delete model.posizionamento_toponimo_punto_finale.data.__typename;
     delete model.posizionamento_toponimo_punto_finale.data.tipologia;
     delete model.posizionamento_toponimo_punto_finale.data.specifica;
-    delete model.punto_finale_geoloc;
-    delete model.priorita;
     if(n.length==0 && d.length==0) delete model.allegati;  
 
     this._updateInterventoStraordinarioGQL.mutate({
@@ -914,23 +836,26 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
           Intervento_Straordinario_Update_Column.DataFineLavori,
           Intervento_Straordinario_Update_Column.TipologiaIntervento,
           Intervento_Straordinario_Update_Column.LavoriEffettuati,
-          Intervento_Straordinario_Update_Column.StatoFineLavori
+          Intervento_Straordinario_Update_Column.Stato
         ]
       },
       intervento: model
     }).subscribe({
-      next: (r) => { this.dirty = false; this.allegati = [...r.data?.insert_intervento_straordinario?.returning![0].allegati!] },
-      error: (r) => {
-        console.log(r);
+      next: (result) => {
+        this.dirty = false; 
+        const ret = result.data?.insert_intervento_straordinario?.returning![0]!;
+        this.startData.allegati = [...ret.allegati!];
+      },
+      error: (error) => {
         this._loaderService.stop();
         this.dialog.open(ConfirmDialogComponent, {
           data: {
             title: this._translateService.instant('Attenzione'),
-            content: this._translateService.instant('Non è stato possibile completare la richiesta di salvataggio. Errore: '+r)
+            content: this._translateService.instant('Non è stato possibile completare la richiesta di salvataggio. Errore: '+error)
           }
         });
       },
-      complete: () => { this.saving = false; if(event) this._loaderService.stop()}
+      complete: () => { this.saving = false; if(event.loading) this._loaderService.stop(); if(event.type == 'def') this._router.navigate(['/','pis','interventi','straordinari'])}
     })    
   }
   
@@ -950,6 +875,7 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
     private _connessioniGrafoSelectGQL: ConnessioniGrafoSelectGQL,
     private _route: ActivatedRoute,
     private _loaderService: NgxUiLoaderService,
+    private _router: Router,
     public dialog: MatDialog
   ) {
     super();
@@ -964,28 +890,93 @@ export class InterventiStraordinariEditComponent extends Dirty implements OnInit
   private async _init(){
     this._loaderService.start();
     this.model = await firstValueFrom(this._interventoStraordinarioGQL.watch({
-      id: this.id
+      where: {
+        id: { _eq: this.id }
+      }
     }).valueChanges.pipe(
-      map(result => result.data?.intervento_straordinario.map(intervento => {
-        this.allegati = [...intervento.allegati];
-
-        console.log(intervento);
-
-        return {
-          ...intervento,
-          ...{allegati: base64ListToFile(intervento.allegati) },
-          ...{punto_iniziale_geoloc:( intervento.posizionamento_toponimo_punto_iniziale?.geoloc != null ? {latitudine:intervento.posizionamento_toponimo_punto_iniziale?.geoloc.coordinates[0], longitudine:intervento.posizionamento_toponimo_punto_iniziale?.geoloc.coordinates[1]} : {latitudine:0,longitudine:0})},
-          ...{punto_finale_geoloc:( intervento.posizionamento_toponimo_punto_finale?.geoloc != null ? {latitudine:intervento.posizionamento_toponimo_punto_finale?.geoloc.coordinates[0], longitudine:intervento.posizionamento_toponimo_punto_finale?.geoloc.coordinates[1]} : {latitudine:0,longitudine:0})},
-          ...{posizionamento_toponimo_punto_iniziale:Object.assign({},intervento.posizionamento_toponimo_punto_iniziale)},
-          ...{posizionamento_toponimo_punto_finale:Object.assign({},intervento.posizionamento_toponimo_punto_finale)},
+      map(result => {
+        let intervento_straordinario = result.data?.intervento_straordinario[0];
+        if(intervento_straordinario===undefined) {
+          this._loaderService.stop();
+          this._router.navigate(['/','404']);
         }
-      })[0]),
+        return {
+          ...{id: intervento_straordinario.id},
+          ...{allegati: { allegati: base64ListToFile(intervento_straordinario.allegati) }},
+          ...{
+            geolocalizzazione:{ 
+              mappa: [
+                ...(intervento_straordinario.posizionamento_toponimo_punto_iniziale?.geoloc != null ? [{ 
+                  key: 'punto_iniziale', 
+                  label: this._translateService.instant('Punto iniziale'),
+                  punto: new BehaviorSubject<{latitudine:number|null,longitudine:number|null,key:string}>(
+                  {
+                    latitudine:intervento_straordinario.posizionamento_toponimo_punto_iniziale?.geoloc.coordinates[0], 
+                    longitudine:intervento_straordinario.posizionamento_toponimo_punto_iniziale?.geoloc.coordinates[1],
+                    key: 'punto_iniziale'
+                  }),
+                  color: {code:'#005dc1',label:'accent'} 
+                }] : [{ 
+                  key: 'punto_iniziale', 
+                  label: this._translateService.instant('Punto iniziale'),
+                  punto: new BehaviorSubject<{latitudine:number|null,longitudine:number|null,key:string}>(
+                  {
+                    latitudine:null, 
+                    longitudine:null,
+                    key: 'punto_iniziale'
+                  }),
+                  color: {code:'#005dc1',label:'accent'} 
+                }] ),
+                ...(intervento_straordinario.posizionamento_toponimo_punto_finale?.geoloc != null ? [{ 
+                  key: 'punto_finale', 
+                  label: this._translateService.instant('Punto finale'),
+                  punto: new BehaviorSubject<{latitudine:number|null,longitudine:number|null,key:string}>(
+                  {
+                    latitudine:intervento_straordinario.posizionamento_toponimo_punto_finale?.geoloc.coordinates[0], 
+                    longitudine:intervento_straordinario.posizionamento_toponimo_punto_finale?.geoloc.coordinates[1],
+                    key: 'punto_finale'
+                  }),
+                  color: {code:'#f44336',label:'warn'} 
+                }] : [{ 
+                  key: 'punto_finale', 
+                  label: this._translateService.instant('Punto finale'),
+                  punto: new BehaviorSubject<{latitudine:number|null,longitudine:number|null,key:string}>(
+                  {
+                    latitudine:null, 
+                    longitudine:null,
+                    key: 'punto_finale'
+                  }),
+                  color: {code:'#f44336',label:'warn'} 
+                }] ) 
+              ]
+            }
+          },
+          ...{
+            localizzazione: { 
+              municipalita: intervento_straordinario.municipalita, 
+              quartiere: intervento_straordinario.quartiere, 
+              toponimo: intervento_straordinario.toponimo, 
+              posizionamento_toponimo_punto_iniziale:Object.assign({},intervento_straordinario.posizionamento_toponimo_punto_iniziale),
+              posizionamento_toponimo_punto_finale:Object.assign({},intervento_straordinario.posizionamento_toponimo_punto_finale)
+            }
+          },
+          ...{
+            intervento: {
+              terminato: intervento_straordinario.data_fine_lavori != null ? true : false,
+              data_inserimento: intervento_straordinario.data_inserimento,
+              data_inizio_lavori: intervento_straordinario.data_inizio_lavori,
+              data_fine_lavori: intervento_straordinario.data_fine_lavori,
+              priorita: intervento_straordinario.priorita,
+              tipologia_intervento: intervento_straordinario.tipologia_intervento,
+              lavori_effettuati: intervento_straordinario.lavori_effettuati
+            }
+          },
+        } 
+      }),
     ));
+
+    this.startData.allegati = [...this.model.allegati.allegati];
     this._loaderService.stop();
   }
   
-  change(event:boolean){
-    this.dirty = event;
-  }
-
 }

@@ -47,7 +47,7 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
     data_fine_lavori
     tipologia_intervento
     lavori_effettuati
-    stato_fine_lavori
+    stato
     allegati{
       id
       file
@@ -57,8 +57,8 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
   }
 }
 
-query InterventoStraordinario($id: Int!) {
-  intervento_straordinario(where: {id: {_eq: $id}}) {
+query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
+  intervento_straordinario(where: $where) {
     id
     municipalita {
       id
@@ -129,7 +129,7 @@ query InterventoStraordinario($id: Int!) {
     data_fine_lavori
     tipologia_intervento
     lavori_effettuati
-    stato_fine_lavori
+    stato
     allegati{
       id
       file
@@ -152,5 +152,11 @@ mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_in
         tipo
       }
     }
+  }
+}
+
+mutation DeleteInterventoStraordinario($id: Int!) {
+  delete_intervento_straordinario(where: {id: {_eq: $id}}) {
+    affected_rows
   }
 }

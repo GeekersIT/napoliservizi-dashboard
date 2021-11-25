@@ -1,3 +1,18 @@
 .h{
     height: calc(100% - 64px);
 }
+
+.form-container{
+    margin:20px 0;
+}
+
+
+::ng-deep .mat-dialog-container {
+    .h{
+        height: 100%!important;
+    }
+    
+    .form-container{
+        margin:20px!important;
+    }
+}

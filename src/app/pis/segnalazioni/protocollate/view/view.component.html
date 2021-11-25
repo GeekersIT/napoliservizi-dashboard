@@ -1,0 +1,6 @@
+<mat-toolbar>
+    <span>{{ 'Segnalazioni protocollate'|translate }}</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<form-component [autosave]="false" [reset]="false" [options]="options" [model]="model" [fields]="fields" [form]="form" (onSubmit)="save($event)" (changeEvent)="change($event)"></form-component>

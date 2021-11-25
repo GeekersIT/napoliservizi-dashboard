@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
@@ -54,7 +55,8 @@ export class QuartieriComponent implements OnInit {
     private _deleteQuartiereGQL: DeleteQuartiereGQL,
     private _translateService: TranslateService,
     private _snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _loaderService: NgxUiLoaderService,
   ) {
     this.dataSource = new DataSource();
   }
@@ -125,12 +127,15 @@ export class QuartieriComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        this._loaderService.start();
         this._deleteQuartiereGQL.mutate({id:row!.id}).subscribe({
           error: (e) => {
+            this._loaderService.stop();
             if(e.message.includes('Foreign key violation')){
               this._snackBar.open(this._translateService.instant('Non è possibile eliminare il quartiere perchè è parte di una municipalità o lo è stato in passato.'), this._translateService.instant('Ho capito!'));
             }
-          }
+          },
+          complete: () => this._loaderService.stop()
         });
       }
     })

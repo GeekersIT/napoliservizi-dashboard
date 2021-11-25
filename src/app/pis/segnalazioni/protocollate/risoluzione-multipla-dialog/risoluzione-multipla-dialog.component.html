@@ -1,0 +1,35 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-toolbar>
+        <span>{{ 'Risoluzione collegata'}}</span>
+        <span class="spacer"></span>
+        <button mat-raised-button color="success" *ngIf="data.segnalazioni.length>0">
+        {{ 'Conferma'|translate }}
+        </button>
+    </mat-toolbar>
+
+    <div style="margin: 20px;">
+        <div *ngIf="data.segnalazioni.length>0; else empty">
+
+            <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+
+
+            <div>{{ 'Elenco delle segnalazioni selezionate'|translate }}</div>
+            <div style="height: 250px; width: 100%;">
+                <ng-scrollbar>
+                    <mat-list role="list">
+                        <mat-list-item *ngFor="let segnalazione of data.segnalazioni">
+                            <mat-icon mat-list-icon>fiber_manual_record</mat-icon>
+                            <div mat-line>{{ 'Protocollo n. {numero} del {data}'|translate:{numero:segnalazione.protocollo.numero, data:segnalazione.protocollo.data|date:'full':'it'} }}</div>
+                            <div mat-line> {{ toLabel(segnalazione) }} </div>
+                        </mat-list-item>
+                    </mat-list>
+                </ng-scrollbar>
+            </div>
+        </div>
+        <ng-template #empty>
+            <h3>{{ 'Per procedere devi prima selezionare le segnalazioni da risolvere' | translate }}</h3>
+        </ng-template>
+    </div>
+
+</form>

@@ -19,6 +19,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormlyModule, } from '@ngx-formly/core';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
+import { FormlyMatDateRangepickerModule } from '../../_formly/_components/date-range-picker-formly/date-range-picker-formly.module';
+import { MatIconModule } from '@angular/material/icon';
+import { ButtonFormlyModule } from '../../_formly/_components/button-formly/button-formly.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
     AutosaveAddonsFormlyModule,
     MatNativeDateModule,
     FormlyMatDatepickerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormlyMatDateRangepickerModule,
+    MatIconModule,
+    ButtonFormlyModule
   ],
   exports: [ FormComponent ]
 })

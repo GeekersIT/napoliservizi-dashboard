@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
@@ -49,8 +50,8 @@ export class SquadreComponent implements OnInit {
     private _translateService: TranslateService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private _deleteSquadraPisGQL: DeleteSquadraPisGQL
-
+    private _deleteSquadraPisGQL: DeleteSquadraPisGQL,
+    private _loaderService: NgxUiLoaderService,
   ) {
     this.dataSource = new DataSource();
   }
@@ -95,12 +96,15 @@ export class SquadreComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        this._loaderService.start();
         this._deleteSquadraPisGQL.mutate({id:row!.id}).subscribe({
           error: (e) => {
+            this._loaderService.stop();
             if(e.message.includes('Foreign key violation')){
               this._snackBar.open(this._translateService.instant('Non è possibile eliminare la squadra perchè ha degli interventi associati.'), this._translateService.instant('Ho capito!'));
             }
-          }
+          },
+          complete: () => this._loaderService.stop()
         });
       }
     })

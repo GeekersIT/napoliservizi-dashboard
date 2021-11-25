@@ -1,3 +1,7 @@
+<form [formGroup]="internalForm">
+    <formly-form [form]="internalForm" [fields]="internalFields" [model]="internalModel"></formly-form>
+</form>
+<br />
 <mat-toolbar color="primary">
     <button type="button" mat-icon-button (click)="snav.toggle()" *ngIf="to.menu.length>0">
         <mat-icon>menu</mat-icon>

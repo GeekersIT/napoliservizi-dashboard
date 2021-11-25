@@ -3,7 +3,7 @@
   *ngIf="!to.multiple; else multiple"
   matInput
   [matAutocomplete]="auto"
-  [formControl]="formControl"
+  [formControl]="toControl(formControl)"
   [formlyAttributes]="field"
   [placeholder]="to.placeholder||''"
   [errorStateMatcher]="errorStateMatcher">
@@ -41,7 +41,7 @@
     <input 
       matInput
       [matAutocomplete]="auto"
-      [formControl]="formControl"
+      [formControl]="toControl(formControl)"
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [formlyAttributes]="field"

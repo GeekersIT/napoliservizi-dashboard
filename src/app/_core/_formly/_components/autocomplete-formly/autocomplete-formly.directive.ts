@@ -27,8 +27,10 @@ export class AutocompleteFormlyDirective implements OnDestroy {
         setTimeout(() => {
           /** Note: remove listner just for safety, in case the close event is skipped. */
           this.removeScrollEventListener();
+          if(this.autoComplete && this.autoComplete.panel && this.autoComplete.panel.nativeElement) {
           this.autoComplete.panel.nativeElement
             .addEventListener('scroll', this.onScroll.bind(this))
+          }
         });
       }),
       takeUntil(this._onDestroy)).subscribe();

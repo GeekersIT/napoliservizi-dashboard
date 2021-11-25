@@ -35,11 +35,12 @@ import { FormlyModule } from '@ngx-formly/core';
           component: MappaFormlyComponent, 
           wrappers: [],
           defaultOptions: {
+            defaultValue: [],
             templateOptions: {
               zoom: 18,
               center: [14.2612,40.8918],
-              markers: [] as marker[],
-              menu: []
+              menu: [],
+              lazyLoading: false
             },
           } 
         },

@@ -18,7 +18,7 @@ import { FormlyModule } from '@ngx-formly/core';
     ReactiveFormsModule,
     FormlyModule.forChild({ 
       types: [
-        { name: 'repeat', component: RepeatSectionFormlyComponent },
+        { name: 'repeat', component: RepeatSectionFormlyComponent,defaultOptions: { templateOptions: {requiredN:0}} },
       ], 
     }),
     TranslateModule,

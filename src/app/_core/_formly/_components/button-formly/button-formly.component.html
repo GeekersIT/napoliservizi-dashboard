@@ -1,0 +1,5 @@
+<button mat-stroked-button [color]="to.color" [ngClass]="to.className" (click)="to.onClick(field)" [disabled]="to.disabled">
+    <mat-icon *ngIf="to._prefix" [color]="to._prefix.color" >{{ to._prefix.icon }}</mat-icon> 
+    &nbsp;{{ to.label }}&nbsp;
+    <mat-icon *ngIf="to._suffix" [color]="to._suffix.color" >{{ to._suffix.icon }}</mat-icon> 
+</button>

@@ -16,6 +16,11 @@
     "{seconda_dimensione}": "{seconda_dimensione, select, 1{Asse minore} 3{Larghezza} 4{Base maggiore} 5{Base} other{Seconda dimensione}}",
     "{terza_dimensione}": "{terza_dimensione, select, 4{Base minore} other{Terza dimensione}}",
     "Pre segnalazione n. {id} del {data}": "Pre segnalazione n. {id} del {data}",
-    "Segnalazione n. protocollo {id} del {data}": "Segnalazione n. protocollo {id} del {data}"
+    "Segnalazione n. protocollo {id} del {data}": "Segnalazione n. protocollo {id} del {data}",
+    "N. {numero} del {data}": "N. {numero} del {data}",
+    "Alla squadra {nome} cone note: {note}":"Alla squadra {nome} cone note: {note}",
+    "Con motivazione: {note}":"Con motivazione: {note}",
+    "Da segnalazione protocollata con n.: {numero} del {data}": "Da segnalazione protocollata con n.: {numero} del {data}",
+    "Protocollo n. {numero} del {data}": "Protocollo n. {numero} del {data}"
 
 }

@@ -7,11 +7,7 @@ import { FieldWrapper } from '@ngx-formly/core';
   <ng-container #fieldComponent></ng-container>
 
   <ng-template #clearSuffix *ngIf="!to.disabled">
-    <span
-      [ngStyle]="{cursor:'pointer'}"
-      (click)="clear($event)"
-    ><mat-icon>backspace</mat-icon>
-    </span>
+    <mat-icon [ngStyle]="{cursor:'pointer'}" (click)="clear($event)" >backspace</mat-icon>
   </ng-template>
   `,
 })
@@ -19,6 +15,7 @@ export class FormlyWrapperClearAddon extends FieldWrapper implements AfterViewIn
   @ViewChild('clearSuffix') clearSuffix: TemplateRef<any> | undefined;
   ngAfterViewInit() {
     if (this.clearSuffix) {
+      
       Promise.resolve().then(() => this.to.suffix = this.clearSuffix);
     }
   }

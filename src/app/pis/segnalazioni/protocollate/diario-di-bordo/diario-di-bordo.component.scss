@@ -1,0 +1,28 @@
+.message{
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.message-container{
+    padding: 20px 0 0 20px;
+    height: calc(100% - 64px - 100px - 20px)!important;
+}
+
+::ng-deep {
+    .mat-form-field-appearance-fill .mat-form-field-flex{
+        background-color: white!important;
+    }
+    .mat-form-field-wrapper{
+        padding: 0!important;
+    }
+    .mat-form-field-underline {
+        bottom: 0!important;
+    }
+
+    .message:nth-child(odd){
+        float: left;
+    }
+    .message:nth-child(even){
+        float: right;
+    }
+}

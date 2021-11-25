@@ -12,6 +12,7 @@ import { AutocompleteFormlyDirective } from './autocomplete-formly.directive';
 import { ForceSelectionMatch } from '../../_validators/force-selection.match';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMatFormField5Module } from '../../_wrappers/form-field-5.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FormlyModule } from '@ngx-formly/core';
         { 
           name: 'autocomplete', 
           component: AutocompleteFormlyComponent, 
-          wrappers: ['form-field'],
+          wrappers: ['form-field-5'],
           defaultOptions: {
             templateOptions: {
               multiple: false
@@ -44,7 +45,10 @@ import { FormlyModule } from '@ngx-formly/core';
     MatChipsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    
+    
+    FormlyMatFormField5Module
   ]
 })
 export class AutocompleteFormlyModule { }

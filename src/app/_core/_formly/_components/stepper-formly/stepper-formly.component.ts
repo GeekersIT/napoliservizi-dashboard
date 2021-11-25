@@ -1,5 +1,5 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FieldType } from '@ngx-formly/material';
 
@@ -9,13 +9,26 @@ import { FieldType } from '@ngx-formly/material';
   styleUrls: ['./stepper-formly.component.scss']
 })
 export class StepperFormlyComponent extends FieldType {
+  submitted: boolean = false;
+
+  @Output() close: EventEmitter<StepperSelectionEvent> = new EventEmitter();  
 
   isValid(field: FormlyFieldConfig):boolean {
-    if (field.key) {
-      return field.formControl!.valid;
+    if(this.submitted){
+      if (field.key) {
+        return field.formControl!.valid;
+      }
+      return field.fieldGroup ? field.fieldGroup.every(f => this.isValid(f)) : true;
+    }else{
+      return true;
     }
+  }
 
-    return field.fieldGroup!.every(f => this.isValid(f));
+  ngOnInit(){
+    this.to.selectionChange = this.close;
+    if(this.to.submitted) this.to.submitted.subscribe((s:any) => {
+      this.submitted = s;
+    })
   }
 
   toggleOrientation(){
@@ -28,7 +41,7 @@ export class StepperFormlyComponent extends FieldType {
   }
 
   public onStepChange(event: StepperSelectionEvent): void {
-    this.to.selectionChange.next(event);
+    this.to.selectionChange.emit(event)
   }
 
 }

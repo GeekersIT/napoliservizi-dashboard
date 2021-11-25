@@ -53,7 +53,7 @@
             <button mat-menu-item>{{ 'Tabella'|translate }}</button>
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="userMenu">
-            <ngx-avatar name="John Doe"></ngx-avatar>
+            <ngx-avatar name="{{ utente?.firstName }} {{ utente?.lastName }}"></ngx-avatar>
         </button>
         <mat-menu #userMenu="matMenu" yPosition="above">
             <button mat-menu-item>{{ 'Profilo'|translate }}</button>

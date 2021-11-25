@@ -7,8 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BehaviorSubject } from 'rxjs';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { FormlyModule } from '@ngx-formly/core';
 
 
@@ -29,7 +27,9 @@ import { FormlyModule } from '@ngx-formly/core';
           wrappers: [],
           defaultOptions: {
             templateOptions: {
-              selectionChange: new BehaviorSubject<StepperSelectionEvent|null>(null)
+              activeStep: 0,
+              selectionChange: null,
+              submitted: null
             },
           } 
         },

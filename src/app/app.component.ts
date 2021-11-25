@@ -8,12 +8,15 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  utente: any;
   constructor(
     translate: TranslateService,
     private _keycloak: KeycloakService
   ) {
     translate.setDefaultLang('it');
     translate.use('it');
+
+    this._keycloak.loadUserProfile().then(utente => this.utente = utente);
 
     this.getToken()
   }

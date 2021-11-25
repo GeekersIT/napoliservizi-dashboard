@@ -11,7 +11,7 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import Point from 'ol/geom/Point';
 import { Style, Text, Fill, Stroke } from 'ol/style';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { defaults as defaultInteractions, Draw, Modify } from 'ol/interaction';
 import CircleStyle from 'ol/style/Circle';
 import Polygon from 'ol/geom/Polygon';
@@ -20,14 +20,17 @@ import {getArea, getLength} from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
 import { TranslateService } from '@ngx-translate/core';
 import { FieldType } from '@ngx-formly/material';
+import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 
 
 
 export interface marker{
-  coord: BehaviorSubject<{lat:number,lon:number,propagate?:boolean}>;
+  punto: BehaviorSubject<{latitudine:number|null,longitudine:number|null,key:string,prevent?:boolean}>;
   key: string;
-  color?: string;
+  color?: {code:string, label:string};
   icon?: number;
+  label: string;
 }
 
 @Component({
@@ -36,9 +39,13 @@ export interface marker{
   styleUrls: ['./mappa-formly.component.scss']
 })
 export class MappaFormlyComponent extends FieldType {
+
+
+  internalForm = new FormGroup({});
+  internalModel = { };
+  internalFields: FormlyFieldConfig[] = [];
   view!: View;
   projection!: Projection;
-
   Map!: Map;
 
   markerSource: VectorSource<Point> = new VectorSource();
@@ -60,38 +67,107 @@ export class MappaFormlyComponent extends FieldType {
 
 
   ngOnInit(){
-    this.findStepper(this.field).templateOptions?.selectionChange.subscribe(() => this.initMap());
-
-    this.field.templateOptions!.markers.map((marker:marker) => {
-      marker.coord.subscribe(coord => {
-        if(coord.lat != 0 && coord.lon != 0){
-          let feature = this.markerSource.getFeatureById(marker.key);
+    this.findStepper(this.field).templateOptions?.selectionChange.subscribe((step:any) => {
+      if(this.to.lazyLoading && step && step.selectedStep && step.selectedStep.ariaLabel == 'geolocalizzazione' && !this.Map){
+        this.zone.runOutsideAngular(() => this.initMap())
+      }
+    });
+    this.value.map((marker:marker) => {
+      this.internalFields.push(
+        {
+          fieldGroupClassName: 'display-flex flex-stretch',
+          key: marker.key,
+          hooks: {
+            onInit: (field) => {
+              field?.formControl?.valueChanges.subscribe(f => {
+                marker.punto.next({
+                  latitudine: f.latitudine,
+                  longitudine: f.longitudine,
+                  prevent: true,
+                  key:marker.key
+                })
+              })
+            }
+          },
+          fieldGroup: [{
+            type: 'button',
+            templateOptions: {
+              className: 'flex-1',
+              onClick: (field:FormlyFieldConfig) => {
+                let center = this.Map.getView().getCenter();
+                marker.punto.next({
+                  latitudine: center![0],
+                  longitudine: center![1],
+                  key: marker.key
+                })
+              },
+              label: marker.label,
+              _prefix: {
+                icon: "place",
+                color: marker.color?.label
+              }
+            },
+            expressionProperties: {
+              'templateOptions.disabled':  (model: any, formState:any, field: FormlyFieldConfig | undefined) => model.latitudine != null || model.longitudine != null
+            },
+          },{
+            key: 'latitudine',
+            className: 'flex-6',
+            type: 'input',
+            defaultValue: marker.punto.value.latitudine,
+            expressionProperties: {
+              'templateOptions.label': this._translateService.stream('Latitutidine'),
+            },
+          },{
+            key: 'longitudine',
+            className: 'flex-6',
+            type: 'input',
+            defaultValue: marker.punto.value.longitudine,
+            expressionProperties: {
+              'templateOptions.label': this._translateService.stream('Longitudine'),
+            }
+          }]
+        },   
+      )
+      marker.punto.subscribe(punto => {
+        if(punto.latitudine && punto.longitudine){
+          let feature = this.markerSource.getFeatureById(punto.key.toString());
           if(feature){ 
-            feature.setGeometry(new Point([coord.lat,coord.lon]));
+            feature.setGeometry(new Point([punto.latitudine,punto.longitudine]));
           }else{
             feature = new Feature({
-              geometry: new Point([coord.lat,coord.lon])
+              geometry: new Point([punto.latitudine,punto.longitudine])
             });
-            feature.setId(marker.key);
+            feature.setId(punto.key);
             feature.setStyle(new Style({
               text: new Text({
                 text: String.fromCodePoint(marker.icon ? marker.icon : 0xE55F),
                 font: 'normal normal 400 48px "Material Icons"',
                 fill: new Fill({
-                  color: marker.color
+                  color: marker.color?.code
                 })
               }),
             }));
             this.markerSource.addFeature(feature);
           }
-        }  
+        }else{
+          let feature = this.markerSource.getFeatureById(marker.key);
+          if(feature) this.markerSource.removeFeature(feature);
+        }
+
+        let extent = this.markerSource.getExtent();
+        if(extent.every(e =>  e !== Infinity) && this.Map) this.Map.getView().fit(extent, { size: this.Map.getSize(), maxZoom: this.to.zoom});
+
+        if(punto.prevent == null){
+          this.internalFields.find(f => f.key == marker.key)?.fieldGroup![1].formControl?.setValue(punto.latitudine)
+          this.internalFields.find(f => f.key == marker.key)?.fieldGroup![2].formControl?.setValue(punto.longitudine)
+        }
       })
     })
   }
 
-
   ngAfterViewInit():void {
-    if (! this.Map) {
+    if (!this.to.lazyLoading && !this.Map) {
       this.zone.runOutsideAngular(() => this.initMap())
     } 
   }
@@ -161,12 +237,17 @@ export class MappaFormlyComponent extends FieldType {
       ]),
     });
 
+    let extent = this.markerSource.getExtent();
+    if(extent.every(e =>  e !== Infinity)) this.Map.getView().fit(extent, { size: this.Map.getSize(), maxZoom: this.to.zoom});
+
+
     modify.on('modifyend',(e) => {
       const coord = (e.features.getArray()[0]?.getGeometry() as Point).getCoordinates();
-      let marker = this.field.templateOptions?.markers.find((f:marker) => f.key == e.features.getArray()[0].getId());
-      marker.coord.next({
-        lat: coord[0],
-        lon: coord[1]
+      let marker = this.value.find((f:marker) => f.key == e.features.getArray()[0].getId());
+      marker.punto.next({
+        latitudine: coord[0],
+        longitudine: coord[1],
+        key: e.features.getArray()[0].getId()
       })
 
     });
