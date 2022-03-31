@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <span>{{ "R.I.S. protocollato" | translate }}</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<form-component
+  [autosave]="false"
+  [options]="options"
+  [model]="model"
+  [fields]="fields"
+  [actionsTemplate]="actionsTemplate"
+  [form]="form"
+  (onSubmit)="save($event)"
+  (changeEvent)="change($event)"
+></form-component>
+<ng-template #actionsTemplate>
+  <button mat-raised-button color="success" type="submit" name="def">
+    {{ "Salva" | translate }}
+  </button>
+</ng-template>

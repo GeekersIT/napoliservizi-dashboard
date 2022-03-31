@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+  <div style="padding: 20px; overflow: hidden">
+    <h1 mat-dialog-title>{{ "Effettua il login" | translate }}</h1>
+    <div mat-dialog-content>
+      <div
+        style="margin-bottom: 20px"
+        *ngIf="error!=null"
+        innerHTML="{{ 'Invalid user credentials'|translate }}"
+      ></div>
+      <formly-form
+        [model]="model"
+        [fields]="fields"
+        [options]="options"
+        [form]="form"
+      ></formly-form>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close type="button">
+        {{ "Annulla" | translate }}
+      </button>
+      <button mat-raised-button color="success" type="submit">
+        {{ "Invia" | translate }}
+      </button>
+    </div>
+  </div>
+</form>

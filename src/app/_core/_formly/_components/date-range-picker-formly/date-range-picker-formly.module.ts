@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormlyDateRangePickerTypeComponent } from './data-range-picker-formly.type';
 
-
 @NgModule({
   declarations: [FormlyDateRangePickerTypeComponent],
   imports: [
@@ -24,10 +23,14 @@ import { FormlyDateRangePickerTypeComponent } from './data-range-picker-formly.t
           name: 'daterangepicker',
           component: FormlyDateRangePickerTypeComponent,
           wrappers: ['form-field'],
-          defaultOptions: { templateOptions: { datepickerOptions: { datepickerTogglePosition: 'prefix' }}}
+          defaultOptions: {
+            templateOptions: {
+              datepickerOptions: { datepickerTogglePosition: 'prefix' },
+            },
+          },
         },
       ],
     }),
   ],
 })
-export class FormlyMatDateRangepickerModule {}
+export class FormlyMatDateRangePickerModule {}

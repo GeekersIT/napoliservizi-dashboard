@@ -41,7 +41,7 @@ export class SegnalazioniProtocollateSospendiComponent extends SegnalazioneEdit 
           },
         }]
       }],
-      ...this.steps,
+      ...this.steps.filter(step => step.key != 'intervento' && step.key != 'geolocalizzazione'),
     ],
   }];
 

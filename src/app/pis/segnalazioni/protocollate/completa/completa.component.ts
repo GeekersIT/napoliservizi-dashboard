@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { map } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { base64ListToFile, fileListToBase64 } from 'src/app/_core/_functions';
 import { SegnalazioneObj } from 'src/app/_core/_models/pis/segnalazione.interface';
-import { _Stato_Segnalazione_Enum, Segnalazione_Constraint, Segnalazione_Update_Column, GiorniTrascorsiSelectGQL, CiviciSelectGQL, ConnessioniGrafoSelectGQL, FormaDissesoSelectGQL, MunicipalitaSelectGQL, PrioritaSelectGQL, QuartiereSelectGQL, SegnalazioneGQL, SegnalazioneSelectGQL, SezioneProtocolloSelectGQL, SostegniIpiSelectGQL, SpecificaPosizionamentoToponimoSelectGQL, TipologiaDissesoSelectGQL, TipologiaPosizionamentoToponimoSelectGQL, TitoloSelectGQL, ToponimoNomeSelectGQL, ToponimoSelectGQL, UpdateSegnalazioneGQL, CondizioniTrafficoSelectGQL, MaterialeSelectGQL, Intervento_Constraint, Intervento_Update_Column, Attrezzature_Impiegate_Constraint, Attrezzature_Impiegate_Update_Column, Materiale_Dissesto_Constraint, Materiale_Dissesto_Update_Column, Segnaletica_Lasciata_Constraint, Segnaletica_Lasciata_Update_Column, Veicoli_Impiegati_Constraint, Veicoli_Impiegati_Update_Column, Allegato_Constraint, Allegato_Update_Column } from 'src/app/_core/_services/generated/graphql';
+import { _Stato_Segnalazione_Enum, Segnalazione_Constraint, Segnalazione_Update_Column, GiorniTrascorsiSelectGQL, CiviciSelectGQL, ConnessioniGrafoSelectGQL, FormaDissesoSelectGQL, MunicipalitaSelectGQL, PrioritaSelectGQL, QuartiereSelectGQL, SegnalazioneGQL, SegnalazioneSelectGQL, SezioneProtocolloSelectGQL, SostegniIpiSelectGQL, SpecificaPosizionamentoToponimoSelectGQL, TipologiaDissesoSelectGQL, TipologiaPosizionamentoToponimoSelectGQL, TitoloSelectGQL, ToponimoNomeSelectGQL, ToponimoSelectGQL, UpdateSegnalazioneGQL, CondizioniTrafficoSelectGQL, MaterialeSelectGQL, Intervento_Constraint, Intervento_Update_Column, Attrezzature_Impiegate_Constraint, Attrezzature_Impiegate_Update_Column, Materiale_Dissesto_Constraint, Materiale_Dissesto_Update_Column, Segnaletica_Lasciata_Constraint, Segnaletica_Lasciata_Update_Column, Veicoli_Impiegati_Constraint, Veicoli_Impiegati_Update_Column} from 'src/app/_core/_services/generated/graphql';
 import { SegnalazioneEdit } from '../../edit.abstract';
 
 @Component({
@@ -30,7 +30,7 @@ export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit 
     type: 'stepper',
     templateOptions:{
       orientation:'horizontal',
-      activeStep: 6
+      activeStep: 5
     },
     fieldGroup: [
       // ...[
@@ -356,7 +356,7 @@ export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit 
   //   },
   // }]
   //     }],
-      ...this.steps,
+      ...this.steps.filter(step => step.key != 'geolocalizzazione'),
     ],
   }];
 
@@ -469,8 +469,8 @@ export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit 
     let vei_d = this.startData.intervento.veicoli.filter((x:any) => !this.model.intervento.veicoli.map((d:any) => d.id).includes(x));
 
     const allegati = this.model.intervento.allegati ? await fileListToBase64(this.model.intervento.allegati) : [];
-    let d = this.startData.intervento.allegati.filter((x:any) => !allegati.map((f:any) => f.file).includes(x.file));
-    let n = allegati.filter((x: any) => !this.startData.intervento.allegati.map((f:any) => f.file).includes(x.file));
+    let d = this.startData.intervento.allegati.filter((x:any) => !allegati.map((f:any) => f.nome).includes(x.name));
+    let n = allegati.filter((x: any) => !this.startData.intervento.allegati.map((f:any) => f.name).includes(x.nome));
 
     this._updateSegnalazioneGQL.mutate({
       on_conflict: {
@@ -500,11 +500,8 @@ export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit 
             id: this.model.intervento.id,
             ...(n.length > 0 || d.length > 0 ? {
               allegati: {
-                on_conflict: {
-                  constraint: Allegato_Constraint.AllegatoPkey,
-                  update_columns: [Allegato_Update_Column.Delete]
-                },
-                data: [...n, ...d.map((f:any) => { return {id:f.id, delete: true, file: '', nome: '', tipo: ''}})]
+                data: [...n, ...d.map((f:any) => { return {id:f.id, delete: true, file: '', nome: f.name, tipo: ''}})]
+
               }
             } : {}),
             ...(this.model.intervento.assistenza_pm ? { assistenza_pm:this.model.intervento.assistenza_pm } : {}),
@@ -608,15 +605,20 @@ export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit 
         } : {} )
       }
     }).subscribe({
-      next: (result) => {
+      next: async (result) => {
         this.dirty = false; 
-        const ret = result.data?.insert_segnalazione?.returning![0]!;
+        // const ret = result.data?.insert_segnalazione?.returning![0]!;
+        const ret:any = result.data?.custom_insert_segnalazione?.segnalazione;
 
-        this.startData.intervento.allegati = [...ret.intervento?.allegati!];
-        this.startData.intervento.attrezzature_impiegate = [...ret.intervento?.attrezzature_impiegate.map(e => e.id)!];
-        this.startData.intervento.materiali_dissesto = [...ret.intervento?.materiali_dissesto.map(e => e.id)!];
-        this.startData.intervento.segnaletica_lasciata = [...ret.intervento?.segnaletica_lasciata.map(e => e.id)!];
-        this.startData.intervento.veicoli = [...ret.intervento?.veicoli_impiegati.map(e => e.id)!];
+
+        let bucket:any = await firstValueFrom(this._http.post('/storage/bucket/list', { bucket: 'segnalazione-'+ret.id }));
+        this.startData.allegati = bucket.allegati.filter((el:any) => el.name.indexOf('intervento')==0);
+
+        // this.startData.intervento.allegati = [...ret.intervento?.allegati!];
+        this.startData.intervento.attrezzature_impiegate = [...ret.intervento?.attrezzature_impiegate.map((e:any) => e.id)!];
+        this.startData.intervento.materiali_dissesto = [...ret.intervento?.materiali_dissesto.map((e:any) => e.id)!];
+        this.startData.intervento.segnaletica_lasciata = [...ret.intervento?.segnaletica_lasciata.map((e:any) => e.id)!];
+        this.startData.intervento.veicoli = [...ret.intervento?.veicoli_impiegati.map((e:any) => e.id)!];
       },
       error: (e) => this.onSaveError(e),
       complete: () => { this.dirty = false; this.saving = false; if(event.loading) this._loaderService.stop(); if(event.type == 'def') this._router.navigate(['/','pis','segnalazioni','protocollate'])}

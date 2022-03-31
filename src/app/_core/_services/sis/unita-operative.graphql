@@ -1,0 +1,39 @@
+subscription UnitaOperative($where: unita_operativa_bool_exp = {}) {
+  unita_operativa(where: $where) {
+    id
+    nome
+    note
+    toponimo
+    civico
+    updated_at
+    vecchie_denominazioni(order_by: { created_at: desc }) {
+      nome
+      created_at
+    }
+    membri(order_by: { fine_validita: desc_nulls_first }) {
+      id
+      caposquadra
+      inizio_validita
+      fine_validita
+      membro
+    }
+  }
+}
+
+mutation UpdateUnitaOperativa($objects: [unita_operativa_insert_input!] = {}) {
+  insert_unita_operativa(
+    on_conflict: {
+      constraint: unita_operativa_pkey
+      update_columns: [nome, toponimo, civico, note]
+    }
+    objects: $objects
+  ) {
+    affected_rows
+  }
+}
+
+mutation DeleteUnitaOperativa($id: Int!) {
+  delete_unita_operativa(where: { id: { _eq: $id } }) {
+    affected_rows
+  }
+}

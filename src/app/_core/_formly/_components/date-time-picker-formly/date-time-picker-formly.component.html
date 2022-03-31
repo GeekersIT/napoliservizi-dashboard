@@ -1,0 +1,50 @@
+<mat-form-field
+  [hideRequiredMarker]="true"
+  [color]="to.color"
+  [style.width]="'100%'"
+>
+  <input
+    matInput
+    [ngxMatDatetimePicker]="picker"
+    [formlyAttributes]="field"
+    [placeholder]="to.placeholder || ''"
+    [formControl]="toControl(formControl)"
+    [errorStateMatcher]="errorStateMatcher"
+  />
+  <mat-label *ngIf="to.label && to.hideLabel !== true">
+    {{ to.label }}
+    <span
+      *ngIf="to.required && to.hideRequiredMarker !== true"
+      class="mat-form-field-required-marker"
+      >*</span
+    >
+  </mat-label>
+  <mat-error>
+    <formly-validation-message [field]="field"></formly-validation-message>
+  </mat-error>
+
+  <mat-datepicker-toggle
+    matPrefix
+    [disabled]="to.disabled"
+    [for]="pickerFixed"
+  ></mat-datepicker-toggle>
+
+  <ngx-mat-datetime-picker
+    #picker
+    [showSpinners]="to.showSpinners"
+    [showSeconds]="to.showSeconds"
+    [stepHour]="1"
+    [stepMinute]="1"
+    [stepSecond]="1"
+    [touchUi]="to.touchUi"
+    [color]="to.color"
+    [enableMeridian]="to.enableMeridian"
+    [disableMinute]="to.disableMinute"
+    [hideTime]="to.hideTime"
+  >
+    <ng-template>
+      <!-- <mat-icon>star</mat-icon> -->
+      <span>{{ "Conferma" | translate }}</span>
+    </ng-template>
+  </ngx-mat-datetime-picker>
+</mat-form-field>

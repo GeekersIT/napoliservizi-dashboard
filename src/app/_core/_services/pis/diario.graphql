@@ -2,19 +2,19 @@ subscription Diario($id: Int!) {
   diario(where: {segnalazione_id: {_eq: $id}}, order_by: {created_at: desc}) {
     created_at
     messaggio
-    allegato {
-      file
-      id
-      nome
-      tipo
-      created_at
-    }
+    allegato
     utente
   }
 }
 
 mutation InsertDiario($objects: [diario_insert_input!] = {}) {
   insert_diario(objects: $objects) {
+    affected_rows
+  }
+}
+
+mutation InsertAllegatoDiario($objects: json!) {
+  insert_allegato_diario(objects: $objects) {
     affected_rows
   }
 }

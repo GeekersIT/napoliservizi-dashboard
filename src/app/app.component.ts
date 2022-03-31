@@ -5,25 +5,27 @@ import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   utente: any;
-  constructor(
-    translate: TranslateService,
-    private _keycloak: KeycloakService
-  ) {
+  constructor(translate: TranslateService, private _keycloak: KeycloakService) {
     translate.setDefaultLang('it');
     translate.use('it');
 
-    this._keycloak.loadUserProfile().then(utente => this.utente = utente);
+    this._keycloak.loadUserProfile().then((utente) => (this.utente = utente));
 
-    this.getToken()
+    this.getToken();
   }
-  async getToken(){
+  async getToken() {
     let userToken = await this._keycloak.getToken();
 
     console.log(userToken);
+  }
+
+  showMenu(lista:Array<string>){
+    const roles = this._keycloak.getUserRoles();
+    return lista.some((e) => roles.includes(e));
   }
 
   logout() {

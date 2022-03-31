@@ -1,9 +1,10 @@
-<div style="padding:20px; overflow: hidden;">
-    <h1 mat-dialog-title>{{ data.title }}</h1>
-    <div mat-dialog-content>{{ data.content }}</div>
-    <div mat-dialog-actions>
-      <button mat-button mat-dialog-close>{{ 'Annulla'|translate }}</button>
-      <button mat-button [mat-dialog-close]="true" color="warn">{{ 'Procedi'|translate }}</button>
-    </div>
-
+<div style="padding: 20px; overflow: hidden">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content class="formatter" [innerHTML]="data.content"></div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ "Annulla" | translate }}</button>
+    <button mat-button [mat-dialog-close]="true" color="warn">
+      {{ "Procedi" | translate }}
+    </button>
+  </div>
 </div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OperatoreComponent } from './operatore.component';
+import { LivelliComponent } from './livelli.component';
 
-describe('OperatoreComponent', () => {
-  let component: OperatoreComponent;
-  let fixture: ComponentFixture<OperatoreComponent>;
+describe('LivelliComponent', () => {
+  let component: LivelliComponent;
+  let fixture: ComponentFixture<LivelliComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OperatoreComponent ]
+      declarations: [ LivelliComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OperatoreComponent);
+    fixture = TestBed.createComponent(LivelliComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,7 +12,7 @@ import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog
 import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { InterventoStraordinaioObj } from 'src/app/_core/_models/pis/intervento_straordinario.intervace';
-import { DeleteInterventoStraordinarioGQL, InterventiStraordinariGQL, InterventiStraordinariSubscription, InterventoStraordinarioGQL, PrioritaSelectGQL, UpdateInterventoStraordinarioGQL, _Stato_Segnalazione_Enum } from 'src/app/_core/_services/generated/graphql';
+import { DeleteInterventoStraordinarioGQL, InterventiStraordinariGQL, InterventiStraordinariSubscription, InterventoStraordinarioGQL, Intervento_Straordinario_Constraint, PrioritaSelectGQL, UpdateInterventoStraordinarioGQL, _Stato_Segnalazione_Enum } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-interventi-straordinari',
@@ -229,7 +229,8 @@ export class InterventiStraordinariComponent implements OnInit {
 
   new(){
     this._updateInterventoStraordinarioGQL.mutate({
-      intervento: {
+      on_conflict: { constraint: Intervento_Straordinario_Constraint.InterventoStraordinarioPkey },
+      intervento_straordinario: {
         data_inserimento: new Date(),
         stato: _Stato_Segnalazione_Enum.Bozza,
         posizionamento_toponimo_punto_iniziale: {
@@ -240,7 +241,7 @@ export class InterventiStraordinariComponent implements OnInit {
         },
       }
     }).subscribe((result) => {
-      this._router.navigate(['/','pis','interventi','straordinari','edit',result.data?.insert_intervento_straordinario?.returning[0].id]);
+      this._router.navigate(['/','pis','interventi','straordinari','edit',result.data?.custom_insert_intervento_straordinario?.intervento_straordinario.id]);
     });
 
   }

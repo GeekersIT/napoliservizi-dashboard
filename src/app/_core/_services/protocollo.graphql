@@ -1,0 +1,15 @@
+mutation GeneraProtocollo(
+  $data: ProtocolloInput = {
+    destinatariEsterni: {}
+    destinatariInterni: {}
+    note: ""
+    oggetto: ""
+  }
+) {
+  genera_protocollo(data: $data) {
+    message
+    number
+    error
+    datetime
+  }
+}

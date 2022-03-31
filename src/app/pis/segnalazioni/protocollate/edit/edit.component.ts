@@ -14,7 +14,7 @@ export class SegnalazioniProtocollateEditComponent extends SegnalazioneEdit impl
     templateOptions:{
       orientation:'horizontal'
     },
-    fieldGroup: [...this.steps],
+    fieldGroup: [...this.steps.filter(step => step.key != 'intervento' && step.key != 'geolocalizzazione')],
   }];
 
   ngOnInit(): void {

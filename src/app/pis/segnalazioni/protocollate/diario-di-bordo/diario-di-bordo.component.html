@@ -35,7 +35,7 @@
                     <ng-container *ngIf="messaggio.messaggio;else allegatoRef">{{messaggio.messaggio}}</ng-container>
                     <ng-template #allegatoRef>
                         <button mat-button (click)="download(messaggio.allegato)">
-                            {{ messaggio.allegato.nome }}
+                            {{ messaggio.allegato }}
                             <mat-icon>attach_file</mat-icon>
                         </button>                        
                     </ng-template>

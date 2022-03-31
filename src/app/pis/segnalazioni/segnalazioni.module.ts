@@ -37,6 +37,7 @@ import { SegnalazioniProtocollateViewComponent } from './protocollate/view/view.
 import { RisoluzioneMultiplaDialogComponent } from './protocollate/risoluzione-multipla-dialog/risoluzione-multipla-dialog.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { AutocompleteFormlyModule } from 'src/app/_core/_formly/_components/autocomplete-formly/autocomplete-formly.module';
+import { SegnalazioniProtocollateCompletaEditComponent } from './protocollate/completa/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AutocompleteFormlyModule } from 'src/app/_core/_formly/_components/auto
     SegnalazioniPreEditComponent,
     SegnalazioniProvvisorieEditComponent,
     SegnalazioniProtocollateViewComponent,
+    SegnalazioniProtocollateCompletaEditComponent,
     SegnalazioniProtocollateEditComponent,
     SegnalazioniProtocollateAssegnaComponent,
     SegnalazioniProtocollateSospendiComponent,

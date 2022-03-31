@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormlyModule } from '@ngx-formly/core';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -25,7 +27,9 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
       ],
     }),
     TranslateModule,
-    FileUploadModule
+    FileUploadModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class FileUploadFornlyModule { }

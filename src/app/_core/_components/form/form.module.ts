@@ -16,17 +16,16 @@ import { MappaFormlyModule } from '../../_formly/_components/mappa-formly/mappa-
 import { AutosaveAddonsFormlyModule } from '../../_formly/_addons/autosave/autosave.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormlyModule, } from '@ngx-formly/core';
+import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
-import { FormlyMatDateRangepickerModule } from '../../_formly/_components/date-range-picker-formly/date-range-picker-formly.module';
+import { FormlyMatDateRangePickerModule } from '../../_formly/_components/date-range-picker-formly/date-range-picker-formly.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonFormlyModule } from '../../_formly/_components/button-formly/button-formly.module';
+import { FormlyMatDateTimePickerModule } from '../../_formly/_components/date-time-picker-formly/date-time-picker-formly.module';
 
 @NgModule({
-  declarations: [
-    FormComponent
-  ],
+  declarations: [FormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -47,10 +46,11 @@ import { ButtonFormlyModule } from '../../_formly/_components/button-formly/butt
     MatNativeDateModule,
     FormlyMatDatepickerModule,
     MatToolbarModule,
-    FormlyMatDateRangepickerModule,
+    FormlyMatDateRangePickerModule,
+    FormlyMatDateTimePickerModule,
     MatIconModule,
-    ButtonFormlyModule
+    ButtonFormlyModule,
   ],
-  exports: [ FormComponent ]
+  exports: [FormComponent],
 })
-export class FormModule { }
+export class FormModule {}

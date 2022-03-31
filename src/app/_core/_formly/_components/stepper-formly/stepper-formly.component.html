@@ -1,5 +1,5 @@
 
-  <button mat-stroked-button color="accent" type="button" (click)="toggleOrientation()" style="position: absolute; top:12px; left:12px;"> 
+  <button *ngIf="to.buttonSwitch" mat-stroked-button color="accent" type="button" (click)="toggleOrientation()" style="position: absolute; top:12px; left:12px;"> 
     {{ 'Visualizza in {formato}'|translate:{formato:to.orientation||'horizontal'} }} 
     <mat-icon *ngIf="to.orientation=='horizontal'">more_vert</mat-icon>
     <mat-icon *ngIf="to.orientation=='vertical'">more_horiz</mat-icon>

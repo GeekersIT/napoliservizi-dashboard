@@ -32,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { RequiredService } from './_core/_services/required.service';
 
 registerLocaleData(localeIt);
 
@@ -39,6 +40,11 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+export function initializeRequiredService(requiredService: RequiredService) {
+  return (): Promise<any> => {
+    return requiredService.Init();
+  }
+}
 
 export function formlyValidationConfig(translate: TranslateService) {
   return {
@@ -137,6 +143,10 @@ export const APP_LOCALE_ID = 'it';
       multi: true,
       deps: [KeycloakService]
     },
+    RequiredService,
+    {
+      provide: APP_INITIALIZER, useFactory: initializeRequiredService, deps: [RequiredService], multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

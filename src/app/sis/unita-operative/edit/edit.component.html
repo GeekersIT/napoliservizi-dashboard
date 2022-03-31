@@ -1,0 +1,7 @@
+
+<form-component [autosave]="false" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="actionsTemplate" [form]="form" (onSubmit)="save($event)" (changeEvent)="change($event)"></form-component>
+
+<ng-template #actionsTemplate>
+    <button mat-raised-button color="success" type="submit" name="def">{{ 'Salva'|translate }}</button>
+    <button mat-button mat-dialog-close color="warn">{{ 'Chiudi'|translate }}</button>
+</ng-template>

@@ -1,5 +1,41 @@
-<file-upload 
-    [formControl]="toControl(formControl)"
-    [formlyAttributes]="field"
-    animation="true"
-></file-upload>
+<file-upload
+  [formControl]="toControl(formControl)"
+  [formlyAttributes]="field"
+  animation="true"
+>
+  <ng-template
+    #placeholder >
+    <file-upload-drop-zone>
+      <ng-container>
+        <b>{{ "Trascina" | translate }}</b><br />
+        {{ "o clicca qui" | translate }}
+      </ng-container>
+    </file-upload-drop-zone>
+  </ng-template>
+
+  <!-- <ng-template let-i="index" let-file="file" let-control="control" #item>
+    <file-upload-list-item [index]="i" [file]="file" [control]="control">{{
+      "Elimina" | translate
+    }}</file-upload-list-item>
+  </ng-template> -->
+
+  <ng-template let-i="index" let-file="file" let-control="control" #item>
+    <div class="file-info" >
+      <button mat-button type="button" class="icon-button" (click)="open(file)">
+        <mat-icon>description</mat-icon>
+        {{ file.name }}
+      </button>
+      &nbsp;
+      <button type="button" mat-button (click)="control.removeFile(file)" color="warn" class="small-icon-button">
+        <mat-icon>delete_forever</mat-icon>
+        {{ 'Elimina'|translate }}
+      </button>
+
+
+    </div>
+
+
+    
+  </ng-template>
+
+</file-upload>

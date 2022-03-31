@@ -1,0 +1,1000 @@
+query AlimentazioneVeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _alimentazione_veicolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query CittaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $citta: String_comparison_exp = {}
+) {
+  _citta(
+    order_by: { ordine: asc }
+    limit: $limit
+    offset: $offset
+    where: { citta: $citta }
+  ) {
+    id
+    citta
+    regione
+    provincia
+    p_abbreviazione
+    codice
+  }
+}
+
+query CondizioniMeteoVisibilitaLimitataTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _condizioni_meteo_visibilita_limitata_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query ConseguenzaVeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _conseguenza_veicolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query DecessiTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _decessi_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query DestinazioneDecisioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _destinazione_decisione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query EnteSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _ente(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+    abbreviazione
+    label_tipo
+  }
+}
+
+query SessoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _sesso(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query TrasportatoPosizioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _trasportato_posizione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query InfortunatoTrasportatoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _intortunato_tasportato(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query SiNoAltroSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _sinoaltro(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query TrasportatoStatoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _trasportato_stato(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query EnteSecondarioSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _ente_secondario(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query ImpiantoSemaforicoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _impianto_semaforico(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query InfortunatoInformazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _infortunato_informazione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneAltroSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_altro(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneCondizioniAtmosfericheSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_condizioni_atmosferiche(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneCondizioniTrafficoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_condizioni_traffico(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneExtraAbitatoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_extra_abitato(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneFondoStradaleSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_fondo_stradale(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneIlluminazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_illuminazione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneParticolaritaStradaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_particolarita_strada(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazionePavimentazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_pavimentazione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneTipoStradaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_tipo_strada(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query LocalizzazioneVisibilitaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _localizzazione_visibilita(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query NaturaIncidenteSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _natura_incidente(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query NazioneSisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _nazione_sis(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query NazioneSisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _nazione_sis(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query PatenteCategoriaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _patente_categoria(
+    order_by: { ordine: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query PosizioneFinaleVeicoloCarreggiataSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _posizione_finale_veicolo_carreggiata(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query PosizioneFinaleVeicoloFuoriSedeSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _posizione_finale_veicolo_fuori_sede(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query PosizioneFinaleVeicoloMarginiSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _posizione_finale_veicolo_margini(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query PuntiRilieviNoTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _punti_rilievi_no_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query RetrovisoreEsternoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _retrovisore_esterno(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query RisConsegnatoASelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _ris_consegnato_a(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query RisConsegnatoASelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _ris_consegnato_a(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query SezioneProtocolloSisSelect(
+  $where: _sezione_protocollo_sis_bool_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  _sezione_protocollo_sis(
+    order_by: { nome: asc }
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
+    id
+    nome
+    sigla
+    codice
+  }
+}
+query SpecificaPosizionamentoToponimoSisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _specifica_posizionamento_toponimo_sis(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query StatoVeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _stato_veicolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TipologiaPosizionamentoToponimoSisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_posizionamento_toponimo_sis(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TipologiaRisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_ris(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TipologiaVeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_veicolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TipologiaVerbaleSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_verbale(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TitoloSisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _titolo_sis(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloFrenataTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_frenata_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTerminazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_terminazione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTerminazioneAndamentoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_terminazione_andamento(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTerminazioneFormaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_terminazione_forma(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTerminazioneIntensitaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_terminazione_intensita(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTerminazioneTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_terminazione_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TracciaSuoloTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _traccia_suolo_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query UnitaOperativaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  unita_operativa(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+    note
+    civico
+    toponimo
+    membri(
+      where: {
+        _and: { caposquadra: { _eq: true }, fine_validita: { _is_null: true } }
+      }
+    ) {
+      membro
+    }
+  }
+}
+
+query UsoVeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _uso_veicolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query VisibilitaLimitataTipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _visibilita_limitata_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query ConducenteSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: conducente_bool_exp = {}
+) {
+  conducente(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+  }
+}
+
+query LocatarioSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: locatario_bool_exp = {}
+) {
+  locatario(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+    nascita_citta_altro
+  }
+}
+
+query PedoneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: pedone_bool_exp = {}
+) {
+  pedone(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+    nascita_citta_altro
+  }
+}
+
+query ProprietarioSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: proprietario_bool_exp = {}
+) {
+  proprietario(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+    nascita_citta_altro
+  }
+}
+
+query ProprietarioGiuridicoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: proprietario_giuridico_bool_exp = {}
+) {
+  proprietario_giuridico(limit: $limit, offset: $offset, where: $where) {
+    id
+    ragione_sociale
+    partita_iva
+    codice_fiscale
+    citta {
+      citta
+      p_abbreviazione
+    }
+    citta_altro
+  }
+}
+
+query TestimoneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: testimone_bool_exp = {}
+) {
+  testimone(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+    nascita_citta_altro
+  }
+}
+
+query TrasportatoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: trasportato_bool_exp = {}
+) {
+  trasportato(limit: $limit, offset: $offset, where: $where) {
+    id
+    nome
+    cognome
+    titolo {
+      nome
+    }
+    nascita_data
+    nascita_citta {
+      citta
+      p_abbreviazione
+    }
+    nascita_citta_altro
+  }
+}
+
+query VeicoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: veicolo_bool_exp = {}
+) {
+  veicolo(limit: $limit, offset: $offset, where: $where) {
+    id
+    colore_carrozzeria
+    marca
+    modello
+    nazione {
+      nome
+    }
+    targa
+    telaio
+  }
+}

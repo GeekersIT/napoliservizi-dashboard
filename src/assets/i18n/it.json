@@ -1,26 +1,27 @@
 {
-    "Nessun risultato per la ricerca {filter}": "Nessun risultato per la ricerca \"{filter}\"",
-    "Valida fino a {data}": "Valida fino a {data}",
-    "Valida da {data}": "Valida da {data}",
-    "Visualizza in {formato}": "Visualizza in {formato, select, horizontal{verticale} vertical{orizzontale}  other{}}",
-    "{specifica}": "{specifica, select, 1{Civico} 2{N.} 3{Km} other{}}",
-    "MAT_PAGINATOR": {
-        "FIRST_PAGE": "Prima pagina",
-        "ITEMS_PER_PAGE": "Elementi per pagina",
-        "LAST_PAGE": "Ultima pagina",
-        "NEXT_PAGE": "Pagina successiva",
-        "PREVIOUS_PAGE": "Pagina precedente",
-        "OF": "di"
-    },
-    "{prima_dimensione}": "{prima_dimensione, select, 1{Asse maggiore} 2{Lunghezza lato} 3{Altezza} 4{Altezza} 5{Altezza} other{Prima dimensione}}",
-    "{seconda_dimensione}": "{seconda_dimensione, select, 1{Asse minore} 3{Larghezza} 4{Base maggiore} 5{Base} other{Seconda dimensione}}",
-    "{terza_dimensione}": "{terza_dimensione, select, 4{Base minore} other{Terza dimensione}}",
-    "Pre segnalazione n. {id} del {data}": "Pre segnalazione n. {id} del {data}",
-    "Segnalazione n. protocollo {id} del {data}": "Segnalazione n. protocollo {id} del {data}",
-    "N. {numero} del {data}": "N. {numero} del {data}",
-    "Alla squadra {nome} cone note: {note}":"Alla squadra {nome} cone note: {note}",
-    "Con motivazione: {note}":"Con motivazione: {note}",
-    "Da segnalazione protocollata con n.: {numero} del {data}": "Da segnalazione protocollata con n.: {numero} del {data}",
-    "Protocollo n. {numero} del {data}": "Protocollo n. {numero} del {data}"
-
+  "Nessun risultato per la ricerca {filter}": "Nessun risultato per la ricerca \"{filter}\"",
+  "Valida fino a {data}": "Valida fino a {data}",
+  "Valida da {data}": "Valida da {data}",
+  "Visualizza in {formato}": "Visualizza in {formato, select, horizontal{verticale} vertical{orizzontale}  other{}}",
+  "{specifica}": "{specifica, select, 1{Civico} 2{N.} 3{Km} other{}}",
+  "MAT_PAGINATOR": {
+    "FIRST_PAGE": "Prima pagina",
+    "ITEMS_PER_PAGE": "Elementi per pagina",
+    "LAST_PAGE": "Ultima pagina",
+    "NEXT_PAGE": "Pagina successiva",
+    "PREVIOUS_PAGE": "Pagina precedente",
+    "OF": "di"
+  },
+  "{prima_dimensione}": "{prima_dimensione, select, 1{Asse maggiore} 2{Lunghezza lato} 3{Altezza} 4{Altezza} 5{Altezza} other{Prima dimensione}}",
+  "{seconda_dimensione}": "{seconda_dimensione, select, 1{Asse minore} 3{Larghezza} 4{Base maggiore} 5{Base} other{Seconda dimensione}}",
+  "{terza_dimensione}": "{terza_dimensione, select, 4{Base minore} other{Terza dimensione}}",
+  "Pre segnalazione n. {id} del {data}": "Pre segnalazione n. {id} del {data}",
+  "Segnalazione n. protocollo {id} del {data}": "Segnalazione n. protocollo {id} del {data}",
+  "N. {numero} del {data}": "N. {numero} del {data}",
+  "Alla squadra {nome} cone note: {note}": "Alla squadra {nome} cone note: {note}",
+  "Con motivazione: {note}": "Con motivazione: {note}",
+  "Da segnalazione protocollata con n.: {numero} del {data}": "Da segnalazione protocollata con n.: {numero} del {data}",
+  "Protocollo n. {numero} del {data}": "Protocollo n. {numero} del {data}",
+  "{enti_primo_intervento}": "Specifica {label}",
+  "Invalid user credentials": "Agente non presente nel sistema.<br/>Controlla le credenziali di accesso inserite."
 }

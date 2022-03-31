@@ -1,0 +1,34 @@
+<div style="padding: 20px; overflow: hidden">
+  <h1 mat-dialog-title>{{ "Agenti presenti" | translate }}</h1>
+  <div mat-dialog-content>
+    <button mat-raised-button type="button" color="success" (click)="add()">
+      {{ "Aggiungi un agente" | translate }}
+    </button>
+
+    <mat-list>
+      <mat-list-item
+        *ngFor="let agente of agenti; let i = index"
+        [attr.data-index]="i"
+      >
+        <mat-icon mat-list-icon>noise_control_off</mat-icon>
+        <div mat-line>
+          {{ agente?.agente?.grado }} {{ agente?.agente?.nome }}
+          {{ agente?.agente?.cognome }}
+        </div>
+        <div mat-line>
+          {{ "Matricola" | translate }}: {{ agente?.agente?.matricola }}
+        </div>
+        <button mat-icon-button (click)="remove(i)" *ngIf="i != 0">
+          <mat-icon class="mat-24">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ "Annulla" | translate }}</button>
+    <button mat-raised-button [mat-dialog-close]="agenti" color="success">
+      {{ "Invia" | translate }}
+    </button>
+  </div>
+</div>

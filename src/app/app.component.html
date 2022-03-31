@@ -1,172 +1,353 @@
 <ngx-ui-loader></ngx-ui-loader>
-<mat-toolbar color="primary" style="height: 120px;">
-    <ngx-avatar src="assets/logo.png" size="100" [round]="false"></ngx-avatar>
+<mat-toolbar color="primary" style="height: 120px">
+  <ngx-avatar src="assets/logo.png" size="100" [round]="false"></ngx-avatar>
 
+  <span class="spacer"></span>
 
-    <span class="spacer"></span>
-
-    <div fxShow="true" fxHide.lt-md="true">
-        <button mat-button [matMenuTriggerFor]="amministrazioneMenu">{{ 'Amministrazione'|translate }}</button>
-        <mat-menu #amministrazioneMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Gestione utenti'|translate }}</button>
-            <button mat-menu-item>{{ 'Log'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="toponomasticaMenu">{{ 'Toponomastica'|translate }}</button>
-        <mat-menu #toponomasticaMenu="matMenu" yPosition="above">
-            <button mat-menu-item [routerLink]="'/toponomastica/municipalita'">{{ 'Gestione municipalità'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/toponomastica/quartieri'">{{ 'Gestione quartieri'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/toponomastica/toponimi'">{{ 'Gestione toponimi'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="webGisMenu">{{ 'webGIS'|translate }}</button>
-        <mat-menu #webGisMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            <button mat-menu-item>{{ 'Gestione livelli'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="pisMenu">{{ 'P.I.S.'|translate }}</button>
-        <mat-menu #pisMenu="matMenu" yPosition="above">
-            <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">{{ 'Interventi straordinari'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button>
-            <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/pis/squadre'">{{ 'Gestione squadre'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">{{ 'Segnalazioni provvisorie'|translate }}</button>
-            <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">{{ 'Segnalazioni protocollate'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="sisMenu">{{ 'S.I.S.'|translate }}</button>
-        <mat-menu #sisMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'R.I.S. provvisori'|translate }}</button>
-            <button mat-menu-item>{{ 'R.I.S. protocollati'|translate }}</button>
-            <button mat-menu-item>{{ 'Unità operative'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="pmsMenu">{{ 'P.M.S.'|translate }}</button>
-        <mat-menu #pmsMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            <button mat-menu-item>{{ 'Gestione indicatori'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="pssuMenu">{{ 'P.S.S.U.'|translate }}</button>
-        <mat-menu #pssuMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            <button mat-menu-item>{{ 'Reportistica'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="agcosMenu">{{ 'Agcos'|translate }}</button>
-        <mat-menu #agcosMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Tabella'|translate }}</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="userMenu">
-            <ngx-avatar name="{{ utente?.firstName }} {{ utente?.lastName }}"></ngx-avatar>
-        </button>
-        <mat-menu #userMenu="matMenu" yPosition="above">
-            <button mat-menu-item>{{ 'Profilo'|translate }}</button>
-            <button mat-menu-item (click)="logout()">{{ 'Esci'|translate }}</button>
-        </mat-menu>
-
-
-    </div>
-
-    <button (click)="sidenav.toggle()" mat-icon-button fxShow="true" fxHide.gt-sm="true">
-      <mat-icon>menu</mat-icon>
+  <div fxShow="true" fxHide.lt-md="true">
+    <!-- <button mat-button [matMenuTriggerFor]="amministrazioneMenu">
+      {{ "Amministrazione" | translate }}
     </button>
+    <mat-menu #amministrazioneMenu="matMenu" yPosition="above">
+      <button mat-menu-item>{{ "Gestione utenti" | translate }}</button>
+      <button mat-menu-item>{{ "Log" | translate }}</button>
+    </mat-menu> -->
+    <button
+      mat-button
+      [matMenuTriggerFor]="toponomasticaMenu"
+      *ngIf="
+        showMenu([
+          'toponomastica-gestione-toponimi',
+          'toponomastica-gestione-municipalita',
+          'toponomastica-gestione-quartieri'
+        ])
+      "
+    >
+      {{ "Toponomastica" | translate }}
+    </button>
+    <mat-menu #toponomasticaMenu="matMenu" yPosition="above">
+      <button
+        mat-menu-item
+        [routerLink]="'/toponomastica/municipalita'"
+        *ngIf="showMenu(['toponomastica-gestione-municipalita'])"
+      >
+        {{ "Gestione municipalità" | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/toponomastica/quartieri'"
+        *ngIf="showMenu(['toponomastica-gestione-quartieri'])"
+      >
+        {{ "Gestione quartieri" | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/toponomastica/toponimi'"
+        *ngIf="showMenu(['toponomastica-gestione-toponimi'])"
+      >
+        {{ "Gestione toponimi" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="webGisMenu"
+      *ngIf="showMenu(['gis-mappa', 'gis-gestione-livelli'])"
+    >
+      {{ "webGIS" | translate }}
+    </button>
+    <mat-menu #webGisMenu="matMenu" yPosition="above">
+      <button mat-menu-item *ngIf="showMenu(['gis-mappa'])">
+        {{ "Mappa" | translate }}
+      </button>
+      <button mat-menu-item *ngIf="showMenu(['gis-gestione-livelli'])">
+        {{ "Gestione livelli" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="pisMenu"
+      *ngIf="
+        showMenu([
+          'pis-gestione-interventi',
+          'pis-gestione-segnalazioni',
+          'pis-gestione-squadre',
+          'pis-protezione-civile',
+          'pis-ufficio'
+        ])
+      "
+    >
+      {{ "P.I.S." | translate }}
+    </button>
+    <mat-menu #pisMenu="matMenu" yPosition="above">
+      <button
+        mat-menu-item
+        [routerLink]="'/pis/interventi/straordinari'"
+        *ngIf="showMenu(['pis-gestione-interventi'])"
+      >
+        {{ "Interventi straordinari" | translate }}
+      </button>
+      <!-- <button mat-menu-item [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button> -->
+      <!-- <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button> -->
+      <button
+        mat-menu-item
+        [routerLink]="'/pis/squadre'"
+        *ngIf="showMenu(['pis-gestione-squadre'])"
+      >
+        {{ "Gestione squadre" | translate }}
+      </button>
+      <!-- <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button> -->
+      <button
+        mat-menu-item
+        [routerLink]="'/pis/segnalazioni/provvisorie'"
+        *ngIf="showMenu(['pis-gestione-segnalazioni'])"
+      >
+        {{ "Segnalazioni provvisorie" | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/pis/segnalazioni/protocollate'"
+        *ngIf="showMenu(['pis-gestione-segnalazioni'])"
+      >
+        {{ "Segnalazioni protocollate" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="sisMenu"
+      *ngIf="
+        showMenu(['sis-gestione-incidenti', 'sis-gestione-unita-operative'])
+      "
+    >
+      {{ "S.I.S." | translate }}
+    </button>
+    <mat-menu #sisMenu="matMenu" yPosition="above">
+      <button
+        mat-menu-item
+        [routerLink]="'/sis/ris/agenti'"
+        *ngIf="showMenu(['sis-gestione-incidenti'])"
+      >
+        {{ "R.I.S." | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/sis/ris/provvisori'"
+        *ngIf="showMenu(['sis-gestione-incidenti'])"
+      >
+        {{ "R.I.S. provvisori" | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/sis/ris/protocollati'"
+        *ngIf="showMenu(['sis-gestione-incidenti'])"
+      >
+        {{ "R.I.S. protocollati" | translate }}
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="'/sis/unita/operative'"
+        *ngIf="showMenu(['sis-gestione-unita-operative'])"
+      >
+        {{ "Unità operative" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="pmsMenu"
+      *ngIf="
+        showMenu([
+          'pms-gestione-indicatori',
+          'pms-mappa',
+          'pms-pacchetto-stradale'
+        ])
+      "
+    >
+      {{ "P.M.S." | translate }}
+    </button>
+    <mat-menu #pmsMenu="matMenu" yPosition="above">
+      <button mat-menu-item *ngIf="showMenu(['pms-mappa'])">
+        {{ "Mappa" | translate }}
+      </button>
+      <button mat-menu-item *ngIf="showMenu(['pms-gestione-indicatori'])">
+        {{ "Gestione indicatori" | translate }}
+      </button>
+      <button mat-menu-item *ngIf="showMenu(['pms-pacchetto-stradale'])">
+        {{ "Pacchetto stradale" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="pssuMenu"
+      *ngIf="showMenu(['pssu-mappa', 'pssu-report'])"
+    >
+      {{ "P.S.S.U." | translate }}
+    </button>
+    <mat-menu #pssuMenu="matMenu" yPosition="above">
+      <button mat-menu-item *ngIf="showMenu(['pssu-mappa'])">
+        {{ "Mappa" | translate }}
+      </button>
+      <button mat-menu-item *ngIf="showMenu(['pssu-report'])">
+        {{ "Reportistica" | translate }}
+      </button>
+    </mat-menu>
+    <button
+      mat-button
+      [matMenuTriggerFor]="agcosMenu"
+      *ngIf="showMenu(['agcos-report'])"
+    >
+      {{ "Agcos" | translate }}
+    </button>
+    <mat-menu #agcosMenu="matMenu" yPosition="above">
+      <button mat-menu-item>{{ "Tabella" | translate }}</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <ngx-avatar
+        name="{{ utente?.firstName }} {{ utente?.lastName }}"
+      ></ngx-avatar>
+    </button>
+    <mat-menu #userMenu="matMenu" yPosition="above">
+      <button mat-menu-item>{{ "Profilo" | translate }}</button>
+      <button mat-menu-item (click)="logout()">{{ "Esci" | translate }}</button>
+    </mat-menu>
+  </div>
 
+  <button
+    (click)="sidenav.toggle()"
+    mat-icon-button
+    fxShow="true"
+    fxHide.gt-sm="true"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
 
-  </mat-toolbar>
-
-  <mat-sidenav-container fxFlexFill class="container">
-
-    <mat-sidenav #sidenav fxLayout="column">
-        <mat-list>
-            <div mat-subheader>{{ 'Amministrazione'|translate }}</div>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Gestione utenti'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Log'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'Toponomastica'|translate }}</div>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/toponomastica/municipalita'">{{ 'Gestione municipalità'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/toponomastica/quartieri'">{{ 'Gestione quartieri'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/toponomastica/toponimi'">{{ 'Gestione toponimi'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'webGIS'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Gestione livelli'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'P.I.S.'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">{{ 'Interventi straordinari'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item  [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/pis/squadre'">{{ 'Gestione squadre'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">{{ 'Segnalazioni provvisorie'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">{{ 'Segnalazioni protocollate'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'S.I.S.'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'R.I.S. provvisori'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'R.I.S. protocollati'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Unità operative'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'P.M.S.'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Gestione indicatori'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'P.S.S.U.'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'Mappa'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-menu-item>{{ 'Reportistica'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'Agcos'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'Tabella'|translate }}</button>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>{{ 'Impostazioni'|translate }}</div>
-            <mat-list-item >
-                <button mat-menu-item>{{ 'Profilo'|translate }}</button>
-            </mat-list-item>
-            <mat-list-item >
-                <button mat-menu-item (click)="logout()">{{ 'Esci'|translate }}</button>
-            </mat-list-item>
-
-          </mat-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="content" fxFlexFill>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<mat-sidenav-container fxFlexFill class="container">
+  <mat-sidenav #sidenav fxLayout="column">
+    <mat-list>
+      <!-- <div mat-subheader>{{ "Amministrazione" | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Gestione utenti" | translate }}</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Log" | translate }}</button>
+      </mat-list-item>
+      <mat-divider></mat-divider> -->
+      <div mat-subheader>{{ "Toponomastica" | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/toponomastica/municipalita'">
+          {{ "Gestione municipalità" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/toponomastica/quartieri'">
+          {{ "Gestione quartieri" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/toponomastica/toponimi'">
+          {{ "Gestione toponimi" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "webGIS" | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Mappa" | translate }}</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Gestione livelli" | translate }}</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "P.I.S." | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">
+          {{ "Interventi straordinari" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/interventi/campo'">
+          {{ "Interventi sul campo" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item>
+          {{ "Richieste protezione civile" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/squadre'">
+          {{ "Gestione squadre" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">
+          {{ "Pre segnalazioni" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">
+          {{ "Segnalazioni provvisorie" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">
+          {{ "Segnalazioni protocollate" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "S.I.S." | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/sis/ris/agenti'">
+          {{ "R.I.S." | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/sis/ris/provvisori'">
+          {{ "R.I.S. provvisori" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/sis/ris/protocollate'">
+          {{ "R.I.S. protocollati" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item [routerLink]="'/sis/unita/operative'">
+          {{ "Unità operative" | translate }}
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "P.M.S." | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Mappa" | translate }}</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Gestione indicatori" | translate }}</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "P.S.S.U." | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Mappa" | translate }}</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Reportistica" | translate }}</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "Agcos" | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Tabella" | translate }}</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>{{ "Impostazioni" | translate }}</div>
+      <mat-list-item>
+        <button mat-menu-item>{{ "Profilo" | translate }}</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-menu-item (click)="logout()">
+          {{ "Esci" | translate }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" fxFlexFill>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

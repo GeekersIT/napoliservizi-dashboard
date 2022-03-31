@@ -24,7 +24,11 @@
             <mat-icon>visibility</mat-icon>
             {{ 'Visualizza'|translate }}
         </button>
-        <button mat-menu-item [routerLink]="['edit',row.id]">
+        <button mat-menu-item [routerLink]="['edit',row.id]" *ngIf="!actionDisabled(row)">
+            <mat-icon>edit</mat-icon>
+            {{ 'Modifica'|translate }}
+        </button>
+        <button mat-menu-item [routerLink]="['completa','edit',row.id]" *ngIf="actionDisabled(row)">
             <mat-icon>edit</mat-icon>
             {{ 'Modifica'|translate }}
         </button>
@@ -35,6 +39,10 @@
         <button mat-menu-item [matMenuTriggerFor]="actions" [disabled]="actionDisabled(row)">
             <mat-icon>settings</mat-icon>
             {{ 'Azioni'|translate }}
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="documents">
+            <mat-icon>source</mat-icon>
+            {{ 'Documenti'|translate }}
         </button>
         <button mat-menu-item (click)="delete(row)" [disabled]="actionDisabled(row)">
             <mat-icon>delete_forever</mat-icon>
@@ -61,5 +69,18 @@
             {{ 'Completa'|translate }}
         </button>
     </mat-menu>
+
+    <mat-menu #documents="matMenu">
+        <button mat-menu-item (click)="documentoProtocollato(row)" >
+            {{ 'Documento protocollato'|translate }}
+        </button>
+        <button mat-menu-item (click)="schedaSegnalazione(row)" >
+            {{ 'Scheda di segnalazione'|translate }}
+        </button>
+        <button mat-menu-item (click)="schedaAttestazione(row)">
+            {{ 'Scheda di attestazione'|translate }}
+        </button>
+    </mat-menu>
+
 
 </ng-template>

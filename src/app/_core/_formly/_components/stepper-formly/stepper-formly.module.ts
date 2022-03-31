@@ -29,7 +29,8 @@ import { FormlyModule } from '@ngx-formly/core';
             templateOptions: {
               activeStep: 0,
               selectionChange: null,
-              submitted: null
+              submitted: null,
+              buttonSwitch: true
             },
           } 
         },

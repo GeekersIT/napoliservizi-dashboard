@@ -48,12 +48,6 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
     tipologia_intervento
     lavori_effettuati
     stato
-    allegati{
-      id
-      file
-      nome
-      tipo
-    }
   }
 }
 
@@ -130,30 +124,24 @@ query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
     tipologia_intervento
     lavori_effettuati
     stato
-    allegati{
+  }
+}
+
+mutation UpdateInterventoStraordinario($on_conflict: json!, $intervento_straordinario: json!) {
+  custom_insert_intervento_straordinario(intervento_straordinario: $intervento_straordinario, on_conflict: $on_conflict) {
+    intervento_straordinario {
       id
-      file
-      nome
-      tipo
     }
   }
 }
 
-
-
-mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_insert_input!] = {}, $on_conflict: intervento_straordinario_on_conflict = {constraint: intervento_straordinario_pkey}) {
-  insert_intervento_straordinario(objects: $intervento, on_conflict: $on_conflict) {
-    returning {
-      id
-      allegati{
-        id
-        file
-        nome
-        tipo
-      }
-    }
-  }
-}
+# mutation UpdateInterventoStraordinario($intervento: [intervento_straordinario_insert_input!] = {}, $on_conflict: intervento_straordinario_on_conflict = {constraint: intervento_straordinario_pkey}) {
+#   insert_intervento_straordinario(objects: $intervento, on_conflict: $on_conflict) {
+#     returning {
+#       id
+#     }
+#   }
+# }
 
 mutation DeleteInterventoStraordinario($id: Int!) {
   delete_intervento_straordinario(where: {id: {_eq: $id}}) {

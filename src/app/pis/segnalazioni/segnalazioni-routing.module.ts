@@ -6,6 +6,7 @@ import { SegnalazioniPreEditComponent } from './pre/edit/edit.component';
 import { SegnalazioniPreComponent } from './pre/pre.component';
 import { SegnalazioniProtocollateAssegnaComponent } from './protocollate/assegna/assegna.component';
 import { SegnalazioniProtocollateCompletaComponent } from './protocollate/completa/completa.component';
+import { SegnalazioniProtocollateCompletaEditComponent } from './protocollate/completa/edit/edit.component';
 import { DiarioDiBordoComponent } from './protocollate/diario-di-bordo/diario-di-bordo.component';
 import { SegnalazioniProtocollateEditComponent } from './protocollate/edit/edit.component';
 import { SegnalazioniProtocollateComponent } from './protocollate/protocollate.component';
@@ -56,6 +57,13 @@ const routes: Routes = [{
 {
   path: 'protocollate/edit/:id',
   component: SegnalazioniProtocollateEditComponent,
+  canActivate: [AuthGuard],
+  canDeactivate: [FormDirtyGuard],
+  data: { roles: ['pis-gestione-segnalazioni-edit'] },
+},
+{
+  path: 'protocollate/completa/edit/:id',
+  component: SegnalazioniProtocollateCompletaEditComponent,
   canActivate: [AuthGuard],
   canDeactivate: [FormDirtyGuard],
   data: { roles: ['pis-gestione-segnalazioni-edit'] },

@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <span>{{ "R.I.S." | translate }}</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<form-component
+  [autosave]="true"
+  [options]="options"
+  [model]="model"
+  [fields]="fields"
+  [actionsTemplate]="actionsTemplate"
+  [form]="form"
+  (onSubmit)="save($event)"
+  (changeEvent)="change($event)"
+></form-component>
+<ng-template #actionsTemplate>
+  <button
+    mat-stroked-button
+    color="accent"
+    type="button"
+    name="compila"
+    (click)="save({ loading: true, type: 'compila' })"
+  >
+    <mat-icon *ngIf="saving">save</mat-icon> {{ "Salva in bozza" | translate }}
+  </button>
+  <button mat-raised-button color="success" type="submit" name="invia">
+    {{ "Invia all'unità operativa" | translate }}
+  </button>
+</ng-template>

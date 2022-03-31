@@ -1,12 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FileUploadControl } from '@iplab/ngx-file-upload';
-import { TranslateService } from '@ngx-translate/core';
 import { KeycloakService } from 'keycloak-angular';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { BehaviorSubject, firstValueFrom, map } from 'rxjs';
 import { b64toBlob, fileListToBase64 } from 'src/app/_core/_functions';
-import { Allegato_Insert_Input, DiarioGQL, InsertDiarioGQL } from 'src/app/_core/_services/generated/graphql';
+import { DiarioGQL, InsertDiarioGQL, InsertAllegatoDiarioGQL } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
   selector: 'app-diario-di-bordo',
@@ -24,7 +23,9 @@ export class DiarioDiBordoComponent implements OnInit {
     private _keycloakService: KeycloakService,
     private _diarioGQL: DiarioGQL,
     private _insertDiarioGQL: InsertDiarioGQL,
-    private _route: ActivatedRoute
+    private _insertAllegatoDiarioGQL: InsertAllegatoDiarioGQL,
+    private _route: ActivatedRoute,
+    private _http: HttpClient
   ) {
     this.id = parseInt(this._route.snapshot.paramMap.get('id')!);  
   }
@@ -61,12 +62,12 @@ export class DiarioDiBordoComponent implements OnInit {
       this.saving.next(true);
       const allegati = await fileListToBase64(fileList);
       let user = await this._keycloakService.loadUserProfile();
-      this._insertDiarioGQL.mutate({
+      this._insertAllegatoDiarioGQL.mutate({
         objects: {
           utente: user,
           segnalazione_id: this.id,
           allegato: {
-            data: allegati[0] as Allegato_Insert_Input
+            data: allegati[0]
           }
         }
       }).subscribe({
@@ -79,12 +80,18 @@ export class DiarioDiBordoComponent implements OnInit {
 
   }
 
-  download(file:any){
-    let blob = b64toBlob(file.file, file.tipo);
-    let url = window.URL.createObjectURL(blob);
+  async download(file:any){
+    // let blob = b64toBlob(file.file, file.tipo);
+    // let url = window.URL.createObjectURL(blob);
+ 
+    let res:any = await firstValueFrom(this._http.post('/storage/file/get', {
+      bucket: 'segnalazione-'+this.id,
+      name: 'diario/'+file
+      }));
+ 
     var fileLink = document.createElement('a');
-    fileLink.href = url;
-    fileLink.download = file.nome;
+    fileLink.href = res.url;
+    fileLink.download = file;
     fileLink.click();
   }
 

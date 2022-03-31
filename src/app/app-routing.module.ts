@@ -14,6 +14,9 @@ const routes: Routes = [{
   path: 'pis',
   loadChildren: () => import('./pis/pis.module').then(m => m.PisModule),
 },{
+  path: 'sis',
+  loadChildren: () => import('./sis/sis.module').then(m => m.SisModule),
+},{
   path: '401',
   loadChildren: () => import('./page401/page401.module').then(m => m.Page401Module)
 },

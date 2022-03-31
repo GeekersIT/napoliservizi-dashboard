@@ -1,55 +1,123 @@
-query PrioritaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _priorita(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query StatoSegnalazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: _stato_segnalazione_bool_exp = {}
+) {
+  _stato_segnalazione(
+    order_by: { text: asc }
+    limit: $limit
+    offset: $offset
+    where: $where
+  ) {
+    text
+  }
+}
+
+query PrioritaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _priorita(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query TipologiaPosizionamentoToponimoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _tipologia_posizionamento_toponimo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query TipologiaPosizionamentoToponimoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_posizionamento_toponimo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
-query SpecificaPosizionamentoToponimoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _specifica_posizionamento_toponimo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query SpecificaPosizionamentoToponimoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _specifica_posizionamento_toponimo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query OperatorePisSelect($limit: Int = 10, $offset: Int = 0, $where: membro_bool_exp = {}) {
-  membro(order_by: {nome: asc}, limit: $limit, offset: $offset, where: $where) {
+# query OperatorePisSelect($limit: Int = 10, $offset: Int = 0, $where: membro_bool_exp = {}) {
+#   membro(order_by: {nome: asc}, limit: $limit, offset: $offset, where: $where) {
+#     id
+#     nome
+#     cognome
+#     matricola
+#     squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
+#       aggregate {
+#         count
+#       }
+#     }
+#   }
+# }
+
+query FormaDissesoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _forma_dissesto(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
-    cognome
-    matricola
-    squadre_aggregate(where: {fine_validita: {_is_null: true}}) {
-      aggregate {
-        count
-      }
-    }
   }
 }
 
-
-query FormaDissesoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _forma_dissesto(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
-    id
-    nome
-  }
-}
-
-query TipologiaDissesoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _tipologia_dissesto(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query TipologiaDissesoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _tipologia_dissesto(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
     intervento
   }
 }
 
-query SezioneProtocolloSelect($where: _sezione_protocollo_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
-  _sezione_protocollo(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
+query SezioneProtocolloSelect(
+  $where: _sezione_protocollo_bool_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  _sezione_protocollo(
+    order_by: { nome: asc }
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
     id
     nome
     sigla
@@ -57,15 +125,33 @@ query SezioneProtocolloSelect($where: _sezione_protocollo_bool_exp = {}, $limit:
   }
 }
 
-query TitoloSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _titolo(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query TitoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _titolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query SegnalazioneSelect($limit: Int = 10, $offset: Int = 0, $where: segnalazione_bool_exp = {}) {
-  segnalazione(order_by: {protocollo: {numero: asc}}, limit: $limit, offset: $offset, where: $where) {
+query SegnalazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: segnalazione_bool_exp = {}
+) {
+  segnalazione(
+    order_by: { protocollo: { numero: asc } }
+    limit: $limit
+    offset: $offset
+    where: $where
+  ) {
     id
     created_at
     protocollo {
@@ -75,33 +161,73 @@ query SegnalazioneSelect($limit: Int = 10, $offset: Int = 0, $where: segnalazion
   }
 }
 
-
-
-query SquadrePisSelect($limit: Int = 10, $offset: Int = 0, $where: squadra_bool_exp = {}) {
-  squadra(order_by: {nome: asc}, limit: $limit, offset: $offset, where: $where) {
+query SquadrePisSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $where: squadra_bool_exp = {}
+) {
+  squadra(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: $where
+  ) {
     id
     nome
     protezione_civile
+    membri(
+      where: {
+        _and: { caposquadra: { _eq: true }, fine_validita: { _is_null: true } }
+      }
+    ) {
+      membro
+    }
   }
 }
 
-
-query CondizioniTrafficoSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _condizioni_traffico(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query CondizioniTrafficoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _condizioni_traffico(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query GiorniTrascorsiSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _giorni_trascorsi(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query GiorniTrascorsiSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _giorni_trascorsi(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query MaterialeSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  _materiale(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query MaterialeSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _materiale(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }

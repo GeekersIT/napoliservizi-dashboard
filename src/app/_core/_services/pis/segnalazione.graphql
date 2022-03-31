@@ -52,12 +52,6 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
     }
     stato
     richiesta_protezione_civile
-    allegati {
-      id
-      file
-      nome
-      tipo
-    }
     dissesto {
       id
       note
@@ -69,6 +63,7 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
       tipologia {
         id
         nome
+        intervento
       }
       forma {
         id
@@ -95,13 +90,8 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
     diario {
       id
       messaggio
+      allegato
       utente
-      allegato {
-        id
-        file
-        nome
-        tipo
-      }
     }
     segnalazioni_collegate {
       segnalazione {
@@ -171,12 +161,6 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
       veicoli_impiegati {
         id
         targa
-      }
-      allegati {
-        id
-        file
-        nome
-        tipo
       }
     }
   }
@@ -255,12 +239,6 @@ query Segnalazione($where: segnalazione_bool_exp!) {
     }
     stato
     richiesta_protezione_civile
-    allegati {
-      id
-      file
-      nome
-      tipo
-    }
     dissesto {
       id
       note
@@ -299,13 +277,8 @@ query Segnalazione($where: segnalazione_bool_exp!) {
     diario {
       id
       messaggio
+      allegato
       utente
-      allegato {
-        id
-        file
-        nome
-        tipo
-      }
     }
     segnalazioni_collegate {
       segnalazione {
@@ -376,25 +349,15 @@ query Segnalazione($where: segnalazione_bool_exp!) {
         id
         targa
       }
-      allegati {
-        id
-        file
-        nome
-        tipo
-      }
     }
   }
 }
 
 
-
-
-
-
-mutation UpdateSegnalazione($segnalazione: [segnalazione_insert_input!] = {}, $on_conflict: segnalazione_on_conflict = {constraint: segnalazione_pkey}) {
-  insert_segnalazione(objects: $segnalazione, on_conflict: $on_conflict) {
-    returning {
-      id
+mutation UpdateSegnalazione($on_conflict: json!, $segnalazione: json!) {
+  custom_insert_segnalazione(on_conflict: $on_conflict, segnalazione: $segnalazione) {
+    segnalazione {
+			id
       protocollo {
         destinatari {
           id
@@ -402,12 +365,6 @@ mutation UpdateSegnalazione($segnalazione: [segnalazione_insert_input!] = {}, $o
             id
           }
         }
-      }
-      allegati {
-        id
-        file
-        nome
-        tipo
       }
       segnalazioni_collegate {
         segnalazione {
@@ -427,19 +384,65 @@ mutation UpdateSegnalazione($segnalazione: [segnalazione_insert_input!] = {}, $o
         veicoli_impiegati {
           id
         }
-        allegati {
-          id
-          file
-          nome
-          tipo
-        }
       }
     }
   }
 }
 
+
+
+# mutation UpdateSegnalazione(
+#   $segnalazione: [segnalazione_insert_input!] = {}
+#   $on_conflict: segnalazione_on_conflict = { constraint: segnalazione_pkey }
+# ) {
+#   insert_segnalazione(objects: $segnalazione, on_conflict: $on_conflict) {
+#     returning {
+#       id
+#       protocollo {
+#         destinatari {
+#           id
+#           destinatario_esterno {
+#             id
+#           }
+#         }
+#       }
+#       allegati {
+#         id
+#         file
+#         nome
+#         tipo
+#       }
+#       segnalazioni_collegate {
+#         segnalazione {
+#           id
+#         }
+#       }
+#       intervento {
+#         attrezzature_impiegate {
+#           id
+#         }
+#         materiali_dissesto {
+#           id
+#         }
+#         segnaletica_lasciata {
+#           id
+#         }
+#         veicoli_impiegati {
+#           id
+#         }
+#         allegati {
+#           id
+#           file
+#           nome
+#           tipo
+#         }
+#       }
+#     }
+#   }
+# }
+
 mutation DeleteSegnalazione($id: Int!) {
-  delete_segnalazione(where: {id: {_eq: $id}}) {
+  delete_segnalazione(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

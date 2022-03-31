@@ -1,4 +1,14 @@
-.remove{
-    margin-left: 10px;
-    margin-top: 10px;
+.remove {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.repeater:not(:last-child) {
+}
+
+.repeater {
+  padding: 1.59375em 0.8em 0 1.59375em;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 1em;
+  border-radius: 5px;
 }

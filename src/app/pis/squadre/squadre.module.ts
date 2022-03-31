@@ -14,17 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormModule } from 'src/app/_core/_components/form/form.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { OperatoreComponent } from './operatore/operatore.component';
-import { OperatoreEditComponent } from './operatore/edit/edit.component';
-
 
 @NgModule({
-  declarations: [
-    SquadreComponent,
-    SquadraEditComponent,
-    OperatoreComponent,
-    OperatoreEditComponent
-  ],
+  declarations: [SquadreComponent, SquadraEditComponent],
   imports: [
     CommonModule,
     SquadreRoutingModule,
@@ -37,7 +29,7 @@ import { OperatoreEditComponent } from './operatore/edit/edit.component';
     MatIconModule,
     FormModule,
     MatDialogModule,
-    MatSnackBarModule
-  ]
+    MatSnackBarModule,
+  ],
 })
-export class SquadreModule { }
+export class SquadreModule {}

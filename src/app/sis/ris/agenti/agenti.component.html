@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <span>{{ 'R.I.S.'|translate }}</span>
+    <span class="spacer"></span>
+    <button mat-stroked-button color="accent" (click)="new()">
+        <mat-icon>add</mat-icon>
+        {{ 'Aggiungi un nuovo R.I.S.'|translate }}
+    </button>
+</mat-toolbar>
+<div class="main-content">
+    <table-component [defaultSort]="defaultSort" [dataSource]="dataSource" [columns]="columns" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
+</div>
+
+<ng-template #filterTemplate>
+    <form-component [autosave]="false" [scrollable]="false" [form]="form" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="filterActionsTemplate" (resetEvent)="reset($event)" (onSubmit)="applyFilter($event)" ></form-component>
+    <ng-template #filterActionsTemplate>
+        <button mat-button type="submit">{{ 'Applica filtro'|translate }}</button>
+    </ng-template>
+</ng-template>
+
+
+<ng-template let-row="row" #actionsTemplate>
+    <button mat-stroked-button color="accent" [routerLink]="['edit',row.id]">
+        <mat-icon>edit</mat-icon>
+        {{ 'Modifica'|translate }}
+    </button>
+    <button mat-stroked-button color="warn" (click)="delete(row)">
+        <mat-icon>delete_forever</mat-icon>
+        {{ 'Elimina'|translate }}
+    </button>
+</ng-template>
