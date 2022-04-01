@@ -1,6 +1,6 @@
 {
   "/api/v1/graphql/*": {
-    "target": "https://napoliservizi.duckdns.org/api/v1/graphql",
+    "target": "haura.napoliservizi/v1/graphql",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -9,7 +9,7 @@
     }
   },
   "/geoserver/*": {
-    "target": "https://napoliservizi.duckdns.org/geoserver",
+    "target": "geoserver-geoserver.napoliservizi/geoserver",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -18,7 +18,7 @@
     }
   },
   "/storage/*": {
-    "target": "https://napoliservizi.duckdns.org/storage",
+    "target": "minio.napoliservizi:9000",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -27,7 +27,7 @@
     }
   },
   "/auth/*": {
-    "target": "https://napoliservizi.duckdns.org/auth",
+    "target": "https://pms.comune.napoli.it/auth",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

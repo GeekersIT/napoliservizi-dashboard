@@ -2,22 +2,21 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export const realm = 'napoliservizi';
 
-export const realm = 'NapoliServizi';
-
-export const base = 'napoliservizi.duckdns.org';
+export const base = 'pms.comune.napoli.it';
 
 export const environment = {
   production: false,
   keycloak: {
-    url: "https://"+base+"/auth",
-    admin: "https://"+base+"/auth/admin/realms/"+realm,
+    url: 'https://' + base + '/auth',
+    admin: 'https://' + base + '/auth/admin/realms/' + realm,
     realm: realm,
     clientId: 'dashboard-client',
   },
   api: {
     http: '/api/v1/graphql',
-    ws: 'wss://'+base+'/api/v1/graphql'
+    ws: 'wss://hasura/v1/graphql',
   },
 };
 
