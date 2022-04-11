@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import {
-  _Stato_Segnalazione_Enum,
-  _Stato_Ris_Enum,
-} from 'src/app/_core/_services/generated/graphql';
+import { Sis__Stato_Ris_Enum } from 'src/app/_core/_services/generated/graphql';
 import { RisEdit } from '../../edit.abstract';
 
 @Component({
@@ -18,7 +15,9 @@ export class RisProtocollatiViewComponent extends RisEdit implements OnInit {
       templateOptions: {
         orientation: 'horizontal',
       },
-      fieldGroup: [...this.steps.filter(step => step.key != 'geolocalizzazione')],
+      fieldGroup: [
+        ...this.steps.filter((step) => step.key != 'geolocalizzazione'),
+      ],
     },
   ];
 
@@ -29,9 +28,9 @@ export class RisProtocollatiViewComponent extends RisEdit implements OnInit {
       where: {
         _and: [
           { id: { _eq: this.id } },
-          { stato: { _neq: _Stato_Ris_Enum.Bozza } },
-          { stato: { _neq: _Stato_Ris_Enum.Inviato } },
-          { stato: { _neq: _Stato_Ris_Enum.Compilazione } },
+          { stato: { _neq: Sis__Stato_Ris_Enum.Bozza } },
+          { stato: { _neq: Sis__Stato_Ris_Enum.Inviato } },
+          { stato: { _neq: Sis__Stato_Ris_Enum.Compilazione } },
         ],
       },
     });

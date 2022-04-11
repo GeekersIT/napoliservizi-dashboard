@@ -1,1 +1,168 @@
-<p>mappa works!</p>
+<div style="width: 100%; height: 100%">
+  <mat-toolbar>
+    <button type="button" mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ "webGIS" | translate }}</span>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      type="button"
+      (click)="info()"
+      #tooltip="matTooltip"
+      matTooltip="{{ 'Informazioni' | translate }}"
+      [matTooltipPosition]="'below'"
+      [color]="infoActivated ? 'accent' : 'primary'"
+    >
+      <mat-icon>info</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      type="button"
+      (click)="zoomIn()"
+      #tooltip="matTooltip"
+      matTooltip="{{ 'Zoom in' | translate }}"
+      [matTooltipPosition]="'below'"
+    >
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      type="button"
+      (click)="zoomOut()"
+      #tooltip="matTooltip"
+      matTooltip="{{ 'Zoom out' | translate }}"
+      [matTooltipPosition]="'below'"
+    >
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menuMeasure"
+      type="button"
+      #tooltip="matTooltip"
+      matTooltip="{{ 'Misurazioni' | translate }}"
+      [matTooltipPosition]="'below'"
+    >
+      <mat-icon>straighten</mat-icon>
+    </button>
+    <mat-menu #menuMeasure="matMenu">
+      <button mat-menu-item type="button" (click)="addMeasure('LineString')">
+        <mat-icon>straighten</mat-icon>
+        <span>{{ "Lineari" | translate }}</span>
+      </button>
+      <button mat-menu-item type="button" (click)="addMeasure('Polygon')">
+        <mat-icon>square_foot</mat-icon>
+        <span>{{ "Area" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="undoMeasure()"
+        [disabled]="undoMeasureDisabled()"
+      >
+        <mat-icon>undo</mat-icon>
+        <span>{{ "Annulla" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="removeMeasure()"
+        [disabled]="undoMeasureDisabled()"
+      >
+        <mat-icon>clear_all</mat-icon>
+        <span>{{ "Pulisci" | translate }}</span>
+      </button>
+    </mat-menu>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menuFreeHand"
+      type="button"
+      #tooltip="matTooltip"
+      matTooltip="{{ 'Misurazioni' | translate }}"
+      [matTooltipPosition]="'below'"
+    >
+      <mat-icon>gesture</mat-icon>
+    </button>
+    <mat-menu #menuFreeHand="matMenu">
+      <button
+        mat-menu-item
+        type="button"
+        (click)="addFreeHand('LineString', true)"
+      >
+        <mat-icon>gesture</mat-icon>
+        <span>{{ "Disegno" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="addFreeHand('Polygon', true)"
+      >
+        <mat-icon>draw</mat-icon>
+        <span>{{ "Disegno chiuso" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="addFreeHand('LineString', false)"
+      >
+        <mat-icon>polyline</mat-icon>
+        <span>{{ "Linea" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="addFreeHand('Polygon', false)"
+      >
+        <mat-icon>format_shapes</mat-icon>
+        <span>{{ "Area" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="addFreeHand('Circle', false)"
+      >
+        <mat-icon>radio_button_unchecked</mat-icon>
+        <span>{{ "Cerchio" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="undoFreeHand()"
+        [disabled]="undoFreeHandDisabled()"
+      >
+        <mat-icon>undo</mat-icon>
+        <span>{{ "Annulla" | translate }}</span>
+      </button>
+      <button
+        mat-menu-item
+        type="button"
+        (click)="removeFreeHand()"
+        [disabled]="undoFreeHandDisabled()"
+      >
+        <mat-icon>clear_all</mat-icon>
+        <span>{{ "Pulisci" | translate }}</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #snav mode="side">
+      <mat-selection-list (selectionChange)="change($event)">
+        <mat-list-option
+          *ngFor="let layer of layers | keyvalue"
+          [value]="layer"
+          [selected]="layer.value.tile.getVisible()"
+        >
+          {{ layer.value.title | translate }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="map-container" #mapRef id="map"></div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

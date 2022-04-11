@@ -103,7 +103,7 @@ export class SquadreComponent implements OnInit {
       .subscribe()
       .subscribe((response: SubscriptionResult<SquadrePisSubscription>) => {
         this.dataSource.source!.next(
-          response.data?.squadra.map((element) => this._map(element))
+          response.data?.pis_squadra.map((element) => this._map(element))
         );
         this.dataSource.isLoading!.next(false);
       });

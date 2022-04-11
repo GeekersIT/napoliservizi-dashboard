@@ -1,16 +1,16 @@
 export interface SquadraPisObj {
-  __typename?: 'squadra' | undefined;
+  __typename?: 'pis_squadra' | undefined;
   id: number;
   nome?: string | null | undefined;
   protezione_civile?: boolean | null | undefined;
   updated_at: any;
   vecchie_denominazioni: {
-    __typename?: 'vecchia_squadra' | undefined;
+    __typename?: 'pis_vecchia_squadra' | undefined;
     nome?: string | null | undefined;
     created_at: any;
   }[];
   membri: {
-    __typename?: 'assegnazione_squadra' | undefined;
+    __typename?: 'pis_assegnazione_squadra' | undefined;
     id: number;
     caposquadra: boolean;
     inizio_validita: any;

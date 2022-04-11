@@ -1,5 +1,7 @@
-subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = {}) {
-  intervento_straordinario(where: $where) {
+subscription InterventiStraordinari(
+  $where: pis_intervento_straordinario_bool_exp = {}
+) {
+  pis_intervento_straordinario(where: $where) {
     id
     municipalita_storica
     quartiere_storico
@@ -51,8 +53,8 @@ subscription InterventiStraordinari($where: intervento_straordinario_bool_exp = 
   }
 }
 
-query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
-  intervento_straordinario(where: $where) {
+query InterventoStraordinario($where: pis_intervento_straordinario_bool_exp!) {
+  pis_intervento_straordinario(where: $where) {
     id
     municipalita {
       id
@@ -68,7 +70,7 @@ query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
     toponimo {
       id
       nome
-      dug{
+      dug {
         id
         nome
       }
@@ -127,8 +129,14 @@ query InterventoStraordinario($where: intervento_straordinario_bool_exp!) {
   }
 }
 
-mutation UpdateInterventoStraordinario($on_conflict: json!, $intervento_straordinario: json!) {
-  custom_insert_intervento_straordinario(intervento_straordinario: $intervento_straordinario, on_conflict: $on_conflict) {
+mutation UpdateInterventoStraordinario(
+  $on_conflict: json!
+  $intervento_straordinario: json!
+) {
+  custom_insert_intervento_straordinario(
+    intervento_straordinario: $intervento_straordinario
+    on_conflict: $on_conflict
+  ) {
     intervento_straordinario {
       id
     }
@@ -144,7 +152,7 @@ mutation UpdateInterventoStraordinario($on_conflict: json!, $intervento_straordi
 # }
 
 mutation DeleteInterventoStraordinario($id: Int!) {
-  delete_intervento_straordinario(where: {id: {_eq: $id}}) {
+  delete_pis_intervento_straordinario(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

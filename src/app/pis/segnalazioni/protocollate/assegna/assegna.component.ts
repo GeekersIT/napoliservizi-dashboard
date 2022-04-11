@@ -7,9 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { map } from 'rxjs';
 import {
-  _Stato_Segnalazione_Enum,
-  Segnalazione_Constraint,
-  Segnalazione_Update_Column,
+  Pis__Stato_Segnalazione_Enum,
+  Pis_Segnalazione_Constraint,
+  Pis_Segnalazione_Update_Column,
   SquadrePisSelectGQL,
   CiviciSelectGQL,
   ConnessioniGrafoSelectGQL,
@@ -33,6 +33,7 @@ import {
   MaterialeSelectGQL,
 } from 'src/app/_core/_services/generated/graphql';
 import { RequiredService } from 'src/app/_core/_services/required.service';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 import { SegnalazioneEdit } from '../../edit.abstract';
 
 @Component({
@@ -90,7 +91,9 @@ export class SegnalazioniProtocollateAssegnaComponent
                           ? { nome: { _ilike: '%' + term + '%' } }
                           : {}),
                       })
-                      .valueChanges.pipe(map((result) => result.data?.squadra)),
+                      .valueChanges.pipe(
+                        map((result) => result.data?.pis_squadra)
+                      ),
                 },
                 expressionProperties: {
                   'templateOptions.label':
@@ -108,7 +111,9 @@ export class SegnalazioniProtocollateAssegnaComponent
             ],
           },
         ],
-        ...this.steps.filter(step => step.key != 'intervento' && step.key != 'geolocalizzazione'),
+        ...this.steps.filter(
+          (step) => step.key != 'intervento' && step.key != 'geolocalizzazione'
+        ),
       ],
     },
   ];
@@ -141,7 +146,8 @@ export class SegnalazioniProtocollateAssegnaComponent
     protected _giorniTrascorsiSelect: GiorniTrascorsiSelectGQL,
     protected _condizioniTrafficoSelect: CondizioniTrafficoSelectGQL,
     protected _materialeSelect: MaterialeSelectGQL,
-    private _squadrePisSelectGQL: SquadrePisSelectGQL
+    private _squadrePisSelectGQL: SquadrePisSelectGQL,
+    protected roles: RolesService
   ) {
     super(
       _required,
@@ -170,7 +176,8 @@ export class SegnalazioniProtocollateAssegnaComponent
       _dialog,
       _giorniTrascorsiSelect,
       _condizioniTrafficoSelect,
-      _materialeSelect
+      _materialeSelect,
+      roles
     );
   }
 
@@ -180,8 +187,8 @@ export class SegnalazioniProtocollateAssegnaComponent
       where: {
         _and: [
           { id: { _eq: this.id } },
-          { stato: { _neq: _Stato_Segnalazione_Enum.Bozza } },
-          { stato: { _neq: _Stato_Segnalazione_Enum.Pre } },
+          { stato: { _neq: Pis__Stato_Segnalazione_Enum.Bozza } },
+          { stato: { _neq: Pis__Stato_Segnalazione_Enum.Pre } },
         ],
       },
     });
@@ -193,15 +200,15 @@ export class SegnalazioniProtocollateAssegnaComponent
     this._updateSegnalazioneGQL
       .mutate({
         on_conflict: {
-          constraint: Segnalazione_Constraint.SegnalazionePkey,
+          constraint: Pis_Segnalazione_Constraint.SegnalazionePkey,
           update_columns: [
-            Segnalazione_Update_Column.Stato,
-            Segnalazione_Update_Column.CaposquadraAssegnatario,
+            Pis_Segnalazione_Update_Column.Stato,
+            Pis_Segnalazione_Update_Column.CaposquadraAssegnatario,
           ],
         },
         segnalazione: {
           id: this.id,
-          stato: _Stato_Segnalazione_Enum.Assegnata,
+          stato: Pis__Stato_Segnalazione_Enum.Assegnata,
           caposquadra_assegnatario:
             this.model.assegna.squadra.membri[0].membro.username,
           eventi: {
@@ -209,7 +216,7 @@ export class SegnalazioniProtocollateAssegnaComponent
               {
                 created_at: this.model.assegna.data,
                 note: this.model.assegna.note,
-                stato: _Stato_Segnalazione_Enum.Assegnata,
+                stato: Pis__Stato_Segnalazione_Enum.Assegnata,
                 squadra_id: this.model.assegna.squadra.id,
               },
             ],

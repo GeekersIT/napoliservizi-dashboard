@@ -1,9 +1,9 @@
 query StatoSegnalazioneSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: _stato_segnalazione_bool_exp = {}
+  $where: pis__stato_segnalazione_bool_exp = {}
 ) {
-  _stato_segnalazione(
+  pis__stato_segnalazione(
     order_by: { text: asc }
     limit: $limit
     offset: $offset
@@ -18,38 +18,7 @@ query PrioritaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _priorita(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-
-query TipologiaPosizionamentoToponimoSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _tipologia_posizionamento_toponimo(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-query SpecificaPosizionamentoToponimoSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _specifica_posizionamento_toponimo(
+  pis__priorita(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -79,7 +48,7 @@ query FormaDissesoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _forma_dissesto(
+  pis__forma_dissesto(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -95,7 +64,7 @@ query TipologiaDissesoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _tipologia_dissesto(
+  pis__tipologia_dissesto(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -107,46 +76,12 @@ query TipologiaDissesoSelect(
   }
 }
 
-query SezioneProtocolloSelect(
-  $where: _sezione_protocollo_bool_exp = {}
-  $limit: Int = 10
-  $offset: Int = 0
-) {
-  _sezione_protocollo(
-    order_by: { nome: asc }
-    where: $where
-    limit: $limit
-    offset: $offset
-  ) {
-    id
-    nome
-    sigla
-    codice
-  }
-}
-
-query TitoloSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _titolo(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-
 query SegnalazioneSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: segnalazione_bool_exp = {}
+  $where: pis_segnalazione_bool_exp = {}
 ) {
-  segnalazione(
+  pis_segnalazione(
     order_by: { protocollo: { numero: asc } }
     limit: $limit
     offset: $offset
@@ -164,9 +99,9 @@ query SegnalazioneSelect(
 query SquadrePisSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: squadra_bool_exp = {}
+  $where: pis_squadra_bool_exp = {}
 ) {
-  squadra(
+  pis_squadra(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -190,7 +125,7 @@ query CondizioniTrafficoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _condizioni_traffico(
+  pis__condizioni_traffico(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -206,7 +141,7 @@ query GiorniTrascorsiSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _giorni_trascorsi(
+  pis__giorni_trascorsi(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -222,7 +157,7 @@ query MaterialeSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _materiale(
+  pis__materiale(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset

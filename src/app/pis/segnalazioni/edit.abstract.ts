@@ -11,9 +11,9 @@ import { map, mergeMap, firstValueFrom, BehaviorSubject } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { Dirty } from 'src/app/_core/_components/form/form.component';
 import { marker } from 'src/app/_core/_formly/_components/mappa-formly/mappa-formly.component';
-import { base64ListToFile, fileListToBase64 } from 'src/app/_core/_functions';
+import { fileListToBase64 } from 'src/app/_core/_functions';
 import {
-  _Stato_Segnalazione_Enum,
+  Pis__Stato_Segnalazione_Enum,
   PrioritaSelectGQL,
   FormaDissesoSelectGQL,
   TipologiaDissesoSelectGQL,
@@ -29,30 +29,31 @@ import {
   CiviciSelectGQL,
   SostegniIpiSelectGQL,
   ConnessioniGrafoSelectGQL,
-  Dissesto_Constraint,
-  Dissesto_Update_Column,
-  Posizionamento_Toponimo_Constraint,
-  Posizionamento_Toponimo_Update_Column,
-  Protocollo_Constraint,
-  Protocollo_Destinatario_Constraint,
-  Protocollo_Destinatario_Esterno_Constraint,
-  Protocollo_Destinatario_Esterno_Update_Column,
-  Protocollo_Destinatario_Update_Column,
-  Protocollo_Update_Column,
-  Segnalazione_Collegata_Constraint,
-  Segnalazione_Collegata_Update_Column,
-  Tecnico_Referente_Constraint,
-  Tecnico_Referente_Update_Column,
+  Pis_Dissesto_Constraint,
+  Pis_Dissesto_Update_Column,
+  Gis_Posizionamento_Toponimo_Constraint,
+  Gis_Posizionamento_Toponimo_Update_Column,
+  Protocollo_Protocollo_Constraint,
+  Protocollo_Protocollo_Destinatario_Constraint,
+  Protocollo_Protocollo_Destinatario_Esterno_Constraint,
+  Protocollo_Protocollo_Destinatario_Esterno_Update_Column,
+  Protocollo_Protocollo_Destinatario_Update_Column,
+  Protocollo_Protocollo_Update_Column,
+  Pis_Segnalazione_Collegata_Constraint,
+  Pis_Segnalazione_Collegata_Update_Column,
+  Pis_Tecnico_Referente_Constraint,
+  Pis_Tecnico_Referente_Update_Column,
   SegnalazioneGQL,
   UpdateSegnalazioneGQL,
   UpdateSegnalazioneMutation,
   Exact,
-  Segnalazione_Bool_Exp,
+  Pis_Segnalazione_Bool_Exp,
   CondizioniTrafficoSelectGQL,
   GiorniTrascorsiSelectGQL,
   MaterialeSelectGQL,
 } from 'src/app/_core/_services/generated/graphql';
 import { RequiredService } from 'src/app/_core/_services/required.service';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 
 @Directive()
 export abstract class SegnalazioneEdit extends Dirty {
@@ -118,7 +119,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?.municipalita)
+                      map((result) => result.data?.toponomastica_municipalita)
                     ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.fieldGroup![1].formControl?.reset();
@@ -158,7 +159,9 @@ export abstract class SegnalazioneEdit extends Dirty {
                         },
                       },
                     })
-                    .valueChanges.pipe(map((result) => result.data?.quartiere)),
+                    .valueChanges.pipe(
+                      map((result) => result.data?.toponomastica_quartiere)
+                    ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.fieldGroup![2].formControl?.reset();
                 },
@@ -204,7 +207,9 @@ export abstract class SegnalazioneEdit extends Dirty {
                         },
                       },
                     })
-                    .valueChanges.pipe(map((result) => result.data?.toponimo)),
+                    .valueChanges.pipe(
+                      map((result) => result.data?.toponomastica_toponimo)
+                    ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.parent?.fieldGroup![1].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![0].formControl?.reset();
@@ -267,7 +272,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                     .valueChanges.pipe(
                       map(
                         (result) =>
-                          result.data?._tipologia_posizionamento_toponimo
+                          result.data?.gis__tipologia_posizionamento_toponimo
                       )
                     ),
                 parentReset: (field: FormlyFieldConfig) => {
@@ -326,7 +331,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._specifica_posizionamento_toponimo
+                                    ?.gis__specifica_posizionamento_toponimo
                               )
                             ),
                         parentReset: (field: FormlyFieldConfig) => {
@@ -373,7 +378,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?.civico)
+                              map((result) => result.data?.gis_civico)
                             ),
                       },
                       hooks: {
@@ -427,7 +432,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?.sostegno_ipi)
+                              map((result) => result.data?.gis_sostegno_ipi)
                             ),
                       },
                       hooks: {
@@ -498,10 +503,10 @@ export abstract class SegnalazioneEdit extends Dirty {
                         let ret = Array();
                         for (
                           let i = 0;
-                          i < result.data!.connessione_grafo.length;
+                          i < result.data!.gis_connessione_grafo.length;
                           i++
                         ) {
-                          let c = result.data!.connessione_grafo[i];
+                          let c = result.data!.gis_connessione_grafo[i];
                           let _in = c.fk_t_code
                             ? c.fk_t_code?.slice(1, -1).split(';;')
                             : [];
@@ -513,7 +518,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                                   .watch({ _in: _in })
                                   .valueChanges.pipe(
                                     map((toponimo) =>
-                                      toponimo.data.toponimo
+                                      toponimo.data.toponomastica_toponimo
                                         .map(
                                           (el) =>
                                             (el.dug ? el.dug.nome + ' ' : '') +
@@ -695,7 +700,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._forma_dissesto)
+                  map((result) => result.data?.pis__forma_dissesto)
                 ),
           },
           expressionProperties: {
@@ -816,7 +821,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?._tipologia_dissesto)
+                      map((result) => result.data?.pis__tipologia_dissesto)
                     ),
               },
               expressionProperties: {
@@ -911,7 +916,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                     ? { nome: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?._priorita)),
+                .valueChanges.pipe(map((result) => result.data?.pis__priorita)),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Priorità'),
@@ -1037,11 +1042,11 @@ export abstract class SegnalazioneEdit extends Dirty {
                       limit: limit,
                       offset: offset,
                       where: {
-                        stato: { _eq: _Stato_Segnalazione_Enum.Pre },
+                        stato: { _eq: Pis__Stato_Segnalazione_Enum.Pre },
                       },
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?.segnalazione)
+                      map((result) => result.data?.pis_segnalazione)
                     ),
               },
               expressionProperties: {
@@ -1082,8 +1087,10 @@ export abstract class SegnalazioneEdit extends Dirty {
                       offset: offset,
                       where: {
                         _and: [
-                          { stato: { _neq: _Stato_Segnalazione_Enum.Pre } },
-                          { stato: { _neq: _Stato_Segnalazione_Enum.Bozza } },
+                          { stato: { _neq: Pis__Stato_Segnalazione_Enum.Pre } },
+                          {
+                            stato: { _neq: Pis__Stato_Segnalazione_Enum.Bozza },
+                          },
                         ],
                         ...(term && typeof term === 'string'
                           ? {
@@ -1095,7 +1102,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                       },
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?.segnalazione)
+                      map((result) => result.data?.pis_segnalazione)
                     ),
               },
               expressionProperties: {
@@ -1157,10 +1164,17 @@ export abstract class SegnalazioneEdit extends Dirty {
             required: true,
             displayWith: (e: any) =>
               e
-                ? e.codice +
+                ? e.settore +
+                  '.' +
+                  e.servizio +
+                  '.' +
+                  e.uoc +
+                  '.' +
+                  e.uos +
+                  '.' +
+                  e.postazione +
                   ' - ' +
-                  e.nome +
-                  (e.sigla != null ? ' - ' + e.sigla : '')
+                  e.nome
                 : '',
             filter: (term: any, limit: number, offset: number, parent?: any) =>
               this._sezioneProtocolloSelectGQL
@@ -1170,17 +1184,13 @@ export abstract class SegnalazioneEdit extends Dirty {
                   ...(term && typeof term === 'string'
                     ? {
                         where: {
-                          _or: [
-                            { codice: { _ilike: '%' + term + '%' } },
-                            { nome: { _ilike: '%' + term + '%' } },
-                            { sigla: { _ilike: '%' + term + '%' } },
-                          ],
+                          _or: [{ nome: { _ilike: '%' + term + '%' } }],
                         },
                       }
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._sezione_protocollo)
+                  map((result) => result.data?.protocollo__sezione_protocollo)
                 ),
           },
           expressionProperties: {
@@ -1232,10 +1242,17 @@ export abstract class SegnalazioneEdit extends Dirty {
                   required: true,
                   displayWith: (e: any) =>
                     e
-                      ? e.codice +
+                      ? e.settore +
+                        '.' +
+                        e.servizio +
+                        '.' +
+                        e.uoc +
+                        '.' +
+                        e.uos +
+                        '.' +
+                        e.postazione +
                         ' - ' +
-                        e.nome +
-                        (e.sigla != null ? ' - ' + e.sigla : '')
+                        e.nome
                       : '',
                   filter: (
                     term: any,
@@ -1250,17 +1267,16 @@ export abstract class SegnalazioneEdit extends Dirty {
                         ...(term && typeof term === 'string'
                           ? {
                               where: {
-                                _or: [
-                                  { codice: { _ilike: '%' + term + '%' } },
-                                  { nome: { _ilike: '%' + term + '%' } },
-                                  { sigla: { _ilike: '%' + term + '%' } },
-                                ],
+                                _or: [{ nome: { _ilike: '%' + term + '%' } }],
                               },
                             }
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?._sezione_protocollo)
+                        map(
+                          (result) =>
+                            result.data?.protocollo__sezione_protocollo
+                        )
                       ),
                 },
                 expressionProperties: {
@@ -1413,7 +1429,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._tipologia_dissesto)
+                  map((result) => result.data?.pis__tipologia_dissesto)
                 ),
           },
           expressionProperties: {
@@ -1448,7 +1464,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?._giorni_trascorsi)
+                      map((result) => result.data?.pis__giorni_trascorsi)
                     ),
               },
               expressionProperties: {
@@ -1480,7 +1496,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?._condizioni_traffico)
+                      map((result) => result.data?.pis__condizioni_traffico)
                     ),
               },
               expressionProperties: {
@@ -1780,7 +1796,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._materiale)
+                            map((result) => result.data?.pis__materiale)
                           ),
                     },
                     expressionProperties: {
@@ -1866,7 +1882,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                   }) +
                   '</i><br />';
                 switch (evento.stato) {
-                  case _Stato_Segnalazione_Enum.Protocollazione:
+                  case Pis__Stato_Segnalazione_Enum.Protocollazione:
                     s += this._translateService.instant(
                       'N. {numero} del {data}',
                       {
@@ -1878,20 +1894,20 @@ export abstract class SegnalazioneEdit extends Dirty {
                       }
                     );
                     break;
-                  case _Stato_Segnalazione_Enum.Assegnata:
+                  case Pis__Stato_Segnalazione_Enum.Assegnata:
                     s += this._translateService.instant(
                       'Alla squadra {nome} cone note: {note}',
                       { nome: evento.squadra.nome, note: evento.note }
                     );
                     break;
-                  case _Stato_Segnalazione_Enum.Rimandata:
-                  case _Stato_Segnalazione_Enum.Sospesa:
+                  case Pis__Stato_Segnalazione_Enum.Rimandata:
+                  case Pis__Stato_Segnalazione_Enum.Sospesa:
                     s += this._translateService.instant(
                       'Con motivazione: {note}',
                       { note: evento.note }
                     );
                     break;
-                  case _Stato_Segnalazione_Enum.Risolta:
+                  case Pis__Stato_Segnalazione_Enum.Risolta:
                     s += this._translateService.instant(
                       'Da segnalazione protocollata con n.: {numero} del {data}',
                       {
@@ -1941,7 +1957,8 @@ export abstract class SegnalazioneEdit extends Dirty {
 
     protected _giorniTrascorsiSelect: GiorniTrascorsiSelectGQL,
     protected _condizioniTrafficoSelect: CondizioniTrafficoSelectGQL,
-    protected _materialeSelect: MaterialeSelectGQL
+    protected _materialeSelect: MaterialeSelectGQL,
+    protected roles: RolesService
   ) {
     super();
     this.id = parseInt(this._route.snapshot.paramMap.get('id')!);
@@ -1986,7 +2003,7 @@ export abstract class SegnalazioneEdit extends Dirty {
         data: [],
       },
       ...(event.type == 'def'
-        ? { stato: _Stato_Segnalazione_Enum.Protocollazione }
+        ? { stato: Pis__Stato_Segnalazione_Enum.Protocollazione }
         : {}),
       ...(this.model.localizzazione.municipalita
         ? { municipalita_id: this.model.localizzazione.municipalita.id }
@@ -2048,16 +2065,16 @@ export abstract class SegnalazioneEdit extends Dirty {
       posizionamento_toponimo_punto_iniziale: {
         on_conflict: {
           constraint:
-            Posizionamento_Toponimo_Constraint.PosizionamentoToponimoPkey,
+            Gis_Posizionamento_Toponimo_Constraint.PosizionamentoToponimoPkey,
           update_columns: [
-            Posizionamento_Toponimo_Update_Column.Civico,
-            Posizionamento_Toponimo_Update_Column.Ipi,
-            Posizionamento_Toponimo_Update_Column.Km,
-            Posizionamento_Toponimo_Update_Column.Connessione,
-            Posizionamento_Toponimo_Update_Column.Note,
-            Posizionamento_Toponimo_Update_Column.Geoloc,
-            Posizionamento_Toponimo_Update_Column.TipologiaId,
-            Posizionamento_Toponimo_Update_Column.SpecificaId,
+            Gis_Posizionamento_Toponimo_Update_Column.Civico,
+            Gis_Posizionamento_Toponimo_Update_Column.Ipi,
+            Gis_Posizionamento_Toponimo_Update_Column.Km,
+            Gis_Posizionamento_Toponimo_Update_Column.Connessione,
+            Gis_Posizionamento_Toponimo_Update_Column.Note,
+            Gis_Posizionamento_Toponimo_Update_Column.Geoloc,
+            Gis_Posizionamento_Toponimo_Update_Column.TipologiaId,
+            Gis_Posizionamento_Toponimo_Update_Column.SpecificaId,
           ],
         },
         data: this.model.localizzazione.posizionamento_toponimo_punto_iniziale
@@ -2129,16 +2146,16 @@ export abstract class SegnalazioneEdit extends Dirty {
       },
       dissesto: {
         on_conflict: {
-          constraint: Dissesto_Constraint.DissestoPkey,
+          constraint: Pis_Dissesto_Constraint.DissestoPkey,
           update_columns: [
-            Dissesto_Update_Column.FormaId,
-            Dissesto_Update_Column.PrimaDimensione,
-            Dissesto_Update_Column.SecondaDimensione,
-            Dissesto_Update_Column.TerzaDimensione,
-            Dissesto_Update_Column.Profondita,
-            Dissesto_Update_Column.TipologiaDissestoId,
-            Dissesto_Update_Column.Peso,
-            Dissesto_Update_Column.Note,
+            Pis_Dissesto_Update_Column.FormaId,
+            Pis_Dissesto_Update_Column.PrimaDimensione,
+            Pis_Dissesto_Update_Column.SecondaDimensione,
+            Pis_Dissesto_Update_Column.TerzaDimensione,
+            Pis_Dissesto_Update_Column.Profondita,
+            Pis_Dissesto_Update_Column.TipologiaDissestoId,
+            Pis_Dissesto_Update_Column.Peso,
+            Pis_Dissesto_Update_Column.Note,
           ],
         },
         data: {
@@ -2167,11 +2184,12 @@ export abstract class SegnalazioneEdit extends Dirty {
         ? {
             tecnico_referente: {
               on_conflict: {
-                constraint: Tecnico_Referente_Constraint.TecnicoReferentePkey,
+                constraint:
+                  Pis_Tecnico_Referente_Constraint.TecnicoReferentePkey,
                 update_columns: [
-                  Tecnico_Referente_Update_Column.Nome,
-                  Tecnico_Referente_Update_Column.Cognome,
-                  Tecnico_Referente_Update_Column.TitoloId,
+                  Pis_Tecnico_Referente_Update_Column.Nome,
+                  Pis_Tecnico_Referente_Update_Column.Cognome,
+                  Pis_Tecnico_Referente_Update_Column.TitoloId,
                 ],
               },
               data: {
@@ -2185,12 +2203,12 @@ export abstract class SegnalazioneEdit extends Dirty {
         : {}),
       protocollo: {
         on_conflict: {
-          constraint: Protocollo_Constraint.ProtocolloPkey,
+          constraint: Protocollo_Protocollo_Constraint.ProtocolloPkey,
           update_columns: [
-            Protocollo_Update_Column.MittenteId,
-            Protocollo_Update_Column.Note,
-            Protocollo_Update_Column.Numero,
-            Protocollo_Update_Column.Data,
+            Protocollo_Protocollo_Update_Column.MittenteId,
+            Protocollo_Protocollo_Update_Column.Note,
+            Protocollo_Protocollo_Update_Column.Numero,
+            Protocollo_Protocollo_Update_Column.Data,
           ],
         },
         data: {
@@ -2201,11 +2219,11 @@ export abstract class SegnalazioneEdit extends Dirty {
           destinatari: {
             on_conflict: {
               constraint:
-                Protocollo_Destinatario_Constraint.ProtocolloDestinatarioPkey,
+                Protocollo_Protocollo_Destinatario_Constraint.ProtocolloDestinatarioPkey,
               update_columns: [
-                Protocollo_Destinatario_Update_Column.EsternoId,
-                Protocollo_Destinatario_Update_Column.InternoId,
-                Protocollo_Destinatario_Update_Column.Delete,
+                Protocollo_Protocollo_Destinatario_Update_Column.EsternoId,
+                Protocollo_Protocollo_Destinatario_Update_Column.InternoId,
+                Protocollo_Protocollo_Destinatario_Update_Column.Delete,
               ],
             },
             data: [
@@ -2227,12 +2245,12 @@ export abstract class SegnalazioneEdit extends Dirty {
                         destinatario_esterno: {
                           on_conflict: {
                             constraint:
-                              Protocollo_Destinatario_Esterno_Constraint.ProtocolloDestinatarioEsternoPkey,
+                              Protocollo_Protocollo_Destinatario_Esterno_Constraint.ProtocolloDestinatarioEsternoPkey,
                             update_columns: [
-                              Protocollo_Destinatario_Esterno_Update_Column.Nome,
-                              Protocollo_Destinatario_Esterno_Update_Column.Cognome,
-                              Protocollo_Destinatario_Esterno_Update_Column.Email,
-                              Protocollo_Destinatario_Esterno_Update_Column.CodiceFiscale,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Nome,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Cognome,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Email,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.CodiceFiscale,
                             ],
                           },
                           data: destinatario.destinatario_esterno
@@ -2284,10 +2302,10 @@ export abstract class SegnalazioneEdit extends Dirty {
       segnalazioni_collegate: {
         on_conflict: {
           constraint:
-            Segnalazione_Collegata_Constraint.SegnalazioneCollegataPkey,
+            Pis_Segnalazione_Collegata_Constraint.SegnalazioneCollegataPkey,
           update_columns: [
-            Segnalazione_Collegata_Update_Column.Delete,
-            Segnalazione_Collegata_Update_Column.SegnalazioneCollegataId,
+            Pis_Segnalazione_Collegata_Update_Column.Delete,
+            Pis_Segnalazione_Collegata_Update_Column.SegnalazioneCollegataId,
           ],
         },
         data: [
@@ -2390,17 +2408,18 @@ export abstract class SegnalazioneEdit extends Dirty {
   }
 
   async baseInit(
-    where: Exact<{ where: Segnalazione_Bool_Exp }>,
+    where: Exact<{ where: Pis_Segnalazione_Bool_Exp }>,
     mapInit?: any,
-    repeatInit?: any
+    repeatInit?: any,
+    options?: {}
   ) {
     this._loaderService.start();
 
     this.model = await firstValueFrom(
-      this._segnalazioneGQL.watch(where).valueChanges.pipe(
+      this._segnalazioneGQL.watch(where, options).valueChanges.pipe(
         map(async (result) => {
           console.log(result.data);
-          let segnalazione = result.data?.segnalazione[0];
+          let segnalazione = result.data?.pis_segnalazione[0];
           if (segnalazione === undefined) {
             this._loaderService.stop();
             this._router.navigate(['/', '404']);
@@ -2411,7 +2430,7 @@ export abstract class SegnalazioneEdit extends Dirty {
               bucket: 'segnalazione-' + segnalazione.id,
             })
           );
-          if (this.model.stato == _Stato_Segnalazione_Enum.Completata) {
+          if (this.model.stato == Pis__Stato_Segnalazione_Enum.Completata) {
             this.startData.intervento.allegati = bucket.allegati.filter(
               (el: any) => el.name.indexOf('intervento') == 0
             );
@@ -2583,14 +2602,16 @@ export abstract class SegnalazioneEdit extends Dirty {
                   presegnalazioni: segnalazione.segnalazioni_collegate
                     .filter(
                       (e: any) =>
-                        e.segnalazione.stato == _Stato_Segnalazione_Enum.Pre
+                        e.segnalazione.stato == Pis__Stato_Segnalazione_Enum.Pre
                     )
                     .map((e) => e.segnalazione),
                   segnalazioni: segnalazione.segnalazioni_collegate
                     .filter(
                       (e: any) =>
-                        e.segnalazione.stato != _Stato_Segnalazione_Enum.Pre &&
-                        e.segnalazione.stato != _Stato_Segnalazione_Enum.Bozza
+                        e.segnalazione.stato !=
+                          Pis__Stato_Segnalazione_Enum.Pre &&
+                        e.segnalazione.stato !=
+                          Pis__Stato_Segnalazione_Enum.Bozza
                     )
                     .map((e) => e.segnalazione),
                 },
@@ -2602,7 +2623,7 @@ export abstract class SegnalazioneEdit extends Dirty {
       )
     );
 
-    if (this.model.stato == _Stato_Segnalazione_Enum.Completata) {
+    if (this.model.stato == Pis__Stato_Segnalazione_Enum.Completata) {
       this.startData.intervento.attrezzature_impiegate = [
         ...this.model.intervento?.attrezzature_impiegate!.map((e: any) => e.id),
       ];

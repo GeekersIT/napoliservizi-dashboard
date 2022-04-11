@@ -15,6 +15,7 @@ import {
   MunicipalitaGQL,
   MunicipalitaSubscription,
 } from 'src/app/_core/_services/generated/graphql';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 import { MunicipalitaEditComponent } from './edit/edit.component';
 
 @Component({
@@ -71,7 +72,8 @@ export class MunicipalitaComponent implements OnInit {
     private _deleteMunicipalitaGQL: DeleteMunicipalitaGQL,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private _loaderService: NgxUiLoaderService
+    private _loaderService: NgxUiLoaderService,
+    public roles: RolesService
   ) {
     this.dataSource = new DataSource();
   }
@@ -97,7 +99,9 @@ export class MunicipalitaComponent implements OnInit {
       .subscribe()
       .subscribe((response: SubscriptionResult<MunicipalitaSubscription>) => {
         this.dataSource.source!.next(
-          response.data?.municipalita.map((element) => this._map(element))
+          response.data?.toponomastica_municipalita.map((element) =>
+            this._map(element)
+          )
         );
         this.dataSource.isLoading!.next(false);
       });
@@ -118,7 +122,9 @@ export class MunicipalitaComponent implements OnInit {
       })
       .subscribe((response: SubscriptionResult<MunicipalitaSubscription>) => {
         this.dataSource.source!.next(
-          response.data?.municipalita.map((element) => this._map(element))
+          response.data?.toponomastica_municipalita.map((element) =>
+            this._map(element)
+          )
         );
         this.dataSource.isLoading!.next(false);
       });
@@ -132,7 +138,9 @@ export class MunicipalitaComponent implements OnInit {
         .subscribe()
         .subscribe((response: SubscriptionResult<MunicipalitaSubscription>) => {
           this.dataSource.source!.next(
-            response.data?.municipalita.map((element) => this._map(element))
+            response.data?.toponomastica_municipalita.map((element) =>
+              this._map(element)
+            )
           );
           this.dataSource.isLoading!.next(false);
         });

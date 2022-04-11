@@ -1,56 +1,74 @@
 <mat-toolbar>
-    <span>{{ 'R.I.S. protocollati'|translate }}</span>
-    <span class="spacer"></span>
+  <span>{{ "R.I.S. protocollati" | translate }}</span>
+  <span class="spacer"></span>
 </mat-toolbar>
 <div class="main-content">
-    <table-component [defaultSort]="defaultSort" [dataSource]="dataSource" [columns]="columns" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
+  <table-component
+    [defaultSort]="defaultSort"
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [actionsTemplate]="actionsTemplate"
+    [filterTemplate]="filterTemplate"
+  ></table-component>
 </div>
 
 <ng-template #filterTemplate>
-    <form-component [autosave]="false" [scrollable]="false" [form]="form" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="filterActionsTemplate" (resetEvent)="reset($event)" (onSubmit)="applyFilter($event)" ></form-component>
-    <ng-template #filterActionsTemplate>
-        <button mat-button type="submit">{{ 'Applica filtro'|translate }}</button>
-    </ng-template>
+  <form-component
+    [autosave]="false"
+    [scrollable]="false"
+    [form]="form"
+    [options]="options"
+    [model]="model"
+    [fields]="fields"
+    [actionsTemplate]="filterActionsTemplate"
+    (resetEvent)="reset($event)"
+    (onSubmit)="applyFilter($event)"
+  ></form-component>
+  <ng-template #filterActionsTemplate>
+    <button mat-button type="submit">{{ "Applica filtro" | translate }}</button>
+  </ng-template>
 </ng-template>
 
-
-
 <ng-template let-row="row" #actionsTemplate>
-    <button mat-button [matMenuTriggerFor]="menu" >
-        <mat-icon>more_vert</mat-icon>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['view', row.id]">
+      <mat-icon>visibility</mat-icon>
+      {{ "Visualizza" | translate }}
     </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="['view',row.id]">
-            <mat-icon>visibility</mat-icon>
-            {{ 'Visualizza'|translate }}
-        </button>
-        <button mat-menu-item [routerLink]="['edit',row.id]">
-            <mat-icon>edit</mat-icon>
-            {{ 'Modifica'|translate }}
-        </button>
-        <button mat-menu-item [matMenuTriggerFor]="actions" [disabled]="actionDisabled(row)">
-            <mat-icon>settings</mat-icon>
-            {{ 'Azioni'|translate }}
-        </button>
-        <button mat-menu-item [matMenuTriggerFor]="documents">
-            <mat-icon>source</mat-icon>
-            {{ 'Documenti'|translate }}
-        </button>
-    </mat-menu>
+    <button mat-menu-item [routerLink]="['edit', row.id]">
+      <mat-icon>edit</mat-icon>
+      {{ "Modifica" | translate }}
+    </button>
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="actions"
+      [disabled]="actionDisabled(row)"
+    >
+      <mat-icon>settings</mat-icon>
+      {{ "Azioni" | translate }}
+    </button>
+    <button mat-menu-item [matMenuTriggerFor]="documents">
+      <mat-icon>source</mat-icon>
+      {{ "Documenti" | translate }}
+    </button>
+  </mat-menu>
 
-    
-    <mat-menu #actions="matMenu">
-        <button mat-menu-item [routerLink]="['cancella',row.id]">
-            <mat-icon>engineering</mat-icon>
-            {{ 'Cancella'|translate }}
-        </button>
-    </mat-menu>
+  <mat-menu #actions="matMenu">
+    <button mat-menu-item [routerLink]="['cancella', row.id]">
+      <mat-icon>engineering</mat-icon>
+      {{ "Cancella" | translate }}
+    </button>
+  </mat-menu>
 
-    <mat-menu #documents="matMenu">
-        <button mat-menu-item (click)="scheda(row)" >
-            {{ 'Stampa R.I.S.'|translate }}
-        </button>
-    </mat-menu>
-
-
+  <mat-menu #documents="matMenu">
+    <button mat-menu-item (click)="documentoProtocollato(row)">
+      {{ "Documento protocollato" | translate }}
+    </button>
+    <button mat-menu-item (click)="scheda(row)">
+      {{ "Stampa R.I.S." | translate }}
+    </button>
+  </mat-menu>
 </ng-template>

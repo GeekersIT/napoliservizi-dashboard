@@ -2,6 +2,9 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const protocol = window.location.protocol.replace('http', 'ws');
+const host = window.location.host;
+
 export const realm = 'napoliservizi';
 
 export const base = 'pms.comune.napoli.it';
@@ -15,8 +18,8 @@ export const environment = {
     clientId: 'dashboard-client',
   },
   api: {
-    http: '/api/v1/graphql',
-    ws: 'wss://hasura/v1/graphql',
+    http: '/db/v1/graphql',
+    ws: `${protocol}//${host}/db/v1/graphql`,
   },
 };
 

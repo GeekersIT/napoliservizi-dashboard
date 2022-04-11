@@ -7,13 +7,10 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-file-upload-fornly',
   templateUrl: './file-upload-fornly.component.html',
-  styleUrls: ['./file-upload-fornly.component.scss']
+  styleUrls: ['./file-upload-fornly.component.scss'],
 })
 export class FileUploadFornlyComponent extends FieldType {
-
-  constructor(
-    private _http: HttpClient
-  ){
+  constructor(private _http: HttpClient) {
     super();
   }
 
@@ -23,19 +20,18 @@ export class FileUploadFornlyComponent extends FieldType {
     return ctrl;
   }
 
-  async open(file:any){
-    
-    let res:any = await firstValueFrom(this._http.post('/storage/file/get', {
-    bucket: file.bucket,
-    name: file.name
-    }));
-    
+  async open(file: any) {
+    let res: any = await firstValueFrom(
+      this._http.post('/storage/file/get', {
+        bucket: file.bucket,
+        name: file.name,
+      })
+    );
 
     var fileLink = document.createElement('a');
     fileLink.href = res.url;
+    fileLink.target = '_blank';
     fileLink.download = file.name;
     fileLink.click();
-
-
   }
 }

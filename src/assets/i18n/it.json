@@ -23,5 +23,6 @@
   "Da segnalazione protocollata con n.: {numero} del {data}": "Da segnalazione protocollata con n.: {numero} del {data}",
   "Protocollo n. {numero} del {data}": "Protocollo n. {numero} del {data}",
   "{enti_primo_intervento}": "Specifica {label}",
-  "Invalid user credentials": "Agente non presente nel sistema.<br/>Controlla le credenziali di accesso inserite."
+  "Invalid user credentials": "Agente non presente nel sistema.<br/>Controlla le credenziali di accesso inserite.",
+  "Ultimo aggiornamento {data}": "Ultimo aggiornamento {data}"
 }

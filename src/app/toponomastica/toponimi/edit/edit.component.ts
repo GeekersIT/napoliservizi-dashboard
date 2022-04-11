@@ -7,11 +7,11 @@ import { map } from 'rxjs/operators';
 import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { ToponimoObj } from 'src/app/_core/_models/toponomastica/toponimo.interface';
 import {
-  Assegnazione_Toponimo_Constraint,
-  Assegnazione_Toponimo_Update_Column,
   DugSelectGQL,
   TipologiaSelectGQL,
-  Toponimo_Insert_Input,
+  Toponomastica_Assegnazione_Toponimo_Constraint,
+  Toponomastica_Assegnazione_Toponimo_Update_Column,
+  Toponomastica_Toponimo_Insert_Input,
   UpdateToponimoGQL,
 } from 'src/app/_core/_services/generated/graphql';
 
@@ -52,7 +52,9 @@ export class ToponimiEditComponent implements OnInit {
                     ? { nome: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?.dug)),
+                .valueChanges.pipe(
+                  map((result) => result.data?.toponomastica_dug)
+                ),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('DUG'),
@@ -72,7 +74,9 @@ export class ToponimiEditComponent implements OnInit {
                     ? { nome: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?.tipologia)),
+                .valueChanges.pipe(
+                  map((result) => result.data?.toponomastica_tipologia)
+                ),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Tipologia'),
@@ -283,7 +287,7 @@ export class ToponimiEditComponent implements OnInit {
           .includes(x)
     );
 
-    let toponimo: Toponimo_Insert_Input = {
+    let toponimo: Toponomastica_Toponimo_Insert_Input = {
       nome: this.model.nome,
     };
     toponimo = this.data ? { ...toponimo, ...{ id: this.data.id } } : toponimo;
@@ -324,9 +328,9 @@ export class ToponimiEditComponent implements OnInit {
               assegnazioni: {
                 on_conflict: {
                   constraint:
-                    Assegnazione_Toponimo_Constraint.AssegnazioneToponimoPkey,
+                    Toponomastica_Assegnazione_Toponimo_Constraint.AssegnazioneToponimoPkey,
                   update_columns: [
-                    Assegnazione_Toponimo_Update_Column.FineValidita,
+                    Toponomastica_Assegnazione_Toponimo_Update_Column.FineValidita,
                   ],
                 },
                 data: [

@@ -1,0 +1,125 @@
+<mat-toolbar>
+  <span>{{ "Integrazione AGCOS" | translate }}</span>
+  <span class="spacer"></span>
+  <span *ngIf="lastImport | async">{{
+    "Ultimo aggiornamento {data}"
+      | translate: { data: lastImport | async | date: "short":"it" }
+  }}</span>
+  &nbsp;
+  <button mat-stroked-button color="accent" (click)="update()">
+    <mat-icon>update</mat-icon>
+    {{ "Aggiorna" | translate }}
+  </button>
+</mat-toolbar>
+<div class="main-content">
+  <table-component
+    [defaultSort]="defaultSort"
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [expandsTemplate]="expandsTemplate"
+  ></table-component>
+</div>
+
+<ng-template let-row="row" #expandsTemplate>
+  <mat-list>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Stato" | translate }}: <b>{{ row.stato }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Localizzazione" | translate }}: <b>{{ row.localizzazione }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Municipalita" | translate }}: <b>{{ row.municipalita }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Quartiere" | translate }}: <b>{{ row.quartiere }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Indicazione approssimativa" | translate }}:
+        <b>{{ row.indicazione_approssimativa }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Elemento" | translate }}: <b>{{ row.elemento }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Coordinate" | translate }}: <b>{{ row.coordinate }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Data sinistro" | translate }}: <b>{{ row.data_sinistro }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Esito sentenza" | translate }}: <b>{{ row.esito_sentenza }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Costi sostenuti" | translate }}: <b>{{ row.costi_sostenuti }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Municipalita" | translate }}: <b>{{ row.municipalita }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Causa" | translate }}: <b>{{ row.causa }}</b>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item>
+      <div mat-line>
+        {{ "Scarsa illuminazione pubblica" | translate }}:
+        <b>{{ row.scarsa_illuminazione_pubblica }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Scarsa illuminazionenaturale" | translate }}:
+        <b>{{ row.scarsa_illuminazione_naturale }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Presenza foglie" | translate }}: <b>{{ row.presenza_foglie }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Presenza acqua" | translate }}: <b>{{ row.presenza_acqua }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Danno persone" | translate }}: <b>{{ row.danno_persone }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Danno cose" | translate }}: <b>{{ row.danno_cose }}</b>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div mat-line>
+        {{ "Altro" | translate }}: <b>{{ row.altro }}</b>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</ng-template>

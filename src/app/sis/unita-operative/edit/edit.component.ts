@@ -8,11 +8,11 @@ import { filter, map } from 'rxjs/operators';
 import { Dirty } from 'src/app/_core/_components/form/form.component';
 import { UnitaOperativaObj } from 'src/app/_core/_models/sis/unita_operativa.interface';
 import {
-  Assegnazione_Unita_Operativa_Constraint,
-  Assegnazione_Unita_Operativa_Update_Column,
+  Sis_Assegnazione_Unita_Operativa_Constraint,
+  Sis_Assegnazione_Unita_Operativa_Update_Column,
   CiviciSelectGQL,
   ToponimoSelectGQL,
-  Unita_Operativa_Insert_Input,
+  Sis_Unita_Operativa_Insert_Input,
   UpdateUnitaOperativaGQL,
 } from 'src/app/_core/_services/generated/graphql';
 import { environment } from 'src/environments/environment';
@@ -58,7 +58,9 @@ export class UnitaOperativeEditComponent extends Dirty implements OnInit {
                       : {}),
                   },
                 })
-                .valueChanges.pipe(map((result) => result.data?.toponimo)),
+                .valueChanges.pipe(
+                  map((result) => result.data?.toponomastica_toponimo)
+                ),
             parentReset: (field: FormlyFieldConfig) => {
               field.parent?.fieldGroup![1].formControl?.reset();
             },
@@ -90,7 +92,7 @@ export class UnitaOperativeEditComponent extends Dirty implements OnInit {
                     ? { civico1: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?.civico)),
+                .valueChanges.pipe(map((result) => result.data?.gis_civico)),
           },
           hooks: {
             onInit: (field) => {
@@ -307,7 +309,7 @@ export class UnitaOperativeEditComponent extends Dirty implements OnInit {
         .includes(x.membro.id + '-' + x.caposquadra)
     );
 
-    let squadra: Unita_Operativa_Insert_Input = {
+    let squadra: Sis_Unita_Operativa_Insert_Input = {
       nome: this.model.nome,
       ...(this.model.toponimo ? { toponimo: this.model.toponimo } : {}),
       ...(this.model.civico
@@ -361,9 +363,9 @@ export class UnitaOperativeEditComponent extends Dirty implements OnInit {
               membri: {
                 on_conflict: {
                   constraint:
-                    Assegnazione_Unita_Operativa_Constraint.AssegnazioneUnitaOperativaPkey,
+                    Sis_Assegnazione_Unita_Operativa_Constraint.AssegnazioneUnitaOperativaPkey,
                   update_columns: [
-                    Assegnazione_Unita_Operativa_Update_Column.FineValidita,
+                    Sis_Assegnazione_Unita_Operativa_Update_Column.FineValidita,
                   ],
                 },
                 data: [

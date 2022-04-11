@@ -1,5 +1,5 @@
-subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
-  segnalazione(where: $where) {
+subscription Segnalazioni($where: pis_segnalazione_bool_exp = {}) {
+  pis_segnalazione(where: $where) {
     id
     municipalita_id
     quartiere_id
@@ -26,9 +26,13 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
       numero
       mittente {
         id
-        nome
-        sigla
         codice
+        settore
+        servizio
+        uoc
+        uos
+        postazione
+        nome
       }
       id
       destinatari {
@@ -36,9 +40,13 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
         e_esterno
         destinatario_interno {
           id
-          nome
           codice
-          sigla
+          settore
+          servizio
+          uoc
+          uos
+          postazione
+          nome
         }
         destinatario_esterno {
           id
@@ -165,8 +173,8 @@ subscription Segnalazioni($where: segnalazione_bool_exp = {}) {
     }
   }
 }
-query Segnalazione($where: segnalazione_bool_exp!) {
-  segnalazione(where: $where) {
+query Segnalazione($where: pis_segnalazione_bool_exp!) {
+  pis_segnalazione(where: $where) {
     id
     municipalita {
       id
@@ -213,9 +221,13 @@ query Segnalazione($where: segnalazione_bool_exp!) {
       numero
       mittente {
         id
-        nome
-        sigla
         codice
+        settore
+        servizio
+        uoc
+        uos
+        postazione
+        nome
       }
       id
       destinatari {
@@ -223,9 +235,13 @@ query Segnalazione($where: segnalazione_bool_exp!) {
         e_esterno
         destinatario_interno {
           id
-          nome
           codice
-          sigla
+          settore
+          servizio
+          uoc
+          uos
+          postazione
+          nome
         }
         destinatario_esterno {
           id
@@ -353,11 +369,13 @@ query Segnalazione($where: segnalazione_bool_exp!) {
   }
 }
 
-
 mutation UpdateSegnalazione($on_conflict: json!, $segnalazione: json!) {
-  custom_insert_segnalazione(on_conflict: $on_conflict, segnalazione: $segnalazione) {
+  custom_insert_segnalazione(
+    on_conflict: $on_conflict
+    segnalazione: $segnalazione
+  ) {
     segnalazione {
-			id
+      id
       protocollo {
         destinatari {
           id
@@ -388,8 +406,6 @@ mutation UpdateSegnalazione($on_conflict: json!, $segnalazione: json!) {
     }
   }
 }
-
-
 
 # mutation UpdateSegnalazione(
 #   $segnalazione: [segnalazione_insert_input!] = {}
@@ -442,7 +458,7 @@ mutation UpdateSegnalazione($on_conflict: json!, $segnalazione: json!) {
 # }
 
 mutation DeleteSegnalazione($id: Int!) {
-  delete_segnalazione(where: { id: { _eq: $id } }) {
+  delete_pis_segnalazione(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

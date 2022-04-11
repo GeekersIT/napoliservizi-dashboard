@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import createReport from 'docx-templates';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { map } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/_core/_components/confirm-dialog/confirm-dialog.component';
 import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/pis/form-field.service';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
@@ -19,7 +20,7 @@ import {
   RissSubscription,
   TipologiaRisSelectGQL,
   UpdateRisGQL,
-  _Stato_Ris_Enum,
+  Sis__Stato_Ris_Enum,
 } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
@@ -61,7 +62,7 @@ export class RisProtocollatiComponent implements OnInit {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._tipologia_ris)
+                  map((result) => result.data?.sis__tipologia_ris)
                 ),
           },
           expressionProperties: {
@@ -179,6 +180,7 @@ export class RisProtocollatiComponent implements OnInit {
   ];
 
   constructor(
+    private _http: HttpClient,
     private _localizzazioneFormFieldService: LocalizzazioneFormFieldService,
     private _tipologiaRisSelectGQL: TipologiaRisSelectGQL,
     private _updateRisGQL: UpdateRisGQL,
@@ -226,7 +228,7 @@ export class RisProtocollatiComponent implements OnInit {
                   ],
                 }
             : {}),
-          stato: { _neq: _Stato_Ris_Enum.Bozza },
+          stato: { _neq: Sis__Stato_Ris_Enum.Bozza },
           quartiere_id: this.model.quartiere
             ? {
                 _in: this.model.quartiere.map((e: { id: any }) => e.id),
@@ -253,7 +255,7 @@ export class RisProtocollatiComponent implements OnInit {
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
         // this._map(response.data?.ris)
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -280,15 +282,15 @@ export class RisProtocollatiComponent implements OnInit {
       .subscribe({
         where: {
           _and: [
-            { stato: { _neq: _Stato_Ris_Enum.Bozza } },
-            { stato: { _neq: _Stato_Ris_Enum.Inviato } },
-            { stato: { _neq: _Stato_Ris_Enum.Compilazione } },
+            { stato: { _neq: Sis__Stato_Ris_Enum.Bozza } },
+            { stato: { _neq: Sis__Stato_Ris_Enum.Inviato } },
+            { stato: { _neq: Sis__Stato_Ris_Enum.Compilazione } },
           ],
         },
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
         // this.dataSource.source!.next(response.data?.ris.map(element => this._map(element)));
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -325,8 +327,8 @@ export class RisProtocollatiComponent implements OnInit {
 
   actionDisabled(row: any) {
     return (
-      row.stato == _Stato_Ris_Enum.Protocollazione ||
-      row.stato == _Stato_Ris_Enum.Cancellato
+      row.stato == Sis__Stato_Ris_Enum.Protocollazione ||
+      row.stato == Sis__Stato_Ris_Enum.Cancellato
     );
   }
 
@@ -353,8 +355,23 @@ export class RisProtocollatiComponent implements OnInit {
     let url = window.URL.createObjectURL(blob);
     var fileLink = document.createElement('a');
     fileLink.href = url;
+    fileLink.target = '_blank';
     fileLink.download = reportName;
     fileLink.click();
     this._loaderService.stop();
+  }
+
+  async documentoProtocollato(row: any) {
+    console.log(row);
+    let res: any = await firstValueFrom(
+      this._http.post('/storage/file/get', {
+        bucket: 'ris-' + row.id,
+        name: row.protocollo.numero.replace(/\//g, '_') + '.pdf',
+      })
+    );
+    var fileLink = document.createElement('a');
+    fileLink.href = res.url;
+    fileLink.download = row.protocollo.numero.replace(/\//g, '_') + '.pdf';
+    fileLink.click();
   }
 }

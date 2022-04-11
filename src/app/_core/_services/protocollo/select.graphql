@@ -1,0 +1,21 @@
+query SezioneProtocolloSelect(
+  $where: protocollo__sezione_protocollo_bool_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  protocollo__sezione_protocollo(
+    order_by: { nome: asc }
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
+    id
+    codice
+    settore
+    servizio
+    uoc
+    uos
+    postazione
+    nome
+  }
+}

@@ -9,17 +9,17 @@ export interface MunicipalitaObj {
   nome: string;
   updated_at: any;
   vecchie_denominazioni: {
-    __typename?: 'vecchia_municipalita' | undefined;
+    __typename?: 'toponomastica_vecchia_municipalita' | undefined;
     nome: string;
     created_at: any;
   }[];
   quartieri: {
-    __typename?: 'assegnazione_quartiere' | undefined;
+    __typename?: 'toponomastica_assegnazione_quartiere' | undefined;
     id: number;
     inizio_validita: any;
     fine_validita?: any;
     quartiere: {
-      __typename?: 'quartiere' | undefined;
+      __typename?: 'toponomastica_quartiere' | undefined;
       id: number;
       nome: string;
     };

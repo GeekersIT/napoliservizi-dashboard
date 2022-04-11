@@ -18,12 +18,12 @@ import { SegnalazioneObj } from 'src/app/_core/_models/pis/segnalazione.interfac
 import {
   DeleteSegnalazioneGQL,
   PrioritaSelectGQL,
+  StatoSegnalazioneSelectGQL,
+  Pis__Stato_Segnalazione_Enum,
   SegnalazioniGQL,
   SegnalazioniSubscription,
-  StatoSegnalazioneSelectGQL,
-  UpdateSegnalazioneGQL,
-  _Stato_Segnalazione_Enum,
 } from 'src/app/_core/_services/generated/graphql';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 import { RisoluzioneMultiplaDialogComponent } from './risoluzione-multipla-dialog/risoluzione-multipla-dialog.component';
 
 @Component({
@@ -63,7 +63,7 @@ export class SegnalazioniProtocollateComponent implements OnInit {
                     ? { nome: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?._priorita)),
+                .valueChanges.pipe(map((result) => result.data?.pis__priorita)),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Priorità'),
@@ -85,13 +85,13 @@ export class SegnalazioniProtocollateComponent implements OnInit {
                       ? { text: { _ilike: '%' + term + '%' } }
                       : {}),
                     _and: [
-                      { text: { _neq: _Stato_Segnalazione_Enum.Pre } },
-                      { text: { _neq: _Stato_Segnalazione_Enum.Bozza } },
+                      { text: { _neq: Pis__Stato_Segnalazione_Enum.Pre } },
+                      { text: { _neq: Pis__Stato_Segnalazione_Enum.Bozza } },
                     ],
                   },
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._stato_segnalazione)
+                  map((result) => result.data?.pis__stato_segnalazione)
                 ),
           },
           expressionProperties: {
@@ -287,7 +287,8 @@ export class SegnalazioniProtocollateComponent implements OnInit {
     private _translateService: TranslateService,
     private _snackBar: MatSnackBar,
     private _loaderService: NgxUiLoaderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public roles: RolesService
   ) {
     this.dataSource = new DataSource();
   }
@@ -313,8 +314,8 @@ export class SegnalazioniProtocollateComponent implements OnInit {
                 }
             : {}),
           _and: [
-            { stato: { _neq: _Stato_Segnalazione_Enum.Pre } },
-            { stato: { _neq: _Stato_Segnalazione_Enum.Bozza } },
+            { stato: { _neq: Pis__Stato_Segnalazione_Enum.Pre } },
+            { stato: { _neq: Pis__Stato_Segnalazione_Enum.Bozza } },
           ],
           quartiere_id: this.model.quartiere
             ? {
@@ -340,7 +341,7 @@ export class SegnalazioniProtocollateComponent implements OnInit {
         },
       })
       .subscribe((response: SubscriptionResult<SegnalazioniSubscription>) => {
-        this.dataSource.source!.next(response.data?.segnalazione);
+        this.dataSource.source!.next(response.data?.pis_segnalazione);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -363,13 +364,13 @@ export class SegnalazioniProtocollateComponent implements OnInit {
       .subscribe({
         where: {
           _and: [
-            { stato: { _neq: _Stato_Segnalazione_Enum.Pre } },
-            { stato: { _neq: _Stato_Segnalazione_Enum.Bozza } },
+            { stato: { _neq: Pis__Stato_Segnalazione_Enum.Pre } },
+            { stato: { _neq: Pis__Stato_Segnalazione_Enum.Bozza } },
           ],
         },
       })
       .subscribe((response: SubscriptionResult<SegnalazioniSubscription>) => {
-        this.dataSource.source!.next(response.data?.segnalazione);
+        this.dataSource.source!.next(response.data?.pis_segnalazione);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -435,33 +436,33 @@ export class SegnalazioniProtocollateComponent implements OnInit {
 
   actionDisabled(row: any) {
     return (
-      row.stato == _Stato_Segnalazione_Enum.Protocollazione ||
-      row.stato == _Stato_Segnalazione_Enum.Completata ||
-      row.stato == _Stato_Segnalazione_Enum.Risolta
+      row.stato == Pis__Stato_Segnalazione_Enum.Protocollazione ||
+      row.stato == Pis__Stato_Segnalazione_Enum.Completata ||
+      row.stato == Pis__Stato_Segnalazione_Enum.Risolta
     );
   }
 
-
   async documentoProtocollato(row: any) {
     console.log(row);
-    let res:any = await firstValueFrom(this._http.post('/storage/file/get', {
-      bucket: 'segnalazione-'+row.id,
-      name: row.protocollo.numero+".pdf"
-    }));
+    let res: any = await firstValueFrom(
+      this._http.post('/storage/file/get', {
+        bucket: 'segnalazione-' + row.id,
+        name: row.protocollo.numero.replace(/\//g, '_') + '.pdf',
+      })
+    );
     var fileLink = document.createElement('a');
     fileLink.href = res.url;
-    fileLink.download = row.protocollo.numero+".pdf";
+    fileLink.target = '_blank';
+    fileLink.download = row.protocollo.numero.replace(/\//g, '_') + '.pdf';
     fileLink.click();
   }
-
-
 
   async schedaSegnalazione(row: any) {
     console.log(row);
 
-    const template: Buffer = await fetch(
-      'https://napoliservizi.duckdns.org/template/segnalazione.docx'
-    ).then((v) => v.arrayBuffer() as Promise<any>);
+    const template: Buffer = await fetch('/template/segnalazione.docx').then(
+      (v) => v.arrayBuffer() as Promise<any>
+    );
 
     const report = await createReport({
       template: template,

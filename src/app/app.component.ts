@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { KeycloakService } from 'keycloak-angular';
+import { RolesService } from './_core/_services/roles.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,11 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppComponent {
   utente: any;
-  constructor(translate: TranslateService, private _keycloak: KeycloakService) {
+  constructor(
+    translate: TranslateService,
+    private _keycloak: KeycloakService,
+    public roles: RolesService
+  ) {
     translate.setDefaultLang('it');
     translate.use('it');
 
@@ -23,10 +28,10 @@ export class AppComponent {
     console.log(userToken);
   }
 
-  showMenu(lista:Array<string>){
-    const roles = this._keycloak.getUserRoles();
-    return lista.some((e) => roles.includes(e));
-  }
+  // showMenu(lista:Array<string>){
+  //   const roles = this._keycloak.getUserRoles();
+  //   return lista.some((e) => roles.includes(e));
+  // }
 
   logout() {
     this._keycloak.logout();

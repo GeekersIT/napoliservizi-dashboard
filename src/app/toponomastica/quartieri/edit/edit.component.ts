@@ -7,9 +7,9 @@ import { LocalizzazioneFormFieldService } from 'src/app/_core/_components/form/p
 import { MunicipalitaSelectObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
 import { QuartiereObj } from 'src/app/_core/_models/toponomastica/quartiere.interface';
 import {
-  Assegnazione_Quartiere_Constraint,
-  Assegnazione_Quartiere_Update_Column,
-  Quartiere_Insert_Input,
+  Toponomastica_Assegnazione_Quartiere_Constraint,
+  Toponomastica_Assegnazione_Quartiere_Update_Column,
+  Toponomastica_Quartiere_Insert_Input,
   UpdateQuartiereGQL,
 } from 'src/app/_core/_services/generated/graphql';
 
@@ -124,7 +124,7 @@ export class QuartieriEditComponent implements OnInit {
       (x: any) => !oldMunicipaita.map((q) => q.municipalita.id).includes(x)
     );
 
-    let quartiere: Quartiere_Insert_Input = {
+    let quartiere: Toponomastica_Quartiere_Insert_Input = {
       nome: this.model.nome,
     };
     quartiere = this.data
@@ -159,9 +159,9 @@ export class QuartieriEditComponent implements OnInit {
               municipalita: {
                 on_conflict: {
                   constraint:
-                    Assegnazione_Quartiere_Constraint.AssegnazioneQuartierePkey,
+                    Toponomastica_Assegnazione_Quartiere_Constraint.AssegnazioneQuartierePkey,
                   update_columns: [
-                    Assegnazione_Quartiere_Update_Column.FineValidita,
+                    Toponomastica_Assegnazione_Quartiere_Update_Column.FineValidita,
                   ],
                 },
                 data: [

@@ -1,0 +1,54 @@
+subscription AgcosImport {
+  agcos_import(limit: 1) {
+    updated_at
+  }
+}
+
+subscription Agcos {
+  agcos_agcos {
+    civico
+    costi_sostenuti
+    created_at
+    data_sinistro
+    esiste_citazione
+    esiste_risarcimento
+    esito_sentenza
+    esiste_sentenza
+    id
+    indicazione_approssimativa
+    latitudine
+    longitudine
+    altro
+    causa
+    danno_cose
+    danno_persone
+    elemento
+    presenza_acqua
+    presenza_foglie
+    scarsa_illuminazione_naturale
+    scarsa_illuminazione_pubblica
+    toponimo {
+      id
+      nome
+      codice
+      dug {
+        id
+        nome
+      }
+      tipologia {
+        id
+        nome
+      }
+      assegnazioni(where: { fine_validita: { _is_null: true } }) {
+        municipalita {
+          id
+          nome
+        }
+        quartiere {
+          id
+          nome
+        }
+      }
+    }
+  }
+}

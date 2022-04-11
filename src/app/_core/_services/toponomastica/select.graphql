@@ -1,12 +1,30 @@
-query MunicipalitaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  municipalita(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query MunicipalitaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  toponomastica_municipalita(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
-query QuartiereSelect($where: quartiere_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
-  quartiere(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
+query QuartiereSelect(
+  $where: toponomastica_quartiere_bool_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  toponomastica_quartiere(
+    order_by: { nome: asc }
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
     id
     nome
     municipalita {
@@ -15,11 +33,20 @@ query QuartiereSelect($where: quartiere_bool_exp = {}, $limit: Int = 10, $offset
   }
 }
 
-query ToponimoSelect($where: toponimo_bool_exp = {}, $limit: Int = 10, $offset: Int = 0) {
-  toponimo(order_by: {nome: asc}, where: $where, limit: $limit, offset: $offset) {
+query ToponimoSelect(
+  $where: toponomastica_toponimo_bool_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  toponomastica_toponimo(
+    order_by: { nome: asc }
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
     id
     nome
-    dug{
+    dug {
       id
       nome
     }
@@ -30,26 +57,47 @@ query ToponimoSelect($where: toponimo_bool_exp = {}, $limit: Int = 10, $offset: 
   }
 }
 
-query DugSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  dug(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
-    id
-    nome
-  }
-}
-
-query TipologiaSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
-  tipologia(order_by: {nome: asc}, limit: $limit, offset: $offset, where: {nome: $nome}) {
+query DugSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  toponomastica_dug(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
     id
     nome
   }
 }
 
 query ToponimoNomeSelect($_in: [String!]!) {
-  toponimo(order_by: {nome: asc}, where: {codice: {_in: $_in}}) {
+  toponomastica_toponimo(
+    order_by: { nome: asc }
+    where: { codice: { _in: $_in } }
+  ) {
     nome
     dug {
       id
       nome
     }
+  }
+}
+
+query TipologiaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  toponomastica_tipologia(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
   }
 }

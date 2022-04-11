@@ -1,5 +1,8 @@
 subscription Diario($id: Int!) {
-  diario(where: {segnalazione_id: {_eq: $id}}, order_by: {created_at: desc}) {
+  pis_diario(
+    where: { segnalazione_id: { _eq: $id } }
+    order_by: { created_at: desc }
+  ) {
     created_at
     messaggio
     allegato
@@ -7,8 +10,8 @@ subscription Diario($id: Int!) {
   }
 }
 
-mutation InsertDiario($objects: [diario_insert_input!] = {}) {
-  insert_diario(objects: $objects) {
+mutation InsertDiario($objects: [pis_diario_insert_input!] = {}) {
+  insert_pis_diario(objects: $objects) {
     affected_rows
   }
 }

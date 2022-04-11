@@ -1,23 +1,81 @@
-query CiviciSelect($fk_t_code: String_comparison_exp = {}, $limit: Int = 10, $offset: Int = 0, $civico1: String_comparison_exp = {}) {
-  civico(where: {fk_t_code: $fk_t_code, civico1: $civico1}, limit: $limit, offset: $offset) {
+query CiviciSelect(
+  $fk_t_code: String_comparison_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+  $civico1: String_comparison_exp = {}
+) {
+  gis_civico(
+    where: { fk_t_code: $fk_t_code, civico1: $civico1 }
+    limit: $limit
+    offset: $offset
+  ) {
     id
     civico1
     geom
   }
 }
 
-query SostegniIpiSelect($fk_t_code: String_comparison_exp = {}, $limit: Int = 10, $offset: Int = 0, $matricola: String_comparison_exp = {}) {
-  sostegno_ipi(where: {fk_t_code: $fk_t_code, matricola: $matricola}, limit: $limit, offset: $offset) {
+query SostegniIpiSelect(
+  $fk_t_code: String_comparison_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+  $matricola: String_comparison_exp = {}
+) {
+  gis_sostegno_ipi(
+    where: { fk_t_code: $fk_t_code, matricola: $matricola }
+    limit: $limit
+    offset: $offset
+  ) {
     id
     matricola
     geom
   }
 }
 
-query ConnessioniGrafoSelect($fk_t_code: String_comparison_exp = {}, $limit: Int = 10, $offset: Int = 0) {
-  connessione_grafo(where: {fk_t_code: $fk_t_code}, limit: $limit, offset: $offset) {
+query ConnessioniGrafoSelect(
+  $fk_t_code: String_comparison_exp = {}
+  $limit: Int = 10
+  $offset: Int = 0
+) {
+  gis_connessione_grafo(
+    where: { fk_t_code: $fk_t_code }
+    limit: $limit
+    offset: $offset
+  ) {
     id
     fk_t_code
     geom
+  }
+}
+
+query SpecificaPosizionamentoToponimoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  gis__specifica_posizionamento_toponimo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query TipologiaPosizionamentoToponimoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  gis__tipologia_posizionamento_toponimo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
   }
 }

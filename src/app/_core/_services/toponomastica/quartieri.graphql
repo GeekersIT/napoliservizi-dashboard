@@ -1,13 +1,13 @@
-subscription Quartieri($where: quartiere_bool_exp = {}) {
-  quartiere(where: $where) {
+subscription Quartieri($where: toponomastica_quartiere_bool_exp = {}) {
+  toponomastica_quartiere(where: $where) {
     id
     nome
     updated_at
-    vecchie_denominazioni(order_by: {created_at: desc}) {
+    vecchie_denominazioni(order_by: { created_at: desc }) {
       nome
       created_at
     }
-    municipalita(order_by: {fine_validita: desc_nulls_first}) {
+    municipalita(order_by: { fine_validita: desc_nulls_first }) {
       id
       inizio_validita
       fine_validita
@@ -19,14 +19,19 @@ subscription Quartieri($where: quartiere_bool_exp = {}) {
   }
 }
 
-mutation UpdateQuartiere($quartiere: [quartiere_insert_input!] = {}) {
-  insert_quartiere(on_conflict: {constraint: quartiere_pkey, update_columns: nome}, objects: $quartiere) {
+mutation UpdateQuartiere(
+  $quartiere: [toponomastica_quartiere_insert_input!] = {}
+) {
+  insert_toponomastica_quartiere(
+    on_conflict: { constraint: quartiere_pkey, update_columns: nome }
+    objects: $quartiere
+  ) {
     affected_rows
   }
 }
 
 mutation DeleteQuartiere($id: Int!) {
-  delete_quartiere(where: {id: {_eq: $id}}) {
+  delete_toponomastica_quartiere(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

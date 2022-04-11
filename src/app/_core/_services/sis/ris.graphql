@@ -1,5 +1,5 @@
-subscription Riss($where: ris_bool_exp = {}) {
-  ris(where: $where) {
+subscription Riss($where: sis_ris_bool_exp = {}) {
+  sis_ris(where: $where) {
     id
     unita_operativa {
       id
@@ -510,7 +510,7 @@ subscription Riss($where: ris_bool_exp = {}) {
     }
     localizzazioni_visibilita {
       id
-      localizzazione_visibilitum {
+      localizzazione_visibilita {
         nome
         id
       }
@@ -709,9 +709,13 @@ subscription Riss($where: ris_bool_exp = {}) {
       numero
       mittente {
         id
-        nome
-        sigla
         codice
+        settore
+        servizio
+        uoc
+        uos
+        postazione
+        nome
       }
       id
       destinatari {
@@ -719,9 +723,13 @@ subscription Riss($where: ris_bool_exp = {}) {
         e_esterno
         destinatario_interno {
           id
-          nome
           codice
-          sigla
+          settore
+          servizio
+          uoc
+          uos
+          postazione
+          nome
         }
         destinatario_esterno {
           id
@@ -1105,7 +1113,7 @@ subscription Riss($where: ris_bool_exp = {}) {
       tipologia_veicolo_note
       traccia_suolo
       traccia_suolo_abs
-      traccia_suolo_frenata_tipologium {
+      traccia_suolo_frenata_tipologia {
         nome
         id
       }
@@ -1122,16 +1130,16 @@ subscription Riss($where: ris_bool_exp = {}) {
         id
         nome
       }
-      traccia_suolo_terminazione_intensitum {
+      traccia_suolo_terminazione_intensita {
         id
         nome
       }
       traccia_suolo_terminazione_metri
-      traccia_suolo_terminazione_tipologium {
+      traccia_suolo_terminazione_tipologia {
         id
         nome
       }
-      traccia_suolo_tipologium {
+      traccia_suolo_tipologia {
         id
         nome
       }
@@ -1498,8 +1506,8 @@ subscription Riss($where: ris_bool_exp = {}) {
   }
 }
 
-query Ris($where: ris_bool_exp = {}) {
-  ris(where: $where) {
+query Ris($where: sis_ris_bool_exp = {}) {
+  sis_ris(where: $where) {
     id
     unita_operativa {
       id
@@ -2030,7 +2038,7 @@ query Ris($where: ris_bool_exp = {}) {
     }
     localizzazioni_visibilita {
       id
-      localizzazione_visibilitum {
+      localizzazione_visibilita {
         nome
         id
       }
@@ -2229,9 +2237,13 @@ query Ris($where: ris_bool_exp = {}) {
       numero
       mittente {
         id
-        nome
-        sigla
         codice
+        settore
+        servizio
+        uoc
+        uos
+        postazione
+        nome
       }
       id
       destinatari {
@@ -2239,9 +2251,13 @@ query Ris($where: ris_bool_exp = {}) {
         e_esterno
         destinatario_interno {
           id
-          nome
           codice
-          sigla
+          settore
+          servizio
+          uoc
+          uos
+          postazione
+          nome
         }
         destinatario_esterno {
           id
@@ -2625,7 +2641,7 @@ query Ris($where: ris_bool_exp = {}) {
       tipologia_veicolo_note
       traccia_suolo
       traccia_suolo_abs
-      traccia_suolo_frenata_tipologium {
+      traccia_suolo_frenata_tipologia {
         nome
         id
       }
@@ -2642,16 +2658,16 @@ query Ris($where: ris_bool_exp = {}) {
         id
         nome
       }
-      traccia_suolo_terminazione_intensitum {
+      traccia_suolo_terminazione_intensita {
         id
         nome
       }
       traccia_suolo_terminazione_metri
-      traccia_suolo_terminazione_tipologium {
+      traccia_suolo_terminazione_tipologia {
         id
         nome
       }
-      traccia_suolo_tipologium {
+      traccia_suolo_tipologia {
         id
         nome
       }
@@ -3154,7 +3170,7 @@ mutation UpdateRis($on_conflict: json!, $ris: json!) {
       }
       localizzazioni_visibilita {
         id
-        localizzazione_visibilitum {
+        localizzazione_visibilita {
           id
           nome
         }
@@ -3388,7 +3404,7 @@ mutation UpdateRis($on_conflict: json!, $ris: json!) {
 #       }
 #       localizzazioni_visibilita {
 #         id
-#         localizzazione_visibilitum {
+#         localizzazione_visibilita {
 #           id
 #           nome
 #         }
@@ -3480,7 +3496,7 @@ mutation UpdateRis($on_conflict: json!, $ris: json!) {
 # }
 
 mutation DeleteRis($id: Int!) {
-  delete_ris(where: { id: { _eq: $id } }) {
+  delete_sis_ris(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

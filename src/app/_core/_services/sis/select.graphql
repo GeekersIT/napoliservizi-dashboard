@@ -3,7 +3,7 @@ query AlimentazioneVeicoloSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _alimentazione_veicolo(
+  sis__alimentazione_veicolo(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -14,32 +14,12 @@ query AlimentazioneVeicoloSelect(
   }
 }
 
-query CittaSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $citta: String_comparison_exp = {}
-) {
-  _citta(
-    order_by: { ordine: asc }
-    limit: $limit
-    offset: $offset
-    where: { citta: $citta }
-  ) {
-    id
-    citta
-    regione
-    provincia
-    p_abbreviazione
-    codice
-  }
-}
-
 query CondizioniMeteoVisibilitaLimitataTipologiaSelect(
   $limit: Int = 10
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _condizioni_meteo_visibilita_limitata_tipologia(
+  sis__condizioni_meteo_visibilita_limitata_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -55,7 +35,7 @@ query ConseguenzaVeicoloSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _conseguenza_veicolo(
+  sis__conseguenza_veicolo(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -71,7 +51,7 @@ query DecessiTipologiaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _decessi_tipologia(
+  sis__decessi_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -86,7 +66,7 @@ query DestinazioneDecisioneSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _destinazione_decisione(
+  sis__destinazione_decisione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -101,7 +81,7 @@ query EnteSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _ente(
+  sis__ente(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -114,28 +94,12 @@ query EnteSelect(
   }
 }
 
-query SessoSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _sesso(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-
 query TrasportatoPosizioneSelect(
   $limit: Int = 10
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _trasportato_posizione(
+  sis__trasportato_posizione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -151,23 +115,7 @@ query InfortunatoTrasportatoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _intortunato_tasportato(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-
-query SiNoAltroSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _sinoaltro(
+  sis__intortunato_tasportato(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -183,7 +131,7 @@ query TrasportatoStatoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _trasportato_stato(
+  sis__trasportato_stato(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -199,7 +147,7 @@ query EnteSecondarioSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _ente_secondario(
+  sis__ente_secondario(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -214,7 +162,7 @@ query ImpiantoSemaforicoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _impianto_semaforico(
+  sis__impianto_semaforico(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -229,7 +177,7 @@ query InfortunatoInformazioneSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _infortunato_informazione(
+  sis__infortunato_informazione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -244,7 +192,7 @@ query LocalizzazioneAltroSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_altro(
+  sis__localizzazione_altro(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -259,7 +207,7 @@ query LocalizzazioneCondizioniAtmosfericheSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_condizioni_atmosferiche(
+  sis__localizzazione_condizioni_atmosferiche(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -274,7 +222,7 @@ query LocalizzazioneCondizioniTrafficoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_condizioni_traffico(
+  sis__localizzazione_condizioni_traffico(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -289,7 +237,7 @@ query LocalizzazioneExtraAbitatoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_extra_abitato(
+  sis__localizzazione_extra_abitato(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -304,7 +252,7 @@ query LocalizzazioneFondoStradaleSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_fondo_stradale(
+  sis__localizzazione_fondo_stradale(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -319,7 +267,7 @@ query LocalizzazioneIlluminazioneSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_illuminazione(
+  sis__localizzazione_illuminazione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -334,7 +282,7 @@ query LocalizzazioneParticolaritaStradaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_particolarita_strada(
+  sis__localizzazione_particolarita_strada(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -349,7 +297,7 @@ query LocalizzazionePavimentazioneSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_pavimentazione(
+  sis__localizzazione_pavimentazione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -364,7 +312,7 @@ query LocalizzazioneTipoStradaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_tipo_strada(
+  sis__localizzazione_tipo_strada(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -379,7 +327,7 @@ query LocalizzazioneVisibilitaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _localizzazione_visibilita(
+  sis__localizzazione_visibilita(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -394,37 +342,7 @@ query NaturaIncidenteSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _natura_incidente(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-query NazioneSisSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _nazione_sis(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-query NazioneSisSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _nazione_sis(
+  sis__natura_incidente(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -439,7 +357,7 @@ query PatenteCategoriaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _patente_categoria(
+  sis__patente_categoria(
     order_by: { ordine: asc }
     limit: $limit
     offset: $offset
@@ -454,7 +372,7 @@ query PosizioneFinaleVeicoloCarreggiataSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _posizione_finale_veicolo_carreggiata(
+  sis__posizione_finale_veicolo_carreggiata(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -469,7 +387,7 @@ query PosizioneFinaleVeicoloFuoriSedeSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _posizione_finale_veicolo_fuori_sede(
+  sis__posizione_finale_veicolo_fuori_sede(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -484,7 +402,7 @@ query PosizioneFinaleVeicoloMarginiSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _posizione_finale_veicolo_margini(
+  sis__posizione_finale_veicolo_margini(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -499,7 +417,7 @@ query PuntiRilieviNoTipologiaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _punti_rilievi_no_tipologia(
+  sis__punti_rilievi_no_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -514,7 +432,7 @@ query RetrovisoreEsternoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _retrovisore_esterno(
+  sis__retrovisore_esterno(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -529,7 +447,7 @@ query RisConsegnatoASelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _ris_consegnato_a(
+  sis__ris_consegnato_a(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -544,39 +462,7 @@ query RisConsegnatoASelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _ris_consegnato_a(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
-query SezioneProtocolloSisSelect(
-  $where: _sezione_protocollo_sis_bool_exp = {}
-  $limit: Int = 10
-  $offset: Int = 0
-) {
-  _sezione_protocollo_sis(
-    order_by: { nome: asc }
-    where: $where
-    limit: $limit
-    offset: $offset
-  ) {
-    id
-    nome
-    sigla
-    codice
-  }
-}
-query SpecificaPosizionamentoToponimoSisSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _specifica_posizionamento_toponimo_sis(
+  sis__ris_consegnato_a(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -591,7 +477,7 @@ query StatoVeicoloSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _stato_veicolo(
+  sis__stato_veicolo(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -601,27 +487,13 @@ query StatoVeicoloSelect(
     nome
   }
 }
-query TipologiaPosizionamentoToponimoSisSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _tipologia_posizionamento_toponimo_sis(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
+
 query TipologiaRisSelect(
   $limit: Int = 10
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _tipologia_ris(
+  sis__tipologia_ris(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -636,7 +508,7 @@ query TipologiaVeicoloSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _tipologia_veicolo(
+  sis__tipologia_veicolo(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -651,7 +523,7 @@ query TipologiaVerbaleSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _tipologia_verbale(
+  sis__tipologia_verbale(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -661,27 +533,13 @@ query TipologiaVerbaleSelect(
     nome
   }
 }
-query TitoloSisSelect(
-  $limit: Int = 10
-  $offset: Int = 0
-  $nome: String_comparison_exp = {}
-) {
-  _titolo_sis(
-    order_by: { nome: asc }
-    limit: $limit
-    offset: $offset
-    where: { nome: $nome }
-  ) {
-    id
-    nome
-  }
-}
+
 query TracciaSuoloFrenataTipologiaSelect(
   $limit: Int = 10
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_frenata_tipologia(
+  sis__traccia_suolo_frenata_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -696,7 +554,7 @@ query TracciaSuoloTerminazioneSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_terminazione(
+  sis__traccia_suolo_terminazione(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -711,7 +569,7 @@ query TracciaSuoloTerminazioneAndamentoSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_terminazione_andamento(
+  sis__traccia_suolo_terminazione_andamento(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -726,7 +584,7 @@ query TracciaSuoloTerminazioneFormaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_terminazione_forma(
+  sis__traccia_suolo_terminazione_forma(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -741,7 +599,7 @@ query TracciaSuoloTerminazioneIntensitaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_terminazione_intensita(
+  sis__traccia_suolo_terminazione_intensita(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -756,7 +614,7 @@ query TracciaSuoloTerminazioneTipologiaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_terminazione_tipologia(
+  sis__traccia_suolo_terminazione_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -771,7 +629,7 @@ query TracciaSuoloTipologiaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _traccia_suolo_tipologia(
+  sis__traccia_suolo_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -786,7 +644,7 @@ query UnitaOperativaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  unita_operativa(
+  sis_unita_operativa(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -812,7 +670,7 @@ query UsoVeicoloSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _uso_veicolo(
+  sis__uso_veicolo(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -827,7 +685,7 @@ query VisibilitaLimitataTipologiaSelect(
   $offset: Int = 0
   $nome: String_comparison_exp = {}
 ) {
-  _visibilita_limitata_tipologia(
+  sis__visibilita_limitata_tipologia(
     order_by: { nome: asc }
     limit: $limit
     offset: $offset
@@ -841,9 +699,9 @@ query VisibilitaLimitataTipologiaSelect(
 query ConducenteSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: conducente_bool_exp = {}
+  $where: sis_conducente_bool_exp = {}
 ) {
-  conducente(limit: $limit, offset: $offset, where: $where) {
+  sis_conducente(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -861,9 +719,9 @@ query ConducenteSelect(
 query LocatarioSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: locatario_bool_exp = {}
+  $where: sis_locatario_bool_exp = {}
 ) {
-  locatario(limit: $limit, offset: $offset, where: $where) {
+  sis_locatario(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -882,9 +740,9 @@ query LocatarioSelect(
 query PedoneSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: pedone_bool_exp = {}
+  $where: sis_pedone_bool_exp = {}
 ) {
-  pedone(limit: $limit, offset: $offset, where: $where) {
+  sis_pedone(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -903,9 +761,9 @@ query PedoneSelect(
 query ProprietarioSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: proprietario_bool_exp = {}
+  $where: sis_proprietario_bool_exp = {}
 ) {
-  proprietario(limit: $limit, offset: $offset, where: $where) {
+  sis_proprietario(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -924,9 +782,9 @@ query ProprietarioSelect(
 query ProprietarioGiuridicoSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: proprietario_giuridico_bool_exp = {}
+  $where: sis_proprietario_giuridico_bool_exp = {}
 ) {
-  proprietario_giuridico(limit: $limit, offset: $offset, where: $where) {
+  sis_proprietario_giuridico(limit: $limit, offset: $offset, where: $where) {
     id
     ragione_sociale
     partita_iva
@@ -942,9 +800,9 @@ query ProprietarioGiuridicoSelect(
 query TestimoneSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: testimone_bool_exp = {}
+  $where: sis_testimone_bool_exp = {}
 ) {
-  testimone(limit: $limit, offset: $offset, where: $where) {
+  sis_testimone(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -963,9 +821,9 @@ query TestimoneSelect(
 query TrasportatoSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: trasportato_bool_exp = {}
+  $where: sis_trasportato_bool_exp = {}
 ) {
-  trasportato(limit: $limit, offset: $offset, where: $where) {
+  sis_trasportato(limit: $limit, offset: $offset, where: $where) {
     id
     nome
     cognome
@@ -984,9 +842,9 @@ query TrasportatoSelect(
 query VeicoloSelect(
   $limit: Int = 10
   $offset: Int = 0
-  $where: veicolo_bool_exp = {}
+  $where: sis_veicolo_bool_exp = {}
 ) {
-  veicolo(limit: $limit, offset: $offset, where: $where) {
+  sis_veicolo(limit: $limit, offset: $offset, where: $where) {
     id
     colore_carrozzeria
     marca

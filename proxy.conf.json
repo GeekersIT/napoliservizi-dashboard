@@ -1,38 +1,37 @@
 {
-  "/api/v1/graphql/*": {
-    "target": "haura.napoliservizi/v1/graphql",
+  "/db": {
+    "target": "http://hasura.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {
-      "^/api/v1/graphql": ""
-    }
+    "pathRewrite": { "^/db": "" },
+    "ws": true,
+    "wss": true
   },
-  "/geoserver/*": {
-    "target": "geoserver-geoserver.napoliservizi/geoserver",
+  "/storage": {
+    "target": "http://minio-logic.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {
-      "^/geoserver": ""
-    }
+    "pathRewrite": { "^/storage": "" }
   },
-  "/storage/*": {
-    "target": "minio.napoliservizi:9000",
+  "/agcos": {
+    "target": "http://agcos.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {
-      "^/storage": ""
-    }
+    "pathRewrite": { "^/agcos": "" }
   },
-  "/auth/*": {
-    "target": "https://pms.comune.napoli.it/auth",
+  "/template": {
+    "target": "http://minio.napoliservizi:9000/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/auth": ""
-    }
+    "changeOrigin": true
+  },
+  "/geoserver": {
+    "target": "http://geoserver-geoserver.napoliservizi/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }

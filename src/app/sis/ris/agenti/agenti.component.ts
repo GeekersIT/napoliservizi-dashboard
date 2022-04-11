@@ -17,10 +17,10 @@ import {
   DeleteRisGQL,
   RissGQL,
   RissSubscription,
-  Ris_Constraint,
+  Sis_Ris_Constraint,
   TipologiaRisSelectGQL,
   UpdateRisGQL,
-  _Stato_Ris_Enum,
+  Sis__Stato_Ris_Enum,
 } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
@@ -62,7 +62,7 @@ export class RisAgentiComponent implements OnInit {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._tipologia_ris)
+                  map((result) => result.data?.sis__tipologia_ris)
                 ),
           },
           expressionProperties: {
@@ -240,7 +240,7 @@ export class RisAgentiComponent implements OnInit {
                   ],
                 }
             : {}),
-          stato: { _eq: _Stato_Ris_Enum.Compilazione },
+          stato: { _eq: Sis__Stato_Ris_Enum.Compilazione },
           quartiere_id: this.model.quartiere
             ? {
                 _in: this.model.quartiere.map((e: { id: any }) => e.id),
@@ -266,7 +266,7 @@ export class RisAgentiComponent implements OnInit {
         },
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -292,14 +292,12 @@ export class RisAgentiComponent implements OnInit {
     return this._rissGQL
       .subscribe({
         where: {
-          _or: [
-            { stato: { _eq: _Stato_Ris_Enum.Compilazione } },
-          ],
+          _or: [{ stato: { _eq: Sis__Stato_Ris_Enum.Compilazione } }],
         },
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
         // this.dataSource.source!.next(response.data?.ris.map(element => this._map(element)));
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -309,9 +307,9 @@ export class RisAgentiComponent implements OnInit {
 
     this._updateRisGQL
       .mutate({
-        on_conflict: { constraint: Ris_Constraint.RisPkey },
+        on_conflict: { constraint: Sis_Ris_Constraint.RisPkey },
         ris: {
-          stato: _Stato_Ris_Enum.Compilazione,
+          stato: Sis__Stato_Ris_Enum.Compilazione,
           utente_inseritore: user,
           data: new Date(),
           protocollo: {

@@ -1,4 +1,4 @@
-import { _Stato_Segnalazione_Enum } from '../../_services/generated/graphql';
+import { Pis__Stato_Segnalazione_Enum } from '../../_services/generated/graphql';
 
 export interface SegnalazioneObj {
   __typename?: 'segnalazione' | undefined;
@@ -10,7 +10,7 @@ export interface SegnalazioneObj {
   quartiere_storico?: any;
   toponimo_storico?: any;
   data?: any;
-  stato: _Stato_Segnalazione_Enum;
+  stato: Pis__Stato_Segnalazione_Enum;
   richiesta_protezione_civile?: boolean | null | undefined;
   tecnico_referente?:
     | {
@@ -40,9 +40,13 @@ export interface SegnalazioneObj {
           | {
               __typename?: '_sezione_protocollo' | undefined;
               id: number;
-              nome: string;
-              sigla?: string | null | undefined;
               codice: string;
+              settore: string;
+              servizio: string;
+              uoc: string;
+              uos: string;
+              postazione: string;
+              nome: string;
             }
           | null
           | undefined;
@@ -54,9 +58,13 @@ export interface SegnalazioneObj {
             | {
                 __typename?: '_sezione_protocollo' | undefined;
                 id: number;
-                nome: string;
                 codice: string;
-                sigla?: string | null | undefined;
+                settore: string;
+                servizio: string;
+                uoc: string;
+                uos: string;
+                postazione: string;
+                nome: string;
               }
             | null
             | undefined;
@@ -145,7 +153,7 @@ export interface SegnalazioneObj {
       __typename?: 'segnalazione' | undefined;
       id: number;
       created_at: any;
-      stato: _Stato_Segnalazione_Enum;
+      stato: Pis__Stato_Segnalazione_Enum;
       protocollo?:
         | {
             __typename?: 'protocollo' | undefined;
@@ -158,7 +166,7 @@ export interface SegnalazioneObj {
   }[];
   eventi: {
     __typename?: 'evento' | undefined;
-    stato: _Stato_Segnalazione_Enum;
+    stato: Pis__Stato_Segnalazione_Enum;
     note?: string | null | undefined;
     created_at: any;
     squadra?:

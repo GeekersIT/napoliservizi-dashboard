@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,12 +17,13 @@ import { SegnalazioneObj } from 'src/app/_core/_models/pis/segnalazione.interfac
 import {
   DeleteSegnalazioneGQL,
   PrioritaSelectGQL,
-  Segnalazione_Constraint,
+  Pis_Segnalazione_Constraint,
+  UpdateSegnalazioneGQL,
+  Pis__Stato_Segnalazione_Enum,
   SegnalazioniGQL,
   SegnalazioniSubscription,
-  UpdateSegnalazioneGQL,
-  _Stato_Segnalazione_Enum,
 } from 'src/app/_core/_services/generated/graphql';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 
 @Component({
   selector: 'app-segnalazioni-provvisorie',
@@ -60,7 +62,7 @@ export class SegnalazioniProvvisorieComponent implements OnInit {
                     ? { nome: { _ilike: '%' + term + '%' } }
                     : {}),
                 })
-                .valueChanges.pipe(map((result) => result.data?._priorita)),
+                .valueChanges.pipe(map((result) => result.data?.pis__priorita)),
           },
           expressionProperties: {
             'templateOptions.label': this._translateService.stream('Priorità'),
@@ -206,7 +208,8 @@ export class SegnalazioniProvvisorieComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _loaderService: NgxUiLoaderService,
     private _keycloak: KeycloakService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public roles: RolesService
   ) {
     this.dataSource = new DataSource();
   }
@@ -245,7 +248,7 @@ export class SegnalazioniProvvisorieComponent implements OnInit {
                   ],
                 }
             : {}),
-          stato: { _eq: _Stato_Segnalazione_Enum.Bozza },
+          stato: { _eq: Pis__Stato_Segnalazione_Enum.Bozza },
           quartiere_id: this.model.quartiere
             ? {
                 _in: this.model.quartiere.map((e: { id: any }) => e.id),
@@ -269,7 +272,7 @@ export class SegnalazioniProvvisorieComponent implements OnInit {
         },
       })
       .subscribe((response: SubscriptionResult<SegnalazioniSubscription>) => {
-        this.dataSource.source!.next(response.data?.segnalazione);
+        this.dataSource.source!.next(response.data?.pis_segnalazione);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -295,21 +298,24 @@ export class SegnalazioniProvvisorieComponent implements OnInit {
     return this._segnalazioniGQL
       .subscribe({
         where: {
-          stato: { _eq: _Stato_Segnalazione_Enum.Bozza },
+          stato: { _eq: Pis__Stato_Segnalazione_Enum.Bozza },
         },
       })
       .subscribe((response: SubscriptionResult<SegnalazioniSubscription>) => {
         // this.dataSource.source!.next(response.data?.segnalazione.map(element => this._map(element)));
-        this.dataSource.source!.next(response.data?.segnalazione);
+        this.dataSource.source!.next(response.data?.pis_segnalazione);
         this.dataSource.isLoading!.next(false);
       });
   }
 
   async new() {
     const user = this._keycloak.getUsername();
+
     this._updateSegnalazioneGQL
       .mutate({
-        on_conflict: { constraint: Segnalazione_Constraint.SegnalazionePkey },
+        on_conflict: {
+          constraint: Pis_Segnalazione_Constraint.SegnalazionePkey,
+        },
         segnalazione: {
           utente_inseritore: user,
           data: new Date(),

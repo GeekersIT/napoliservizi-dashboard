@@ -1,5 +1,5 @@
-subscription SquadrePis($where: squadra_bool_exp = {}) {
-  squadra(where: $where) {
+subscription SquadrePis($where: pis_squadra_bool_exp = {}) {
+  pis_squadra(where: $where) {
     id
     nome
     protezione_civile
@@ -17,8 +17,8 @@ subscription SquadrePis($where: squadra_bool_exp = {}) {
     }
   }
 }
-mutation UpdateSquadraPis($squadra: [squadra_insert_input!] = {}) {
-  insert_squadra(
+mutation UpdateSquadraPis($squadra: [pis_squadra_insert_input!] = {}) {
+  insert_pis_squadra(
     on_conflict: {
       constraint: squadra_pkey
       update_columns: [nome, protezione_civile]
@@ -29,7 +29,7 @@ mutation UpdateSquadraPis($squadra: [squadra_insert_input!] = {}) {
   }
 }
 mutation DeleteSquadraPis($id: Int!) {
-  delete_squadra(where: { id: { _eq: $id } }) {
+  delete_pis_squadra(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

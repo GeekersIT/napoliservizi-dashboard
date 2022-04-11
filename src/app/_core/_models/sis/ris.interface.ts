@@ -1,4 +1,4 @@
-import { _Stato_Ris_Enum } from '../../_services/generated/graphql';
+import { Sis__Stato_Ris_Enum } from '../../_services/generated/graphql';
 
 export interface RisObj {
   __typename?: 'ris' | undefined;
@@ -64,7 +64,7 @@ export interface RisObj {
   punti_urto_note?: string | null | undefined;
   ris_consegnato_a_altro?: string | null | undefined;
   ris_consegnato_data?: any;
-  stato: _Stato_Ris_Enum;
+  stato: Sis__Stato_Ris_Enum;
   unita_operativa?:
     | {
         __typename?: 'unita_operativa' | undefined;
@@ -440,7 +440,7 @@ export interface RisObj {
   }[];
   eventi: {
     __typename?: 'evento_sis' | undefined;
-    stato: _Stato_Ris_Enum;
+    stato: Sis__Stato_Ris_Enum;
     note?: string | null | undefined;
     motivazione_cancellazione?: string | null | undefined;
     created_at: any;
@@ -985,9 +985,13 @@ export interface RisObj {
           | {
               __typename?: '_sezione_protocollo_sis' | undefined;
               id: number;
-              nome: string;
-              sigla: string;
               codice: string;
+              settore: string;
+              servizio: string;
+              uoc: string;
+              uos: string;
+              postazione: string;
+              nome: string;
             }
           | null
           | undefined;
@@ -999,9 +1003,13 @@ export interface RisObj {
             | {
                 __typename?: '_sezione_protocollo_sis' | undefined;
                 id: number;
-                nome: string;
                 codice: string;
-                sigla: string;
+                settore: string;
+                servizio: string;
+                uoc: string;
+                uos: string;
+                postazione: string;
+                nome: string;
               }
             | null
             | undefined;

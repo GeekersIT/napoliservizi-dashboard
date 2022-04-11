@@ -1,5 +1,5 @@
-subscription UnitaOperative($where: unita_operativa_bool_exp = {}) {
-  unita_operativa(where: $where) {
+subscription UnitaOperative($where: sis_unita_operativa_bool_exp = {}) {
+  sis_unita_operativa(where: $where) {
     id
     nome
     note
@@ -20,8 +20,10 @@ subscription UnitaOperative($where: unita_operativa_bool_exp = {}) {
   }
 }
 
-mutation UpdateUnitaOperativa($objects: [unita_operativa_insert_input!] = {}) {
-  insert_unita_operativa(
+mutation UpdateUnitaOperativa(
+  $objects: [sis_unita_operativa_insert_input!] = {}
+) {
+  insert_sis_unita_operativa(
     on_conflict: {
       constraint: unita_operativa_pkey
       update_columns: [nome, toponimo, civico, note]
@@ -33,7 +35,7 @@ mutation UpdateUnitaOperativa($objects: [unita_operativa_insert_input!] = {}) {
 }
 
 mutation DeleteUnitaOperativa($id: Int!) {
-  delete_unita_operativa(where: { id: { _eq: $id } }) {
+  delete_sis_unita_operativa(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

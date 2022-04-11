@@ -13,16 +13,17 @@ export interface QuartiereObj {
   nome: string;
   updated_at: any;
   vecchie_denominazioni: {
-    __typename?: 'vecchio_quartiere' | undefined;
+    __typename?: 'toponomastica_vecchio_quartiere' | undefined;
     nome: string;
     created_at: any;
   }[];
   municipalita: {
-    __typename?: 'assegnazione_quartiere' | undefined;
+    __typename?: 'toponomastica_assegnazione_quartiere' | undefined;
+    id: number;
     inizio_validita: any;
     fine_validita?: any;
     municipalita: {
-      __typename?: 'municipalita' | undefined;
+      __typename?: 'toponomastica_municipalita' | undefined;
       id: number;
       nome: string;
     };

@@ -1,13 +1,13 @@
-subscription Municipalita($where: municipalita_bool_exp = {}) {
-  municipalita(where: $where) {
+subscription Municipalita($where: toponomastica_municipalita_bool_exp = {}) {
+  toponomastica_municipalita(where: $where) {
     id
     nome
     updated_at
-    vecchie_denominazioni(order_by: {created_at: desc}) {
+    vecchie_denominazioni(order_by: { created_at: desc }) {
       nome
       created_at
     }
-    quartieri(order_by: {fine_validita: desc_nulls_first}) {
+    quartieri(order_by: { fine_validita: desc_nulls_first }) {
       id
       inizio_validita
       fine_validita
@@ -19,14 +19,19 @@ subscription Municipalita($where: municipalita_bool_exp = {}) {
   }
 }
 
-mutation UpdateMunicipalita($municipalita: [municipalita_insert_input!] = {}) {
-  insert_municipalita(on_conflict: {constraint: municipalita_pkey, update_columns: nome}, objects: $municipalita) {
+mutation UpdateMunicipalita(
+  $municipalita: [toponomastica_municipalita_insert_input!] = {}
+) {
+  insert_toponomastica_municipalita(
+    on_conflict: { constraint: municipalita_pkey, update_columns: nome }
+    objects: $municipalita
+  ) {
     affected_rows
   }
 }
 
 mutation DeleteMunicipalita($id: Int!) {
-  delete_municipalita(where: {id: {_eq: $id}}) {
+  delete_toponomastica_municipalita(where: { id: { _eq: $id } }) {
     affected_rows
   }
 }

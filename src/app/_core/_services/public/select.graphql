@@ -1,0 +1,81 @@
+query CittaSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $citta: String_comparison_exp = {}
+) {
+  _citta(
+    order_by: { ordine: asc }
+    limit: $limit
+    offset: $offset
+    where: { citta: $citta }
+  ) {
+    id
+    citta
+    regione
+    provincia
+    p_abbreviazione
+    codice
+  }
+}
+query NazioneSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _nazione(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+query TitoloSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _titolo(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query SiNoAltroSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _sinoaltro(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}
+
+query SessoSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  _sesso(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}

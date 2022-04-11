@@ -17,10 +17,10 @@ import {
   DeleteRisGQL,
   RissGQL,
   RissSubscription,
-  Ris_Constraint,
+  Sis_Ris_Constraint,
   TipologiaRisSelectGQL,
   UpdateRisGQL,
-  _Stato_Ris_Enum,
+  Sis__Stato_Ris_Enum,
 } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
@@ -62,7 +62,7 @@ export class RisProvvisoriComponent implements OnInit {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._tipologia_ris)
+                  map((result) => result.data?.sis__tipologia_ris)
                 ),
           },
           expressionProperties: {
@@ -241,8 +241,8 @@ export class RisProvvisoriComponent implements OnInit {
                 }
             : {}),
           _or: [
-            { stato: { _eq: _Stato_Ris_Enum.Bozza } },
-            { stato: { _eq: _Stato_Ris_Enum.Inviato } },
+            { stato: { _eq: Sis__Stato_Ris_Enum.Bozza } },
+            { stato: { _eq: Sis__Stato_Ris_Enum.Inviato } },
           ],
           quartiere_id: this.model.quartiere
             ? {
@@ -269,7 +269,7 @@ export class RisProvvisoriComponent implements OnInit {
         },
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -296,15 +296,15 @@ export class RisProvvisoriComponent implements OnInit {
       .subscribe({
         where: {
           _or: [
-            { stato: { _eq: _Stato_Ris_Enum.Bozza } },
-            { stato: { _eq: _Stato_Ris_Enum.Inviato } },
-            { stato: { _eq: _Stato_Ris_Enum.Compilazione } },
+            { stato: { _eq: Sis__Stato_Ris_Enum.Bozza } },
+            { stato: { _eq: Sis__Stato_Ris_Enum.Inviato } },
+            { stato: { _eq: Sis__Stato_Ris_Enum.Compilazione } },
           ],
         },
       })
       .subscribe((response: SubscriptionResult<RissSubscription>) => {
         // this.dataSource.source!.next(response.data?.ris.map(element => this._map(element)));
-        this.dataSource.source!.next(response.data?.ris);
+        this.dataSource.source!.next(response.data?.sis_ris);
         this.dataSource.isLoading!.next(false);
       });
   }
@@ -314,7 +314,7 @@ export class RisProvvisoriComponent implements OnInit {
 
     this._updateRisGQL
       .mutate({
-        on_conflict: { constraint: Ris_Constraint.RisPkey },
+        on_conflict: { constraint: Sis_Ris_Constraint.RisPkey },
         ris: {
           utente_inseritore: user,
           data: new Date(),

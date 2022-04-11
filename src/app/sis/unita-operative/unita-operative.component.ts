@@ -105,7 +105,9 @@ export class UnitaOperativeComponent implements OnInit {
       .subscribe()
       .subscribe((response: SubscriptionResult<UnitaOperativeSubscription>) => {
         this.dataSource.source!.next(
-          response.data?.unita_operativa.map((element) => this._map(element))
+          response.data?.sis_unita_operativa.map((element) =>
+            this._map(element)
+          )
         );
         this.dataSource.isLoading!.next(false);
       });

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,8 +19,8 @@ import {
   QuartiereSelectGQL,
   SegnalazioneGQL,
   SegnalazioneSelectGQL,
-  Segnalazione_Constraint,
-  Segnalazione_Update_Column,
+  Pis_Segnalazione_Constraint,
+  Pis_Segnalazione_Update_Column,
   SezioneProtocolloSelectGQL,
   SostegniIpiSelectGQL,
   SpecificaPosizionamentoToponimoSelectGQL,
@@ -30,9 +30,10 @@ import {
   ToponimoNomeSelectGQL,
   ToponimoSelectGQL,
   UpdateSegnalazioneGQL,
-  _Stato_Segnalazione_Enum,
+  Pis__Stato_Segnalazione_Enum,
 } from 'src/app/_core/_services/generated/graphql';
 import { RequiredService } from 'src/app/_core/_services/required.service';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 import { SegnalazioneEdit } from '../../edit.abstract';
 
 @Component({
@@ -72,7 +73,8 @@ export class SegnalazioniProvvisorieEditComponent
     protected _giorniTrascorsiSelect: GiorniTrascorsiSelectGQL,
     protected _condizioniTrafficoSelect: CondizioniTrafficoSelectGQL,
     protected _materialeSelect: MaterialeSelectGQL,
-    private _protocollo: GeneraProtocolloGQL
+    private _protocollo: GeneraProtocolloGQL,
+    protected roles: RolesService
   ) {
     super(
       _required,
@@ -101,7 +103,8 @@ export class SegnalazioniProvvisorieEditComponent
       _dialog,
       _giorniTrascorsiSelect,
       _condizioniTrafficoSelect,
-      _materialeSelect
+      _materialeSelect,
+      roles
     );
   }
 
@@ -111,7 +114,9 @@ export class SegnalazioniProvvisorieEditComponent
       templateOptions: {
         orientation: 'horizontal',
       },
-      fieldGroup: this.steps.filter(step => step.key != 'intervento' && step.key != 'geolocalizzazione'),
+      fieldGroup: this.steps.filter(
+        (step) => step.key != 'intervento' && step.key != 'geolocalizzazione'
+      ),
     },
   ];
 
@@ -120,7 +125,7 @@ export class SegnalazioniProvvisorieEditComponent
       where: {
         _and: [
           { id: { _eq: this.id } },
-          { stato: { _eq: _Stato_Segnalazione_Enum.Bozza } },
+          { stato: { _eq: Pis__Stato_Segnalazione_Enum.Bozza } },
         ],
       },
     });
@@ -129,29 +134,48 @@ export class SegnalazioniProvvisorieEditComponent
   async save(event: any) {
     if (event.type == 'def') {
       let model = await this.baseSave(event);
+
+      console.log(model);
+
       this._protocollo
         .mutate({
           data: {
-            oggetto: 'Prova',
+            oggetto: 'Segnalazione P.I.S. #' + model.id + ' del ' + model.data,
             note: '',
             mittenteInterno: {
               codice: this.model.protocollo.mittente.codice,
             },
             mittenteEsterno: {},
-            destinatariInterni: this.model.protocollo.destinatari
-              .filter((destinatario: any) => destinatario.e_esterno == false)
-              .map((destinatario: any) => {
-                return { codice: destinatario.destinatario_interno.codice };
-              }),
-            destinatariEsterni: this.model.protocollo.destinatari
-              .filter((destinatario: any) => destinatario.e_esterno == true)
-              .map((destinatario: any) => {
-                return {
-                  nome: destinatario.destinatario_esterno.nome,
-                  cognome: destinatario.destinatario_esterno.cognome,
-                  cf: destinatario.destinatario_esterno.codice_fiscale,
-                };
-              }),
+            destinatariInterni:
+              this.model.protocollo.destinatari.filter(
+                (destinatario: any) => destinatario.e_esterno == false
+              ).length > 0
+                ? this.model.protocollo.destinatari
+                    .filter(
+                      (destinatario: any) => destinatario.e_esterno == false
+                    )
+                    .map((destinatario: any) => {
+                      return {
+                        codice: destinatario.destinatario_interno.codice,
+                      };
+                    })
+                : [{}],
+            destinatariEsterni:
+              this.model.protocollo.destinatari.filter(
+                (destinatario: any) => destinatario.e_esterno == true
+              ).length > 0
+                ? this.model.protocollo.destinatari
+                    .filter(
+                      (destinatario: any) => destinatario.e_esterno == true
+                    )
+                    .map((destinatario: any) => {
+                      return {
+                        nome: destinatario.destinatario_esterno.nome,
+                        cognome: destinatario.destinatario_esterno.cognome,
+                        cf: destinatario.destinatario_esterno.codice_fiscale,
+                      };
+                    })
+                : [{}],
           },
         })
         .subscribe({
@@ -170,27 +194,27 @@ export class SegnalazioniProvvisorieEditComponent
               this._updateSegnalazioneGQL
                 .mutate({
                   on_conflict: {
-                    constraint: Segnalazione_Constraint.SegnalazionePkey,
+                    constraint: Pis_Segnalazione_Constraint.SegnalazionePkey,
                     update_columns: [
-                      Segnalazione_Update_Column.MunicipalitaId,
-                      Segnalazione_Update_Column.MunicipalitaStorica,
-                      Segnalazione_Update_Column.QuartiereId,
-                      Segnalazione_Update_Column.QuartiereStorico,
-                      Segnalazione_Update_Column.ToponimoId,
-                      Segnalazione_Update_Column.ToponimoStorico,
-                      Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
-                      Segnalazione_Update_Column.PrioritaId,
-                      Segnalazione_Update_Column.DissestoId,
-                      Segnalazione_Update_Column.ProtocolloId,
-                      Segnalazione_Update_Column.TecnicoReferenteId,
-                      Segnalazione_Update_Column.RichiestaProtezioneCivile,
-                      Segnalazione_Update_Column.Stato,
-                      Segnalazione_Update_Column.Data,
+                      Pis_Segnalazione_Update_Column.MunicipalitaId,
+                      Pis_Segnalazione_Update_Column.MunicipalitaStorica,
+                      Pis_Segnalazione_Update_Column.QuartiereId,
+                      Pis_Segnalazione_Update_Column.QuartiereStorico,
+                      Pis_Segnalazione_Update_Column.ToponimoId,
+                      Pis_Segnalazione_Update_Column.ToponimoStorico,
+                      Pis_Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
+                      Pis_Segnalazione_Update_Column.PrioritaId,
+                      Pis_Segnalazione_Update_Column.DissestoId,
+                      Pis_Segnalazione_Update_Column.ProtocolloId,
+                      Pis_Segnalazione_Update_Column.TecnicoReferenteId,
+                      Pis_Segnalazione_Update_Column.RichiestaProtezioneCivile,
+                      Pis_Segnalazione_Update_Column.Stato,
+                      Pis_Segnalazione_Update_Column.Data,
                     ],
                   },
                   segnalazione: {
                     ...model!,
-                    ...{ stato: _Stato_Segnalazione_Enum.Bozza },
+                    ...{ stato: Pis__Stato_Segnalazione_Enum.Bozza },
                   },
                 })
                 .subscribe({
@@ -206,7 +230,7 @@ export class SegnalazioniProvvisorieEditComponent
             } else {
               console.log({
                 ...model!,
-                ...{ stato: _Stato_Segnalazione_Enum.Aperta },
+                ...{ stato: Pis__Stato_Segnalazione_Enum.Aperta },
                 ...{
                   protocollo: {
                     ...model.protocollo,
@@ -226,27 +250,27 @@ export class SegnalazioniProvvisorieEditComponent
               this._updateSegnalazioneGQL
                 .mutate({
                   on_conflict: {
-                    constraint: Segnalazione_Constraint.SegnalazionePkey,
+                    constraint: Pis_Segnalazione_Constraint.SegnalazionePkey,
                     update_columns: [
-                      Segnalazione_Update_Column.MunicipalitaId,
-                      Segnalazione_Update_Column.MunicipalitaStorica,
-                      Segnalazione_Update_Column.QuartiereId,
-                      Segnalazione_Update_Column.QuartiereStorico,
-                      Segnalazione_Update_Column.ToponimoId,
-                      Segnalazione_Update_Column.ToponimoStorico,
-                      Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
-                      Segnalazione_Update_Column.PrioritaId,
-                      Segnalazione_Update_Column.DissestoId,
-                      Segnalazione_Update_Column.ProtocolloId,
-                      Segnalazione_Update_Column.TecnicoReferenteId,
-                      Segnalazione_Update_Column.RichiestaProtezioneCivile,
-                      Segnalazione_Update_Column.Stato,
-                      Segnalazione_Update_Column.Data,
+                      Pis_Segnalazione_Update_Column.MunicipalitaId,
+                      Pis_Segnalazione_Update_Column.MunicipalitaStorica,
+                      Pis_Segnalazione_Update_Column.QuartiereId,
+                      Pis_Segnalazione_Update_Column.QuartiereStorico,
+                      Pis_Segnalazione_Update_Column.ToponimoId,
+                      Pis_Segnalazione_Update_Column.ToponimoStorico,
+                      Pis_Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
+                      Pis_Segnalazione_Update_Column.PrioritaId,
+                      Pis_Segnalazione_Update_Column.DissestoId,
+                      Pis_Segnalazione_Update_Column.ProtocolloId,
+                      Pis_Segnalazione_Update_Column.TecnicoReferenteId,
+                      Pis_Segnalazione_Update_Column.RichiestaProtezioneCivile,
+                      Pis_Segnalazione_Update_Column.Stato,
+                      Pis_Segnalazione_Update_Column.Data,
                     ],
                   },
                   segnalazione: {
                     ...model!,
-                    ...{ stato: _Stato_Segnalazione_Enum.Aperta },
+                    ...{ stato: Pis__Stato_Segnalazione_Enum.Aperta },
                     ...{
                       protocollo: {
                         ...model.protocollo,
@@ -287,22 +311,22 @@ export class SegnalazioniProvvisorieEditComponent
       this._updateSegnalazioneGQL
         .mutate({
           on_conflict: {
-            constraint: Segnalazione_Constraint.SegnalazionePkey,
+            constraint: Pis_Segnalazione_Constraint.SegnalazionePkey,
             update_columns: [
-              Segnalazione_Update_Column.MunicipalitaId,
-              Segnalazione_Update_Column.MunicipalitaStorica,
-              Segnalazione_Update_Column.QuartiereId,
-              Segnalazione_Update_Column.QuartiereStorico,
-              Segnalazione_Update_Column.ToponimoId,
-              Segnalazione_Update_Column.ToponimoStorico,
-              Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
-              Segnalazione_Update_Column.PrioritaId,
-              Segnalazione_Update_Column.DissestoId,
-              Segnalazione_Update_Column.ProtocolloId,
-              Segnalazione_Update_Column.TecnicoReferenteId,
-              Segnalazione_Update_Column.RichiestaProtezioneCivile,
-              Segnalazione_Update_Column.Stato,
-              Segnalazione_Update_Column.Data,
+              Pis_Segnalazione_Update_Column.MunicipalitaId,
+              Pis_Segnalazione_Update_Column.MunicipalitaStorica,
+              Pis_Segnalazione_Update_Column.QuartiereId,
+              Pis_Segnalazione_Update_Column.QuartiereStorico,
+              Pis_Segnalazione_Update_Column.ToponimoId,
+              Pis_Segnalazione_Update_Column.ToponimoStorico,
+              Pis_Segnalazione_Update_Column.PuntoInizialePosizionamentoId,
+              Pis_Segnalazione_Update_Column.PrioritaId,
+              Pis_Segnalazione_Update_Column.DissestoId,
+              Pis_Segnalazione_Update_Column.ProtocolloId,
+              Pis_Segnalazione_Update_Column.TecnicoReferenteId,
+              Pis_Segnalazione_Update_Column.RichiestaProtezioneCivile,
+              Pis_Segnalazione_Update_Column.Stato,
+              Pis_Segnalazione_Update_Column.Data,
             ],
           },
           segnalazione: model!,

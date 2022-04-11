@@ -1,4 +1,4 @@
-import { _Stato_Segnalazione_Enum } from '../../_services/generated/graphql';
+import { Pis__Stato_Segnalazione_Enum } from '../../_services/generated/graphql';
 
 export interface InterventoStraordinaioObj {
   __typename?: 'intervento_straordinario' | undefined;
@@ -11,7 +11,7 @@ export interface InterventoStraordinaioObj {
   data_fine_lavori?: any;
   tipologia_intervento?: string | null | undefined;
   lavori_effettuati?: string | null | undefined;
-  stato: _Stato_Segnalazione_Enum;
+  stato: Pis__Stato_Segnalazione_Enum;
   posizionamento_toponimo_punto_iniziale?:
     | {
         __typename?: 'posizionamento_toponimo' | undefined;

@@ -4,9 +4,9 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
   UpdateMunicipalitaGQL,
-  Municipalita_Insert_Input,
-  Assegnazione_Quartiere_Constraint,
-  Assegnazione_Quartiere_Update_Column,
+  Toponomastica_Municipalita_Insert_Input,
+  Toponomastica_Assegnazione_Quartiere_Constraint,
+  Toponomastica_Assegnazione_Quartiere_Update_Column,
 } from 'src/app/_core/_services/generated/graphql';
 import { FormArray, FormGroup } from '@angular/forms';
 import { MunicipalitaObj } from 'src/app/_core/_models/toponomastica/municipalita.interface';
@@ -123,7 +123,7 @@ export class MunicipalitaEditComponent implements OnInit {
       (x: any) => !oldQuartieri.map((q) => q.quartiere.id).includes(x)
     );
 
-    let municipalita: Municipalita_Insert_Input = {
+    let municipalita: Toponomastica_Municipalita_Insert_Input = {
       nome: this.model.nome,
     };
     municipalita = this.data
@@ -159,9 +159,9 @@ export class MunicipalitaEditComponent implements OnInit {
               quartieri: {
                 on_conflict: {
                   constraint:
-                    Assegnazione_Quartiere_Constraint.AssegnazioneQuartierePkey,
+                    Toponomastica_Assegnazione_Quartiere_Constraint.AssegnazioneQuartierePkey,
                   update_columns: [
-                    Assegnazione_Quartiere_Update_Column.FineValidita,
+                    Toponomastica_Assegnazione_Quartiere_Update_Column.FineValidita,
                   ],
                 },
                 data: [

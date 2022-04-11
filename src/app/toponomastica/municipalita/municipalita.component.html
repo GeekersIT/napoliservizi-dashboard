@@ -1,79 +1,135 @@
 <mat-toolbar>
-    <span>{{ 'Gestione municipalità'|translate }}</span>
-    <span class="spacer"></span>
-    <button mat-stroked-button color="accent" (click)="openDialog()">
-        <mat-icon>add</mat-icon>
-        {{ 'Aggiungi una municipalità'|translate }}
-    </button>
+  <span>{{ "Gestione municipalità" | translate }}</span>
+  <span class="spacer"></span>
+  <button
+    mat-stroked-button
+    color="accent"
+    (click)="openDialog()"
+    *ngIf="roles.show(['toponomastica-gestione-municipalita-edit'])"
+  >
+    <mat-icon>add</mat-icon>
+    {{ "Aggiungi una municipalità" | translate }}
+  </button>
 </mat-toolbar>
 <div class="main-content">
-    <table-component [defaultSort]="defaultSort" [dataSource]="dataSource" [columns]="columns" [expandsTemplate]="expandsTemplate" [actionsTemplate]="actionsTemplate" [filterTemplate]="filterTemplate"></table-component>
+  <table-component
+    [defaultSort]="defaultSort"
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [expandsTemplate]="expandsTemplate"
+    [actionsTemplate]="actionsTemplate"
+    [filterTemplate]="filterTemplate"
+  ></table-component>
 </div>
 
 <ng-template #filterTemplate>
-    <form-component [form]="form" [options]="options" [model]="model" [fields]="fields" [actionsTemplate]="filterActionsTemplate" (resetEvent)="reset($event)"></form-component>
-    <ng-template #filterActionsTemplate>
-        <button mat-button (click)="applyFilter()">{{ 'Applica filtro'|translate }}</button>
-    </ng-template>
+  <form-component
+    [form]="form"
+    [options]="options"
+    [model]="model"
+    [fields]="fields"
+    [actionsTemplate]="filterActionsTemplate"
+    (resetEvent)="reset($event)"
+  ></form-component>
+  <ng-template #filterActionsTemplate>
+    <button mat-button (click)="applyFilter()">
+      {{ "Applica filtro" | translate }}
+    </button>
+  </ng-template>
 </ng-template>
 
 <ng-template let-row="row" #expandsTemplate>
-    <div class="display-flex">
-        <mat-list class="flex-1">
-            <div mat-subheader>{{ 'Denominazione attuale'|translate }}</div>
-            <mat-list-item>
-                <div mat-line>{{ row.nome }} </div>
-                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:row.updated_at | date:'full':'it'} }}</span></div>
-            </mat-list-item>
-        </mat-list>
-        <mat-list class="flex-1">
-            <div mat-subheader>{{ 'Elenco quartieri attuali'|translate }}</div>
-            <mat-list-item *ngFor="let quartiere of row.quartieri">
-                <div mat-line>{{ quartiere.quartiere.nome }}</div>
-                <div mat-line><span>{{ 'Valida da {data}'|translate:{data:quartiere.inizio_validita | date:'full':'it'} }}</span></div>
-            </mat-list-item>
-        </mat-list>
-        <mat-divider class="break"></mat-divider>
-        <mat-list class="flex-1">
-            <div mat-subheader>{{ 'Vecchie denominazioni'|translate }}</div>
-            <ng-container *ngIf="row.vecchie_denominazioni.length != 0; else empty">
-                <mat-list-item  *ngFor="let denominazioni of row.vecchie_denominazioni;">
-                    <div mat-line>{{ denominazioni.nome }}</div>
-                    <div mat-line><span>{{ 'Valida da {data}'|translate:{data:denominazioni.created_at | date:'full':'it'} }}</span></div>
-                </mat-list-item>
-            </ng-container>
-            <ng-template #empty>
-                <mat-list-item>
-                    <div mat-line><span>{{ 'Non ci sono vecchie denominazioni'|translate }}</span></div>
-                </mat-list-item>
-            </ng-template>
-        </mat-list>
-        <mat-list class="flex-1">
-            <div mat-subheader>{{ 'Vecchi quartiere associati'|translate }}</div>
-            <ng-container *ngIf="row.quartieri_vecchi.length != 0; else empty1">
-                <mat-list-item *ngFor="let quartiere of row.quartieri_vecchi">
-                    <div mat-line>{{ quartiere.quartiere.nome }}</div>
-                    <div mat-line><span>{{ 'Valida fino a {data}'|translate:{data:quartiere.fine_validita | date:'full':'it'} }}</span></div>
-                  </mat-list-item>
-            </ng-container>
-            <ng-template #empty1>
-                <mat-list-item>
-                    <div mat-line><span>{{ 'Non ci sono vecchie composizione'|translate }}</span></div>
-                </mat-list-item>
-            </ng-template>
-        </mat-list>
-    </div>
+  <div class="display-flex">
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Denominazione attuale" | translate }}</div>
+      <mat-list-item>
+        <div mat-line>{{ row.nome }}</div>
+        <div mat-line>
+          <span>{{
+            "Valida da {data}"
+              | translate: { data: row.updated_at | date: "full":"it" }
+          }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Elenco quartieri attuali" | translate }}</div>
+      <mat-list-item *ngFor="let quartiere of row.quartieri">
+        <div mat-line>{{ quartiere.quartiere.nome }}</div>
+        <div mat-line>
+          <span>{{
+            "Valida da {data}"
+              | translate
+                : { data: quartiere.inizio_validita | date: "full":"it" }
+          }}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <mat-divider class="break"></mat-divider>
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Vecchie denominazioni" | translate }}</div>
+      <ng-container *ngIf="row.vecchie_denominazioni.length != 0; else empty">
+        <mat-list-item *ngFor="let denominazioni of row.vecchie_denominazioni">
+          <div mat-line>{{ denominazioni.nome }}</div>
+          <div mat-line>
+            <span>{{
+              "Valida da {data}"
+                | translate
+                  : { data: denominazioni.created_at | date: "full":"it" }
+            }}</span>
+          </div>
+        </mat-list-item>
+      </ng-container>
+      <ng-template #empty>
+        <mat-list-item>
+          <div mat-line>
+            <span>{{ "Non ci sono vecchie denominazioni" | translate }}</span>
+          </div>
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Vecchi quartiere associati" | translate }}</div>
+      <ng-container *ngIf="row.quartieri_vecchi.length != 0; else empty1">
+        <mat-list-item *ngFor="let quartiere of row.quartieri_vecchi">
+          <div mat-line>{{ quartiere.quartiere.nome }}</div>
+          <div mat-line>
+            <span>{{
+              "Valida fino a {data}"
+                | translate
+                  : { data: quartiere.fine_validita | date: "full":"it" }
+            }}</span>
+          </div>
+        </mat-list-item>
+      </ng-container>
+      <ng-template #empty1>
+        <mat-list-item>
+          <div mat-line>
+            <span>{{ "Non ci sono vecchie composizione" | translate }}</span>
+          </div>
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+  </div>
 </ng-template>
 
 <ng-template let-row="row" #actionsTemplate>
-    <button mat-stroked-button color="accent" (click)="openDialog(row)">
-        <mat-icon>edit</mat-icon>
-        {{ 'Modifica'|translate }}
-    </button>
-    <button mat-stroked-button color="warn" (click)="delete(row)">
-        <mat-icon>delete_forever</mat-icon>
-        {{ 'Elimina'|translate }}
-    </button>
+  <button
+    mat-stroked-button
+    color="accent"
+    (click)="openDialog(row)"
+    *ngIf="roles.show(['toponomastica-gestione-municipalita-edit'])"
+  >
+    <mat-icon>edit</mat-icon>
+    {{ "Modifica" | translate }}
+  </button>
+  <button
+    mat-stroked-button
+    color="warn"
+    (click)="delete(row)"
+    *ngIf="roles.show(['toponomastica-gestione-municipalita-edit'])"
+  >
+    <mat-icon>delete_forever</mat-icon>
+    {{ "Elimina" | translate }}
+  </button>
 </ng-template>
-
-

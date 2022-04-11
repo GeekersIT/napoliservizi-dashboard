@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 import { Dirty } from 'src/app/_core/_components/form/form.component';
 import { SquadraPisObj } from 'src/app/_core/_models/pis/squadra-pis.interface';
 import {
-  Assegnazione_Squadra_Constraint,
-  Assegnazione_Squadra_Update_Column,
-  Squadra_Insert_Input,
+  Pis_Assegnazione_Squadra_Constraint,
+  Pis_Assegnazione_Squadra_Update_Column,
+  Pis_Squadra_Insert_Input,
   UpdateSquadraPisGQL,
 } from 'src/app/_core/_services/generated/graphql';
 import { environment } from 'src/environments/environment';
@@ -229,7 +229,7 @@ export class SquadraEditComponent extends Dirty implements OnInit {
         .includes(x.membro.id + '-' + x.caposquadra)
     );
 
-    let squadra: Squadra_Insert_Input = {
+    let squadra: Pis_Squadra_Insert_Input = {
       nome: this.model.nome,
       protezione_civile: this.model.protezione_civile,
     };
@@ -276,9 +276,9 @@ export class SquadraEditComponent extends Dirty implements OnInit {
               membri: {
                 on_conflict: {
                   constraint:
-                    Assegnazione_Squadra_Constraint.AssegnazioneSquadraPkey,
+                    Pis_Assegnazione_Squadra_Constraint.AssegnazioneSquadraPkey,
                   update_columns: [
-                    Assegnazione_Squadra_Update_Column.FineValidita,
+                    Pis_Assegnazione_Squadra_Update_Column.FineValidita,
                   ],
                 },
                 data: [

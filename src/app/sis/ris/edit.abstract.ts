@@ -41,39 +41,28 @@ import {
   LocatarioSelectGQL,
   MunicipalitaSelectGQL,
   NaturaIncidenteSelectGQL,
-  NazioneSisSelectGQL,
   PatenteCategoriaSelectGQL,
   PedoneSelectGQL,
-  Posizionamento_Toponimo_Sis_Constraint,
-  Posizionamento_Toponimo_Sis_Update_Column,
   PosizioneFinaleVeicoloCarreggiataSelectGQL,
   PosizioneFinaleVeicoloMarginiSelectGQL,
   ProprietarioGiuridicoSelectGQL,
   ProprietarioSelectGQL,
-  Protocollo_Destinatario_Esterno_Sis_Constraint,
-  Protocollo_Destinatario_Esterno_Sis_Update_Column,
-  Protocollo_Destinatario_Sis_Constraint,
-  Protocollo_Destinatario_Sis_Update_Column,
-  Protocollo_Sis_Constraint,
-  Protocollo_Sis_Update_Column,
   PuntiRilieviNoTipologiaSelectGQL,
   QuartiereSelectGQL,
   RetrovisoreEsternoSelectGQL,
   RisConsegnatoASelectGQL,
   RisGQL,
-  Ris_Bool_Exp,
+  Sis_Ris_Bool_Exp,
   SessoSelectGQL,
-  SezioneProtocolloSisSelectGQL,
   SiNoAltroSelectGQL,
   SostegniIpiSelectGQL,
-  SpecificaPosizionamentoToponimoSisSelectGQL,
   StatoVeicoloSelectGQL,
   TestimoneSelectGQL,
-  TipologiaPosizionamentoToponimoSisSelectGQL,
+  TipologiaPosizionamentoToponimoSelectGQL,
   TipologiaRisSelectGQL,
   TipologiaVeicoloSelectGQL,
   TipologiaVerbaleSelectGQL,
-  TitoloSisSelectGQL,
+  TitoloSelectGQL,
   ToponimoNomeSelectGQL,
   ToponimoSelectGQL,
   TracciaSuoloFrenataTipologiaSelectGQL,
@@ -91,88 +80,100 @@ import {
   UsoVeicoloSelectGQL,
   VeicoloSelectGQL,
   VisibilitaLimitataTipologiaSelectGQL,
-  _Stato_Ris_Enum,
-  Associazione_Tipologia_Ris_Constraint,
-  Associazione_Tipologia_Ris_Update_Column,
-  Associazione_Ente_Segnalatore_Constraint,
-  Associazione_Ente_Segnalatore_Update_Column,
-  Associazione_Ente_Primo_Intervento_Constraint,
-  Associazione_Ente_Primo_Intervento_Update_Column,
-  Associazione_Ente_Secondario_Intervenuti_Constraint,
-  Associazione_Ente_Secondario_Intervenuti_Update_Column,
-  Associazione_Natura_Incidente_Constraint,
-  Associazione_Natura_Incidente_Update_Column,
-  Associazione_Posizione_Finale_Veicolo_Carreggiata_Constraint,
-  Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column,
-  Associazione_Posizione_Finale_Veicolo_Margini_Constraint,
-  Associazione_Posizione_Finale_Veicolo_Margini_Update_Column,
-  Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Constraint,
-  Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column,
-  Associazione_Conseguenza_Veicolo_Constraint,
-  Associazione_Conseguenza_Veicolo_Update_Column,
-  Associazione_Localizzazione_Tipo_Strada_Constraint,
-  Associazione_Localizzazione_Tipo_Strada_Update_Column,
-  Associazione_Localizzazione_Extra_Abitato_Constraint,
-  Associazione_Localizzazione_Extra_Abitato_Update_Column,
-  Associazione_Localizzazione_Particolarita_Strada_Constraint,
-  Associazione_Localizzazione_Particolarita_Strada_Update_Column,
-  Associazione_Localizzazione_Pavimentazione_Constraint,
-  Associazione_Localizzazione_Pavimentazione_Update_Column,
-  Associazione_Localizzazione_Fondo_Stradale_Constraint,
-  Associazione_Localizzazione_Fondo_Stradale_Update_Column,
-  Associazione_Localizzazione_Condizioni_Atmosferiche_Constraint,
-  Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column,
-  Associazione_Localizzazione_Visibilita_Constraint,
-  Associazione_Localizzazione_Visibilita_Update_Column,
-  Associazione_Localizzazione_Illuminazione_Constraint,
-  Associazione_Localizzazione_Illuminazione_Update_Column,
-  Associzione_Localizzazione_Condizioni_Traffico_Constraint,
-  Associzione_Localizzazione_Condizioni_Traffico_Update_Column,
-  Associazione_Localizzazione_Altro_Constraint,
-  Associazione_Localizzazione_Altro_Update_Column,
+  Sis__Stato_Ris_Enum,
+  Sis_Associazione_Tipologia_Ris_Constraint,
+  Sis_Associazione_Tipologia_Ris_Update_Column,
+  Sis_Associazione_Ente_Segnalatore_Constraint,
+  Sis_Associazione_Ente_Segnalatore_Update_Column,
+  Sis_Associazione_Ente_Primo_Intervento_Constraint,
+  Sis_Associazione_Ente_Primo_Intervento_Update_Column,
+  Sis_Associazione_Ente_Secondario_Intervenuti_Constraint,
+  Sis_Associazione_Ente_Secondario_Intervenuti_Update_Column,
+  Sis_Associazione_Natura_Incidente_Constraint,
+  Sis_Associazione_Natura_Incidente_Update_Column,
+  Sis_Associazione_Posizione_Finale_Veicolo_Carreggiata_Constraint,
+  Sis_Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column,
+  Sis_Associazione_Posizione_Finale_Veicolo_Margini_Constraint,
+  Sis_Associazione_Posizione_Finale_Veicolo_Margini_Update_Column,
+  Sis_Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Constraint,
+  Sis_Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column,
+  Sis_Associazione_Conseguenza_Veicolo_Constraint,
+  Sis_Associazione_Conseguenza_Veicolo_Update_Column,
+  Sis_Associazione_Localizzazione_Tipo_Strada_Constraint,
+  Sis_Associazione_Localizzazione_Tipo_Strada_Update_Column,
+  Sis_Associazione_Localizzazione_Extra_Abitato_Constraint,
+  Sis_Associazione_Localizzazione_Extra_Abitato_Update_Column,
+  Sis_Associazione_Localizzazione_Particolarita_Strada_Constraint,
+  Sis_Associazione_Localizzazione_Particolarita_Strada_Update_Column,
+  Sis_Associazione_Localizzazione_Pavimentazione_Constraint,
+  Sis_Associazione_Localizzazione_Pavimentazione_Update_Column,
+  Sis_Associazione_Localizzazione_Fondo_Stradale_Constraint,
+  Sis_Associazione_Localizzazione_Fondo_Stradale_Update_Column,
+  Sis_Associazione_Localizzazione_Condizioni_Atmosferiche_Constraint,
+  Sis_Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column,
+  Sis_Associazione_Localizzazione_Visibilita_Constraint,
+  Sis_Associazione_Localizzazione_Visibilita_Update_Column,
+  Sis_Associazione_Localizzazione_Illuminazione_Constraint,
+  Sis_Associazione_Localizzazione_Illuminazione_Update_Column,
+  Sis_Associzione_Localizzazione_Condizioni_Traffico_Constraint,
+  Sis_Associzione_Localizzazione_Condizioni_Traffico_Update_Column,
+  Sis_Associazione_Localizzazione_Altro_Constraint,
+  Sis_Associazione_Localizzazione_Altro_Update_Column,
   LocalizzazioneCondizioniTrafficoSelectGQL,
-  Associazione_Decessi_Tipologie_Constraint,
-  Associazione_Decessi_Tipologie_Update_Column,
-  Proprietario_Constraint,
-  Proprietario_Update_Column,
-  Proprietario_Giuridico_Constraint,
-  Proprietario_Giuridico_Update_Column,
-  Locatario_Constraint,
-  Locatario_Update_Column,
-  Conducente_Constraint,
-  Conducente_Update_Column,
-  Associazione_Patente_Constraint,
-  Associazione_Patente_Update_Column,
-  Trasportato_Constraint,
-  Trasportato_Update_Column,
-  Testimone_Constraint,
-  Testimone_Update_Column,
-  Pedone_Constraint,
-  Pedone_Update_Column,
-  Altro_Constraint,
-  Altro_Update_Column,
-  Veicolo_Constraint,
-  Veicolo_Update_Column,
-  Trasportati_Veicolo_Constraint,
-  Trasportati_Veicolo_Update_Column,
-  Infrazione_Constraint,
-  Infrazione_Update_Column,
-  Infortunato_Constraint,
-  Infortunato_Update_Column,
-  Associazione_Informazioni_Infortunato_Constraint,
-  Associazione_Informazioni_Infortunato_Update_Column,
-  Accertamento_Constraint,
-  Accertamento_Update_Column,
-  Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Constraint,
-  Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column,
-  Verbale_Constraint,
-  Verbale_Update_Column,
+  Sis_Associazione_Decessi_Tipologie_Constraint,
+  Sis_Associazione_Decessi_Tipologie_Update_Column,
+  Sis_Proprietario_Constraint,
+  Sis_Proprietario_Update_Column,
+  Sis_Proprietario_Giuridico_Constraint,
+  Sis_Proprietario_Giuridico_Update_Column,
+  Sis_Locatario_Constraint,
+  Sis_Locatario_Update_Column,
+  Sis_Conducente_Constraint,
+  Sis_Conducente_Update_Column,
+  Sis_Associazione_Patente_Constraint,
+  Sis_Associazione_Patente_Update_Column,
+  Sis_Trasportato_Constraint,
+  Sis_Trasportato_Update_Column,
+  Sis_Testimone_Constraint,
+  Sis_Testimone_Update_Column,
+  Sis_Pedone_Constraint,
+  Sis_Pedone_Update_Column,
+  Sis_Altro_Constraint,
+  Sis_Altro_Update_Column,
+  Sis_Veicolo_Constraint,
+  Sis_Veicolo_Update_Column,
+  Sis_Trasportati_Veicolo_Constraint,
+  Sis_Trasportati_Veicolo_Update_Column,
+  Sis_Infrazione_Constraint,
+  Sis_Infrazione_Update_Column,
+  Sis_Infortunato_Constraint,
+  Sis_Infortunato_Update_Column,
+  Sis_Associazione_Informazioni_Infortunato_Constraint,
+  Sis_Associazione_Informazioni_Infortunato_Update_Column,
+  Sis_Accertamento_Constraint,
+  Sis_Accertamento_Update_Column,
+  Sis_Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Constraint,
+  Sis_Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column,
+  Sis_Verbale_Constraint,
+  Sis_Verbale_Update_Column,
   UnitaOperativaSelectGQL,
   GeneraProtocolloGQL,
-  Agente_Accertatore_Constraint,
-  Agente_Accertatore_Update_Column,
+  Sis_Agente_Accertatore_Constraint,
+  Sis_Agente_Accertatore_Update_Column,
+  SezioneProtocolloSelectGQL,
+  SpecificaPosizionamentoToponimoSelectGQL,
+  NazioneSelectGQL,
+  Gis_Posizionamento_Toponimo_Constraint,
+  Gis_Posizionamento_Toponimo_Update_Column,
+  Protocollo_Protocollo_Constraint,
+  Protocollo_Protocollo_Update_Column,
+  Protocollo_Protocollo_Destinatario_Constraint,
+  Protocollo_Protocollo_Destinatario_Update_Column,
+  Protocollo_Protocollo_Destinatario_Esterno_Constraint,
+  Protocollo_Protocollo_Destinatario_Esterno_Update_Column,
 } from 'src/app/_core/_services/generated/graphql';
 import { RequiredService } from 'src/app/_core/_services/required.service';
+import { RolesService } from 'src/app/_core/_services/roles.service';
 import { environment } from 'src/environments/environment';
 
 @Directive()
@@ -273,7 +274,7 @@ export abstract class RisEdit extends Dirty {
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._tipologia_ris)
+                  map((result) => result.data?.sis__tipologia_ris)
                 ),
           },
           expressionProperties: {
@@ -317,7 +318,7 @@ export abstract class RisEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?.unita_operativa)
+                      map((result) => result.data?.sis_unita_operativa)
                     ),
               },
               expressionProperties: {
@@ -425,7 +426,7 @@ export abstract class RisEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?._ris_consegnato_a)
+                      map((result) => result.data?.sis__ris_consegnato_a)
                     ),
               },
               expressionProperties: {
@@ -517,7 +518,9 @@ export abstract class RisEdit extends Dirty {
                             ? { nome: { _ilike: '%' + term + '%' } }
                             : {}),
                         })
-                        .valueChanges.pipe(map((result) => result.data?._ente)),
+                        .valueChanges.pipe(
+                          map((result) => result.data?.sis__ente)
+                        ),
                   },
                   expressionProperties: {
                     'templateOptions.label':
@@ -683,7 +686,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._ente)
+                                    map((result) => result.data?.sis__ente)
                                   ),
                             },
                             expressionProperties: {
@@ -792,7 +795,7 @@ export abstract class RisEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?._ente_secondario)
+                              map((result) => result.data?.sis__ente_secondario)
                             ),
                       },
                       expressionProperties: {
@@ -954,7 +957,9 @@ export abstract class RisEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?._natura_incidente)
+                              map(
+                                (result) => result.data?.sis__natura_incidente
+                              )
                             ),
                       },
                       expressionProperties: {
@@ -1053,7 +1058,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._posizione_finale_veicolo_carreggiata
+                                    ?.sis__posizione_finale_veicolo_carreggiata
                               )
                             ),
                       },
@@ -1122,7 +1127,8 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._posizione_finale_veicolo_margini
+                                  result.data
+                                    ?.sis__posizione_finale_veicolo_margini
                               )
                             ),
                       },
@@ -1191,7 +1197,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._posizione_finale_veicolo_carreggiata
+                                    ?.sis__posizione_finale_veicolo_carreggiata
                               )
                             ),
                       },
@@ -1257,7 +1263,10 @@ export abstract class RisEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?._conseguenza_veicolo)
+                              map(
+                                (result) =>
+                                  result.data?.sis__conseguenza_veicolo
+                              )
                             ),
                       },
                       expressionProperties: {
@@ -1331,7 +1340,7 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_extra_abitato
+                                  result.data?.sis__localizzazione_extra_abitato
                               )
                             ),
                       },
@@ -1398,7 +1407,7 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_tipo_strada
+                                  result.data?.sis__localizzazione_tipo_strada
                               )
                             ),
                       },
@@ -1466,7 +1475,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._localizzazione_particolarita_strada
+                                    ?.sis__localizzazione_particolarita_strada
                               )
                             ),
                       },
@@ -1534,7 +1543,8 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_pavimentazione
+                                  result.data
+                                    ?.sis__localizzazione_pavimentazione
                               )
                             ),
                       },
@@ -1601,7 +1611,8 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_fondo_stradale
+                                  result.data
+                                    ?.sis__localizzazione_fondo_stradale
                               )
                             ),
                       },
@@ -1669,7 +1680,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._localizzazione_condizioni_atmosferiche
+                                    ?.sis__localizzazione_condizioni_atmosferiche
                               )
                             ),
                       },
@@ -1737,7 +1748,7 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_visibilita
+                                  result.data?.sis__localizzazione_visibilita
                               )
                             ),
                       },
@@ -1804,7 +1815,7 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._localizzazione_illuminazione
+                                  result.data?.sis__localizzazione_illuminazione
                               )
                             ),
                       },
@@ -1872,7 +1883,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._localizzazione_condizioni_traffico
+                                    ?.sis__localizzazione_condizioni_traffico
                               )
                             ),
                       },
@@ -1939,7 +1950,8 @@ export abstract class RisEdit extends Dirty {
                             })
                             .valueChanges.pipe(
                               map(
-                                (result) => result.data?._localizzazione_altro
+                                (result) =>
+                                  result.data?.sis__localizzazione_altro
                               )
                             ),
                       },
@@ -2132,7 +2144,8 @@ export abstract class RisEdit extends Dirty {
                                 .valueChanges.pipe(
                                   map(
                                     (result) =>
-                                      result.data?._punti_rilievi_no_tipologia
+                                      result.data
+                                        ?.sis__punti_rilievi_no_tipologia
                                   )
                                 ),
                           },
@@ -2270,7 +2283,7 @@ export abstract class RisEdit extends Dirty {
                             .valueChanges.pipe(
                               map(
                                 (result) =>
-                                  result.data?._punti_rilievi_no_tipologia
+                                  result.data?.sis__punti_rilievi_no_tipologia
                               )
                             ),
                       },
@@ -2376,7 +2389,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -2881,7 +2894,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -3208,7 +3221,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -3550,7 +3563,7 @@ export abstract class RisEdit extends Dirty {
                                   .valueChanges.pipe(
                                     map(
                                       (result) =>
-                                        result.data?._patente_categoria
+                                        result.data?.sis__patente_categoria
                                     )
                                   ),
                             },
@@ -4011,7 +4024,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -4423,7 +4436,7 @@ export abstract class RisEdit extends Dirty {
                                   .valueChanges.pipe(
                                     map(
                                       (result) =>
-                                        result.data?._trasportato_posizione
+                                        result.data?.sis__trasportato_posizione
                                     )
                                   ),
                             },
@@ -4459,7 +4472,7 @@ export abstract class RisEdit extends Dirty {
                                   .valueChanges.pipe(
                                     map(
                                       (result) =>
-                                        result.data?._trasportato_stato
+                                        result.data?.sis__trasportato_stato
                                     )
                                   ),
                             },
@@ -4593,7 +4606,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -5031,7 +5044,7 @@ export abstract class RisEdit extends Dirty {
                                       : {}),
                                   })
                                   .valueChanges.pipe(
-                                    map((result) => result.data?._titolo_sis)
+                                    map((result) => result.data?._titolo)
                                   ),
                             },
                             expressionProperties: {
@@ -5529,7 +5542,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.proprietario)
+                            map((result) => result.data?.sis_proprietario)
                           ),
                     },
                     expressionProperties: {
@@ -5590,7 +5603,10 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.proprietario_giuridico)
+                            map(
+                              (result) =>
+                                result.data?.sis_proprietario_giuridico
+                            )
                           ),
                     },
                     expressionProperties: {
@@ -5640,7 +5656,7 @@ export abstract class RisEdit extends Dirty {
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?.locatario)
+                        map((result) => result.data?.sis_locatario)
                       ),
                 },
                 expressionProperties: {
@@ -5685,7 +5701,7 @@ export abstract class RisEdit extends Dirty {
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?.conducente)
+                        map((result) => result.data?.sis_conducente)
                       ),
                 },
                 expressionProperties: {
@@ -5732,7 +5748,7 @@ export abstract class RisEdit extends Dirty {
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?.trasportato)
+                        map((result) => result.data?.sis_trasportato)
                       ),
                 },
                 expressionProperties: {
@@ -5770,7 +5786,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._stato_veicolo)
+                            map((result) => result.data?.sis__stato_veicolo)
                           ),
                     },
                     expressionProperties: {
@@ -5803,7 +5819,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._tipologia_veicolo)
+                            map((result) => result.data?.sis__tipologia_veicolo)
                           ),
                     },
                     expressionProperties: {
@@ -5904,7 +5920,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._nazione_sis)
+                            map((result) => result.data?._nazione)
                           ),
                     },
                     expressionProperties: {
@@ -5967,7 +5983,10 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._alimentazione_veicolo)
+                            map(
+                              (result) =>
+                                result.data?.sis__alimentazione_veicolo
+                            )
                           ),
                     },
                     expressionProperties: {
@@ -6142,7 +6161,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._uso_veicolo)
+                            map((result) => result.data?.sis__uso_veicolo)
                           ),
                     },
                     expressionProperties: {
@@ -6204,7 +6223,9 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._retrovisore_esterno)
+                            map(
+                              (result) => result.data?.sis__retrovisore_esterno
+                            )
                           ),
                     },
                     expressionProperties: {
@@ -7107,7 +7128,8 @@ export abstract class RisEdit extends Dirty {
                           })
                           .valueChanges.pipe(
                             map(
-                              (result) => result.data?._destinazione_decisione
+                              (result) =>
+                                result.data?.sis__destinazione_decisione
                             )
                           ),
                     },
@@ -7244,12 +7266,12 @@ export abstract class RisEdit extends Dirty {
                     fieldGroupClassName: 'display-flex',
                     fieldGroup: [
                       {
-                        key: 'traccia_suolo_tipologium',
+                        key: 'traccia_suolo_tipologia',
                         className: 'flex-1',
                         type: 'autocomplete',
                         templateOptions: {
                           required: this._required.sis(
-                            'veicoli.traccia_suolo_tipologium'
+                            'veicoli.traccia_suolo_tipologia'
                           ),
 
                           filter: (
@@ -7269,7 +7291,7 @@ export abstract class RisEdit extends Dirty {
                               .valueChanges.pipe(
                                 map(
                                   (result) =>
-                                    result.data?._traccia_suolo_tipologia
+                                    result.data?.sis__traccia_suolo_tipologia
                                 )
                               ),
                         },
@@ -7280,18 +7302,18 @@ export abstract class RisEdit extends Dirty {
                         },
                       },
                       {
-                        key: 'traccia_suolo_frenata_tipologium',
+                        key: 'traccia_suolo_frenata_tipologia',
                         className: 'flex-1',
                         type: 'autocomplete',
                         hideExpression: (model: any, formState: any) =>
                           !(
                             model &&
-                            model.traccia_suolo_tipologium &&
-                            model.traccia_suolo_tipologium.id == 1
+                            model.traccia_suolo_tipologia &&
+                            model.traccia_suolo_tipologia.id == 1
                           ),
                         templateOptions: {
                           required: this._required.sis(
-                            'veicoli.traccia_suolo_frenata_tipologium'
+                            'veicoli.traccia_suolo_frenata_tipologia'
                           ),
 
                           filter: (
@@ -7312,7 +7334,7 @@ export abstract class RisEdit extends Dirty {
                                 map(
                                   (result) =>
                                     result.data
-                                      ?._traccia_suolo_frenata_tipologia
+                                      ?.sis__traccia_suolo_frenata_tipologia
                                 )
                               ),
                         },
@@ -7364,7 +7386,7 @@ export abstract class RisEdit extends Dirty {
                           .valueChanges.pipe(
                             map(
                               (result) =>
-                                result.data?._traccia_suolo_terminazione
+                                result.data?.sis__traccia_suolo_terminazione
                             )
                           ),
                     },
@@ -7385,12 +7407,12 @@ export abstract class RisEdit extends Dirty {
                       ),
                     fieldGroup: [
                       {
-                        key: 'traccia_suolo_terminazione_tipologium',
+                        key: 'traccia_suolo_terminazione_tipologia',
                         type: 'autocomplete',
                         className: 'flex-1',
                         templateOptions: {
                           required: this._required.sis(
-                            'veicoli.traccia_suolo_terminazione_tipologium'
+                            'veicoli.traccia_suolo_terminazione_tipologia'
                           ),
 
                           filter: (
@@ -7411,7 +7433,7 @@ export abstract class RisEdit extends Dirty {
                                 map(
                                   (result) =>
                                     result.data
-                                      ?._traccia_suolo_terminazione_tipologia
+                                      ?.sis__traccia_suolo_terminazione_tipologia
                                 )
                               ),
                         },
@@ -7426,7 +7448,7 @@ export abstract class RisEdit extends Dirty {
                         key: 'traccia_suolo_terminazione_metri',
                         hideExpression: (model: any, formState: any) =>
                           !(
-                            model && model.traccia_suolo_terminazione_tipologium
+                            model && model.traccia_suolo_terminazione_tipologia
                           ),
                         type: 'input',
                         className: 'flex-1',
@@ -7454,12 +7476,12 @@ export abstract class RisEdit extends Dirty {
                       ),
                     fieldGroup: [
                       {
-                        key: 'traccia_suolo_terminazione_intensitum',
+                        key: 'traccia_suolo_terminazione_intensita',
                         type: 'autocomplete',
                         className: 'flex-1',
                         templateOptions: {
                           required: this._required.sis(
-                            'veicoli.traccia_suolo_terminazione_intensitum'
+                            'veicoli.traccia_suolo_terminazione_intensita'
                           ),
 
                           filter: (
@@ -7480,7 +7502,7 @@ export abstract class RisEdit extends Dirty {
                                 map(
                                   (result) =>
                                     result.data
-                                      ?._traccia_suolo_terminazione_intensita
+                                      ?.sis__traccia_suolo_terminazione_intensita
                                 )
                               ),
                         },
@@ -7517,7 +7539,7 @@ export abstract class RisEdit extends Dirty {
                                 map(
                                   (result) =>
                                     result.data
-                                      ?._traccia_suolo_terminazione_forma
+                                      ?.sis__traccia_suolo_terminazione_forma
                                 )
                               ),
                         },
@@ -7554,7 +7576,7 @@ export abstract class RisEdit extends Dirty {
                                 map(
                                   (result) =>
                                     result.data
-                                      ?._traccia_suolo_terminazione_andamento
+                                      ?.sis__traccia_suolo_terminazione_andamento
                                 )
                               ),
                         },
@@ -7639,7 +7661,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.conducente)
+                            map((result) => result.data?.sis_conducente)
                           ),
                     },
                     expressionProperties: {
@@ -7688,7 +7710,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.pedone)
+                            map((result) => result.data?.sis_pedone)
                           ),
                     },
                     expressionProperties: {
@@ -7740,7 +7762,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.veicolo)
+                            map((result) => result.data?.sis_veicolo)
                           ),
                     },
                     expressionProperties: {
@@ -7976,7 +7998,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.veicolo)
+                            map((result) => result.data?.sis_veicolo)
                           ),
                     },
                     expressionProperties: {
@@ -8030,7 +8052,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.conducente)
+                            map((result) => result.data?.sis_conducente)
                           ),
                     },
                     expressionProperties: {
@@ -8083,7 +8105,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.trasportato)
+                            map((result) => result.data?.sis_trasportato)
                           ),
                     },
                     expressionProperties: {
@@ -8132,7 +8154,9 @@ export abstract class RisEdit extends Dirty {
                             }
                           : {}),
                       })
-                      .valueChanges.pipe(map((result) => result.data?.pedone)),
+                      .valueChanges.pipe(
+                        map((result) => result.data?.sis_pedone)
+                      ),
                 },
                 expressionProperties: {
                   'templateOptions.label':
@@ -8171,7 +8195,7 @@ export abstract class RisEdit extends Dirty {
                                   : {}),
                               })
                               .valueChanges.pipe(
-                                map((result) => result.data?._titolo_sis)
+                                map((result) => result.data?._titolo)
                               ),
                         },
                         expressionProperties: {
@@ -8603,7 +8627,8 @@ export abstract class RisEdit extends Dirty {
                           })
                           .valueChanges.pipe(
                             map(
-                              (result) => result.data?._intortunato_tasportato
+                              (result) =>
+                                result.data?.sis__intortunato_tasportato
                             )
                           ),
                     },
@@ -8668,7 +8693,9 @@ export abstract class RisEdit extends Dirty {
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?._infortunato_informazione)
+                        map(
+                          (result) => result.data?.sis__infortunato_informazione
+                        )
                       ),
                 },
                 expressionProperties: {
@@ -8715,7 +8742,7 @@ export abstract class RisEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?.municipalita)
+                      map((result) => result.data?.toponomastica_municipalita)
                     ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.fieldGroup![1].formControl?.reset();
@@ -8755,7 +8782,9 @@ export abstract class RisEdit extends Dirty {
                         },
                       },
                     })
-                    .valueChanges.pipe(map((result) => result.data?.quartiere)),
+                    .valueChanges.pipe(
+                      map((result) => result.data?.toponomastica_quartiere)
+                    ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.fieldGroup![2].formControl?.reset();
                 },
@@ -8801,7 +8830,9 @@ export abstract class RisEdit extends Dirty {
                         },
                       },
                     })
-                    .valueChanges.pipe(map((result) => result.data?.toponimo)),
+                    .valueChanges.pipe(
+                      map((result) => result.data?.toponomastica_toponimo)
+                    ),
                 parentReset: (field: FormlyFieldConfig) => {
                   field.parent?.parent?.fieldGroup![1].fieldGroup![1].formControl?.reset();
                   field.parent?.parent?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![0].formControl?.reset();
@@ -8864,7 +8895,7 @@ export abstract class RisEdit extends Dirty {
                     .valueChanges.pipe(
                       map(
                         (result) =>
-                          result.data?._tipologia_posizionamento_toponimo_sis
+                          result.data?.gis__tipologia_posizionamento_toponimo
                       )
                     ),
                 parentReset: (field: FormlyFieldConfig) => {
@@ -8923,7 +8954,7 @@ export abstract class RisEdit extends Dirty {
                               map(
                                 (result) =>
                                   result.data
-                                    ?._specifica_posizionamento_toponimo_sis
+                                    ?.gis__specifica_posizionamento_toponimo
                               )
                             ),
                         parentReset: (field: FormlyFieldConfig) => {
@@ -8970,7 +9001,7 @@ export abstract class RisEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?.civico)
+                              map((result) => result.data?.gis_civico)
                             ),
                       },
                       hooks: {
@@ -9024,7 +9055,7 @@ export abstract class RisEdit extends Dirty {
                                 : {}),
                             })
                             .valueChanges.pipe(
-                              map((result) => result.data?.sostegno_ipi)
+                              map((result) => result.data?.gis_sostegno_ipi)
                             ),
                       },
                       hooks: {
@@ -9095,10 +9126,10 @@ export abstract class RisEdit extends Dirty {
                         let ret = Array();
                         for (
                           let i = 0;
-                          i < result.data!.connessione_grafo.length;
+                          i < result.data!.gis_connessione_grafo.length;
                           i++
                         ) {
-                          let c = result.data!.connessione_grafo[i];
+                          let c = result.data!.gis_connessione_grafo[i];
                           let _in = c.fk_t_code
                             ? c.fk_t_code?.slice(1, -1).split(';;')
                             : [];
@@ -9110,7 +9141,7 @@ export abstract class RisEdit extends Dirty {
                                   .watch({ _in: _in })
                                   .valueChanges.pipe(
                                     map((toponimo) =>
-                                      toponimo.data.toponimo
+                                      toponimo.data.toponomastica_toponimo
                                         .map(
                                           (el) =>
                                             (el.dug ? el.dug.nome + ' ' : '') +
@@ -9311,7 +9342,7 @@ export abstract class RisEdit extends Dirty {
                         : {}),
                     })
                     .valueChanges.pipe(
-                      map((result) => result.data?._decessi_tipologia)
+                      map((result) => result.data?.sis__decessi_tipologia)
                     ),
               },
               expressionProperties: {
@@ -9730,7 +9761,7 @@ export abstract class RisEdit extends Dirty {
                           .valueChanges.pipe(
                             map(
                               (result) =>
-                                result.data?._visibilita_limitata_tipologia
+                                result.data?.sis__visibilita_limitata_tipologia
                             )
                           ),
                     },
@@ -9877,7 +9908,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?._tipologia_verbale)
+                            map((result) => result.data?.sis__tipologia_verbale)
                           ),
                     },
                     expressionProperties: {
@@ -9951,7 +9982,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.proprietario)
+                            map((result) => result.data?.sis_proprietario)
                           ),
                     },
                     expressionProperties: {
@@ -10005,7 +10036,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.locatario)
+                            map((result) => result.data?.sis_locatario)
                           ),
                     },
                     expressionProperties: {
@@ -10059,7 +10090,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.conducente)
+                            map((result) => result.data?.sis_conducente)
                           ),
                     },
                     expressionProperties: {
@@ -10119,7 +10150,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.trasportato)
+                            map((result) => result.data?.sis_trasportato)
                           ),
                     },
                     expressionProperties: {
@@ -10173,7 +10204,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.pedone)
+                            map((result) => result.data?.sis_pedone)
                           ),
                     },
                     expressionProperties: {
@@ -10227,7 +10258,7 @@ export abstract class RisEdit extends Dirty {
                               : {}),
                           })
                           .valueChanges.pipe(
-                            map((result) => result.data?.testimone)
+                            map((result) => result.data?.sis_testimone)
                           ),
                     },
                     expressionProperties: {
@@ -10330,7 +10361,7 @@ export abstract class RisEdit extends Dirty {
                                   : {}),
                               })
                               .valueChanges.pipe(
-                                map((result) => result.data?._titolo_sis)
+                                map((result) => result.data?._titolo)
                               ),
                         },
                         expressionProperties: {
@@ -10801,10 +10832,17 @@ export abstract class RisEdit extends Dirty {
             required: true,
             displayWith: (e: any) =>
               e
-                ? e.codice +
+                ? e.settore +
+                  '.' +
+                  e.servizio +
+                  '.' +
+                  e.uoc +
+                  '.' +
+                  e.uos +
+                  '.' +
+                  e.postazione +
                   ' - ' +
-                  e.nome +
-                  (e.sigla != null ? ' - ' + e.sigla : '')
+                  e.nome
                 : '',
             filter: (term: any, limit: number, offset: number, parent?: any) =>
               this._sezioneProtocolloSelectGQL
@@ -10814,17 +10852,13 @@ export abstract class RisEdit extends Dirty {
                   ...(term && typeof term === 'string'
                     ? {
                         where: {
-                          _or: [
-                            { codice: { _ilike: '%' + term + '%' } },
-                            { nome: { _ilike: '%' + term + '%' } },
-                            { sigla: { _ilike: '%' + term + '%' } },
-                          ],
+                          _or: [{ nome: { _ilike: '%' + term + '%' } }],
                         },
                       }
                     : {}),
                 })
                 .valueChanges.pipe(
-                  map((result) => result.data?._sezione_protocollo_sis)
+                  map((result) => result.data?.protocollo__sezione_protocollo)
                 ),
           },
           expressionProperties: {
@@ -10876,10 +10910,17 @@ export abstract class RisEdit extends Dirty {
                   required: true,
                   displayWith: (e: any) =>
                     e
-                      ? e.codice +
+                      ? e.settore +
+                        '.' +
+                        e.servizio +
+                        '.' +
+                        e.uoc +
+                        '.' +
+                        e.uos +
+                        '.' +
+                        e.postazione +
                         ' - ' +
-                        e.nome +
-                        (e.sigla != null ? ' - ' + e.sigla : '')
+                        e.nome
                       : '',
                   filter: (
                     term: any,
@@ -10894,17 +10935,16 @@ export abstract class RisEdit extends Dirty {
                         ...(term && typeof term === 'string'
                           ? {
                               where: {
-                                _or: [
-                                  { codice: { _ilike: '%' + term + '%' } },
-                                  { nome: { _ilike: '%' + term + '%' } },
-                                  { sigla: { _ilike: '%' + term + '%' } },
-                                ],
+                                _or: [{ nome: { _ilike: '%' + term + '%' } }],
                               },
                             }
                           : {}),
                       })
                       .valueChanges.pipe(
-                        map((result) => result.data?._sezione_protocollo_sis)
+                        map(
+                          (result) =>
+                            result.data?.protocollo__sezione_protocollo
+                        )
                       ),
                 },
                 expressionProperties: {
@@ -11002,14 +11042,14 @@ export abstract class RisEdit extends Dirty {
     protected _http: HttpClient,
     protected _translateService: TranslateService,
     protected _risGQL: RisGQL,
-    protected _sezioneProtocolloSelectGQL: SezioneProtocolloSisSelectGQL,
-    protected _titoloSelectGQL: TitoloSisSelectGQL,
+    protected _sezioneProtocolloSelectGQL: SezioneProtocolloSelectGQL,
+    protected _titoloSelectGQL: TitoloSelectGQL,
     protected _municipalitaSelectGQL: MunicipalitaSelectGQL,
     protected _quartiereSelectGQL: QuartiereSelectGQL,
     protected _toponimoSelectGQL: ToponimoSelectGQL,
     protected _toponimoNomeSelectGQL: ToponimoNomeSelectGQL,
-    protected _specificaPosizionamentoToponimoSelectGQL: SpecificaPosizionamentoToponimoSisSelectGQL,
-    protected _tipologiaPosizionamentoToponimoSelectGQL: TipologiaPosizionamentoToponimoSisSelectGQL,
+    protected _specificaPosizionamentoToponimoSelectGQL: SpecificaPosizionamentoToponimoSelectGQL,
+    protected _tipologiaPosizionamentoToponimoSelectGQL: TipologiaPosizionamentoToponimoSelectGQL,
     protected _updateRisGQL: UpdateRisGQL,
     protected _civiciSelectGQL: CiviciSelectGQL,
     protected _sostegniIpiSelectGQL: SostegniIpiSelectGQL,
@@ -11043,7 +11083,7 @@ export abstract class RisEdit extends Dirty {
     protected _localizzazionePavimentazioneSelect: LocalizzazionePavimentazioneSelectGQL,
     protected _localizzazioneTipoStradaSelect: LocalizzazioneTipoStradaSelectGQL,
     protected _localizzazioneVisibilitaSelect: LocalizzazioneVisibilitaSelectGQL,
-    protected _nazioneSelect: NazioneSisSelectGQL,
+    protected _nazioneSelect: NazioneSelectGQL,
     protected _patenteCategoriaSelect: PatenteCategoriaSelectGQL,
     protected _posizioneFinaleVeicoloCarreggiataSelect: PosizioneFinaleVeicoloCarreggiataSelectGQL,
     protected _posizioneFinaleVeicoloFuoriSedeSelect: PosizioneFinaleVeicoloCarreggiataSelectGQL,
@@ -11076,7 +11116,8 @@ export abstract class RisEdit extends Dirty {
     protected _naturaIncidenteSelect: NaturaIncidenteSelectGQL,
     protected _trasportatoStatoSelect: TrasportatoStatoSelectGQL,
     protected _trasportatoPosizioneSelect: TrasportatoPosizioneSelectGQL,
-    protected _protocollo: GeneraProtocolloGQL
+    protected _protocollo: GeneraProtocolloGQL,
+    protected roles: RolesService
   ) {
     super();
     this.id = parseInt(this._route.snapshot.paramMap.get('id')!);
@@ -11322,13 +11363,13 @@ export abstract class RisEdit extends Dirty {
         (x: any) =>
           !this.model.incidente.localizzazioni_visibilita
             .map((f: any) => f.id)
-            .includes(x.localizzazione_visibilitum.id)
+            .includes(x.localizzazione_visibilita.id)
       );
     let localizzazioni_visibilita_n =
       this.model.incidente.localizzazioni_visibilita.filter(
         (x: any) =>
           !this.startData.localizzazioni_visibilita
-            .map((f: any) => f.localizzazione_visibilitum.id)
+            .map((f: any) => f.localizzazione_visibilita.id)
             .includes(x.id)
       );
     let localizzazioni_illuminazione_d =
@@ -11590,10 +11631,10 @@ export abstract class RisEdit extends Dirty {
             tipologie_ris: {
               on_conflict: {
                 constraint:
-                  Associazione_Tipologia_Ris_Constraint.AssociazioneTipologiaRisPkey,
+                  Sis_Associazione_Tipologia_Ris_Constraint.AssociazioneTipologiaRisPkey,
                 update_columns: [
-                  Associazione_Tipologia_Ris_Update_Column.Delete,
-                  Associazione_Tipologia_Ris_Update_Column.TipologiaRisId,
+                  Sis_Associazione_Tipologia_Ris_Update_Column.Delete,
+                  Sis_Associazione_Tipologia_Ris_Update_Column.TipologiaRisId,
                 ],
               },
               data: [
@@ -11618,11 +11659,12 @@ export abstract class RisEdit extends Dirty {
         ? {
             agenti_accertatori: {
               on_conflict: {
-                constraint: Agente_Accertatore_Constraint.AgenteAccertatorePkey,
+                constraint:
+                  Sis_Agente_Accertatore_Constraint.AgenteAccertatorePkey,
                 update_columns: [
-                  Agente_Accertatore_Update_Column.Delete,
-                  Agente_Accertatore_Update_Column.Username,
-                  Agente_Accertatore_Update_Column.Agente,
+                  Sis_Agente_Accertatore_Update_Column.Delete,
+                  Sis_Agente_Accertatore_Update_Column.Username,
+                  Sis_Agente_Accertatore_Update_Column.Agente,
                 ],
               },
               data: [
@@ -11661,10 +11703,10 @@ export abstract class RisEdit extends Dirty {
             enti_segnalatori: {
               on_conflict: {
                 constraint:
-                  Associazione_Ente_Segnalatore_Constraint.AssociazioneEnteSegnalatorePkey,
+                  Sis_Associazione_Ente_Segnalatore_Constraint.AssociazioneEnteSegnalatorePkey,
                 update_columns: [
-                  Associazione_Ente_Segnalatore_Update_Column.Delete,
-                  Associazione_Ente_Segnalatore_Update_Column.EnteId,
+                  Sis_Associazione_Ente_Segnalatore_Update_Column.Delete,
+                  Sis_Associazione_Ente_Segnalatore_Update_Column.EnteId,
                 ],
               },
               data: [
@@ -11696,12 +11738,12 @@ export abstract class RisEdit extends Dirty {
       enti_primo_intervento: {
         on_conflict: {
           constraint:
-            Associazione_Ente_Primo_Intervento_Constraint.AssociazioneEntePrimoInterventoPkey,
+            Sis_Associazione_Ente_Primo_Intervento_Constraint.AssociazioneEntePrimoInterventoPkey,
           update_columns: [
-            Associazione_Ente_Primo_Intervento_Update_Column.EnteId,
-            Associazione_Ente_Primo_Intervento_Update_Column.TargaAuto,
-            Associazione_Ente_Primo_Intervento_Update_Column.Tipo,
-            Associazione_Ente_Primo_Intervento_Update_Column.Delete,
+            Sis_Associazione_Ente_Primo_Intervento_Update_Column.EnteId,
+            Sis_Associazione_Ente_Primo_Intervento_Update_Column.TargaAuto,
+            Sis_Associazione_Ente_Primo_Intervento_Update_Column.Tipo,
+            Sis_Associazione_Ente_Primo_Intervento_Update_Column.Delete,
           ],
         },
         data: [
@@ -11727,10 +11769,10 @@ export abstract class RisEdit extends Dirty {
             enti_secondario_intervenuti: {
               on_conflict: {
                 constraint:
-                  Associazione_Ente_Secondario_Intervenuti_Constraint.AssociazioneEnteSecondarioIntervenutiPkey,
+                  Sis_Associazione_Ente_Secondario_Intervenuti_Constraint.AssociazioneEnteSecondarioIntervenutiPkey,
                 update_columns: [
-                  Associazione_Ente_Secondario_Intervenuti_Update_Column.Delete,
-                  Associazione_Ente_Secondario_Intervenuti_Update_Column.EnteSecondarioIntervenutiId,
+                  Sis_Associazione_Ente_Secondario_Intervenuti_Update_Column.Delete,
+                  Sis_Associazione_Ente_Secondario_Intervenuti_Update_Column.EnteSecondarioIntervenutiId,
                 ],
               },
               data: [
@@ -11766,10 +11808,10 @@ export abstract class RisEdit extends Dirty {
             nature_incidente: {
               on_conflict: {
                 constraint:
-                  Associazione_Natura_Incidente_Constraint.AssociazioneNaturaIncidentePkey,
+                  Sis_Associazione_Natura_Incidente_Constraint.AssociazioneNaturaIncidentePkey,
                 update_columns: [
-                  Associazione_Natura_Incidente_Update_Column.Delete,
-                  Associazione_Natura_Incidente_Update_Column.NaturaIncidenteId,
+                  Sis_Associazione_Natura_Incidente_Update_Column.Delete,
+                  Sis_Associazione_Natura_Incidente_Update_Column.NaturaIncidenteId,
                 ],
               },
               data: [
@@ -11798,10 +11840,10 @@ export abstract class RisEdit extends Dirty {
             posizioni_finali_veicolo_carreggiata: {
               on_conflict: {
                 constraint:
-                  Associazione_Posizione_Finale_Veicolo_Carreggiata_Constraint.AssociazionePosizioneFinaleVeicoloCarreggiataPkey,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Carreggiata_Constraint.AssociazionePosizioneFinaleVeicoloCarreggiataPkey,
                 update_columns: [
-                  Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column.Delete,
-                  Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column.PosizioneFinaleVeicoloCarreggiataId,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column.Delete,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Carreggiata_Update_Column.PosizioneFinaleVeicoloCarreggiataId,
                 ],
               },
               data: [
@@ -11830,10 +11872,10 @@ export abstract class RisEdit extends Dirty {
             posizioni_finali_veicolo_margini: {
               on_conflict: {
                 constraint:
-                  Associazione_Posizione_Finale_Veicolo_Margini_Constraint.AssociazionePosizioneFinaleVeicoloMarginiPkey,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Margini_Constraint.AssociazionePosizioneFinaleVeicoloMarginiPkey,
                 update_columns: [
-                  Associazione_Posizione_Finale_Veicolo_Margini_Update_Column.Delete,
-                  Associazione_Posizione_Finale_Veicolo_Margini_Update_Column.PosizioneFinaleVeicoloMarginiId,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Margini_Update_Column.Delete,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Margini_Update_Column.PosizioneFinaleVeicoloMarginiId,
                 ],
               },
               data: [
@@ -11862,10 +11904,10 @@ export abstract class RisEdit extends Dirty {
             posizioni_finali_veicolo_fuori_sede: {
               on_conflict: {
                 constraint:
-                  Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Constraint.AssociazionePosizioneFinaleVeicoloFuoriSedePkey,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Constraint.AssociazionePosizioneFinaleVeicoloFuoriSedePkey,
                 update_columns: [
-                  Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column.Delete,
-                  Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column.PosizioneFinaleVeicoloFuoriSedeId,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column.Delete,
+                  Sis_Associazione_Posizione_Finale_Veicolo_Fuori_Sede_Update_Column.PosizioneFinaleVeicoloFuoriSedeId,
                 ],
               },
               data: [
@@ -11893,10 +11935,10 @@ export abstract class RisEdit extends Dirty {
             conseguenze_veicolo: {
               on_conflict: {
                 constraint:
-                  Associazione_Conseguenza_Veicolo_Constraint.AssociazioneConseguenzaVeicoloPkey,
+                  Sis_Associazione_Conseguenza_Veicolo_Constraint.AssociazioneConseguenzaVeicoloPkey,
                 update_columns: [
-                  Associazione_Conseguenza_Veicolo_Update_Column.Delete,
-                  Associazione_Conseguenza_Veicolo_Update_Column.ConseguenzaVeicoloId,
+                  Sis_Associazione_Conseguenza_Veicolo_Update_Column.Delete,
+                  Sis_Associazione_Conseguenza_Veicolo_Update_Column.ConseguenzaVeicoloId,
                 ],
               },
               data: [
@@ -11923,10 +11965,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_extra_abitato: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Extra_Abitato_Constraint.AssociazioneLocalizzazioneExtraAbitatoPkey,
+                  Sis_Associazione_Localizzazione_Extra_Abitato_Constraint.AssociazioneLocalizzazioneExtraAbitatoPkey,
                 update_columns: [
-                  Associazione_Localizzazione_Extra_Abitato_Update_Column.Delete,
-                  Associazione_Localizzazione_Extra_Abitato_Update_Column.LocalizzazioneExtraAbitatoId,
+                  Sis_Associazione_Localizzazione_Extra_Abitato_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Extra_Abitato_Update_Column.LocalizzazioneExtraAbitatoId,
                 ],
               },
               data: [
@@ -11955,10 +11997,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_tipo_strade: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Tipo_Strada_Constraint.AssociazioneLocalizzazioneTipoStradaPkey,
+                  Sis_Associazione_Localizzazione_Tipo_Strada_Constraint.AssociazioneLocalizzazioneTipoStradaPkey,
                 update_columns: [
-                  Associazione_Localizzazione_Tipo_Strada_Update_Column.Delete,
-                  Associazione_Localizzazione_Tipo_Strada_Update_Column.LocalizzazioneTipoStradaId,
+                  Sis_Associazione_Localizzazione_Tipo_Strada_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Tipo_Strada_Update_Column.LocalizzazioneTipoStradaId,
                 ],
               },
               data: [
@@ -11987,10 +12029,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_particolarita_strada: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Particolarita_Strada_Constraint.AssociazioneLocalizzazioneParticolaritaStradaPkey,
+                  Sis_Associazione_Localizzazione_Particolarita_Strada_Constraint.AssociazioneLocalizzazioneParticolaritaStradaPkey,
                 update_columns: [
-                  Associazione_Localizzazione_Particolarita_Strada_Update_Column.Delete,
-                  Associazione_Localizzazione_Particolarita_Strada_Update_Column.LocalizzazioneParticolaritaStradaId,
+                  Sis_Associazione_Localizzazione_Particolarita_Strada_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Particolarita_Strada_Update_Column.LocalizzazioneParticolaritaStradaId,
                 ],
               },
               data: [
@@ -12019,10 +12061,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_pavimentazione: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Pavimentazione_Constraint.AssociazioneLocalizzazionePavimentazionePkey,
+                  Sis_Associazione_Localizzazione_Pavimentazione_Constraint.AssociazioneLocalizzazionePavimentazionePkey,
                 update_columns: [
-                  Associazione_Localizzazione_Pavimentazione_Update_Column.Delete,
-                  Associazione_Localizzazione_Pavimentazione_Update_Column.LocalizzazionePavimentazioneId,
+                  Sis_Associazione_Localizzazione_Pavimentazione_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Pavimentazione_Update_Column.LocalizzazionePavimentazioneId,
                 ],
               },
               data: [
@@ -12051,10 +12093,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_fondo_stradale: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Fondo_Stradale_Constraint.AssociazioneLocalizzazioneFondoStradalePkey,
+                  Sis_Associazione_Localizzazione_Fondo_Stradale_Constraint.AssociazioneLocalizzazioneFondoStradalePkey,
                 update_columns: [
-                  Associazione_Localizzazione_Fondo_Stradale_Update_Column.Delete,
-                  Associazione_Localizzazione_Fondo_Stradale_Update_Column.LocalizzazioneFondoStradaleId,
+                  Sis_Associazione_Localizzazione_Fondo_Stradale_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Fondo_Stradale_Update_Column.LocalizzazioneFondoStradaleId,
                 ],
               },
               data: [
@@ -12083,10 +12125,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_condizioni_atmosferiche: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Condizioni_Atmosferiche_Constraint.AssociazioneLocalizzazioneCondizioniAtmosferichePkey,
+                  Sis_Associazione_Localizzazione_Condizioni_Atmosferiche_Constraint.AssociazioneLocalizzazioneCondizioniAtmosferichePkey,
                 update_columns: [
-                  Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column.Delete,
-                  Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column.LocalizzazioneCondizioniAtmosfericheId,
+                  Sis_Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Condizioni_Atmosferiche_Update_Column.LocalizzazioneCondizioniAtmosfericheId,
                 ],
               },
               data: [
@@ -12115,10 +12157,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_visibilita: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Visibilita_Constraint.AssociazioneLocalizzazioneVisibilitaPkey,
+                  Sis_Associazione_Localizzazione_Visibilita_Constraint.AssociazioneLocalizzazioneVisibilitaPkey,
                 update_columns: [
-                  Associazione_Localizzazione_Visibilita_Update_Column.Delete,
-                  Associazione_Localizzazione_Visibilita_Update_Column.LocalizzazioneVisibilitaId,
+                  Sis_Associazione_Localizzazione_Visibilita_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Visibilita_Update_Column.LocalizzazioneVisibilitaId,
                 ],
               },
               data: [
@@ -12131,7 +12173,7 @@ export abstract class RisEdit extends Dirty {
                   return {
                     id: e.id,
                     localizzazione_visibilita_id:
-                      e.localizzazione_visibilitum.id,
+                      e.localizzazione_visibilita.id,
                     delete: true,
                   };
                 }),
@@ -12147,10 +12189,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_illuminazione: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Illuminazione_Constraint.AssociazioneLocalizzazioneIlluminazionePkey,
+                  Sis_Associazione_Localizzazione_Illuminazione_Constraint.AssociazioneLocalizzazioneIlluminazionePkey,
                 update_columns: [
-                  Associazione_Localizzazione_Illuminazione_Update_Column.Delete,
-                  Associazione_Localizzazione_Illuminazione_Update_Column.LocalizzazioneIlluminazioneId,
+                  Sis_Associazione_Localizzazione_Illuminazione_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Illuminazione_Update_Column.LocalizzazioneIlluminazioneId,
                 ],
               },
               data: [
@@ -12179,10 +12221,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_condizioni_traffico: {
               on_conflict: {
                 constraint:
-                  Associzione_Localizzazione_Condizioni_Traffico_Constraint.AssocizioneLocalizzazioneCondizioniTrafficoPkey,
+                  Sis_Associzione_Localizzazione_Condizioni_Traffico_Constraint.AssocizioneLocalizzazioneCondizioniTrafficoPkey,
                 update_columns: [
-                  Associzione_Localizzazione_Condizioni_Traffico_Update_Column.Delete,
-                  Associzione_Localizzazione_Condizioni_Traffico_Update_Column.LocalizzazioneCondizioniTrafficoId,
+                  Sis_Associzione_Localizzazione_Condizioni_Traffico_Update_Column.Delete,
+                  Sis_Associzione_Localizzazione_Condizioni_Traffico_Update_Column.LocalizzazioneCondizioniTrafficoId,
                 ],
               },
               data: [
@@ -12210,10 +12252,10 @@ export abstract class RisEdit extends Dirty {
             localizzazioni_altro: {
               on_conflict: {
                 constraint:
-                  Associazione_Localizzazione_Altro_Constraint.AssociazioneLocalizzazioneAltroPkey,
+                  Sis_Associazione_Localizzazione_Altro_Constraint.AssociazioneLocalizzazioneAltroPkey,
                 update_columns: [
-                  Associazione_Localizzazione_Altro_Update_Column.Delete,
-                  Associazione_Localizzazione_Altro_Update_Column.LocalizzazioneAltroId,
+                  Sis_Associazione_Localizzazione_Altro_Update_Column.Delete,
+                  Sis_Associazione_Localizzazione_Altro_Update_Column.LocalizzazioneAltroId,
                 ],
               },
               data: [
@@ -12261,20 +12303,20 @@ export abstract class RisEdit extends Dirty {
 
       proprietari: {
         on_conflict: {
-          constraint: Proprietario_Constraint.ProprietarioPkey,
+          constraint: Sis_Proprietario_Constraint.ProprietarioPkey,
           update_columns: [
-            Proprietario_Update_Column.TitoloId,
-            Proprietario_Update_Column.Nome,
-            Proprietario_Update_Column.Cognome,
-            Proprietario_Update_Column.SessoId,
-            Proprietario_Update_Column.Telefono,
-            Proprietario_Update_Column.NascitaData,
-            Proprietario_Update_Column.NascitaCittaId,
-            Proprietario_Update_Column.NascitaCittaAltro,
-            Proprietario_Update_Column.ResidenteIndirizzo,
-            Proprietario_Update_Column.ResidenteCittaId,
-            Proprietario_Update_Column.ResidenteCittaAltro,
-            Proprietario_Update_Column.Delete,
+            Sis_Proprietario_Update_Column.TitoloId,
+            Sis_Proprietario_Update_Column.Nome,
+            Sis_Proprietario_Update_Column.Cognome,
+            Sis_Proprietario_Update_Column.SessoId,
+            Sis_Proprietario_Update_Column.Telefono,
+            Sis_Proprietario_Update_Column.NascitaData,
+            Sis_Proprietario_Update_Column.NascitaCittaId,
+            Sis_Proprietario_Update_Column.NascitaCittaAltro,
+            Sis_Proprietario_Update_Column.ResidenteIndirizzo,
+            Sis_Proprietario_Update_Column.ResidenteCittaId,
+            Sis_Proprietario_Update_Column.ResidenteCittaAltro,
+            Sis_Proprietario_Update_Column.Delete,
           ],
         },
         data: [
@@ -12315,16 +12357,16 @@ export abstract class RisEdit extends Dirty {
       proprietari_giuridico: {
         on_conflict: {
           constraint:
-            Proprietario_Giuridico_Constraint.ProprietarioGiuridicoPkey,
+            Sis_Proprietario_Giuridico_Constraint.ProprietarioGiuridicoPkey,
           update_columns: [
-            Proprietario_Giuridico_Update_Column.RagioneSociale,
-            Proprietario_Giuridico_Update_Column.PartitaIva,
-            Proprietario_Giuridico_Update_Column.CodiceFiscale,
-            Proprietario_Giuridico_Update_Column.Telefono,
-            Proprietario_Giuridico_Update_Column.CittaId,
-            Proprietario_Giuridico_Update_Column.CittaAltro,
-            Proprietario_Giuridico_Update_Column.Indirizzo,
-            Proprietario_Giuridico_Update_Column.Delete,
+            Sis_Proprietario_Giuridico_Update_Column.RagioneSociale,
+            Sis_Proprietario_Giuridico_Update_Column.PartitaIva,
+            Sis_Proprietario_Giuridico_Update_Column.CodiceFiscale,
+            Sis_Proprietario_Giuridico_Update_Column.Telefono,
+            Sis_Proprietario_Giuridico_Update_Column.CittaId,
+            Sis_Proprietario_Giuridico_Update_Column.CittaAltro,
+            Sis_Proprietario_Giuridico_Update_Column.Indirizzo,
+            Sis_Proprietario_Giuridico_Update_Column.Delete,
           ],
         },
         data: [
@@ -12354,20 +12396,20 @@ export abstract class RisEdit extends Dirty {
 
       locatari: {
         on_conflict: {
-          constraint: Locatario_Constraint.LocatarioPkey,
+          constraint: Sis_Locatario_Constraint.LocatarioPkey,
           update_columns: [
-            Locatario_Update_Column.TitoloId,
-            Locatario_Update_Column.Nome,
-            Locatario_Update_Column.Cognome,
-            Locatario_Update_Column.SessoId,
-            Locatario_Update_Column.Telefono,
-            Locatario_Update_Column.NascitaData,
-            Locatario_Update_Column.NascitaCittaId,
-            Locatario_Update_Column.NascitaCittaAltro,
-            Locatario_Update_Column.ResidenteIndirizzo,
-            Locatario_Update_Column.ResidenteCittaId,
-            Locatario_Update_Column.ResidenteCittaAltro,
-            Locatario_Update_Column.Delete,
+            Sis_Locatario_Update_Column.TitoloId,
+            Sis_Locatario_Update_Column.Nome,
+            Sis_Locatario_Update_Column.Cognome,
+            Sis_Locatario_Update_Column.SessoId,
+            Sis_Locatario_Update_Column.Telefono,
+            Sis_Locatario_Update_Column.NascitaData,
+            Sis_Locatario_Update_Column.NascitaCittaId,
+            Sis_Locatario_Update_Column.NascitaCittaAltro,
+            Sis_Locatario_Update_Column.ResidenteIndirizzo,
+            Sis_Locatario_Update_Column.ResidenteCittaId,
+            Sis_Locatario_Update_Column.ResidenteCittaAltro,
+            Sis_Locatario_Update_Column.Delete,
           ],
         },
         data: [
@@ -12407,39 +12449,39 @@ export abstract class RisEdit extends Dirty {
 
       conducenti: {
         on_conflict: {
-          constraint: Conducente_Constraint.ConducentePkey,
+          constraint: Sis_Conducente_Constraint.ConducentePkey,
           update_columns: [
-            Conducente_Update_Column.TitoloId,
-            Conducente_Update_Column.Nome,
-            Conducente_Update_Column.Cognome,
-            Conducente_Update_Column.SessoId,
-            Conducente_Update_Column.Telefono,
-            Conducente_Update_Column.NascitaData,
-            Conducente_Update_Column.NascitaCittaId,
-            Conducente_Update_Column.NascitaCittaAltro,
-            Conducente_Update_Column.ResidenteIndirizzo,
-            Conducente_Update_Column.ResidenteCittaId,
-            Conducente_Update_Column.ResidenteCittaAltro,
-            Conducente_Update_Column.Delete,
-            Conducente_Update_Column.PatenteSinoaltroId,
-            Conducente_Update_Column.PatenteCategoriaAltro,
-            Conducente_Update_Column.PatenteAltroNote,
-            Conducente_Update_Column.PatenteNumero,
-            Conducente_Update_Column.PatenteRilasciataData,
-            Conducente_Update_Column.PatenteRilasciataValidaData,
-            Conducente_Update_Column.PatenteRilasciataDa,
-            Conducente_Update_Column.PatenteRilasciataDaCittaId,
-            Conducente_Update_Column.PatentePrescrizioni,
-            Conducente_Update_Column.CapTipo,
-            Conducente_Update_Column.CapNumero,
-            Conducente_Update_Column.CapRilasciataDaDdt,
-            Conducente_Update_Column.CapRilasciataDaDdtData,
-            Conducente_Update_Column.RichiestaEsami,
-            Conducente_Update_Column.RichiestaEsamiEffettuatiPresso,
-            Conducente_Update_Column.ProvaEtilometro,
-            Conducente_Update_Column.ProvaEtilometroEsito,
-            Conducente_Update_Column.ProvaNarcotest,
-            Conducente_Update_Column.ProvaNarcotestEsito,
+            Sis_Conducente_Update_Column.TitoloId,
+            Sis_Conducente_Update_Column.Nome,
+            Sis_Conducente_Update_Column.Cognome,
+            Sis_Conducente_Update_Column.SessoId,
+            Sis_Conducente_Update_Column.Telefono,
+            Sis_Conducente_Update_Column.NascitaData,
+            Sis_Conducente_Update_Column.NascitaCittaId,
+            Sis_Conducente_Update_Column.NascitaCittaAltro,
+            Sis_Conducente_Update_Column.ResidenteIndirizzo,
+            Sis_Conducente_Update_Column.ResidenteCittaId,
+            Sis_Conducente_Update_Column.ResidenteCittaAltro,
+            Sis_Conducente_Update_Column.Delete,
+            Sis_Conducente_Update_Column.PatenteSinoaltroId,
+            Sis_Conducente_Update_Column.PatenteCategoriaAltro,
+            Sis_Conducente_Update_Column.PatenteAltroNote,
+            Sis_Conducente_Update_Column.PatenteNumero,
+            Sis_Conducente_Update_Column.PatenteRilasciataData,
+            Sis_Conducente_Update_Column.PatenteRilasciataValidaData,
+            Sis_Conducente_Update_Column.PatenteRilasciataDa,
+            Sis_Conducente_Update_Column.PatenteRilasciataDaCittaId,
+            Sis_Conducente_Update_Column.PatentePrescrizioni,
+            Sis_Conducente_Update_Column.CapTipo,
+            Sis_Conducente_Update_Column.CapNumero,
+            Sis_Conducente_Update_Column.CapRilasciataDaDdt,
+            Sis_Conducente_Update_Column.CapRilasciataDaDdtData,
+            Sis_Conducente_Update_Column.RichiestaEsami,
+            Sis_Conducente_Update_Column.RichiestaEsamiEffettuatiPresso,
+            Sis_Conducente_Update_Column.ProvaEtilometro,
+            Sis_Conducente_Update_Column.ProvaEtilometroEsito,
+            Sis_Conducente_Update_Column.ProvaNarcotest,
+            Sis_Conducente_Update_Column.ProvaNarcotestEsito,
           ],
         },
         data: [
@@ -12481,10 +12523,10 @@ export abstract class RisEdit extends Dirty {
                       patente: {
                         on_conflict: {
                           constraint:
-                            Associazione_Patente_Constraint.AssociazionePatentePkey,
+                            Sis_Associazione_Patente_Constraint.AssociazionePatentePkey,
                           update_columns: [
-                            Associazione_Patente_Update_Column.Delete,
-                            Associazione_Patente_Update_Column.CategoriaId,
+                            Sis_Associazione_Patente_Update_Column.Delete,
+                            Sis_Associazione_Patente_Update_Column.CategoriaId,
                           ],
                         },
                         data: [
@@ -12570,31 +12612,31 @@ export abstract class RisEdit extends Dirty {
 
       trasportati: {
         on_conflict: {
-          constraint: Trasportato_Constraint.TrasportatoPkey,
+          constraint: Sis_Trasportato_Constraint.TrasportatoPkey,
           update_columns: [
-            Trasportato_Update_Column.TitoloId,
-            Trasportato_Update_Column.Nome,
-            Trasportato_Update_Column.Cognome,
-            Trasportato_Update_Column.SessoId,
-            Trasportato_Update_Column.Telefono,
-            Trasportato_Update_Column.NascitaData,
-            Trasportato_Update_Column.NascitaCittaId,
-            Trasportato_Update_Column.NascitaCittaAltro,
-            Trasportato_Update_Column.ResidenteIndirizzo,
-            Trasportato_Update_Column.ResidenteCittaId,
-            Trasportato_Update_Column.ResidenteCittaAltro,
-            Trasportato_Update_Column.Delete,
-            Trasportato_Update_Column.DocumentoTipo,
-            Trasportato_Update_Column.DocumentoNumero,
-            Trasportato_Update_Column.DocumentoRilasciatoDa,
-            Trasportato_Update_Column.DocumentoRilasciatoDaCittaId,
-            Trasportato_Update_Column.DocumentoRilasciatoData,
-            Trasportato_Update_Column.PosizioneId,
-            Trasportato_Update_Column.StatoId,
-            Trasportato_Update_Column.AccertamentoAttivazioneAirbag,
-            Trasportato_Update_Column.AccertamentoUsoCintura,
-            Trasportato_Update_Column.AccertamentoUsoCasco,
-            Trasportato_Update_Column.AccertamentoUsoSistemaBambini,
+            Sis_Trasportato_Update_Column.TitoloId,
+            Sis_Trasportato_Update_Column.Nome,
+            Sis_Trasportato_Update_Column.Cognome,
+            Sis_Trasportato_Update_Column.SessoId,
+            Sis_Trasportato_Update_Column.Telefono,
+            Sis_Trasportato_Update_Column.NascitaData,
+            Sis_Trasportato_Update_Column.NascitaCittaId,
+            Sis_Trasportato_Update_Column.NascitaCittaAltro,
+            Sis_Trasportato_Update_Column.ResidenteIndirizzo,
+            Sis_Trasportato_Update_Column.ResidenteCittaId,
+            Sis_Trasportato_Update_Column.ResidenteCittaAltro,
+            Sis_Trasportato_Update_Column.Delete,
+            Sis_Trasportato_Update_Column.DocumentoTipo,
+            Sis_Trasportato_Update_Column.DocumentoNumero,
+            Sis_Trasportato_Update_Column.DocumentoRilasciatoDa,
+            Sis_Trasportato_Update_Column.DocumentoRilasciatoDaCittaId,
+            Sis_Trasportato_Update_Column.DocumentoRilasciatoData,
+            Sis_Trasportato_Update_Column.PosizioneId,
+            Sis_Trasportato_Update_Column.StatoId,
+            Sis_Trasportato_Update_Column.AccertamentoAttivazioneAirbag,
+            Sis_Trasportato_Update_Column.AccertamentoUsoCintura,
+            Sis_Trasportato_Update_Column.AccertamentoUsoCasco,
+            Sis_Trasportato_Update_Column.AccertamentoUsoSistemaBambini,
           ],
         },
         data: [
@@ -12672,25 +12714,25 @@ export abstract class RisEdit extends Dirty {
 
       testimoni: {
         on_conflict: {
-          constraint: Testimone_Constraint.TestimonePkey,
+          constraint: Sis_Testimone_Constraint.TestimonePkey,
           update_columns: [
-            Testimone_Update_Column.TitoloId,
-            Testimone_Update_Column.Nome,
-            Testimone_Update_Column.Cognome,
-            Testimone_Update_Column.SessoId,
-            Testimone_Update_Column.Telefono,
-            Testimone_Update_Column.NascitaData,
-            Testimone_Update_Column.NascitaCittaId,
-            Testimone_Update_Column.NascitaCittaAltro,
-            Testimone_Update_Column.ResidenteIndirizzo,
-            Testimone_Update_Column.ResidenteCittaId,
-            Testimone_Update_Column.ResidenteCittaAltro,
-            Testimone_Update_Column.Delete,
-            Testimone_Update_Column.DocumentoTipo,
-            Testimone_Update_Column.DocumentoNumero,
-            Testimone_Update_Column.DocumentoRilasciatoDa,
-            Testimone_Update_Column.DocumentoRilasciatoDaCittaId,
-            Testimone_Update_Column.DocumentoRilasciatoData,
+            Sis_Testimone_Update_Column.TitoloId,
+            Sis_Testimone_Update_Column.Nome,
+            Sis_Testimone_Update_Column.Cognome,
+            Sis_Testimone_Update_Column.SessoId,
+            Sis_Testimone_Update_Column.Telefono,
+            Sis_Testimone_Update_Column.NascitaData,
+            Sis_Testimone_Update_Column.NascitaCittaId,
+            Sis_Testimone_Update_Column.NascitaCittaAltro,
+            Sis_Testimone_Update_Column.ResidenteIndirizzo,
+            Sis_Testimone_Update_Column.ResidenteCittaId,
+            Sis_Testimone_Update_Column.ResidenteCittaAltro,
+            Sis_Testimone_Update_Column.Delete,
+            Sis_Testimone_Update_Column.DocumentoTipo,
+            Sis_Testimone_Update_Column.DocumentoNumero,
+            Sis_Testimone_Update_Column.DocumentoRilasciatoDa,
+            Sis_Testimone_Update_Column.DocumentoRilasciatoDaCittaId,
+            Sis_Testimone_Update_Column.DocumentoRilasciatoData,
           ],
         },
         data: [
@@ -12748,25 +12790,25 @@ export abstract class RisEdit extends Dirty {
 
       pedoni: {
         on_conflict: {
-          constraint: Pedone_Constraint.PedonePkey,
+          constraint: Sis_Pedone_Constraint.PedonePkey,
           update_columns: [
-            Pedone_Update_Column.TitoloId,
-            Pedone_Update_Column.Nome,
-            Pedone_Update_Column.Cognome,
-            Pedone_Update_Column.SessoId,
-            Pedone_Update_Column.Telefono,
-            Pedone_Update_Column.NascitaData,
-            Pedone_Update_Column.NascitaCittaId,
-            Pedone_Update_Column.NascitaCittaAltro,
-            Pedone_Update_Column.ResidenteIndirizzo,
-            Pedone_Update_Column.ResidenteCittaId,
-            Pedone_Update_Column.ResidenteCittaAltro,
-            Pedone_Update_Column.Delete,
-            Pedone_Update_Column.DocumentoTipo,
-            Pedone_Update_Column.DocumentoNumero,
-            Pedone_Update_Column.DocumentoRilasciatoDa,
-            Pedone_Update_Column.DocumentoRilasciatoDaCittaId,
-            Pedone_Update_Column.DocumentoRilasciatoData,
+            Sis_Pedone_Update_Column.TitoloId,
+            Sis_Pedone_Update_Column.Nome,
+            Sis_Pedone_Update_Column.Cognome,
+            Sis_Pedone_Update_Column.SessoId,
+            Sis_Pedone_Update_Column.Telefono,
+            Sis_Pedone_Update_Column.NascitaData,
+            Sis_Pedone_Update_Column.NascitaCittaId,
+            Sis_Pedone_Update_Column.NascitaCittaAltro,
+            Sis_Pedone_Update_Column.ResidenteIndirizzo,
+            Sis_Pedone_Update_Column.ResidenteCittaId,
+            Sis_Pedone_Update_Column.ResidenteCittaAltro,
+            Sis_Pedone_Update_Column.Delete,
+            Sis_Pedone_Update_Column.DocumentoTipo,
+            Sis_Pedone_Update_Column.DocumentoNumero,
+            Sis_Pedone_Update_Column.DocumentoRilasciatoDa,
+            Sis_Pedone_Update_Column.DocumentoRilasciatoDaCittaId,
+            Sis_Pedone_Update_Column.DocumentoRilasciatoData,
           ],
         },
         data: [
@@ -12824,10 +12866,10 @@ export abstract class RisEdit extends Dirty {
 
       altri: {
         on_conflict: {
-          constraint: Altro_Constraint.AltroPkey,
+          constraint: Sis_Altro_Constraint.AltroPkey,
           update_columns: [
-            Altro_Update_Column.Note,
-            Altro_Update_Column.Delete,
+            Sis_Altro_Update_Column.Note,
+            Sis_Altro_Update_Column.Delete,
           ],
         },
         data: [
@@ -12847,92 +12889,92 @@ export abstract class RisEdit extends Dirty {
 
       veicoli: {
         on_conflict: {
-          constraint: Veicolo_Constraint.VeicoloPkey,
+          constraint: Sis_Veicolo_Constraint.VeicoloPkey,
           update_columns: [
-            Veicolo_Update_Column.ProprietarioId,
-            Veicolo_Update_Column.ProprietarioGiuridicoId,
-            Veicolo_Update_Column.LocatarioId,
-            Veicolo_Update_Column.ConducenteId,
-            Veicolo_Update_Column.StatoId,
-            Veicolo_Update_Column.TipologiaVeicoloId,
-            Veicolo_Update_Column.TipologiaVeicoloNote,
-            Veicolo_Update_Column.Marca,
-            Veicolo_Update_Column.Modello,
-            Veicolo_Update_Column.Targa,
-            Veicolo_Update_Column.NazioneId,
-            Veicolo_Update_Column.Telaio,
-            Veicolo_Update_Column.Cilindrata,
-            Veicolo_Update_Column.AlimentazioneId,
-            Veicolo_Update_Column.AlimentazioneNote,
-            Veicolo_Update_Column.Peso,
-            Veicolo_Update_Column.Tara,
-            Veicolo_Update_Column.PU,
-            Veicolo_Update_Column.PC,
-            Veicolo_Update_Column.Posti,
-            Veicolo_Update_Column.AnnoPrimaImmatricolazione,
-            Veicolo_Update_Column.ColoreCarrozzeria,
-            Veicolo_Update_Column.DataUltimaRevisione,
-            Veicolo_Update_Column.UsoVeicoloId,
-            Veicolo_Update_Column.CodiceMercePericolasa,
-            Veicolo_Update_Column.CodicePericolo,
-            Veicolo_Update_Column.RetrovisoreEsternoId,
-            Veicolo_Update_Column.DispositiviAcustici,
-            Veicolo_Update_Column.IndicatoriDirezione,
-            Veicolo_Update_Column.LuciArresto,
-            Veicolo_Update_Column.ImpiantoIlluminazione,
-            Veicolo_Update_Column.StatoPneumatici,
-            Veicolo_Update_Column.KmPercorsi,
-            Veicolo_Update_Column.MarciaInserita,
-            Veicolo_Update_Column.VelocitaPresunta,
-            Veicolo_Update_Column.CartaCircolazioneSinoaltroId,
-            Veicolo_Update_Column.CartaCircolazione,
-            Veicolo_Update_Column.CartaCircolazioneData,
-            Veicolo_Update_Column.CartaCircolazioneDdt,
-            Veicolo_Update_Column.AssicurazioneSinoaltroId,
-            Veicolo_Update_Column.AssicurazioneAltroNote,
-            Veicolo_Update_Column.AssicurazioneSocieta,
-            Veicolo_Update_Column.AssicurazioneAgenzia,
-            Veicolo_Update_Column.AssicurazionePolizza,
-            Veicolo_Update_Column.AssicurazioneDataInizio,
-            Veicolo_Update_Column.AssicurazioneDataFine,
-            Veicolo_Update_Column.AccertamentiUsoCinturaSinoaltroId,
-            Veicolo_Update_Column.AccertamentiUsoCinturaAltroNote,
-            Veicolo_Update_Column.AccertamentiUsoCascoSinoaltroId,
-            Veicolo_Update_Column.AccertamentiUsoCascoAltroNote,
-            Veicolo_Update_Column.AccertamentoUsoAntiabbandonoSinoaltroId,
-            Veicolo_Update_Column.AccertamentoUsoAntiabbandonoAltroNote,
-            Veicolo_Update_Column.AccertamentoUsoSistemaBambiniSinoaltroId,
-            Veicolo_Update_Column.AccertamentoUsoSistemaBambiniAltroNote,
-            Veicolo_Update_Column.DotazioneCinture,
-            Veicolo_Update_Column.DotazioneAirbag,
-            Veicolo_Update_Column.AccertamentiAbs,
-            Veicolo_Update_Column.AccertamentiAttivazione,
-            Veicolo_Update_Column.DanniSuVeicoloConstatati,
-            Veicolo_Update_Column.DanniDelVeicoloACose,
-            Veicolo_Update_Column.DanniDelVeicoloACoseRilievo,
-            Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDataInizio,
-            Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDataFine,
-            Veicolo_Update_Column.DanniDelVeicoloACoseRilievoPresente,
-            Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDifensore,
-            Veicolo_Update_Column.DestinazioneRitirato,
-            Veicolo_Update_Column.DestinazioneSequestrato,
-            Veicolo_Update_Column.DestinazioneDecisioneId,
-            Veicolo_Update_Column.DestinazioneDecisioneAltro,
-            Veicolo_Update_Column.DestinazioneTrasportatoPresso,
-            Veicolo_Update_Column.DestinazionePersonaAffidataria,
-            Veicolo_Update_Column.DestinazioneData,
-            Veicolo_Update_Column.TracciaSuolo,
-            Veicolo_Update_Column.TracciaSuoloAbs,
-            Veicolo_Update_Column.TracciaSuoloTipoId,
-            Veicolo_Update_Column.TracciaSuoloFrenataTipologiaId,
-            Veicolo_Update_Column.TracciaSuoloMetri,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneId,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneTipologiaId,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneMetri,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneIntensitaId,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneFormaId,
-            Veicolo_Update_Column.TracciaSuoloTerminazioneAndamentoId,
-            Veicolo_Update_Column.Delete,
+            Sis_Veicolo_Update_Column.ProprietarioId,
+            Sis_Veicolo_Update_Column.ProprietarioGiuridicoId,
+            Sis_Veicolo_Update_Column.LocatarioId,
+            Sis_Veicolo_Update_Column.ConducenteId,
+            Sis_Veicolo_Update_Column.StatoId,
+            Sis_Veicolo_Update_Column.TipologiaVeicoloId,
+            Sis_Veicolo_Update_Column.TipologiaVeicoloNote,
+            Sis_Veicolo_Update_Column.Marca,
+            Sis_Veicolo_Update_Column.Modello,
+            Sis_Veicolo_Update_Column.Targa,
+            Sis_Veicolo_Update_Column.NazioneId,
+            Sis_Veicolo_Update_Column.Telaio,
+            Sis_Veicolo_Update_Column.Cilindrata,
+            Sis_Veicolo_Update_Column.AlimentazioneId,
+            Sis_Veicolo_Update_Column.AlimentazioneNote,
+            Sis_Veicolo_Update_Column.Peso,
+            Sis_Veicolo_Update_Column.Tara,
+            Sis_Veicolo_Update_Column.PU,
+            Sis_Veicolo_Update_Column.PC,
+            Sis_Veicolo_Update_Column.Posti,
+            Sis_Veicolo_Update_Column.AnnoPrimaImmatricolazione,
+            Sis_Veicolo_Update_Column.ColoreCarrozzeria,
+            Sis_Veicolo_Update_Column.DataUltimaRevisione,
+            Sis_Veicolo_Update_Column.UsoVeicoloId,
+            Sis_Veicolo_Update_Column.CodiceMercePericolasa,
+            Sis_Veicolo_Update_Column.CodicePericolo,
+            Sis_Veicolo_Update_Column.RetrovisoreEsternoId,
+            Sis_Veicolo_Update_Column.DispositiviAcustici,
+            Sis_Veicolo_Update_Column.IndicatoriDirezione,
+            Sis_Veicolo_Update_Column.LuciArresto,
+            Sis_Veicolo_Update_Column.ImpiantoIlluminazione,
+            Sis_Veicolo_Update_Column.StatoPneumatici,
+            Sis_Veicolo_Update_Column.KmPercorsi,
+            Sis_Veicolo_Update_Column.MarciaInserita,
+            Sis_Veicolo_Update_Column.VelocitaPresunta,
+            Sis_Veicolo_Update_Column.CartaCircolazioneSinoaltroId,
+            Sis_Veicolo_Update_Column.CartaCircolazione,
+            Sis_Veicolo_Update_Column.CartaCircolazioneData,
+            Sis_Veicolo_Update_Column.CartaCircolazioneDdt,
+            Sis_Veicolo_Update_Column.AssicurazioneSinoaltroId,
+            Sis_Veicolo_Update_Column.AssicurazioneAltroNote,
+            Sis_Veicolo_Update_Column.AssicurazioneSocieta,
+            Sis_Veicolo_Update_Column.AssicurazioneAgenzia,
+            Sis_Veicolo_Update_Column.AssicurazionePolizza,
+            Sis_Veicolo_Update_Column.AssicurazioneDataInizio,
+            Sis_Veicolo_Update_Column.AssicurazioneDataFine,
+            Sis_Veicolo_Update_Column.AccertamentiUsoCinturaSinoaltroId,
+            Sis_Veicolo_Update_Column.AccertamentiUsoCinturaAltroNote,
+            Sis_Veicolo_Update_Column.AccertamentiUsoCascoSinoaltroId,
+            Sis_Veicolo_Update_Column.AccertamentiUsoCascoAltroNote,
+            Sis_Veicolo_Update_Column.AccertamentoUsoAntiabbandonoSinoaltroId,
+            Sis_Veicolo_Update_Column.AccertamentoUsoAntiabbandonoAltroNote,
+            Sis_Veicolo_Update_Column.AccertamentoUsoSistemaBambiniSinoaltroId,
+            Sis_Veicolo_Update_Column.AccertamentoUsoSistemaBambiniAltroNote,
+            Sis_Veicolo_Update_Column.DotazioneCinture,
+            Sis_Veicolo_Update_Column.DotazioneAirbag,
+            Sis_Veicolo_Update_Column.AccertamentiAbs,
+            Sis_Veicolo_Update_Column.AccertamentiAttivazione,
+            Sis_Veicolo_Update_Column.DanniSuVeicoloConstatati,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACose,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACoseRilievo,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDataInizio,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDataFine,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACoseRilievoPresente,
+            Sis_Veicolo_Update_Column.DanniDelVeicoloACoseRilievoDifensore,
+            Sis_Veicolo_Update_Column.DestinazioneRitirato,
+            Sis_Veicolo_Update_Column.DestinazioneSequestrato,
+            Sis_Veicolo_Update_Column.DestinazioneDecisioneId,
+            Sis_Veicolo_Update_Column.DestinazioneDecisioneAltro,
+            Sis_Veicolo_Update_Column.DestinazioneTrasportatoPresso,
+            Sis_Veicolo_Update_Column.DestinazionePersonaAffidataria,
+            Sis_Veicolo_Update_Column.DestinazioneData,
+            Sis_Veicolo_Update_Column.TracciaSuolo,
+            Sis_Veicolo_Update_Column.TracciaSuoloAbs,
+            Sis_Veicolo_Update_Column.TracciaSuoloTipoId,
+            Sis_Veicolo_Update_Column.TracciaSuoloFrenataTipologiaId,
+            Sis_Veicolo_Update_Column.TracciaSuoloMetri,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneId,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneTipologiaId,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneMetri,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneIntensitaId,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneFormaId,
+            Sis_Veicolo_Update_Column.TracciaSuoloTerminazioneAndamentoId,
+            Sis_Veicolo_Update_Column.Delete,
           ],
         },
         data: [
@@ -12960,10 +13002,10 @@ export abstract class RisEdit extends Dirty {
                       trasportati: {
                         on_conflict: {
                           constraint:
-                            Trasportati_Veicolo_Constraint.TrasportatiVeicoloPkey,
+                            Sis_Trasportati_Veicolo_Constraint.TrasportatiVeicoloPkey,
                           update_columns: [
-                            Trasportati_Veicolo_Update_Column.Delete,
-                            Trasportati_Veicolo_Update_Column.TrasportatoId,
+                            Sis_Trasportati_Veicolo_Update_Column.Delete,
+                            Sis_Trasportati_Veicolo_Update_Column.TrasportatoId,
                           ],
                         },
                         data: [
@@ -13224,13 +13266,13 @@ export abstract class RisEdit extends Dirty {
                 ...(e.traccia_suolo_abs
                   ? { traccia_suolo_abs: e.traccia_suolo_abs }
                   : {}),
-                ...(e.traccia_suolo_tipologium
-                  ? { traccia_suolo_tipo_id: e.traccia_suolo_tipologium.id }
+                ...(e.traccia_suolo_tipologia
+                  ? { traccia_suolo_tipo_id: e.traccia_suolo_tipologia.id }
                   : {}),
-                ...(e.traccia_suolo_frenata_tipologium
+                ...(e.traccia_suolo_frenata_tipologia
                   ? {
                       traccia_suolo_frenata_tipologia_id:
-                        e.traccia_suolo_frenata_tipologium.id,
+                        e.traccia_suolo_frenata_tipologia.id,
                     }
                   : {}),
 
@@ -13243,10 +13285,10 @@ export abstract class RisEdit extends Dirty {
                         e.traccia_suolo_terminazione.id,
                     }
                   : {}),
-                ...(e.traccia_suolo_terminazione_tipologium
+                ...(e.traccia_suolo_terminazione_tipologia
                   ? {
                       traccia_suolo_terminazione_tipologia_id:
-                        e.traccia_suolo_terminazione_tipologium.id,
+                        e.traccia_suolo_terminazione_tipologia.id,
                     }
                   : {}),
                 ...(e.traccia_suolo_terminazione_metri
@@ -13255,10 +13297,10 @@ export abstract class RisEdit extends Dirty {
                         e.traccia_suolo_terminazione_metri,
                     }
                   : {}),
-                ...(e.traccia_suolo_terminazione_intensitum
+                ...(e.traccia_suolo_terminazione_intensita
                   ? {
                       traccia_suolo_terminazione_intensita_id:
-                        e.traccia_suolo_terminazione_intensitum.id,
+                        e.traccia_suolo_terminazione_intensita.id,
                     }
                   : {}),
                 ...(e.traccia_suolo_terminazione_forma
@@ -13283,21 +13325,21 @@ export abstract class RisEdit extends Dirty {
 
       infrazioni: {
         on_conflict: {
-          constraint: Infrazione_Constraint.InfrazionePkey,
+          constraint: Sis_Infrazione_Constraint.InfrazionePkey,
           update_columns: [
-            Infrazione_Update_Column.ConducenteId,
-            Infrazione_Update_Column.PedoneId,
-            Infrazione_Update_Column.VeicoloId,
-            Infrazione_Update_Column.VerbaleN,
-            Infrazione_Update_Column.VerbaleData,
-            Infrazione_Update_Column.Articolo,
-            Infrazione_Update_Column.Note,
-            Infrazione_Update_Column.UtgPrefettura,
-            Infrazione_Update_Column.DataTrasmissioneRapporto,
-            Infrazione_Update_Column.UfficiProvinciale,
-            Infrazione_Update_Column.Art_80Dtt,
-            Infrazione_Update_Column.Art_80Data,
-            Infrazione_Update_Column.Delete,
+            Sis_Infrazione_Update_Column.ConducenteId,
+            Sis_Infrazione_Update_Column.PedoneId,
+            Sis_Infrazione_Update_Column.VeicoloId,
+            Sis_Infrazione_Update_Column.VerbaleN,
+            Sis_Infrazione_Update_Column.VerbaleData,
+            Sis_Infrazione_Update_Column.Articolo,
+            Sis_Infrazione_Update_Column.Note,
+            Sis_Infrazione_Update_Column.UtgPrefettura,
+            Sis_Infrazione_Update_Column.DataTrasmissioneRapporto,
+            Sis_Infrazione_Update_Column.UfficiProvinciale,
+            Sis_Infrazione_Update_Column.Art_80Dtt,
+            Sis_Infrazione_Update_Column.Art_80Data,
+            Sis_Infrazione_Update_Column.Delete,
           ],
         },
         data: [
@@ -13333,36 +13375,36 @@ export abstract class RisEdit extends Dirty {
       },
       infortunati: {
         on_conflict: {
-          constraint: Infortunato_Constraint.InfortunatoPkey,
+          constraint: Sis_Infortunato_Constraint.InfortunatoPkey,
           update_columns: [
-            Infortunato_Update_Column.VeicoloId,
-            Infortunato_Update_Column.ConducenteId,
-            Infortunato_Update_Column.TrasportatoId,
-            Infortunato_Update_Column.PedoneId,
-            Infortunato_Update_Column.TitoloId,
-            Infortunato_Update_Column.Nome,
-            Infortunato_Update_Column.Cognome,
-            Infortunato_Update_Column.SessoId,
-            Infortunato_Update_Column.Telefono,
-            Infortunato_Update_Column.NascitaData,
-            Infortunato_Update_Column.NascitaCittaId,
-            Infortunato_Update_Column.NascitaCittaAltro,
-            Infortunato_Update_Column.ResidenteIndirizzo,
-            Infortunato_Update_Column.ResidenteCittaId,
-            Infortunato_Update_Column.ResidenteCittaAltro,
-            Infortunato_Update_Column.RifiutaCureImmediate,
-            Infortunato_Update_Column.DanniLamentati,
-            Infortunato_Update_Column.CuraDaParte,
-            Infortunato_Update_Column.OspedaleRicoverato,
-            Infortunato_Update_Column.OspedaleReferto,
-            Infortunato_Update_Column.OspedaleRefertoRilasciatoDa,
-            Infortunato_Update_Column.OspedaleDiagnosi,
-            Infortunato_Update_Column.OspedalePrognosi,
-            Infortunato_Update_Column.OspedaleAltro,
-            Infortunato_Update_Column.TrasportatoAmbulanzaId,
-            Infortunato_Update_Column.TrasportatoRichiesta,
-            Infortunato_Update_Column.TrasportatoTargaAuto,
-            Infortunato_Update_Column.Delete,
+            Sis_Infortunato_Update_Column.VeicoloId,
+            Sis_Infortunato_Update_Column.ConducenteId,
+            Sis_Infortunato_Update_Column.TrasportatoId,
+            Sis_Infortunato_Update_Column.PedoneId,
+            Sis_Infortunato_Update_Column.TitoloId,
+            Sis_Infortunato_Update_Column.Nome,
+            Sis_Infortunato_Update_Column.Cognome,
+            Sis_Infortunato_Update_Column.SessoId,
+            Sis_Infortunato_Update_Column.Telefono,
+            Sis_Infortunato_Update_Column.NascitaData,
+            Sis_Infortunato_Update_Column.NascitaCittaId,
+            Sis_Infortunato_Update_Column.NascitaCittaAltro,
+            Sis_Infortunato_Update_Column.ResidenteIndirizzo,
+            Sis_Infortunato_Update_Column.ResidenteCittaId,
+            Sis_Infortunato_Update_Column.ResidenteCittaAltro,
+            Sis_Infortunato_Update_Column.RifiutaCureImmediate,
+            Sis_Infortunato_Update_Column.DanniLamentati,
+            Sis_Infortunato_Update_Column.CuraDaParte,
+            Sis_Infortunato_Update_Column.OspedaleRicoverato,
+            Sis_Infortunato_Update_Column.OspedaleReferto,
+            Sis_Infortunato_Update_Column.OspedaleRefertoRilasciatoDa,
+            Sis_Infortunato_Update_Column.OspedaleDiagnosi,
+            Sis_Infortunato_Update_Column.OspedalePrognosi,
+            Sis_Infortunato_Update_Column.OspedaleAltro,
+            Sis_Infortunato_Update_Column.TrasportatoAmbulanzaId,
+            Sis_Infortunato_Update_Column.TrasportatoRichiesta,
+            Sis_Infortunato_Update_Column.TrasportatoTargaAuto,
+            Sis_Infortunato_Update_Column.Delete,
           ],
         },
         data: [
@@ -13444,10 +13486,10 @@ export abstract class RisEdit extends Dirty {
                       informazioni: {
                         on_conflict: {
                           constraint:
-                            Associazione_Informazioni_Infortunato_Constraint.AssociazioneInformazioniInfortunatoPkey,
+                            Sis_Associazione_Informazioni_Infortunato_Constraint.AssociazioneInformazioniInfortunatoPkey,
                           update_columns: [
-                            Associazione_Informazioni_Infortunato_Update_Column.Delete,
-                            Associazione_Informazioni_Infortunato_Update_Column.InformazioneId,
+                            Sis_Associazione_Informazioni_Infortunato_Update_Column.Delete,
+                            Sis_Associazione_Informazioni_Infortunato_Update_Column.InformazioneId,
                           ],
                         },
                         data: [
@@ -13482,10 +13524,10 @@ export abstract class RisEdit extends Dirty {
             decessi_tipologie: {
               on_conflict: {
                 constraint:
-                  Associazione_Decessi_Tipologie_Constraint.AssociazioneDecessiTipologiePkey,
+                  Sis_Associazione_Decessi_Tipologie_Constraint.AssociazioneDecessiTipologiePkey,
                 update_columns: [
-                  Associazione_Decessi_Tipologie_Update_Column.Delete,
-                  Associazione_Decessi_Tipologie_Update_Column.DecessiTipologiaId,
+                  Sis_Associazione_Decessi_Tipologie_Update_Column.Delete,
+                  Sis_Associazione_Decessi_Tipologie_Update_Column.DecessiTipologiaId,
                 ],
               },
               data: [
@@ -13525,25 +13567,25 @@ export abstract class RisEdit extends Dirty {
 
       accertamenti: {
         on_conflict: {
-          constraint: Accertamento_Constraint.AccertamentoPkey,
+          constraint: Sis_Accertamento_Constraint.AccertamentoPkey,
           update_columns: [
-            Accertamento_Update_Column.CentroAbitato,
-            Accertamento_Update_Column.Data,
-            Accertamento_Update_Column.DirezioneA,
-            Accertamento_Update_Column.DirezioneDa,
-            Accertamento_Update_Column.TipologiaStradaCarreggiateN,
-            Accertamento_Update_Column.TipologiaStradaCarreggiate,
-            Accertamento_Update_Column.TipologiaStradaConformazione,
-            Accertamento_Update_Column.DescrizionePianoPavimentazione,
-            Accertamento_Update_Column.DescrizionePianoStatoFondo,
-            Accertamento_Update_Column.DescrizionePianoNote,
-            Accertamento_Update_Column.CondizioniMeteoTempo,
-            Accertamento_Update_Column.CondizioniMeteoVisibilitaLimitata,
-            Accertamento_Update_Column.CondizioniMeteoVisibilitaLimitataTipologiaMetri,
-            Accertamento_Update_Column.CondizioniMeteoIlluminazione,
-            Accertamento_Update_Column.Traffico,
-            Accertamento_Update_Column.Segnaletica,
-            Accertamento_Update_Column.Delete,
+            Sis_Accertamento_Update_Column.CentroAbitato,
+            Sis_Accertamento_Update_Column.Data,
+            Sis_Accertamento_Update_Column.DirezioneA,
+            Sis_Accertamento_Update_Column.DirezioneDa,
+            Sis_Accertamento_Update_Column.TipologiaStradaCarreggiateN,
+            Sis_Accertamento_Update_Column.TipologiaStradaCarreggiate,
+            Sis_Accertamento_Update_Column.TipologiaStradaConformazione,
+            Sis_Accertamento_Update_Column.DescrizionePianoPavimentazione,
+            Sis_Accertamento_Update_Column.DescrizionePianoStatoFondo,
+            Sis_Accertamento_Update_Column.DescrizionePianoNote,
+            Sis_Accertamento_Update_Column.CondizioniMeteoTempo,
+            Sis_Accertamento_Update_Column.CondizioniMeteoVisibilitaLimitata,
+            Sis_Accertamento_Update_Column.CondizioniMeteoVisibilitaLimitataTipologiaMetri,
+            Sis_Accertamento_Update_Column.CondizioniMeteoIlluminazione,
+            Sis_Accertamento_Update_Column.Traffico,
+            Sis_Accertamento_Update_Column.Segnaletica,
+            Sis_Accertamento_Update_Column.Delete,
           ],
         },
         data: [
@@ -13620,10 +13662,10 @@ export abstract class RisEdit extends Dirty {
                     condizioni_meteo_visibilita_limitata_tipologia: {
                       on_conflict: {
                         constraint:
-                          Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Constraint.AssegnazioneCondizioniMeteoVisibilitaLimitataTipologiPkey,
+                          Sis_Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Constraint.AssegnazioneCondizioniMeteoVisibilitaLimitataTipologiPkey,
                         update_columns: [
-                          Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column.Delete,
-                          Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column.CondizioniMeteoVisibilitaLimitataTipologiaId,
+                          Sis_Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column.Delete,
+                          Sis_Assegnazione_Condizioni_Meteo_Visibilita_Limitata_Tipologia_Update_Column.CondizioniMeteoVisibilitaLimitataTipologiaId,
                         ],
                       },
                       data: [
@@ -13653,36 +13695,36 @@ export abstract class RisEdit extends Dirty {
       },
       verbali: {
         on_conflict: {
-          constraint: Verbale_Constraint.VerbalePkey,
+          constraint: Sis_Verbale_Constraint.VerbalePkey,
           update_columns: [
-            Verbale_Update_Column.TipologiaVerbaleId,
-            Verbale_Update_Column.Data,
-            Verbale_Update_Column.ProprietarioId,
-            Verbale_Update_Column.LocatarioId,
-            Verbale_Update_Column.ConducenteId,
-            Verbale_Update_Column.TrasportatoId,
-            Verbale_Update_Column.PedoneId,
-            Verbale_Update_Column.TestimoneId,
-            Verbale_Update_Column.VeicoloId,
-            Verbale_Update_Column.TitoloId,
-            Verbale_Update_Column.Nome,
-            Verbale_Update_Column.Cognome,
-            Verbale_Update_Column.SessoId,
-            Verbale_Update_Column.Telefono,
-            Verbale_Update_Column.NascitaData,
-            Verbale_Update_Column.NascitaCittaId,
-            Verbale_Update_Column.NascitaCittaAltro,
-            Verbale_Update_Column.ResidenteIndirizzo,
-            Verbale_Update_Column.ResidenteCittaId,
-            Verbale_Update_Column.ResidenteCittaAltro,
-            Verbale_Update_Column.DocumentoTipo,
-            Verbale_Update_Column.DocumentoNumero,
-            Verbale_Update_Column.DocumentoRilasciatoDa,
-            Verbale_Update_Column.DocumentoRilasciatoDaCittaId,
-            Verbale_Update_Column.DocumentoRilasciatoData,
-            Verbale_Update_Column.Dichiarazione,
-            Verbale_Update_Column.MotivazioneNoSottoscrizione,
-            Verbale_Update_Column.Delete,
+            Sis_Verbale_Update_Column.TipologiaVerbaleId,
+            Sis_Verbale_Update_Column.Data,
+            Sis_Verbale_Update_Column.ProprietarioId,
+            Sis_Verbale_Update_Column.LocatarioId,
+            Sis_Verbale_Update_Column.ConducenteId,
+            Sis_Verbale_Update_Column.TrasportatoId,
+            Sis_Verbale_Update_Column.PedoneId,
+            Sis_Verbale_Update_Column.TestimoneId,
+            Sis_Verbale_Update_Column.VeicoloId,
+            Sis_Verbale_Update_Column.TitoloId,
+            Sis_Verbale_Update_Column.Nome,
+            Sis_Verbale_Update_Column.Cognome,
+            Sis_Verbale_Update_Column.SessoId,
+            Sis_Verbale_Update_Column.Telefono,
+            Sis_Verbale_Update_Column.NascitaData,
+            Sis_Verbale_Update_Column.NascitaCittaId,
+            Sis_Verbale_Update_Column.NascitaCittaAltro,
+            Sis_Verbale_Update_Column.ResidenteIndirizzo,
+            Sis_Verbale_Update_Column.ResidenteCittaId,
+            Sis_Verbale_Update_Column.ResidenteCittaAltro,
+            Sis_Verbale_Update_Column.DocumentoTipo,
+            Sis_Verbale_Update_Column.DocumentoNumero,
+            Sis_Verbale_Update_Column.DocumentoRilasciatoDa,
+            Sis_Verbale_Update_Column.DocumentoRilasciatoDaCittaId,
+            Sis_Verbale_Update_Column.DocumentoRilasciatoData,
+            Sis_Verbale_Update_Column.Dichiarazione,
+            Sis_Verbale_Update_Column.MotivazioneNoSottoscrizione,
+            Sis_Verbale_Update_Column.Delete,
           ],
         },
         data: [
@@ -13765,12 +13807,12 @@ export abstract class RisEdit extends Dirty {
         data: [],
       },
       ...(event.type == 'protocolla'
-        ? { stato: _Stato_Ris_Enum.Protocollato }
+        ? { stato: Sis__Stato_Ris_Enum.Protocollato }
         : {}),
       ...(event.type == 'compila'
-        ? { stato: _Stato_Ris_Enum.Compilazione }
+        ? { stato: Sis__Stato_Ris_Enum.Compilazione }
         : {}),
-      ...(event.type == 'invia' ? { stato: _Stato_Ris_Enum.Inviato } : {}),
+      ...(event.type == 'invia' ? { stato: Sis__Stato_Ris_Enum.Inviato } : {}),
       ...(this.model.localizzazione.municipalita
         ? { municipalita_id: this.model.localizzazione.municipalita.id }
         : {}),
@@ -13830,16 +13872,16 @@ export abstract class RisEdit extends Dirty {
       posizionamento_toponimo: {
         on_conflict: {
           constraint:
-            Posizionamento_Toponimo_Sis_Constraint.PosizionamentoToponimoSisPkey,
+            Gis_Posizionamento_Toponimo_Constraint.PosizionamentoToponimoPkey,
           update_columns: [
-            Posizionamento_Toponimo_Sis_Update_Column.Civico,
-            Posizionamento_Toponimo_Sis_Update_Column.Ipi,
-            Posizionamento_Toponimo_Sis_Update_Column.Km,
-            Posizionamento_Toponimo_Sis_Update_Column.Connessione,
-            Posizionamento_Toponimo_Sis_Update_Column.Note,
-            Posizionamento_Toponimo_Sis_Update_Column.Geoloc,
-            Posizionamento_Toponimo_Sis_Update_Column.TipologiaId,
-            Posizionamento_Toponimo_Sis_Update_Column.SpecificaId,
+            Gis_Posizionamento_Toponimo_Update_Column.Civico,
+            Gis_Posizionamento_Toponimo_Update_Column.Ipi,
+            Gis_Posizionamento_Toponimo_Update_Column.Km,
+            Gis_Posizionamento_Toponimo_Update_Column.Connessione,
+            Gis_Posizionamento_Toponimo_Update_Column.Note,
+            Gis_Posizionamento_Toponimo_Update_Column.Geoloc,
+            Gis_Posizionamento_Toponimo_Update_Column.TipologiaId,
+            Gis_Posizionamento_Toponimo_Update_Column.SpecificaId,
           ],
         },
         data: this.model.localizzazione.posizionamento_toponimo
@@ -13902,10 +13944,10 @@ export abstract class RisEdit extends Dirty {
       },
       protocollo: {
         on_conflict: {
-          constraint: Protocollo_Sis_Constraint.ProtocolloSisPkey,
+          constraint: Protocollo_Protocollo_Constraint.ProtocolloPkey,
           update_columns: [
-            Protocollo_Sis_Update_Column.MittenteId,
-            Protocollo_Sis_Update_Column.Note,
+            Protocollo_Protocollo_Update_Column.MittenteId,
+            Protocollo_Protocollo_Update_Column.Note,
           ],
         },
         data: {
@@ -13916,11 +13958,11 @@ export abstract class RisEdit extends Dirty {
           destinatari: {
             on_conflict: {
               constraint:
-                Protocollo_Destinatario_Sis_Constraint.ProtocolloDestinatarioSisPkey,
+                Protocollo_Protocollo_Destinatario_Constraint.ProtocolloDestinatarioPkey,
               update_columns: [
-                Protocollo_Destinatario_Sis_Update_Column.EsternoId,
-                Protocollo_Destinatario_Sis_Update_Column.InternoId,
-                Protocollo_Destinatario_Sis_Update_Column.Delete,
+                Protocollo_Protocollo_Destinatario_Update_Column.EsternoId,
+                Protocollo_Protocollo_Destinatario_Update_Column.InternoId,
+                Protocollo_Protocollo_Destinatario_Update_Column.Delete,
               ],
             },
             data: [
@@ -13942,12 +13984,12 @@ export abstract class RisEdit extends Dirty {
                         destinatario_esterno: {
                           on_conflict: {
                             constraint:
-                              Protocollo_Destinatario_Esterno_Sis_Constraint.ProtocolloDestinatarioEsternoSisPkey,
+                              Protocollo_Protocollo_Destinatario_Esterno_Constraint.ProtocolloDestinatarioEsternoPkey,
                             update_columns: [
-                              Protocollo_Destinatario_Esterno_Sis_Update_Column.Nome,
-                              Protocollo_Destinatario_Esterno_Sis_Update_Column.Cognome,
-                              Protocollo_Destinatario_Esterno_Sis_Update_Column.Email,
-                              Protocollo_Destinatario_Esterno_Sis_Update_Column.CodiceFiscale,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Nome,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Cognome,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.Email,
+                              Protocollo_Protocollo_Destinatario_Esterno_Update_Column.CodiceFiscale,
                             ],
                           },
                           data: destinatario.destinatario_esterno
@@ -14156,7 +14198,7 @@ export abstract class RisEdit extends Dirty {
   }
 
   async baseInit(
-    where: Exact<{ where: Ris_Bool_Exp }>,
+    where: Exact<{ where: Sis_Ris_Bool_Exp }>,
     mapInit?: any,
     repeatInit?: any
   ) {
@@ -14165,7 +14207,7 @@ export abstract class RisEdit extends Dirty {
     this.model = await firstValueFrom(
       this._risGQL.watch(where).valueChanges.pipe(
         map(async (result) => {
-          let ris = result.data?.ris[0];
+          let ris = result.data?.sis_ris[0];
           if (ris === undefined) {
             this._loaderService.stop();
             this._router.navigate(['/', '404']);
@@ -14363,7 +14405,7 @@ export abstract class RisEdit extends Dirty {
               localizzazione_condizioni_atmosferiche_note:
                 ris.localizzazione_condizioni_atmosferiche_note,
               localizzazioni_visibilita: ris.localizzazioni_visibilita?.map(
-                (e) => Object.assign({}, e.localizzazione_visibilitum)
+                (e) => Object.assign({}, e.localizzazione_visibilita)
               ),
               localizzazione_visibilita_note:
                 ris.localizzazione_visibilita_note,
@@ -14743,18 +14785,18 @@ export abstract class RisEdit extends Dirty {
                   destinazione_data: veicolo.destinazione_data,
                   traccia_suolo: veicolo.traccia_suolo,
                   traccia_suolo_abs: veicolo.traccia_suolo_abs,
-                  traccia_suolo_tipologium: veicolo.traccia_suolo_tipologium,
-                  traccia_suolo_frenata_tipologium:
-                    veicolo.traccia_suolo_frenata_tipologium,
+                  traccia_suolo_tipologia: veicolo.traccia_suolo_tipologia,
+                  traccia_suolo_frenata_tipologia:
+                    veicolo.traccia_suolo_frenata_tipologia,
                   traccia_suolo_metri: veicolo.traccia_suolo_metri,
                   traccia_suolo_terminazione:
                     veicolo.traccia_suolo_terminazione,
-                  traccia_suolo_terminazione_tipologium:
-                    veicolo.traccia_suolo_terminazione_tipologium,
+                  traccia_suolo_terminazione_tipologia:
+                    veicolo.traccia_suolo_terminazione_tipologia,
                   traccia_suolo_terminazione_metri:
                     veicolo.traccia_suolo_terminazione_metri,
-                  traccia_suolo_terminazione_intensitum:
-                    veicolo.traccia_suolo_terminazione_intensitum,
+                  traccia_suolo_terminazione_intensita:
+                    veicolo.traccia_suolo_terminazione_intensita,
                   traccia_suolo_terminazione_forma:
                     veicolo.traccia_suolo_terminazione_forma,
                   traccia_suolo_terminazione_andamento:
