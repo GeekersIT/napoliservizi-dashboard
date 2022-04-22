@@ -148,6 +148,7 @@ $subbar: 64px;
 
 
 formly-group.display-flex {
+
   formly-field:not(:empty):not(.invisible){
     padding-left: 10px;
   }

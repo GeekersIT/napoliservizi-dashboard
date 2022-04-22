@@ -367,7 +367,7 @@ export class SegnalazioniProtocollateCompletaComponent
         //   },
         // }]
         //     }],
-        ...this.steps.filter((step) => step.key != 'geolocalizzazione'),
+        ...this.steps,
       ],
     },
   ];

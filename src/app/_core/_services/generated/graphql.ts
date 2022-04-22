@@ -1185,7 +1185,6 @@ export type Agcos_Agcos = {
   esito_sentenza?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   indicazione_approssimativa?: Maybe<Scalars['String']>;
-  inter?: Maybe<Scalars['String']>;
   latitudine?: Maybe<Scalars['float8']>;
   longitudine?: Maybe<Scalars['float8']>;
   presenza_acqua?: Maybe<Scalars['Boolean']>;
@@ -1256,7 +1255,6 @@ export type Agcos_Agcos_Bool_Exp = {
   esito_sentenza?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   indicazione_approssimativa?: Maybe<String_Comparison_Exp>;
-  inter?: Maybe<String_Comparison_Exp>;
   latitudine?: Maybe<Float8_Comparison_Exp>;
   longitudine?: Maybe<Float8_Comparison_Exp>;
   presenza_acqua?: Maybe<Boolean_Comparison_Exp>;
@@ -1298,7 +1296,6 @@ export type Agcos_Agcos_Insert_Input = {
   esito_sentenza?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   indicazione_approssimativa?: Maybe<Scalars['String']>;
-  inter?: Maybe<Scalars['String']>;
   latitudine?: Maybe<Scalars['float8']>;
   longitudine?: Maybe<Scalars['float8']>;
   presenza_acqua?: Maybe<Scalars['Boolean']>;
@@ -1323,7 +1320,6 @@ export type Agcos_Agcos_Max_Fields = {
   esito_sentenza?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   indicazione_approssimativa?: Maybe<Scalars['String']>;
-  inter?: Maybe<Scalars['String']>;
   latitudine?: Maybe<Scalars['float8']>;
   longitudine?: Maybe<Scalars['float8']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -1343,7 +1339,6 @@ export type Agcos_Agcos_Min_Fields = {
   esito_sentenza?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   indicazione_approssimativa?: Maybe<Scalars['String']>;
-  inter?: Maybe<Scalars['String']>;
   latitudine?: Maybe<Scalars['float8']>;
   longitudine?: Maybe<Scalars['float8']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -1383,7 +1378,6 @@ export type Agcos_Agcos_Order_By = {
   esito_sentenza?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   indicazione_approssimativa?: Maybe<Order_By>;
-  inter?: Maybe<Order_By>;
   latitudine?: Maybe<Order_By>;
   longitudine?: Maybe<Order_By>;
   presenza_acqua?: Maybe<Order_By>;
@@ -1434,8 +1428,6 @@ export enum Agcos_Agcos_Select_Column {
   /** column name */
   IndicazioneApprossimativa = 'indicazione_approssimativa',
   /** column name */
-  Inter = 'inter',
-  /** column name */
   Latitudine = 'latitudine',
   /** column name */
   Longitudine = 'longitudine',
@@ -1469,7 +1461,6 @@ export type Agcos_Agcos_Set_Input = {
   esito_sentenza?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   indicazione_approssimativa?: Maybe<Scalars['String']>;
-  inter?: Maybe<Scalars['String']>;
   latitudine?: Maybe<Scalars['float8']>;
   longitudine?: Maybe<Scalars['float8']>;
   presenza_acqua?: Maybe<Scalars['Boolean']>;
@@ -1546,8 +1537,6 @@ export enum Agcos_Agcos_Update_Column {
   /** column name */
   IndicazioneApprossimativa = 'indicazione_approssimativa',
   /** column name */
-  Inter = 'inter',
-  /** column name */
   Latitudine = 'latitudine',
   /** column name */
   Longitudine = 'longitudine',
@@ -1590,6 +1579,7 @@ export type Agcos_Agcos_Variance_Fields = {
 /** columns and relationships of "agcos.import" */
 export type Agcos_Import = {
   __typename?: 'agcos_import';
+  id: Scalars['Int'];
   updated_at: Scalars['timestamptz'];
 };
 
@@ -1603,9 +1593,17 @@ export type Agcos_Import_Aggregate = {
 /** aggregate fields of "agcos.import" */
 export type Agcos_Import_Aggregate_Fields = {
   __typename?: 'agcos_import_aggregate_fields';
+  avg?: Maybe<Agcos_Import_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<Agcos_Import_Max_Fields>;
   min?: Maybe<Agcos_Import_Min_Fields>;
+  stddev?: Maybe<Agcos_Import_Stddev_Fields>;
+  stddev_pop?: Maybe<Agcos_Import_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Agcos_Import_Stddev_Samp_Fields>;
+  sum?: Maybe<Agcos_Import_Sum_Fields>;
+  var_pop?: Maybe<Agcos_Import_Var_Pop_Fields>;
+  var_samp?: Maybe<Agcos_Import_Var_Samp_Fields>;
+  variance?: Maybe<Agcos_Import_Variance_Fields>;
 };
 
 
@@ -1615,11 +1613,18 @@ export type Agcos_Import_Aggregate_FieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** aggregate avg on columns */
+export type Agcos_Import_Avg_Fields = {
+  __typename?: 'agcos_import_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
 /** Boolean expression to filter rows from the table "agcos.import". All fields are combined with a logical 'AND'. */
 export type Agcos_Import_Bool_Exp = {
   _and?: Maybe<Array<Agcos_Import_Bool_Exp>>;
   _not?: Maybe<Agcos_Import_Bool_Exp>;
   _or?: Maybe<Array<Agcos_Import_Bool_Exp>>;
+  id?: Maybe<Int_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -1629,20 +1634,28 @@ export enum Agcos_Import_Constraint {
   ImportPkey = 'import_pkey'
 }
 
+/** input type for incrementing numeric columns in table "agcos.import" */
+export type Agcos_Import_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
 /** input type for inserting data into table "agcos.import" */
 export type Agcos_Import_Insert_Input = {
+  id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type Agcos_Import_Max_Fields = {
   __typename?: 'agcos_import_max_fields';
+  id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type Agcos_Import_Min_Fields = {
   __typename?: 'agcos_import_min_fields';
+  id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -1664,30 +1677,78 @@ export type Agcos_Import_On_Conflict = {
 
 /** Ordering options when selecting data from "agcos.import". */
 export type Agcos_Import_Order_By = {
+  id?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: agcos_import */
 export type Agcos_Import_Pk_Columns_Input = {
-  updated_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
 };
 
 /** select columns of table "agcos.import" */
 export enum Agcos_Import_Select_Column {
+  /** column name */
+  Id = 'id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "agcos.import" */
 export type Agcos_Import_Set_Input = {
+  id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Agcos_Import_Stddev_Fields = {
+  __typename?: 'agcos_import_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Agcos_Import_Stddev_Pop_Fields = {
+  __typename?: 'agcos_import_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Agcos_Import_Stddev_Samp_Fields = {
+  __typename?: 'agcos_import_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Agcos_Import_Sum_Fields = {
+  __typename?: 'agcos_import_sum_fields';
+  id?: Maybe<Scalars['Int']>;
 };
 
 /** update columns of table "agcos.import" */
 export enum Agcos_Import_Update_Column {
   /** column name */
+  Id = 'id',
+  /** column name */
   UpdatedAt = 'updated_at'
 }
+
+/** aggregate var_pop on columns */
+export type Agcos_Import_Var_Pop_Fields = {
+  __typename?: 'agcos_import_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Agcos_Import_Var_Samp_Fields = {
+  __typename?: 'agcos_import_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Agcos_Import_Variance_Fields = {
+  __typename?: 'agcos_import_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
 
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
 export type Bigint_Comparison_Exp = {
@@ -3535,6 +3596,30 @@ export type Mutation_Root = {
   delete_pis_veicoli_impiegati?: Maybe<Pis_Veicoli_Impiegati_Mutation_Response>;
   /** delete single row from the table: "pis.veicoli_impiegati" */
   delete_pis_veicoli_impiegati_by_pk?: Maybe<Pis_Veicoli_Impiegati>;
+  /** delete data from the table: "pms._materiale" */
+  delete_pms__materiale?: Maybe<Pms__Materiale_Mutation_Response>;
+  /** delete single row from the table: "pms._materiale" */
+  delete_pms__materiale_by_pk?: Maybe<Pms__Materiale>;
+  /** delete data from the table: "pms.formula" */
+  delete_pms_formula?: Maybe<Pms_Formula_Mutation_Response>;
+  /** delete single row from the table: "pms.formula" */
+  delete_pms_formula_by_pk?: Maybe<Pms_Formula>;
+  /** delete data from the table: "pms.indice_globale" */
+  delete_pms_indice_globale?: Maybe<Pms_Indice_Globale_Mutation_Response>;
+  /** delete single row from the table: "pms.indice_globale" */
+  delete_pms_indice_globale_by_pk?: Maybe<Pms_Indice_Globale>;
+  /** delete data from the table: "pms.indice_performance" */
+  delete_pms_indice_performance?: Maybe<Pms_Indice_Performance_Mutation_Response>;
+  /** delete single row from the table: "pms.indice_performance" */
+  delete_pms_indice_performance_by_pk?: Maybe<Pms_Indice_Performance>;
+  /** delete data from the table: "pms.pacchetto" */
+  delete_pms_pacchetto?: Maybe<Pms_Pacchetto_Mutation_Response>;
+  /** delete single row from the table: "pms.pacchetto" */
+  delete_pms_pacchetto_by_pk?: Maybe<Pms_Pacchetto>;
+  /** delete data from the table: "pms.strato" */
+  delete_pms_strato?: Maybe<Pms_Strato_Mutation_Response>;
+  /** delete single row from the table: "pms.strato" */
+  delete_pms_strato_by_pk?: Maybe<Pms_Strato>;
   /** delete data from the table: "protocollo._sezione_protocollo" */
   delete_protocollo__sezione_protocollo?: Maybe<Protocollo__Sezione_Protocollo_Mutation_Response>;
   /** delete single row from the table: "protocollo._sezione_protocollo" */
@@ -4085,6 +4170,30 @@ export type Mutation_Root = {
   insert_pis_veicoli_impiegati?: Maybe<Pis_Veicoli_Impiegati_Mutation_Response>;
   /** insert a single row into the table: "pis.veicoli_impiegati" */
   insert_pis_veicoli_impiegati_one?: Maybe<Pis_Veicoli_Impiegati>;
+  /** insert data into the table: "pms._materiale" */
+  insert_pms__materiale?: Maybe<Pms__Materiale_Mutation_Response>;
+  /** insert a single row into the table: "pms._materiale" */
+  insert_pms__materiale_one?: Maybe<Pms__Materiale>;
+  /** insert data into the table: "pms.formula" */
+  insert_pms_formula?: Maybe<Pms_Formula_Mutation_Response>;
+  /** insert a single row into the table: "pms.formula" */
+  insert_pms_formula_one?: Maybe<Pms_Formula>;
+  /** insert data into the table: "pms.indice_globale" */
+  insert_pms_indice_globale?: Maybe<Pms_Indice_Globale_Mutation_Response>;
+  /** insert a single row into the table: "pms.indice_globale" */
+  insert_pms_indice_globale_one?: Maybe<Pms_Indice_Globale>;
+  /** insert data into the table: "pms.indice_performance" */
+  insert_pms_indice_performance?: Maybe<Pms_Indice_Performance_Mutation_Response>;
+  /** insert a single row into the table: "pms.indice_performance" */
+  insert_pms_indice_performance_one?: Maybe<Pms_Indice_Performance>;
+  /** insert data into the table: "pms.pacchetto" */
+  insert_pms_pacchetto?: Maybe<Pms_Pacchetto_Mutation_Response>;
+  /** insert a single row into the table: "pms.pacchetto" */
+  insert_pms_pacchetto_one?: Maybe<Pms_Pacchetto>;
+  /** insert data into the table: "pms.strato" */
+  insert_pms_strato?: Maybe<Pms_Strato_Mutation_Response>;
+  /** insert a single row into the table: "pms.strato" */
+  insert_pms_strato_one?: Maybe<Pms_Strato>;
   /** insert data into the table: "protocollo._sezione_protocollo" */
   insert_protocollo__sezione_protocollo?: Maybe<Protocollo__Sezione_Protocollo_Mutation_Response>;
   /** insert a single row into the table: "protocollo._sezione_protocollo" */
@@ -4513,6 +4622,7 @@ export type Mutation_Root = {
   update__titolo?: Maybe<_Titolo_Mutation_Response>;
   /** update single row of the table: "_titolo" */
   update__titolo_by_pk?: Maybe<_Titolo>;
+  update_agcos?: Maybe<Update_Agcos_Output>;
   /** update data of the table: "agcos.agcos" */
   update_agcos_agcos?: Maybe<Agcos_Agcos_Mutation_Response>;
   /** update single row of the table: "agcos.agcos" */
@@ -4633,6 +4743,30 @@ export type Mutation_Root = {
   update_pis_veicoli_impiegati?: Maybe<Pis_Veicoli_Impiegati_Mutation_Response>;
   /** update single row of the table: "pis.veicoli_impiegati" */
   update_pis_veicoli_impiegati_by_pk?: Maybe<Pis_Veicoli_Impiegati>;
+  /** update data of the table: "pms._materiale" */
+  update_pms__materiale?: Maybe<Pms__Materiale_Mutation_Response>;
+  /** update single row of the table: "pms._materiale" */
+  update_pms__materiale_by_pk?: Maybe<Pms__Materiale>;
+  /** update data of the table: "pms.formula" */
+  update_pms_formula?: Maybe<Pms_Formula_Mutation_Response>;
+  /** update single row of the table: "pms.formula" */
+  update_pms_formula_by_pk?: Maybe<Pms_Formula>;
+  /** update data of the table: "pms.indice_globale" */
+  update_pms_indice_globale?: Maybe<Pms_Indice_Globale_Mutation_Response>;
+  /** update single row of the table: "pms.indice_globale" */
+  update_pms_indice_globale_by_pk?: Maybe<Pms_Indice_Globale>;
+  /** update data of the table: "pms.indice_performance" */
+  update_pms_indice_performance?: Maybe<Pms_Indice_Performance_Mutation_Response>;
+  /** update single row of the table: "pms.indice_performance" */
+  update_pms_indice_performance_by_pk?: Maybe<Pms_Indice_Performance>;
+  /** update data of the table: "pms.pacchetto" */
+  update_pms_pacchetto?: Maybe<Pms_Pacchetto_Mutation_Response>;
+  /** update single row of the table: "pms.pacchetto" */
+  update_pms_pacchetto_by_pk?: Maybe<Pms_Pacchetto>;
+  /** update data of the table: "pms.strato" */
+  update_pms_strato?: Maybe<Pms_Strato_Mutation_Response>;
+  /** update single row of the table: "pms.strato" */
+  update_pms_strato_by_pk?: Maybe<Pms_Strato>;
   /** update data of the table: "protocollo._sezione_protocollo" */
   update_protocollo__sezione_protocollo?: Maybe<Protocollo__Sezione_Protocollo_Mutation_Response>;
   /** update single row of the table: "protocollo._sezione_protocollo" */
@@ -5145,7 +5279,7 @@ export type Mutation_RootDelete_Agcos_ImportArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Agcos_Import_By_PkArgs = {
-  updated_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
 };
 
 
@@ -5481,6 +5615,78 @@ export type Mutation_RootDelete_Pis_Veicoli_ImpiegatiArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Pis_Veicoli_Impiegati_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms__MaterialeArgs = {
+  where: Pms__Materiale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms__Materiale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_FormulaArgs = {
+  where: Pms_Formula_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Formula_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Indice_GlobaleArgs = {
+  where: Pms_Indice_Globale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Indice_Globale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Indice_PerformanceArgs = {
+  where: Pms_Indice_Performance_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Indice_Performance_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_PacchettoArgs = {
+  where: Pms_Pacchetto_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Pacchetto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_StratoArgs = {
+  where: Pms_Strato_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pms_Strato_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -7212,6 +7418,90 @@ export type Mutation_RootInsert_Pis_Veicoli_Impiegati_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Pms__MaterialeArgs = {
+  objects: Array<Pms__Materiale_Insert_Input>;
+  on_conflict?: Maybe<Pms__Materiale_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms__Materiale_OneArgs = {
+  object: Pms__Materiale_Insert_Input;
+  on_conflict?: Maybe<Pms__Materiale_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_FormulaArgs = {
+  objects: Array<Pms_Formula_Insert_Input>;
+  on_conflict?: Maybe<Pms_Formula_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Formula_OneArgs = {
+  object: Pms_Formula_Insert_Input;
+  on_conflict?: Maybe<Pms_Formula_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Indice_GlobaleArgs = {
+  objects: Array<Pms_Indice_Globale_Insert_Input>;
+  on_conflict?: Maybe<Pms_Indice_Globale_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Indice_Globale_OneArgs = {
+  object: Pms_Indice_Globale_Insert_Input;
+  on_conflict?: Maybe<Pms_Indice_Globale_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Indice_PerformanceArgs = {
+  objects: Array<Pms_Indice_Performance_Insert_Input>;
+  on_conflict?: Maybe<Pms_Indice_Performance_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Indice_Performance_OneArgs = {
+  object: Pms_Indice_Performance_Insert_Input;
+  on_conflict?: Maybe<Pms_Indice_Performance_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_PacchettoArgs = {
+  objects: Array<Pms_Pacchetto_Insert_Input>;
+  on_conflict?: Maybe<Pms_Pacchetto_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Pacchetto_OneArgs = {
+  object: Pms_Pacchetto_Insert_Input;
+  on_conflict?: Maybe<Pms_Pacchetto_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_StratoArgs = {
+  objects: Array<Pms_Strato_Insert_Input>;
+  on_conflict?: Maybe<Pms_Strato_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pms_Strato_OneArgs = {
+  object: Pms_Strato_Insert_Input;
+  on_conflict?: Maybe<Pms_Strato_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Protocollo__Sezione_ProtocolloArgs = {
   objects: Array<Protocollo__Sezione_Protocollo_Insert_Input>;
   on_conflict?: Maybe<Protocollo__Sezione_Protocollo_On_Conflict>;
@@ -8737,6 +9027,7 @@ export type Mutation_RootUpdate_Agcos_Agcos_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Agcos_ImportArgs = {
+  _inc?: Maybe<Agcos_Import_Inc_Input>;
   _set?: Maybe<Agcos_Import_Set_Input>;
   where: Agcos_Import_Bool_Exp;
 };
@@ -8744,6 +9035,7 @@ export type Mutation_RootUpdate_Agcos_ImportArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Agcos_Import_By_PkArgs = {
+  _inc?: Maybe<Agcos_Import_Inc_Input>;
   _set?: Maybe<Agcos_Import_Set_Input>;
   pk_columns: Agcos_Import_Pk_Columns_Input;
 };
@@ -9232,6 +9524,102 @@ export type Mutation_RootUpdate_Pis_Veicoli_Impiegati_By_PkArgs = {
   _inc?: Maybe<Pis_Veicoli_Impiegati_Inc_Input>;
   _set?: Maybe<Pis_Veicoli_Impiegati_Set_Input>;
   pk_columns: Pis_Veicoli_Impiegati_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms__MaterialeArgs = {
+  _inc?: Maybe<Pms__Materiale_Inc_Input>;
+  _set?: Maybe<Pms__Materiale_Set_Input>;
+  where: Pms__Materiale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms__Materiale_By_PkArgs = {
+  _inc?: Maybe<Pms__Materiale_Inc_Input>;
+  _set?: Maybe<Pms__Materiale_Set_Input>;
+  pk_columns: Pms__Materiale_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_FormulaArgs = {
+  _inc?: Maybe<Pms_Formula_Inc_Input>;
+  _set?: Maybe<Pms_Formula_Set_Input>;
+  where: Pms_Formula_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Formula_By_PkArgs = {
+  _inc?: Maybe<Pms_Formula_Inc_Input>;
+  _set?: Maybe<Pms_Formula_Set_Input>;
+  pk_columns: Pms_Formula_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Indice_GlobaleArgs = {
+  _inc?: Maybe<Pms_Indice_Globale_Inc_Input>;
+  _set?: Maybe<Pms_Indice_Globale_Set_Input>;
+  where: Pms_Indice_Globale_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Indice_Globale_By_PkArgs = {
+  _inc?: Maybe<Pms_Indice_Globale_Inc_Input>;
+  _set?: Maybe<Pms_Indice_Globale_Set_Input>;
+  pk_columns: Pms_Indice_Globale_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Indice_PerformanceArgs = {
+  _inc?: Maybe<Pms_Indice_Performance_Inc_Input>;
+  _set?: Maybe<Pms_Indice_Performance_Set_Input>;
+  where: Pms_Indice_Performance_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Indice_Performance_By_PkArgs = {
+  _inc?: Maybe<Pms_Indice_Performance_Inc_Input>;
+  _set?: Maybe<Pms_Indice_Performance_Set_Input>;
+  pk_columns: Pms_Indice_Performance_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_PacchettoArgs = {
+  _inc?: Maybe<Pms_Pacchetto_Inc_Input>;
+  _set?: Maybe<Pms_Pacchetto_Set_Input>;
+  where: Pms_Pacchetto_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Pacchetto_By_PkArgs = {
+  _inc?: Maybe<Pms_Pacchetto_Inc_Input>;
+  _set?: Maybe<Pms_Pacchetto_Set_Input>;
+  pk_columns: Pms_Pacchetto_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_StratoArgs = {
+  _inc?: Maybe<Pms_Strato_Inc_Input>;
+  _set?: Maybe<Pms_Strato_Set_Input>;
+  where: Pms_Strato_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pms_Strato_By_PkArgs = {
+  _inc?: Maybe<Pms_Strato_Inc_Input>;
+  _set?: Maybe<Pms_Strato_Set_Input>;
+  pk_columns: Pms_Strato_Pk_Columns_Input;
 };
 
 
@@ -18156,6 +18544,1644 @@ export type Pis_Veicoli_Impiegati_Variance_Order_By = {
   intervento_id?: Maybe<Order_By>;
 };
 
+/** columns and relationships of "pms._materiale" */
+export type Pms__Materiale = {
+  __typename?: 'pms__materiale';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  nome: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "pms._materiale" */
+export type Pms__Materiale_Aggregate = {
+  __typename?: 'pms__materiale_aggregate';
+  aggregate?: Maybe<Pms__Materiale_Aggregate_Fields>;
+  nodes: Array<Pms__Materiale>;
+};
+
+/** aggregate fields of "pms._materiale" */
+export type Pms__Materiale_Aggregate_Fields = {
+  __typename?: 'pms__materiale_aggregate_fields';
+  avg?: Maybe<Pms__Materiale_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms__Materiale_Max_Fields>;
+  min?: Maybe<Pms__Materiale_Min_Fields>;
+  stddev?: Maybe<Pms__Materiale_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms__Materiale_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms__Materiale_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms__Materiale_Sum_Fields>;
+  var_pop?: Maybe<Pms__Materiale_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms__Materiale_Var_Samp_Fields>;
+  variance?: Maybe<Pms__Materiale_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms._materiale" */
+export type Pms__Materiale_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms__Materiale_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Pms__Materiale_Avg_Fields = {
+  __typename?: 'pms__materiale_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "pms._materiale". All fields are combined with a logical 'AND'. */
+export type Pms__Materiale_Bool_Exp = {
+  _and?: Maybe<Array<Pms__Materiale_Bool_Exp>>;
+  _not?: Maybe<Pms__Materiale_Bool_Exp>;
+  _or?: Maybe<Array<Pms__Materiale_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  nome?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms._materiale" */
+export enum Pms__Materiale_Constraint {
+  /** unique or primary key constraint */
+  MaterialePkey = '_materiale_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms._materiale" */
+export type Pms__Materiale_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms._materiale" */
+export type Pms__Materiale_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms__Materiale_Max_Fields = {
+  __typename?: 'pms__materiale_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Pms__Materiale_Min_Fields = {
+  __typename?: 'pms__materiale_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "pms._materiale" */
+export type Pms__Materiale_Mutation_Response = {
+  __typename?: 'pms__materiale_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms__Materiale>;
+};
+
+/** input type for inserting object relation for remote table "pms._materiale" */
+export type Pms__Materiale_Obj_Rel_Insert_Input = {
+  data: Pms__Materiale_Insert_Input;
+  /** upsert condition */
+  on_conflict?: Maybe<Pms__Materiale_On_Conflict>;
+};
+
+/** on_conflict condition type for table "pms._materiale" */
+export type Pms__Materiale_On_Conflict = {
+  constraint: Pms__Materiale_Constraint;
+  update_columns?: Array<Pms__Materiale_Update_Column>;
+  where?: Maybe<Pms__Materiale_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms._materiale". */
+export type Pms__Materiale_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  nome?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms__materiale */
+export type Pms__Materiale_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms._materiale" */
+export enum Pms__Materiale_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms._materiale" */
+export type Pms__Materiale_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  nome?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms__Materiale_Stddev_Fields = {
+  __typename?: 'pms__materiale_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms__Materiale_Stddev_Pop_Fields = {
+  __typename?: 'pms__materiale_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms__Materiale_Stddev_Samp_Fields = {
+  __typename?: 'pms__materiale_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Pms__Materiale_Sum_Fields = {
+  __typename?: 'pms__materiale_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "pms._materiale" */
+export enum Pms__Materiale_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Nome = 'nome',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms__Materiale_Var_Pop_Fields = {
+  __typename?: 'pms__materiale_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms__Materiale_Var_Samp_Fields = {
+  __typename?: 'pms__materiale_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Pms__Materiale_Variance_Fields = {
+  __typename?: 'pms__materiale_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "pms.formula" */
+export type Pms_Formula = {
+  __typename?: 'pms_formula';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  puntuale?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  tipologia_dissesto?: Maybe<Pis__Tipologia_Dissesto>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregated selection of "pms.formula" */
+export type Pms_Formula_Aggregate = {
+  __typename?: 'pms_formula_aggregate';
+  aggregate?: Maybe<Pms_Formula_Aggregate_Fields>;
+  nodes: Array<Pms_Formula>;
+};
+
+/** aggregate fields of "pms.formula" */
+export type Pms_Formula_Aggregate_Fields = {
+  __typename?: 'pms_formula_aggregate_fields';
+  avg?: Maybe<Pms_Formula_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms_Formula_Max_Fields>;
+  min?: Maybe<Pms_Formula_Min_Fields>;
+  stddev?: Maybe<Pms_Formula_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms_Formula_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms_Formula_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms_Formula_Sum_Fields>;
+  var_pop?: Maybe<Pms_Formula_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms_Formula_Var_Samp_Fields>;
+  variance?: Maybe<Pms_Formula_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms.formula" */
+export type Pms_Formula_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms_Formula_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Pms_Formula_Avg_Fields = {
+  __typename?: 'pms_formula_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "pms.formula". All fields are combined with a logical 'AND'. */
+export type Pms_Formula_Bool_Exp = {
+  _and?: Maybe<Array<Pms_Formula_Bool_Exp>>;
+  _not?: Maybe<Pms_Formula_Bool_Exp>;
+  _or?: Maybe<Array<Pms_Formula_Bool_Exp>>;
+  code?: Maybe<String_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  formula?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  puntuale?: Maybe<Boolean_Comparison_Exp>;
+  tipologia_dissesto?: Maybe<Pis__Tipologia_Dissesto_Bool_Exp>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Int_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms.formula" */
+export enum Pms_Formula_Constraint {
+  /** unique or primary key constraint */
+  FormulaPkey = 'formula_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms.formula" */
+export type Pms_Formula_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms.formula" */
+export type Pms_Formula_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  puntuale?: Maybe<Scalars['Boolean']>;
+  tipologia_dissesto?: Maybe<Pis__Tipologia_Dissesto_Obj_Rel_Insert_Input>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms_Formula_Max_Fields = {
+  __typename?: 'pms_formula_max_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Pms_Formula_Min_Fields = {
+  __typename?: 'pms_formula_min_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "pms.formula" */
+export type Pms_Formula_Mutation_Response = {
+  __typename?: 'pms_formula_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms_Formula>;
+};
+
+/** on_conflict condition type for table "pms.formula" */
+export type Pms_Formula_On_Conflict = {
+  constraint: Pms_Formula_Constraint;
+  update_columns?: Array<Pms_Formula_Update_Column>;
+  where?: Maybe<Pms_Formula_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms.formula". */
+export type Pms_Formula_Order_By = {
+  code?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  formula?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  puntuale?: Maybe<Order_By>;
+  tipologia_dissesto?: Maybe<Pis__Tipologia_Dissesto_Order_By>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms_formula */
+export type Pms_Formula_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms.formula" */
+export enum Pms_Formula_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Puntuale = 'puntuale',
+  /** column name */
+  TipologiaDissestoPavimentazioneId = 'tipologia_dissesto_pavimentazione_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms.formula" */
+export type Pms_Formula_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  puntuale?: Maybe<Scalars['Boolean']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms_Formula_Stddev_Fields = {
+  __typename?: 'pms_formula_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms_Formula_Stddev_Pop_Fields = {
+  __typename?: 'pms_formula_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms_Formula_Stddev_Samp_Fields = {
+  __typename?: 'pms_formula_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Pms_Formula_Sum_Fields = {
+  __typename?: 'pms_formula_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "pms.formula" */
+export enum Pms_Formula_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Puntuale = 'puntuale',
+  /** column name */
+  TipologiaDissestoPavimentazioneId = 'tipologia_dissesto_pavimentazione_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms_Formula_Var_Pop_Fields = {
+  __typename?: 'pms_formula_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms_Formula_Var_Samp_Fields = {
+  __typename?: 'pms_formula_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Pms_Formula_Variance_Fields = {
+  __typename?: 'pms_formula_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  tipologia_dissesto_pavimentazione_id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "pms.indice_globale" */
+export type Pms_Indice_Globale = {
+  __typename?: 'pms_indice_globale';
+  code?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "pms.indice_globale" */
+export type Pms_Indice_Globale_Aggregate = {
+  __typename?: 'pms_indice_globale_aggregate';
+  aggregate?: Maybe<Pms_Indice_Globale_Aggregate_Fields>;
+  nodes: Array<Pms_Indice_Globale>;
+};
+
+/** aggregate fields of "pms.indice_globale" */
+export type Pms_Indice_Globale_Aggregate_Fields = {
+  __typename?: 'pms_indice_globale_aggregate_fields';
+  avg?: Maybe<Pms_Indice_Globale_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms_Indice_Globale_Max_Fields>;
+  min?: Maybe<Pms_Indice_Globale_Min_Fields>;
+  stddev?: Maybe<Pms_Indice_Globale_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms_Indice_Globale_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms_Indice_Globale_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms_Indice_Globale_Sum_Fields>;
+  var_pop?: Maybe<Pms_Indice_Globale_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms_Indice_Globale_Var_Samp_Fields>;
+  variance?: Maybe<Pms_Indice_Globale_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms.indice_globale" */
+export type Pms_Indice_Globale_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms_Indice_Globale_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Pms_Indice_Globale_Avg_Fields = {
+  __typename?: 'pms_indice_globale_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "pms.indice_globale". All fields are combined with a logical 'AND'. */
+export type Pms_Indice_Globale_Bool_Exp = {
+  _and?: Maybe<Array<Pms_Indice_Globale_Bool_Exp>>;
+  _not?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+  _or?: Maybe<Array<Pms_Indice_Globale_Bool_Exp>>;
+  code?: Maybe<String_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  formula?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms.indice_globale" */
+export enum Pms_Indice_Globale_Constraint {
+  /** unique or primary key constraint */
+  IndiceGlobalePkey = 'indice_globale_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms.indice_globale" */
+export type Pms_Indice_Globale_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms.indice_globale" */
+export type Pms_Indice_Globale_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms_Indice_Globale_Max_Fields = {
+  __typename?: 'pms_indice_globale_max_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Pms_Indice_Globale_Min_Fields = {
+  __typename?: 'pms_indice_globale_min_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "pms.indice_globale" */
+export type Pms_Indice_Globale_Mutation_Response = {
+  __typename?: 'pms_indice_globale_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms_Indice_Globale>;
+};
+
+/** on_conflict condition type for table "pms.indice_globale" */
+export type Pms_Indice_Globale_On_Conflict = {
+  constraint: Pms_Indice_Globale_Constraint;
+  update_columns?: Array<Pms_Indice_Globale_Update_Column>;
+  where?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms.indice_globale". */
+export type Pms_Indice_Globale_Order_By = {
+  code?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  formula?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms_indice_globale */
+export type Pms_Indice_Globale_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms.indice_globale" */
+export enum Pms_Indice_Globale_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms.indice_globale" */
+export type Pms_Indice_Globale_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms_Indice_Globale_Stddev_Fields = {
+  __typename?: 'pms_indice_globale_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms_Indice_Globale_Stddev_Pop_Fields = {
+  __typename?: 'pms_indice_globale_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms_Indice_Globale_Stddev_Samp_Fields = {
+  __typename?: 'pms_indice_globale_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Pms_Indice_Globale_Sum_Fields = {
+  __typename?: 'pms_indice_globale_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "pms.indice_globale" */
+export enum Pms_Indice_Globale_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms_Indice_Globale_Var_Pop_Fields = {
+  __typename?: 'pms_indice_globale_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms_Indice_Globale_Var_Samp_Fields = {
+  __typename?: 'pms_indice_globale_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Pms_Indice_Globale_Variance_Fields = {
+  __typename?: 'pms_indice_globale_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "pms.indice_performance" */
+export type Pms_Indice_Performance = {
+  __typename?: 'pms_indice_performance';
+  code?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "pms.indice_performance" */
+export type Pms_Indice_Performance_Aggregate = {
+  __typename?: 'pms_indice_performance_aggregate';
+  aggregate?: Maybe<Pms_Indice_Performance_Aggregate_Fields>;
+  nodes: Array<Pms_Indice_Performance>;
+};
+
+/** aggregate fields of "pms.indice_performance" */
+export type Pms_Indice_Performance_Aggregate_Fields = {
+  __typename?: 'pms_indice_performance_aggregate_fields';
+  avg?: Maybe<Pms_Indice_Performance_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms_Indice_Performance_Max_Fields>;
+  min?: Maybe<Pms_Indice_Performance_Min_Fields>;
+  stddev?: Maybe<Pms_Indice_Performance_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms_Indice_Performance_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms_Indice_Performance_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms_Indice_Performance_Sum_Fields>;
+  var_pop?: Maybe<Pms_Indice_Performance_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms_Indice_Performance_Var_Samp_Fields>;
+  variance?: Maybe<Pms_Indice_Performance_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms.indice_performance" */
+export type Pms_Indice_Performance_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms_Indice_Performance_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Pms_Indice_Performance_Avg_Fields = {
+  __typename?: 'pms_indice_performance_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "pms.indice_performance". All fields are combined with a logical 'AND'. */
+export type Pms_Indice_Performance_Bool_Exp = {
+  _and?: Maybe<Array<Pms_Indice_Performance_Bool_Exp>>;
+  _not?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+  _or?: Maybe<Array<Pms_Indice_Performance_Bool_Exp>>;
+  code?: Maybe<String_Comparison_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  formula?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms.indice_performance" */
+export enum Pms_Indice_Performance_Constraint {
+  /** unique or primary key constraint */
+  IndicePerformancePkey = 'indice_performance_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms.indice_performance" */
+export type Pms_Indice_Performance_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms.indice_performance" */
+export type Pms_Indice_Performance_Insert_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms_Indice_Performance_Max_Fields = {
+  __typename?: 'pms_indice_performance_max_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Pms_Indice_Performance_Min_Fields = {
+  __typename?: 'pms_indice_performance_min_fields';
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "pms.indice_performance" */
+export type Pms_Indice_Performance_Mutation_Response = {
+  __typename?: 'pms_indice_performance_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms_Indice_Performance>;
+};
+
+/** on_conflict condition type for table "pms.indice_performance" */
+export type Pms_Indice_Performance_On_Conflict = {
+  constraint: Pms_Indice_Performance_Constraint;
+  update_columns?: Array<Pms_Indice_Performance_Update_Column>;
+  where?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms.indice_performance". */
+export type Pms_Indice_Performance_Order_By = {
+  code?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  formula?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms_indice_performance */
+export type Pms_Indice_Performance_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms.indice_performance" */
+export enum Pms_Indice_Performance_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms.indice_performance" */
+export type Pms_Indice_Performance_Set_Input = {
+  code?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  formula?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms_Indice_Performance_Stddev_Fields = {
+  __typename?: 'pms_indice_performance_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms_Indice_Performance_Stddev_Pop_Fields = {
+  __typename?: 'pms_indice_performance_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms_Indice_Performance_Stddev_Samp_Fields = {
+  __typename?: 'pms_indice_performance_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Pms_Indice_Performance_Sum_Fields = {
+  __typename?: 'pms_indice_performance_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "pms.indice_performance" */
+export enum Pms_Indice_Performance_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Formula = 'formula',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms_Indice_Performance_Var_Pop_Fields = {
+  __typename?: 'pms_indice_performance_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms_Indice_Performance_Var_Samp_Fields = {
+  __typename?: 'pms_indice_performance_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Pms_Indice_Performance_Variance_Fields = {
+  __typename?: 'pms_indice_performance_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "pms.pacchetto" */
+export type Pms_Pacchetto = {
+  __typename?: 'pms_pacchetto';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['Int'];
+  inizio_validita?: Maybe<Scalars['timestamptz']>;
+  note?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  strati: Array<Pms_Strato>;
+  /** An aggregate relationship */
+  strati_aggregate: Pms_Strato_Aggregate;
+  /** An object relationship */
+  toponimo?: Maybe<Toponomastica_Toponimo>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+
+/** columns and relationships of "pms.pacchetto" */
+export type Pms_PacchettoStratiArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+
+/** columns and relationships of "pms.pacchetto" */
+export type Pms_PacchettoStrati_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+/** aggregated selection of "pms.pacchetto" */
+export type Pms_Pacchetto_Aggregate = {
+  __typename?: 'pms_pacchetto_aggregate';
+  aggregate?: Maybe<Pms_Pacchetto_Aggregate_Fields>;
+  nodes: Array<Pms_Pacchetto>;
+};
+
+/** aggregate fields of "pms.pacchetto" */
+export type Pms_Pacchetto_Aggregate_Fields = {
+  __typename?: 'pms_pacchetto_aggregate_fields';
+  avg?: Maybe<Pms_Pacchetto_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms_Pacchetto_Max_Fields>;
+  min?: Maybe<Pms_Pacchetto_Min_Fields>;
+  stddev?: Maybe<Pms_Pacchetto_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms_Pacchetto_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms_Pacchetto_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms_Pacchetto_Sum_Fields>;
+  var_pop?: Maybe<Pms_Pacchetto_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms_Pacchetto_Var_Samp_Fields>;
+  variance?: Maybe<Pms_Pacchetto_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms.pacchetto" */
+export type Pms_Pacchetto_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "pms.pacchetto" */
+export type Pms_Pacchetto_Aggregate_Order_By = {
+  avg?: Maybe<Pms_Pacchetto_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Pms_Pacchetto_Max_Order_By>;
+  min?: Maybe<Pms_Pacchetto_Min_Order_By>;
+  stddev?: Maybe<Pms_Pacchetto_Stddev_Order_By>;
+  stddev_pop?: Maybe<Pms_Pacchetto_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Pms_Pacchetto_Stddev_Samp_Order_By>;
+  sum?: Maybe<Pms_Pacchetto_Sum_Order_By>;
+  var_pop?: Maybe<Pms_Pacchetto_Var_Pop_Order_By>;
+  var_samp?: Maybe<Pms_Pacchetto_Var_Samp_Order_By>;
+  variance?: Maybe<Pms_Pacchetto_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "pms.pacchetto" */
+export type Pms_Pacchetto_Arr_Rel_Insert_Input = {
+  data: Array<Pms_Pacchetto_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: Maybe<Pms_Pacchetto_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Pms_Pacchetto_Avg_Fields = {
+  __typename?: 'pms_pacchetto_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "pms.pacchetto". All fields are combined with a logical 'AND'. */
+export type Pms_Pacchetto_Bool_Exp = {
+  _and?: Maybe<Array<Pms_Pacchetto_Bool_Exp>>;
+  _not?: Maybe<Pms_Pacchetto_Bool_Exp>;
+  _or?: Maybe<Array<Pms_Pacchetto_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  fine_validita?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  inizio_validita?: Maybe<Timestamptz_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  strati?: Maybe<Pms_Strato_Bool_Exp>;
+  toponimo?: Maybe<Toponomastica_Toponimo_Bool_Exp>;
+  toponimo_id?: Maybe<Int_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms.pacchetto" */
+export enum Pms_Pacchetto_Constraint {
+  /** unique or primary key constraint */
+  PacchettoPkey = 'pacchetto_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms.pacchetto" */
+export type Pms_Pacchetto_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms.pacchetto" */
+export type Pms_Pacchetto_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  inizio_validita?: Maybe<Scalars['timestamptz']>;
+  note?: Maybe<Scalars['String']>;
+  strati?: Maybe<Pms_Strato_Arr_Rel_Insert_Input>;
+  toponimo?: Maybe<Toponomastica_Toponimo_Obj_Rel_Insert_Input>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms_Pacchetto_Max_Fields = {
+  __typename?: 'pms_pacchetto_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  inizio_validita?: Maybe<Scalars['timestamptz']>;
+  note?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  fine_validita?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  inizio_validita?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Pms_Pacchetto_Min_Fields = {
+  __typename?: 'pms_pacchetto_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  inizio_validita?: Maybe<Scalars['timestamptz']>;
+  note?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  fine_validita?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  inizio_validita?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "pms.pacchetto" */
+export type Pms_Pacchetto_Mutation_Response = {
+  __typename?: 'pms_pacchetto_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms_Pacchetto>;
+};
+
+/** on_conflict condition type for table "pms.pacchetto" */
+export type Pms_Pacchetto_On_Conflict = {
+  constraint: Pms_Pacchetto_Constraint;
+  update_columns?: Array<Pms_Pacchetto_Update_Column>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms.pacchetto". */
+export type Pms_Pacchetto_Order_By = {
+  created_at?: Maybe<Order_By>;
+  fine_validita?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  inizio_validita?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  strati_aggregate?: Maybe<Pms_Strato_Aggregate_Order_By>;
+  toponimo?: Maybe<Toponomastica_Toponimo_Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms_pacchetto */
+export type Pms_Pacchetto_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms.pacchetto" */
+export enum Pms_Pacchetto_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  FineValidita = 'fine_validita',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InizioValidita = 'inizio_validita',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  ToponimoId = 'toponimo_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms.pacchetto" */
+export type Pms_Pacchetto_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  fine_validita?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  inizio_validita?: Maybe<Scalars['timestamptz']>;
+  note?: Maybe<Scalars['String']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms_Pacchetto_Stddev_Fields = {
+  __typename?: 'pms_pacchetto_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms_Pacchetto_Stddev_Pop_Fields = {
+  __typename?: 'pms_pacchetto_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms_Pacchetto_Stddev_Samp_Fields = {
+  __typename?: 'pms_pacchetto_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Pms_Pacchetto_Sum_Fields = {
+  __typename?: 'pms_pacchetto_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  toponimo_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "pms.pacchetto" */
+export enum Pms_Pacchetto_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  FineValidita = 'fine_validita',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InizioValidita = 'inizio_validita',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  ToponimoId = 'toponimo_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms_Pacchetto_Var_Pop_Fields = {
+  __typename?: 'pms_pacchetto_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms_Pacchetto_Var_Samp_Fields = {
+  __typename?: 'pms_pacchetto_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Pms_Pacchetto_Variance_Fields = {
+  __typename?: 'pms_pacchetto_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  toponimo_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "pms.pacchetto" */
+export type Pms_Pacchetto_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  toponimo_id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "pms.strato" */
+export type Pms_Strato = {
+  __typename?: 'pms_strato';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['Int'];
+  /** An object relationship */
+  materiale?: Maybe<Pms__Materiale>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+  spessore?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregated selection of "pms.strato" */
+export type Pms_Strato_Aggregate = {
+  __typename?: 'pms_strato_aggregate';
+  aggregate?: Maybe<Pms_Strato_Aggregate_Fields>;
+  nodes: Array<Pms_Strato>;
+};
+
+/** aggregate fields of "pms.strato" */
+export type Pms_Strato_Aggregate_Fields = {
+  __typename?: 'pms_strato_aggregate_fields';
+  avg?: Maybe<Pms_Strato_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Pms_Strato_Max_Fields>;
+  min?: Maybe<Pms_Strato_Min_Fields>;
+  stddev?: Maybe<Pms_Strato_Stddev_Fields>;
+  stddev_pop?: Maybe<Pms_Strato_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pms_Strato_Stddev_Samp_Fields>;
+  sum?: Maybe<Pms_Strato_Sum_Fields>;
+  var_pop?: Maybe<Pms_Strato_Var_Pop_Fields>;
+  var_samp?: Maybe<Pms_Strato_Var_Samp_Fields>;
+  variance?: Maybe<Pms_Strato_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pms.strato" */
+export type Pms_Strato_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pms_Strato_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "pms.strato" */
+export type Pms_Strato_Aggregate_Order_By = {
+  avg?: Maybe<Pms_Strato_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Pms_Strato_Max_Order_By>;
+  min?: Maybe<Pms_Strato_Min_Order_By>;
+  stddev?: Maybe<Pms_Strato_Stddev_Order_By>;
+  stddev_pop?: Maybe<Pms_Strato_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Pms_Strato_Stddev_Samp_Order_By>;
+  sum?: Maybe<Pms_Strato_Sum_Order_By>;
+  var_pop?: Maybe<Pms_Strato_Var_Pop_Order_By>;
+  var_samp?: Maybe<Pms_Strato_Var_Samp_Order_By>;
+  variance?: Maybe<Pms_Strato_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "pms.strato" */
+export type Pms_Strato_Arr_Rel_Insert_Input = {
+  data: Array<Pms_Strato_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: Maybe<Pms_Strato_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Pms_Strato_Avg_Fields = {
+  __typename?: 'pms_strato_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "pms.strato" */
+export type Pms_Strato_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "pms.strato". All fields are combined with a logical 'AND'. */
+export type Pms_Strato_Bool_Exp = {
+  _and?: Maybe<Array<Pms_Strato_Bool_Exp>>;
+  _not?: Maybe<Pms_Strato_Bool_Exp>;
+  _or?: Maybe<Array<Pms_Strato_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  materiale?: Maybe<Pms__Materiale_Bool_Exp>;
+  materiale_id?: Maybe<Int_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
+  pacchetto_id?: Maybe<Int_Comparison_Exp>;
+  spessore?: Maybe<String_Comparison_Exp>;
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pms.strato" */
+export enum Pms_Strato_Constraint {
+  /** unique or primary key constraint */
+  StratoPkey = 'strato_pkey'
+}
+
+/** input type for incrementing numeric columns in table "pms.strato" */
+export type Pms_Strato_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "pms.strato" */
+export type Pms_Strato_Insert_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  materiale?: Maybe<Pms__Materiale_Obj_Rel_Insert_Input>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+  spessore?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Pms_Strato_Max_Fields = {
+  __typename?: 'pms_strato_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+  spessore?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "pms.strato" */
+export type Pms_Strato_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+  spessore?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Pms_Strato_Min_Fields = {
+  __typename?: 'pms_strato_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+  spessore?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "pms.strato" */
+export type Pms_Strato_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+  spessore?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "pms.strato" */
+export type Pms_Strato_Mutation_Response = {
+  __typename?: 'pms_strato_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pms_Strato>;
+};
+
+/** on_conflict condition type for table "pms.strato" */
+export type Pms_Strato_On_Conflict = {
+  constraint: Pms_Strato_Constraint;
+  update_columns?: Array<Pms_Strato_Update_Column>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pms.strato". */
+export type Pms_Strato_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  materiale?: Maybe<Pms__Materiale_Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+  spessore?: Maybe<Order_By>;
+  updated_at?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pms_strato */
+export type Pms_Strato_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "pms.strato" */
+export enum Pms_Strato_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  MaterialeId = 'materiale_id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  PacchettoId = 'pacchetto_id',
+  /** column name */
+  Spessore = 'spessore',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pms.strato" */
+export type Pms_Strato_Set_Input = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  note?: Maybe<Scalars['String']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+  spessore?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Pms_Strato_Stddev_Fields = {
+  __typename?: 'pms_strato_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "pms.strato" */
+export type Pms_Strato_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pms_Strato_Stddev_Pop_Fields = {
+  __typename?: 'pms_strato_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "pms.strato" */
+export type Pms_Strato_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pms_Strato_Stddev_Samp_Fields = {
+  __typename?: 'pms_strato_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "pms.strato" */
+export type Pms_Strato_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Pms_Strato_Sum_Fields = {
+  __typename?: 'pms_strato_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  materiale_id?: Maybe<Scalars['Int']>;
+  pacchetto_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "pms.strato" */
+export type Pms_Strato_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "pms.strato" */
+export enum Pms_Strato_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  MaterialeId = 'materiale_id',
+  /** column name */
+  Note = 'note',
+  /** column name */
+  PacchettoId = 'pacchetto_id',
+  /** column name */
+  Spessore = 'spessore',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** aggregate var_pop on columns */
+export type Pms_Strato_Var_Pop_Fields = {
+  __typename?: 'pms_strato_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "pms.strato" */
+export type Pms_Strato_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Pms_Strato_Var_Samp_Fields = {
+  __typename?: 'pms_strato_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "pms.strato" */
+export type Pms_Strato_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Pms_Strato_Variance_Fields = {
+  __typename?: 'pms_strato_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  materiale_id?: Maybe<Scalars['Float']>;
+  pacchetto_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "pms.strato" */
+export type Pms_Strato_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  materiale_id?: Maybe<Order_By>;
+  pacchetto_id?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "protocollo._sezione_protocollo" */
 export type Protocollo__Sezione_Protocollo = {
   __typename?: 'protocollo__sezione_protocollo';
@@ -19517,6 +21543,42 @@ export type Query_Root = {
   pis_veicoli_impiegati_aggregate: Pis_Veicoli_Impiegati_Aggregate;
   /** fetch data from the table: "pis.veicoli_impiegati" using primary key columns */
   pis_veicoli_impiegati_by_pk?: Maybe<Pis_Veicoli_Impiegati>;
+  /** fetch data from the table: "pms._materiale" */
+  pms__materiale: Array<Pms__Materiale>;
+  /** fetch aggregated fields from the table: "pms._materiale" */
+  pms__materiale_aggregate: Pms__Materiale_Aggregate;
+  /** fetch data from the table: "pms._materiale" using primary key columns */
+  pms__materiale_by_pk?: Maybe<Pms__Materiale>;
+  /** fetch data from the table: "pms.formula" */
+  pms_formula: Array<Pms_Formula>;
+  /** fetch aggregated fields from the table: "pms.formula" */
+  pms_formula_aggregate: Pms_Formula_Aggregate;
+  /** fetch data from the table: "pms.formula" using primary key columns */
+  pms_formula_by_pk?: Maybe<Pms_Formula>;
+  /** fetch data from the table: "pms.indice_globale" */
+  pms_indice_globale: Array<Pms_Indice_Globale>;
+  /** fetch aggregated fields from the table: "pms.indice_globale" */
+  pms_indice_globale_aggregate: Pms_Indice_Globale_Aggregate;
+  /** fetch data from the table: "pms.indice_globale" using primary key columns */
+  pms_indice_globale_by_pk?: Maybe<Pms_Indice_Globale>;
+  /** fetch data from the table: "pms.indice_performance" */
+  pms_indice_performance: Array<Pms_Indice_Performance>;
+  /** fetch aggregated fields from the table: "pms.indice_performance" */
+  pms_indice_performance_aggregate: Pms_Indice_Performance_Aggregate;
+  /** fetch data from the table: "pms.indice_performance" using primary key columns */
+  pms_indice_performance_by_pk?: Maybe<Pms_Indice_Performance>;
+  /** fetch data from the table: "pms.pacchetto" */
+  pms_pacchetto: Array<Pms_Pacchetto>;
+  /** fetch aggregated fields from the table: "pms.pacchetto" */
+  pms_pacchetto_aggregate: Pms_Pacchetto_Aggregate;
+  /** fetch data from the table: "pms.pacchetto" using primary key columns */
+  pms_pacchetto_by_pk?: Maybe<Pms_Pacchetto>;
+  /** fetch data from the table: "pms.strato" */
+  pms_strato: Array<Pms_Strato>;
+  /** fetch aggregated fields from the table: "pms.strato" */
+  pms_strato_aggregate: Pms_Strato_Aggregate;
+  /** fetch data from the table: "pms.strato" using primary key columns */
+  pms_strato_by_pk?: Maybe<Pms_Strato>;
   /** fetch data from the table: "protocollo._sezione_protocollo" */
   protocollo__sezione_protocollo: Array<Protocollo__Sezione_Protocollo>;
   /** fetch aggregated fields from the table: "protocollo._sezione_protocollo" */
@@ -20289,7 +22351,7 @@ export type Query_RootAgcos_Import_AggregateArgs = {
 
 
 export type Query_RootAgcos_Import_By_PkArgs = {
-  updated_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
 };
 
 
@@ -20933,6 +22995,144 @@ export type Query_RootPis_Veicoli_Impiegati_AggregateArgs = {
 
 
 export type Query_RootPis_Veicoli_Impiegati_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms__MaterialeArgs = {
+  distinct_on?: Maybe<Array<Pms__Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms__Materiale_Order_By>>;
+  where?: Maybe<Pms__Materiale_Bool_Exp>;
+};
+
+
+export type Query_RootPms__Materiale_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms__Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms__Materiale_Order_By>>;
+  where?: Maybe<Pms__Materiale_Bool_Exp>;
+};
+
+
+export type Query_RootPms__Materiale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms_FormulaArgs = {
+  distinct_on?: Maybe<Array<Pms_Formula_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Formula_Order_By>>;
+  where?: Maybe<Pms_Formula_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Formula_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Formula_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Formula_Order_By>>;
+  where?: Maybe<Pms_Formula_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Formula_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms_Indice_GlobaleArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Globale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Globale_Order_By>>;
+  where?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Indice_Globale_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Globale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Globale_Order_By>>;
+  where?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Indice_Globale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms_Indice_PerformanceArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Performance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Performance_Order_By>>;
+  where?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Indice_Performance_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Performance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Performance_Order_By>>;
+  where?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Indice_Performance_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms_PacchettoArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Pacchetto_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Pacchetto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootPms_StratoArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Strato_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+
+export type Query_RootPms_Strato_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -54743,6 +56943,42 @@ export type Subscription_Root = {
   pis_veicoli_impiegati_aggregate: Pis_Veicoli_Impiegati_Aggregate;
   /** fetch data from the table: "pis.veicoli_impiegati" using primary key columns */
   pis_veicoli_impiegati_by_pk?: Maybe<Pis_Veicoli_Impiegati>;
+  /** fetch data from the table: "pms._materiale" */
+  pms__materiale: Array<Pms__Materiale>;
+  /** fetch aggregated fields from the table: "pms._materiale" */
+  pms__materiale_aggregate: Pms__Materiale_Aggregate;
+  /** fetch data from the table: "pms._materiale" using primary key columns */
+  pms__materiale_by_pk?: Maybe<Pms__Materiale>;
+  /** fetch data from the table: "pms.formula" */
+  pms_formula: Array<Pms_Formula>;
+  /** fetch aggregated fields from the table: "pms.formula" */
+  pms_formula_aggregate: Pms_Formula_Aggregate;
+  /** fetch data from the table: "pms.formula" using primary key columns */
+  pms_formula_by_pk?: Maybe<Pms_Formula>;
+  /** fetch data from the table: "pms.indice_globale" */
+  pms_indice_globale: Array<Pms_Indice_Globale>;
+  /** fetch aggregated fields from the table: "pms.indice_globale" */
+  pms_indice_globale_aggregate: Pms_Indice_Globale_Aggregate;
+  /** fetch data from the table: "pms.indice_globale" using primary key columns */
+  pms_indice_globale_by_pk?: Maybe<Pms_Indice_Globale>;
+  /** fetch data from the table: "pms.indice_performance" */
+  pms_indice_performance: Array<Pms_Indice_Performance>;
+  /** fetch aggregated fields from the table: "pms.indice_performance" */
+  pms_indice_performance_aggregate: Pms_Indice_Performance_Aggregate;
+  /** fetch data from the table: "pms.indice_performance" using primary key columns */
+  pms_indice_performance_by_pk?: Maybe<Pms_Indice_Performance>;
+  /** fetch data from the table: "pms.pacchetto" */
+  pms_pacchetto: Array<Pms_Pacchetto>;
+  /** fetch aggregated fields from the table: "pms.pacchetto" */
+  pms_pacchetto_aggregate: Pms_Pacchetto_Aggregate;
+  /** fetch data from the table: "pms.pacchetto" using primary key columns */
+  pms_pacchetto_by_pk?: Maybe<Pms_Pacchetto>;
+  /** fetch data from the table: "pms.strato" */
+  pms_strato: Array<Pms_Strato>;
+  /** fetch aggregated fields from the table: "pms.strato" */
+  pms_strato_aggregate: Pms_Strato_Aggregate;
+  /** fetch data from the table: "pms.strato" using primary key columns */
+  pms_strato_by_pk?: Maybe<Pms_Strato>;
   /** fetch data from the table: "protocollo._sezione_protocollo" */
   protocollo__sezione_protocollo: Array<Protocollo__Sezione_Protocollo>;
   /** fetch aggregated fields from the table: "protocollo._sezione_protocollo" */
@@ -55515,7 +57751,7 @@ export type Subscription_RootAgcos_Import_AggregateArgs = {
 
 
 export type Subscription_RootAgcos_Import_By_PkArgs = {
-  updated_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
 };
 
 
@@ -56159,6 +58395,144 @@ export type Subscription_RootPis_Veicoli_Impiegati_AggregateArgs = {
 
 
 export type Subscription_RootPis_Veicoli_Impiegati_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms__MaterialeArgs = {
+  distinct_on?: Maybe<Array<Pms__Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms__Materiale_Order_By>>;
+  where?: Maybe<Pms__Materiale_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms__Materiale_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms__Materiale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms__Materiale_Order_By>>;
+  where?: Maybe<Pms__Materiale_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms__Materiale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms_FormulaArgs = {
+  distinct_on?: Maybe<Array<Pms_Formula_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Formula_Order_By>>;
+  where?: Maybe<Pms_Formula_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Formula_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Formula_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Formula_Order_By>>;
+  where?: Maybe<Pms_Formula_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Formula_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms_Indice_GlobaleArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Globale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Globale_Order_By>>;
+  where?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Indice_Globale_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Globale_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Globale_Order_By>>;
+  where?: Maybe<Pms_Indice_Globale_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Indice_Globale_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms_Indice_PerformanceArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Performance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Performance_Order_By>>;
+  where?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Indice_Performance_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Indice_Performance_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Indice_Performance_Order_By>>;
+  where?: Maybe<Pms_Indice_Performance_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Indice_Performance_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms_PacchettoArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Pacchetto_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Pacchetto_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootPms_StratoArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Strato_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Strato_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Strato_Order_By>>;
+  where?: Maybe<Pms_Strato_Bool_Exp>;
+};
+
+
+export type Subscription_RootPms_Strato_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -60390,6 +62764,10 @@ export type Toponomastica_Toponimo = {
   dug_id?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
   nome: Scalars['String'];
+  /** An array relationship */
+  pacchetti: Array<Pms_Pacchetto>;
+  /** An aggregate relationship */
+  pacchetti_aggregate: Pms_Pacchetto_Aggregate;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
   role3?: Maybe<Scalars['String']>;
@@ -60427,6 +62805,26 @@ export type Toponomastica_ToponimoAssegnazioni_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Toponomastica_Assegnazione_Toponimo_Order_By>>;
   where?: Maybe<Toponomastica_Assegnazione_Toponimo_Bool_Exp>;
+};
+
+
+/** columns and relationships of "toponomastica.toponimo" */
+export type Toponomastica_ToponimoPacchettiArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
+};
+
+
+/** columns and relationships of "toponomastica.toponimo" */
+export type Toponomastica_ToponimoPacchetti_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pms_Pacchetto_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pms_Pacchetto_Order_By>>;
+  where?: Maybe<Pms_Pacchetto_Bool_Exp>;
 };
 
 
@@ -60499,6 +62897,7 @@ export type Toponomastica_Toponimo_Bool_Exp = {
   dug_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   nome?: Maybe<String_Comparison_Exp>;
+  pacchetti?: Maybe<Pms_Pacchetto_Bool_Exp>;
   role1?: Maybe<String_Comparison_Exp>;
   role2?: Maybe<String_Comparison_Exp>;
   role3?: Maybe<String_Comparison_Exp>;
@@ -60536,6 +62935,7 @@ export type Toponomastica_Toponimo_Insert_Input = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  pacchetti?: Maybe<Pms_Pacchetto_Arr_Rel_Insert_Input>;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
   role3?: Maybe<Scalars['String']>;
@@ -60625,6 +63025,7 @@ export type Toponomastica_Toponimo_Order_By = {
   dug_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
+  pacchetti_aggregate?: Maybe<Pms_Pacchetto_Aggregate_Order_By>;
   role1?: Maybe<Order_By>;
   role2?: Maybe<Order_By>;
   role3?: Maybe<Order_By>;
@@ -61759,6 +64160,11 @@ export type Toponomastica_Vecchio_Toponimo_Variance_Order_By = {
   toponimo_id?: Maybe<Order_By>;
 };
 
+export type Update_Agcos_Output = {
+  __typename?: 'update_agcos_output';
+  status?: Maybe<Scalars['String']>;
+};
+
 export type AgcosImportSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -61768,6 +64174,11 @@ export type AgcosSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AgcosSubscription = { __typename?: 'subscription_root', agcos_agcos: Array<{ __typename?: 'agcos_agcos', civico?: string | null | undefined, costi_sostenuti?: string | null | undefined, created_at: any, data_sinistro?: any | null | undefined, esiste_citazione?: boolean | null | undefined, esiste_risarcimento?: boolean | null | undefined, esito_sentenza?: string | null | undefined, esiste_sentenza?: boolean | null | undefined, id: number, indicazione_approssimativa?: string | null | undefined, latitudine?: any | null | undefined, longitudine?: any | null | undefined, altro?: string | null | undefined, causa?: string | null | undefined, danno_cose?: boolean | null | undefined, danno_persone?: boolean | null | undefined, elemento?: string | null | undefined, presenza_acqua?: boolean | null | undefined, presenza_foglie?: boolean | null | undefined, scarsa_illuminazione_naturale?: boolean | null | undefined, scarsa_illuminazione_pubblica?: boolean | null | undefined, toponimo?: { __typename?: 'toponomastica_toponimo', id: number, nome: string, codice?: string | null | undefined, dug?: { __typename?: 'toponomastica_dug', id: number, nome: string } | null | undefined, tipologia?: { __typename?: 'toponomastica_tipologia', id: number, nome: string } | null | undefined, assegnazioni: Array<{ __typename?: 'toponomastica_assegnazione_toponimo', municipalita: { __typename?: 'toponomastica_municipalita', id: number, nome: string }, quartiere: { __typename?: 'toponomastica_quartiere', id: number, nome: string } }> } | null | undefined }> };
+
+export type UpdateAgcosMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpdateAgcosMutation = { __typename?: 'mutation_root', update_agcos?: { __typename?: 'update_agcos_output', status?: string | null | undefined } | null | undefined };
 
 export type CiviciSelectQueryVariables = Exact<{
   fk_t_code?: Maybe<String_Comparison_Exp>;
@@ -61996,6 +64407,84 @@ export type DeleteSquadraPisMutationVariables = Exact<{
 
 
 export type DeleteSquadraPisMutation = { __typename?: 'mutation_root', delete_pis_squadra?: { __typename?: 'pis_squadra_mutation_response', affected_rows: number } | null | undefined };
+
+export type IndicatoriPuntualiSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IndicatoriPuntualiSubscription = { __typename?: 'subscription_root', pms_formula: Array<{ __typename?: 'pms_formula', code?: string | null | undefined, description?: string | null | undefined, formula?: string | null | undefined, id: number, name?: string | null | undefined, puntuale?: boolean | null | undefined, tipologia_dissesto?: { __typename?: 'pis__tipologia_dissesto', id: number, intervento?: string | null | undefined, nome: string } | null | undefined }> };
+
+export type IndicatoriSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IndicatoriSubscription = { __typename?: 'subscription_root', pms_formula: Array<{ __typename?: 'pms_formula', code?: string | null | undefined, description?: string | null | undefined, formula?: string | null | undefined, id: number, name?: string | null | undefined, puntuale?: boolean | null | undefined, tipologia_dissesto?: { __typename?: 'pis__tipologia_dissesto', id: number, intervento?: string | null | undefined, nome: string } | null | undefined }> };
+
+export type IndicatoriPerformanceSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IndicatoriPerformanceSubscription = { __typename?: 'subscription_root', pms_indice_performance: Array<{ __typename?: 'pms_indice_performance', code?: string | null | undefined, formula?: string | null | undefined, description?: string | null | undefined, id: number, name?: string | null | undefined }> };
+
+export type IndicatoriGlobaliSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IndicatoriGlobaliSubscription = { __typename?: 'subscription_root', pms_indice_globale: Array<{ __typename?: 'pms_indice_globale', code?: string | null | undefined, formula?: string | null | undefined, description?: string | null | undefined, id: number, name?: string | null | undefined }> };
+
+export type UpdateFormulaMutationVariables = Exact<{
+  formula?: Maybe<Array<Pms_Formula_Insert_Input> | Pms_Formula_Insert_Input>;
+}>;
+
+
+export type UpdateFormulaMutation = { __typename?: 'mutation_root', insert_pms_formula?: { __typename?: 'pms_formula_mutation_response', affected_rows: number } | null | undefined };
+
+export type DeleteFormulaMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteFormulaMutation = { __typename?: 'mutation_root', delete_pms_formula?: { __typename?: 'pms_formula_mutation_response', affected_rows: number } | null | undefined };
+
+export type UpdateIndicatoreGlobaleMutationVariables = Exact<{
+  globale?: Maybe<Array<Pms_Indice_Globale_Insert_Input> | Pms_Indice_Globale_Insert_Input>;
+}>;
+
+
+export type UpdateIndicatoreGlobaleMutation = { __typename?: 'mutation_root', insert_pms_indice_globale?: { __typename?: 'pms_indice_globale_mutation_response', affected_rows: number } | null | undefined };
+
+export type DeleteIndicatoreGlobaleMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteIndicatoreGlobaleMutation = { __typename?: 'mutation_root', delete_pms_indice_globale?: { __typename?: 'pms_indice_globale_mutation_response', affected_rows: number } | null | undefined };
+
+export type UpdateIndicatorePerformanceMutationVariables = Exact<{
+  performance?: Maybe<Array<Pms_Indice_Performance_Insert_Input> | Pms_Indice_Performance_Insert_Input>;
+}>;
+
+
+export type UpdateIndicatorePerformanceMutation = { __typename?: 'mutation_root', insert_pms_indice_performance?: { __typename?: 'pms_indice_performance_mutation_response', affected_rows: number } | null | undefined };
+
+export type DeleteIndicatorePerformanceMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type DeleteIndicatorePerformanceMutation = { __typename?: 'mutation_root', delete_pms_indice_performance?: { __typename?: 'pms_indice_performance_mutation_response', affected_rows: number } | null | undefined };
+
+export type UpdatePacchettoStradaleMutationVariables = Exact<{
+  objects?: Maybe<Array<Pms_Pacchetto_Insert_Input> | Pms_Pacchetto_Insert_Input>;
+}>;
+
+
+export type UpdatePacchettoStradaleMutation = { __typename?: 'mutation_root', insert_pms_pacchetto?: { __typename?: 'pms_pacchetto_mutation_response', affected_rows: number } | null | undefined };
+
+export type PacchettoMaterialiSelectQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  nome?: Maybe<String_Comparison_Exp>;
+}>;
+
+
+export type PacchettoMaterialiSelectQuery = { __typename?: 'query_root', pms__materiale: Array<{ __typename?: 'pms__materiale', id: number, nome: string }> };
 
 export type GeneraProtocolloMutationVariables = Exact<{
   data?: Maybe<ProtocolloInput>;
@@ -62675,7 +65164,7 @@ export type ToponimiSubscriptionVariables = Exact<{
 }>;
 
 
-export type ToponimiSubscription = { __typename?: 'subscription_root', toponomastica_toponimo: Array<{ __typename?: 'toponomastica_toponimo', id: number, nome: string, codice?: string | null | undefined, updated_at?: any | null | undefined, dug?: { __typename?: 'toponomastica_dug', id: number, nome: string } | null | undefined, tipologia?: { __typename?: 'toponomastica_tipologia', id: number, nome: string } | null | undefined, vecchie_denominazioni: Array<{ __typename?: 'toponomastica_vecchio_toponimo', nome: string, codice?: string | null | undefined, created_at: any, dug?: { __typename?: 'toponomastica_dug', nome: string } | null | undefined, tipologia?: { __typename?: 'toponomastica_tipologia', nome: string } | null | undefined }>, assegnazioni: Array<{ __typename?: 'toponomastica_assegnazione_toponimo', id: number, inizio_validita: any, fine_validita?: any | null | undefined, municipalita: { __typename?: 'toponomastica_municipalita', id: number, nome: string }, quartiere: { __typename?: 'toponomastica_quartiere', id: number, nome: string } }> }> };
+export type ToponimiSubscription = { __typename?: 'subscription_root', toponomastica_toponimo: Array<{ __typename?: 'toponomastica_toponimo', id: number, nome: string, codice?: string | null | undefined, updated_at?: any | null | undefined, dug?: { __typename?: 'toponomastica_dug', id: number, nome: string } | null | undefined, tipologia?: { __typename?: 'toponomastica_tipologia', id: number, nome: string } | null | undefined, vecchie_denominazioni: Array<{ __typename?: 'toponomastica_vecchio_toponimo', nome: string, codice?: string | null | undefined, created_at: any, dug?: { __typename?: 'toponomastica_dug', nome: string } | null | undefined, tipologia?: { __typename?: 'toponomastica_tipologia', nome: string } | null | undefined }>, assegnazioni: Array<{ __typename?: 'toponomastica_assegnazione_toponimo', id: number, inizio_validita: any, fine_validita?: any | null | undefined, municipalita: { __typename?: 'toponomastica_municipalita', id: number, nome: string }, quartiere: { __typename?: 'toponomastica_quartiere', id: number, nome: string } }>, pacchetti: Array<{ __typename?: 'pms_pacchetto', id: number, fine_validita?: any | null | undefined, inizio_validita?: any | null | undefined, note?: string | null | undefined, strati: Array<{ __typename?: 'pms_strato', id: number, note?: string | null | undefined, spessore?: string | null | undefined, materiale?: { __typename?: 'pms__materiale', id: number, nome: string } | null | undefined }> }> }> };
 
 export type UpdateToponimoMutationVariables = Exact<{
   toponimo?: Maybe<Array<Toponomastica_Toponimo_Insert_Input> | Toponomastica_Toponimo_Insert_Input>;
@@ -62765,6 +65254,24 @@ export const AgcosDocument = gql`
   })
   export class AgcosGQL extends Apollo.Subscription<AgcosSubscription, AgcosSubscriptionVariables> {
     document = AgcosDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateAgcosDocument = gql`
+    mutation UpdateAgcos {
+  update_agcos {
+    status
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateAgcosGQL extends Apollo.Mutation<UpdateAgcosMutation, UpdateAgcosMutationVariables> {
+    document = UpdateAgcosDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -63897,6 +66404,265 @@ export const DeleteSquadraPisDocument = gql`
   })
   export class DeleteSquadraPisGQL extends Apollo.Mutation<DeleteSquadraPisMutation, DeleteSquadraPisMutationVariables> {
     document = DeleteSquadraPisDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const IndicatoriPuntualiDocument = gql`
+    subscription IndicatoriPuntuali {
+  pms_formula(where: {puntuale: {_eq: true}}) {
+    code
+    description
+    formula
+    id
+    name
+    puntuale
+    tipologia_dissesto {
+      id
+      intervento
+      nome
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class IndicatoriPuntualiGQL extends Apollo.Subscription<IndicatoriPuntualiSubscription, IndicatoriPuntualiSubscriptionVariables> {
+    document = IndicatoriPuntualiDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const IndicatoriDocument = gql`
+    subscription Indicatori {
+  pms_formula(where: {puntuale: {_eq: false}}) {
+    code
+    description
+    formula
+    id
+    name
+    puntuale
+    tipologia_dissesto {
+      id
+      intervento
+      nome
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class IndicatoriGQL extends Apollo.Subscription<IndicatoriSubscription, IndicatoriSubscriptionVariables> {
+    document = IndicatoriDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const IndicatoriPerformanceDocument = gql`
+    subscription IndicatoriPerformance {
+  pms_indice_performance {
+    code
+    formula
+    description
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class IndicatoriPerformanceGQL extends Apollo.Subscription<IndicatoriPerformanceSubscription, IndicatoriPerformanceSubscriptionVariables> {
+    document = IndicatoriPerformanceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const IndicatoriGlobaliDocument = gql`
+    subscription IndicatoriGlobali {
+  pms_indice_globale {
+    code
+    formula
+    description
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class IndicatoriGlobaliGQL extends Apollo.Subscription<IndicatoriGlobaliSubscription, IndicatoriGlobaliSubscriptionVariables> {
+    document = IndicatoriGlobaliDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateFormulaDocument = gql`
+    mutation UpdateFormula($formula: [pms_formula_insert_input!] = {}) {
+  insert_pms_formula(
+    objects: $formula
+    on_conflict: {constraint: formula_pkey, update_columns: [code, name, description, tipologia_dissesto_pavimentazione_id, formula, puntuale]}
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateFormulaGQL extends Apollo.Mutation<UpdateFormulaMutation, UpdateFormulaMutationVariables> {
+    document = UpdateFormulaDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteFormulaDocument = gql`
+    mutation DeleteFormula($id: Int!) {
+  delete_pms_formula(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteFormulaGQL extends Apollo.Mutation<DeleteFormulaMutation, DeleteFormulaMutationVariables> {
+    document = DeleteFormulaDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateIndicatoreGlobaleDocument = gql`
+    mutation UpdateIndicatoreGlobale($globale: [pms_indice_globale_insert_input!] = {}) {
+  insert_pms_indice_globale(
+    objects: $globale
+    on_conflict: {constraint: indice_globale_pkey, update_columns: [code, name, description, formula]}
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateIndicatoreGlobaleGQL extends Apollo.Mutation<UpdateIndicatoreGlobaleMutation, UpdateIndicatoreGlobaleMutationVariables> {
+    document = UpdateIndicatoreGlobaleDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteIndicatoreGlobaleDocument = gql`
+    mutation DeleteIndicatoreGlobale($id: Int!) {
+  delete_pms_indice_globale(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteIndicatoreGlobaleGQL extends Apollo.Mutation<DeleteIndicatoreGlobaleMutation, DeleteIndicatoreGlobaleMutationVariables> {
+    document = DeleteIndicatoreGlobaleDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateIndicatorePerformanceDocument = gql`
+    mutation UpdateIndicatorePerformance($performance: [pms_indice_performance_insert_input!] = {}) {
+  insert_pms_indice_performance(
+    objects: $performance
+    on_conflict: {constraint: indice_performance_pkey, update_columns: [code, name, description, formula]}
+  ) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateIndicatorePerformanceGQL extends Apollo.Mutation<UpdateIndicatorePerformanceMutation, UpdateIndicatorePerformanceMutationVariables> {
+    document = UpdateIndicatorePerformanceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteIndicatorePerformanceDocument = gql`
+    mutation DeleteIndicatorePerformance($id: Int!) {
+  delete_pms_indice_performance(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteIndicatorePerformanceGQL extends Apollo.Mutation<DeleteIndicatorePerformanceMutation, DeleteIndicatorePerformanceMutationVariables> {
+    document = DeleteIndicatorePerformanceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdatePacchettoStradaleDocument = gql`
+    mutation UpdatePacchettoStradale($objects: [pms_pacchetto_insert_input!] = {}) {
+  insert_pms_pacchetto(objects: $objects) {
+    affected_rows
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdatePacchettoStradaleGQL extends Apollo.Mutation<UpdatePacchettoStradaleMutation, UpdatePacchettoStradaleMutationVariables> {
+    document = UpdatePacchettoStradaleDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PacchettoMaterialiSelectDocument = gql`
+    query PacchettoMaterialiSelect($limit: Int = 10, $offset: Int = 0, $nome: String_comparison_exp = {}) {
+  pms__materiale(
+    order_by: {nome: asc}
+    limit: $limit
+    offset: $offset
+    where: {nome: $nome}
+  ) {
+    id
+    nome
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PacchettoMaterialiSelectGQL extends Apollo.Query<PacchettoMaterialiSelectQuery, PacchettoMaterialiSelectQueryVariables> {
+    document = PacchettoMaterialiSelectDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -69095,6 +71861,21 @@ export const ToponimiDocument = gql`
       quartiere {
         id
         nome
+      }
+    }
+    pacchetti(order_by: {fine_validita: desc_nulls_first}) {
+      id
+      fine_validita
+      inizio_validita
+      note
+      strati {
+        id
+        note
+        spessore
+        materiale {
+          id
+          nome
+        }
       }
     }
   }

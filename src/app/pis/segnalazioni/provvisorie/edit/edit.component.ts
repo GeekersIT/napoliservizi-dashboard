@@ -114,9 +114,10 @@ export class SegnalazioniProvvisorieEditComponent
       templateOptions: {
         orientation: 'horizontal',
       },
-      fieldGroup: this.steps.filter(
-        (step) => step.key != 'intervento' && step.key != 'geolocalizzazione'
-      ),
+      // fieldGroup: this.steps.filter(
+      //   (step) => step.key != 'intervento' && step.key != 'geolocalizzazione'
+      // ),
+      fieldGroup: this.steps,
     },
   ];
 

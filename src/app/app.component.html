@@ -5,218 +5,69 @@
   <span class="spacer"></span>
 
   <div fxShow="true" fxHide.lt-md="true">
-    <!-- <button mat-button [matMenuTriggerFor]="amministrazioneMenu">
-      {{ "Amministrazione" | translate }}
-    </button>
-    <mat-menu #amministrazioneMenu="matMenu" yPosition="above">
-      <button mat-menu-item>{{ "Gestione utenti" | translate }}</button>
-      <button mat-menu-item>{{ "Log" | translate }}</button>
-    </mat-menu> -->
-    <button
-      mat-button
-      [matMenuTriggerFor]="toponomasticaMenu"
-      *ngIf="
-        roles.show([
-          'toponomastica-gestione-toponimi',
-          'toponomastica-gestione-municipalita',
-          'toponomastica-gestione-quartieri'
-        ])
-      "
-    >
-      {{ "Toponomastica" | translate }}
-    </button>
-    <mat-menu #toponomasticaMenu="matMenu" yPosition="above">
-      <button
-        mat-menu-item
-        [routerLink]="'/toponomastica/municipalita'"
-        *ngIf="roles.show(['toponomastica-gestione-municipalita'])"
-      >
-        {{ "Gestione municipalità" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/toponomastica/quartieri'"
-        *ngIf="roles.show(['toponomastica-gestione-quartieri'])"
-      >
-        {{ "Gestione quartieri" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/toponomastica/toponimi'"
-        *ngIf="roles.show(['toponomastica-gestione-toponimi'])"
-      >
-        {{ "Gestione toponimi" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="webGisMenu"
-      *ngIf="roles.show(['gis-mappa', 'gis-gestione-livelli'])"
-    >
-      {{ "webGIS" | translate }}
-    </button>
-    <mat-menu #webGisMenu="matMenu" yPosition="above">
-      <button
-        mat-menu-item
-        [routerLink]="'/gis/mappa'"
-        *ngIf="roles.show(['gis-mappa'])"
-      >
-        {{ "Mappa" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/gis/livelli'"
-        *ngIf="roles.show(['gis-gestione-livelli'])"
-      >
-        {{ "Gestione livelli" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="pisMenu"
-      *ngIf="
-        roles.show([
-          'pis-gestione-interventi',
-          'pis-gestione-segnalazioni',
-          'pis-gestione-squadre',
-          'pis-ufficio'
-        ])
-      "
-    >
-      {{ "P.I.S." | translate }}
-    </button>
-    <mat-menu #pisMenu="matMenu" yPosition="above">
-      <button
-        mat-menu-item
-        [routerLink]="'/pis/interventi/straordinari'"
-        *ngIf="roles.show(['pis-gestione-interventi'])"
-      >
-        {{ "Interventi straordinari" | translate }}
-      </button>
-      <!-- <button mat-menu-item [routerLink]="'/pis/interventi/campo'">{{ 'Interventi sul campo'|translate }}</button> -->
-      <!-- <button mat-menu-item>{{ 'Richieste protezione civile'|translate }}</button> -->
-      <button
-        mat-menu-item
-        [routerLink]="'/pis/squadre'"
-        *ngIf="roles.show(['pis-gestione-squadre'])"
-      >
-        {{ "Gestione squadre" | translate }}
-      </button>
-      <!-- <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">{{ 'Pre segnalazioni'|translate }}</button> -->
-      <button
-        mat-menu-item
-        [routerLink]="'/pis/segnalazioni/provvisorie'"
-        *ngIf="roles.show(['pis-gestione-segnalazioni'])"
-      >
-        {{ "Segnalazioni provvisorie" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/pis/segnalazioni/protocollate'"
-        *ngIf="roles.show(['pis-gestione-segnalazioni'])"
-      >
-        {{ "Segnalazioni protocollate" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="sisMenu"
-      *ngIf="
-        roles.show(['sis-gestione-incidenti', 'sis-gestione-unita-operative'])
-      "
-    >
-      {{ "S.I.S." | translate }}
-    </button>
-    <mat-menu #sisMenu="matMenu" yPosition="above">
-      <button
-        mat-menu-item
-        [routerLink]="'/sis/ris/agenti'"
-        *ngIf="roles.show(['sis-gestione-incidenti'])"
-      >
-        {{ "R.I.S." | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/sis/ris/provvisori'"
-        *ngIf="roles.show(['sis-gestione-incidenti'])"
-      >
-        {{ "R.I.S. provvisori" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/sis/ris/protocollati'"
-        *ngIf="roles.show(['sis-gestione-incidenti'])"
-      >
-        {{ "R.I.S. protocollati" | translate }}
-      </button>
-      <button
-        mat-menu-item
-        [routerLink]="'/sis/unita/operative'"
-        *ngIf="roles.show(['sis-gestione-unita-operative'])"
-      >
-        {{ "Unità operative" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="pmsMenu"
-      *ngIf="
-        roles.show([
-          'pms-gestione-indicatori',
-          'pms-mappa',
-          'pms-pacchetto-stradale'
-        ])
-      "
-    >
-      {{ "P.M.S." | translate }}
-    </button>
-    <mat-menu #pmsMenu="matMenu" yPosition="above">
-      <button mat-menu-item *ngIf="roles.show(['pms-mappa'])">
-        {{ "Mappa" | translate }}
-      </button>
-      <button mat-menu-item *ngIf="roles.show(['pms-gestione-indicatori'])">
-        {{ "Gestione indicatori" | translate }}
-      </button>
-      <button mat-menu-item *ngIf="roles.show(['pms-pacchetto-stradale'])">
-        {{ "Pacchetto stradale" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="pssuMenu"
-      *ngIf="roles.show(['pssu-mappa', 'pssu-report'])"
-    >
-      {{ "P.S.S.U." | translate }}
-    </button>
-    <mat-menu #pssuMenu="matMenu" yPosition="above">
-      <button mat-menu-item *ngIf="roles.show(['pssu-mappa'])">
-        {{ "Mappa" | translate }}
-      </button>
-      <button mat-menu-item *ngIf="roles.show(['pssu-report'])">
-        {{ "Reportistica" | translate }}
-      </button>
-    </mat-menu>
-    <button
-      mat-button
-      [matMenuTriggerFor]="agcosMenu"
-      *ngIf="roles.show(['agcos-report'])"
-    >
-      {{ "Agcos" | translate }}
-    </button>
-    <mat-menu #agcosMenu="matMenu" yPosition="above">
-      <button mat-menu-item [routerLink]="'/agcos'">
-        {{ "Elenco" | translate }}
-      </button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="userMenu">
-      <ngx-avatar
-        name="{{ utente?.firstName }} {{ utente?.lastName }}"
-      ></ngx-avatar>
-    </button>
-    <mat-menu #userMenu="matMenu" yPosition="above">
-      <button mat-menu-item>{{ "Profilo" | translate }}</button>
-      <button mat-menu-item (click)="logout()">{{ "Esci" | translate }}</button>
-    </mat-menu>
+    <ng-container *ngFor="let m of menu">
+      <ng-container *ngIf="m.subMenu; else single">
+        <button
+          mat-button
+          [matMenuTriggerFor]="menu"
+          *ngIf="m.show"
+          (click)="m.click()"
+        >
+          {{ m.label }}
+          <ngx-avatar
+            *ngIf="m.avatar"
+            name="{{ utente?.firstName }} {{ utente?.lastName }}"
+          ></ngx-avatar>
+        </button>
+        <mat-menu #menu="matMenu" yPosition="above">
+          <ng-container *ngFor="let s of m.subMenu">
+            <ng-container *ngIf="s.subMenu; else noTree">
+              <button
+                mat-menu-item
+                [matMenuTriggerFor]="tree"
+                *ngIf="s.show"
+                (click)="s.click()"
+              >
+                {{ s.label }}
+              </button>
+            </ng-container>
+            <ng-template #noTree>
+              <button
+                mat-menu-item
+                [routerLink]="s.routerLink"
+                *ngIf="s.show"
+                (click)="s.click()"
+              >
+                {{ s.label }}
+              </button>
+            </ng-template>
+
+            <mat-menu #tree="matMenu">
+              <ng-container *ngFor="let t of s.subMenu">
+                <button
+                  mat-menu-item
+                  [routerLink]="t.routerLink"
+                  *ngIf="t.show"
+                  (click)="t.click()"
+                >
+                  {{ t.label }}
+                </button>
+              </ng-container>
+            </mat-menu>
+          </ng-container>
+        </mat-menu>
+      </ng-container>
+      <ng-template #single>
+        <button
+          mat-button
+          [routerLink]="m.routerLink"
+          *ngIf="m.show"
+          (click)="m.click()"
+        >
+          {{ m.label }}
+        </button>
+      </ng-template>
+    </ng-container>
   </div>
 
   <button
@@ -232,210 +83,60 @@
 <mat-sidenav-container fxFlexFill class="container">
   <mat-sidenav #sidenav fxLayout="column">
     <mat-list>
-      <!-- <div mat-subheader>{{ "Amministrazione" | translate }}</div>
-      <mat-list-item>
-        <button mat-menu-item>{{ "Gestione utenti" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-menu-item>{{ "Log" | translate }}</button>
-      </mat-list-item>
-      <mat-divider></mat-divider> -->
-      <div
-        mat-subheader
-        *ngIf="
-          roles.show([
-            'toponomastica-gestione-toponimi',
-            'toponomastica-gestione-municipalita',
-            'toponomastica-gestione-quartieri'
-          ])
-        "
-      >
-        {{ "Toponomastica" | translate }}
-      </div>
-      <mat-list-item
-        *ngIf="roles.show(['toponomastica-gestione-municipalita'])"
-      >
-        <button mat-menu-item [routerLink]="'/toponomastica/municipalita'">
-          {{ "Gestione municipalità" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['toponomastica-gestione-quartieri'])">
-        <button mat-menu-item [routerLink]="'/toponomastica/quartieri'">
-          {{ "Gestione quartieri" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['toponomastica-gestione-toponimi'])">
-        <button mat-menu-item [routerLink]="'/toponomastica/toponimi'">
-          {{ "Gestione toponimi" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-divider
-        *ngIf="roles.show(['gis-mappa', 'gis-gestione-livelli'])"
-      ></mat-divider>
-      <div
-        mat-subheader
-        *ngIf="roles.show(['gis-mappa', 'gis-gestione-livelli'])"
-      >
-        {{ "webGIS" | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['gis-mappa'])">
-        <button mat-menu-item>{{ "Mappa" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['gis-gestione-livelli'])">
-        <button mat-menu-item>{{ "Gestione livelli" | translate }}</button>
-      </mat-list-item>
-      <mat-divider
-        *ngIf="
-          roles.show([
-            'pis-gestione-interventi',
-            'pis-gestione-segnalazioni',
-            'pis-gestione-squadre',
-            'pis-ufficio'
-          ])
-        "
-      ></mat-divider>
-      <div
-        mat-subheader
-        *ngIf="
-          roles.show([
-            'pis-gestione-interventi',
-            'pis-gestione-segnalazioni',
-            'pis-gestione-squadre',
-            'pis-ufficio'
-          ])
-        "
-      >
-        {{ "P.I.S." | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['pis-gestione-interventi'])">
-        <button mat-menu-item [routerLink]="'/pis/interventi/straordinari'">
-          {{ "Interventi straordinari" | translate }}
-        </button>
-      </mat-list-item>
-      <!-- <mat-list-item *ngIf="roles.show(['pis-gestione-squadre'])">
-        <button mat-menu-item [routerLink]="'/pis/interventi/campo'">
-          {{ "Interventi sul campo" | translate }}
-        </button>
-      </mat-list-item> -->
-      <!-- <mat-list-item>
-        <button mat-menu-item>
-          {{ "Richieste protezione civile" | translate }}
-        </button>
-      </mat-list-item> -->
-      <mat-list-item *ngIf="roles.show(['pis-gestione-squadre'])">
-        <button mat-menu-item [routerLink]="'/pis/squadre'">
-          {{ "Gestione squadre" | translate }}
-        </button>
-      </mat-list-item>
-      <!-- <mat-list-item *ngIf="roles.show(['pis-gestione-segnalazioni'])">
-        <button mat-menu-item [routerLink]="'/pis/segnalazioni/pre'">
-          {{ "Pre segnalazioni" | translate }}
-        </button>
-      </mat-list-item> -->
-      <mat-list-item *ngIf="roles.show(['pis-gestione-segnalazioni'])">
-        <button mat-menu-item [routerLink]="'/pis/segnalazioni/provvisorie'">
-          {{ "Segnalazioni provvisorie" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['pis-gestione-segnalazioni'])">
-        <button mat-menu-item [routerLink]="'/pis/segnalazioni/protocollate'">
-          {{ "Segnalazioni protocollate" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-divider
-        *ngIf="
-          roles.show(['sis-gestione-incidenti', 'sis-gestione-unita-operative'])
-        "
-      ></mat-divider>
-      <div
-        mat-subheader
-        *ngIf="
-          roles.show(['sis-gestione-incidenti', 'sis-gestione-unita-operative'])
-        "
-      >
-        {{ "S.I.S." | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['sis-gestione-incidenti'])">
-        <button mat-menu-item [routerLink]="'/sis/ris/agenti'">
-          {{ "R.I.S." | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['sis-gestione-incidenti'])">
-        <button mat-menu-item [routerLink]="'/sis/ris/provvisori'">
-          {{ "R.I.S. provvisori" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['sis-gestione-incidenti'])">
-        <button mat-menu-item [routerLink]="'/sis/ris/protocollate'">
-          {{ "R.I.S. protocollati" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['sis-gestione-unita-operative'])">
-        <button mat-menu-item [routerLink]="'/sis/unita/operative'">
-          {{ "Unità operative" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-divider
-        *ngIf="
-          roles.show([
-            'pms-gestione-indicatori',
-            'pms-mappa',
-            'pms-pacchetto-stradale'
-          ])
-        "
-      ></mat-divider>
-      <div
-        mat-subheader
-        *ngIf="
-          roles.show([
-            'pms-gestione-indicatori',
-            'pms-mappa',
-            'pms-pacchetto-stradale'
-          ])
-        "
-      >
-        {{ "P.M.S." | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['pms-mappa'])">
-        <button mat-menu-item>{{ "Mappa" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['pms-gestione-indicatori'])">
-        <button mat-menu-item>{{ "Gestione indicatori" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['pms-pacchetto-stradale'])">
-        <button mat-menu-item>{{ "Paccheto stradale" | translate }}</button>
-      </mat-list-item>
-      <mat-divider
-        *ngIf="roles.show(['pssu-mappa', 'pssu-report'])"
-      ></mat-divider>
-      <div mat-subheader *ngIf="roles.show(['pssu-mappa', 'pssu-report'])">
-        {{ "P.S.S.U." | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['pssu-mappa'])">
-        <button mat-menu-item>{{ "Mappa" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item *ngIf="roles.show(['pssu-report'])">
-        <button mat-menu-item>{{ "Reportistica" | translate }}</button>
-      </mat-list-item>
-      <mat-divider *ngIf="roles.show(['agcos-report'])"></mat-divider>
-      <div mat-subheader *ngIf="roles.show(['agcos-report'])">
-        {{ "Agcos" | translate }}
-      </div>
-      <mat-list-item *ngIf="roles.show(['agcos-report'])">
-        <button mat-menu-item [routerLink]="'/agcos'">
-          {{ "Elenco" | translate }}
-        </button>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <div mat-subheader>{{ "Impostazioni" | translate }}</div>
-      <mat-list-item>
-        <button mat-menu-item>{{ "Profilo" | translate }}</button>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-menu-item (click)="logout()">
-          {{ "Esci" | translate }}
-        </button>
-      </mat-list-item>
+      <ng-container *ngFor="let m of menu">
+        <ng-container *ngIf="m.subMenu; else single">
+          <div mat-subheader *ngIf="m.show">
+            {{ m.label }}
+          </div>
+          <mat-divider
+            *ngIf="m.avatar"
+            style="margin-bottom: 20px"
+          ></mat-divider>
+          <ng-container *ngFor="let s of m.subMenu">
+            <ng-container *ngIf="s.subMenu; else noTree">
+              <div mat-subheader *ngIf="s.show" style="margin-left: 20px">
+                {{ s.label }}
+              </div>
+              <ng-container *ngFor="let t of s.subMenu">
+                <mat-list-item *ngIf="t.show" style="margin-left: 20px">
+                  <button
+                    mat-menu-item
+                    [routerLink]="t.routerLink"
+                    (click)="t.click()"
+                  >
+                    {{ t.label }}
+                  </button>
+                </mat-list-item>
+              </ng-container>
+            </ng-container>
+            <ng-template #noTree>
+              <mat-list-item *ngIf="s.show">
+                <button
+                  mat-menu-item
+                  [routerLink]="s.routerLink"
+                  (click)="s.click()"
+                >
+                  {{ s.label }}
+                </button>
+              </mat-list-item>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+        <ng-template #single>
+          <div mat-subheader *ngIf="m.show">
+            {{ m.label }}
+          </div>
+          <mat-list-item *ngIf="m.show">
+            <button
+              mat-menu-item
+              [routerLink]="m.routerLink"
+              (click)="m.click()"
+            >
+              {{ m.label }}
+            </button>
+          </mat-list-item>
+        </ng-template>
+      </ng-container>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content class="content" fxFlexFill>

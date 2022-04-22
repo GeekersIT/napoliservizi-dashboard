@@ -1,0 +1,112 @@
+subscription IndicatoriPuntuali {
+  pms_formula(where: { puntuale: { _eq: true } }) {
+    code
+    description
+    formula
+    id
+    name
+    puntuale
+    tipologia_dissesto {
+      id
+      intervento
+      nome
+    }
+  }
+}
+
+subscription Indicatori {
+  pms_formula(where: { puntuale: { _eq: false } }) {
+    code
+    description
+    formula
+    id
+    name
+    puntuale
+    tipologia_dissesto {
+      id
+      intervento
+      nome
+    }
+  }
+}
+
+subscription IndicatoriPerformance {
+  pms_indice_performance {
+    code
+    formula
+    description
+    id
+    name
+  }
+}
+
+subscription IndicatoriGlobali {
+  pms_indice_globale {
+    code
+    formula
+    description
+    id
+    name
+  }
+}
+
+mutation UpdateFormula($formula: [pms_formula_insert_input!] = {}) {
+  insert_pms_formula(
+    objects: $formula
+    on_conflict: {
+      constraint: formula_pkey
+      update_columns: [
+        code
+        name
+        description
+        tipologia_dissesto_pavimentazione_id
+        formula
+        puntuale
+      ]
+    }
+  ) {
+    affected_rows
+  }
+}
+mutation DeleteFormula($id: Int!) {
+  delete_pms_formula(where: { id: { _eq: $id } }) {
+    affected_rows
+  }
+}
+
+mutation UpdateIndicatoreGlobale(
+  $globale: [pms_indice_globale_insert_input!] = {}
+) {
+  insert_pms_indice_globale(
+    objects: $globale
+    on_conflict: {
+      constraint: indice_globale_pkey
+      update_columns: [code, name, description, formula]
+    }
+  ) {
+    affected_rows
+  }
+}
+mutation DeleteIndicatoreGlobale($id: Int!) {
+  delete_pms_indice_globale(where: { id: { _eq: $id } }) {
+    affected_rows
+  }
+}
+mutation UpdateIndicatorePerformance(
+  $performance: [pms_indice_performance_insert_input!] = {}
+) {
+  insert_pms_indice_performance(
+    objects: $performance
+    on_conflict: {
+      constraint: indice_performance_pkey
+      update_columns: [code, name, description, formula]
+    }
+  ) {
+    affected_rows
+  }
+}
+mutation DeleteIndicatorePerformance($id: Int!) {
+  delete_pms_indice_performance(where: { id: { _eq: $id } }) {
+    affected_rows
+  }
+}

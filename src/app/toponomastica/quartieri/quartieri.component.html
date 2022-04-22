@@ -46,7 +46,7 @@
         <div mat-line>{{ row.nome }}</div>
         <div mat-line>
           <span>{{
-            "Valida da {data}"
+            "Valida dal {data}"
               | translate: { data: row.updated_at | date: "full":"it" }
           }}</span>
         </div>
@@ -58,7 +58,7 @@
         <div mat-line>{{ municipalita.municipalita.nome }}</div>
         <div mat-line>
           <span>{{
-            "Valida da {data}"
+            "Valida dal {data}"
               | translate
                 : { data: municipalita.inizio_validita | date: "full":"it" }
           }}</span>
@@ -73,7 +73,7 @@
           <div mat-line>
             {{ denominazioni.nome }}
             <span>{{
-              "Valida da {data}"
+              "Valida dal {data}"
                 | translate
                   : { data: denominazioni.created_at | date: "full":"it" }
             }}</span>
@@ -97,7 +97,7 @@
           <div mat-line>{{ municipalita.municipalita.nome }}</div>
           <div mat-line>
             <span>{{
-              "Valida fino a {data}"
+              "Valida fino al {data}"
                 | translate
                   : { data: municipalita.fine_validita | date: "full":"it" }
             }}</span>

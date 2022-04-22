@@ -1,0 +1,5 @@
+mutation UpdatePacchettoStradale($objects: [pms_pacchetto_insert_input!] = {}) {
+  insert_pms_pacchetto(objects: $objects) {
+    affected_rows
+  }
+}

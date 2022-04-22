@@ -1,0 +1,27 @@
+<div style="margin: 0.25em 0; padding-bottom: 1.34375em">
+  <div
+    class="display-flex editor-box {{ (selezionato | async) ? 'focus' : '' }} {{
+      (state | async) == 'INVALID' ? 'focus-error' : ''
+    }}"
+  >
+    <mat-label *ngIf="to.label">
+      {{ to.label }}<span *ngIf="to.required"> *</span></mat-label
+    >
+
+    <ace-editor
+      class="flex-6"
+      #editor
+      [mode]="to.ace.mode"
+      [formlyAttributes]="field"
+      [formControl]="toControl(formControl)"
+      (textChanged)="onChange($event)"
+    ></ace-editor>
+  </div>
+  <mat-error class="error" *ngIf="(state | async) == 'INVALID'">{{
+    error
+  }}</mat-error>
+  <mat-error class="warning error" *ngIf="(state | async) == 'PENDING'"
+    >{{ "Validazione in corso" | translate }}
+    <mat-icon style="font-size: 14px">hourglass_bottom</mat-icon></mat-error
+  >
+</div>

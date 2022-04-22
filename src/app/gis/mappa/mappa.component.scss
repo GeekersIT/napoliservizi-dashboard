@@ -1,5 +1,12 @@
+
+@import '../../../styles.scss';
+
+.container-mappa{
+  height: calc(100% - #{$subbar})!important;
+}
+
 .map-container {
-    height:800px;
+    height:100%;
     width: 100%;
     z-index: 1;
   }

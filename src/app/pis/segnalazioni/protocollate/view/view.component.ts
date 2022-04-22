@@ -22,9 +22,7 @@ export class SegnalazioniProtocollateViewComponent
       templateOptions: {
         orientation: 'horizontal',
       },
-      fieldGroup: [
-        ...this.steps.filter((step) => step.key != 'geolocalizzazione'),
-      ],
+      fieldGroup: [...this.steps],
     },
   ];
 

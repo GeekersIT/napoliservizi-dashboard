@@ -39,7 +39,43 @@
               }
             ],
             "styles": ["src/styles.scss", "node_modules/ol/ol.css"],
-            "scripts": []
+            "scripts": [
+              "./node_modules/ace-builds/src-min/ace.js",
+              "./node_modules/ace-builds/src-min/theme-eclipse.js",
+
+              "./node_modules/ace-builds/src-min/mode-sql.js",
+              "./node_modules/ace-builds/src-min/ext-beautify.js",
+              "./node_modules/ace-builds/src-min/ext-code_lens.js",
+              "./node_modules/ace-builds/src-min/ext-elastic_tabstops_lite.js",
+              "./node_modules/ace-builds/src-min/ext-emmet.js",
+              "./node_modules/ace-builds/src-min/ext-error_marker.js",
+              "./node_modules/ace-builds/src-min/ext-hardwrap.js",
+              "./node_modules/ace-builds/src-min/ext-keybinding_menu.js",
+              "./node_modules/ace-builds/src-min/ext-language_tools.js",
+              "./node_modules/ace-builds/src-min/ext-linking.js",
+              "./node_modules/ace-builds/src-min/ext-modelist.js",
+              "./node_modules/ace-builds/src-min/ext-options.js",
+              "./node_modules/ace-builds/src-min/ext-prompt.js",
+              "./node_modules/ace-builds/src-min/ext-rtl.js",
+              "./node_modules/ace-builds/src-min/ext-searchbox.js",
+              "./node_modules/ace-builds/src-min/ext-settings_menu.js",
+              "./node_modules/ace-builds/src-min/ext-spellcheck.js",
+              "./node_modules/ace-builds/src-min/ext-split.js",
+              "./node_modules/ace-builds/src-min/ext-static_highlight.js",
+              "./node_modules/ace-builds/src-min/ext-statusbar.js",
+              "./node_modules/ace-builds/src-min/ext-textarea.js",
+              "./node_modules/ace-builds/src-min/ext-themelist.js",
+              "./node_modules/ace-builds/src-min/ext-whitespace.js",
+              "./node_modules/ace-builds/src-min/keybinding-emacs.js",
+              "./node_modules/ace-builds/src-min/keybinding-sublime.js",
+              "./node_modules/ace-builds/src-min/keybinding-vim.js",
+              "./node_modules/ace-builds/src-min/keybinding-vscode.js",
+              "./src/assets/editor/mode-pmspms.js",
+              "./src/assets/editor/mode-pmsglobal.js",
+              "./src/assets/editor/mode-pmsperformance.js",
+              "./src/assets/editor/mode-pmspoint.js",
+              "./node_modules/ace-builds/src-min/mode-text.js"
+            ]
           },
           "configurations": {
             "production": {

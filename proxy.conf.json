@@ -6,32 +6,47 @@
     "changeOrigin": true,
     "pathRewrite": { "^/db": "" },
     "ws": true,
-    "wss": true
+    "wss": true,
+    "router": {
+      "localhost:4200": "http://localhost:8080/"
+    }
   },
   "/storage": {
     "target": "http://minio-logic.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": { "^/storage": "" }
+    "pathRewrite": { "^/storage": "" },
+    "router": {
+      "localhost:4200": "http://localhost:8082/"
+    }
   },
-  "/agcos": {
-    "target": "http://agcos.napoliservizi/",
+  "/editor": {
+    "target": "http://editor.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": { "^/agcos": "" }
+    "pathRewrite": { "^/editor": "" },
+    "router": {
+      "localhost:4200": "http://localhost:8086/"
+    }
   },
   "/template": {
     "target": "http://minio.napoliservizi:9000/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "router": {
+      "localhost:4200": "http://localhost:8083/"
+    }
   },
   "/geoserver": {
     "target": "http://geoserver-geoserver.napoliservizi/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "router": {
+      "localhost:4200": "http://localhost:8081/"
+    }
   }
 }

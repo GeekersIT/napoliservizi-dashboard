@@ -616,13 +616,17 @@ export abstract class SegnalazioneEdit extends Dirty {
                 ?.find((f) => f.key == 'localizzazione')
                 ?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(
                   (s) => {
+                    console.log(s);
+
                     if (s && typeof s != 'string' && punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: s.geom.coordinates[0],
                         longitudine: s.geom.coordinates[1],
                       });
                     } else if (punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: null,
                         longitudine: null,
                       });
@@ -636,11 +640,13 @@ export abstract class SegnalazioneEdit extends Dirty {
                   (s) => {
                     if (s && typeof s != 'string' && punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: s.geom.coordinates[0][0],
                         longitudine: s.geom.coordinates[0][1],
                       });
                     } else if (punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: null,
                         longitudine: null,
                       });
@@ -654,12 +660,14 @@ export abstract class SegnalazioneEdit extends Dirty {
                   (s) => {
                     if (s && typeof s != 'string' && punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: s.geom.coordinates[0],
                         longitudine: s.geom.coordinates[1],
                         propagate: true,
                       });
                     } else if (punto_iniziale) {
                       punto_iniziale.punto.next({
+                        ...punto_iniziale.punto.value,
                         latitudine: null,
                         longitudine: null,
                       });

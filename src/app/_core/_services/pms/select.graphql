@@ -1,0 +1,15 @@
+query PacchettoMaterialiSelect(
+  $limit: Int = 10
+  $offset: Int = 0
+  $nome: String_comparison_exp = {}
+) {
+  pms__materiale(
+    order_by: { nome: asc }
+    limit: $limit
+    offset: $offset
+    where: { nome: $nome }
+  ) {
+    id
+    nome
+  }
+}

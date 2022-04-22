@@ -52,3 +52,9 @@ subscription Agcos {
     }
   }
 }
+
+mutation UpdateAgcos {
+  update_agcos {
+    status
+  }
+}

@@ -1,0 +1,46 @@
+<mat-toolbar>
+  <span>{{ "Indicatori P.M.S." | translate }}</span>
+  <span class="spacer"></span>
+  <button mat-stroked-button color="accent" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    {{ "Aggiungi un nuovo indicatori" | translate }}
+  </button>
+</mat-toolbar>
+<div class="main-content">
+  <table-component
+    [defaultSort]="defaultSort"
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [expandsTemplate]="expandsTemplate"
+    [actionsTemplate]="actionsTemplate"
+  ></table-component>
+</div>
+
+<ng-template let-row="row" #expandsTemplate>
+  <mat-list>
+    <div mat-subheader>{{ "Formula" | translate }}</div>
+    <mat-list-item *ngFor="let item of row.formula | jsonParse | keyvalue">
+      <div mat-line>
+        {{ "name.indicatori" | translate: { name: item.key } }}
+        <b
+          ><i>{{ item.value }}</i></b
+        >
+      </div>
+    </mat-list-item>
+    <div mat-subheader>{{ "Descrizione" | translate }}</div>
+    <mat-list-item>
+      <div mat-line>{{ row.description }}</div>
+    </mat-list-item>
+  </mat-list>
+</ng-template>
+
+<ng-template let-row="row" #actionsTemplate>
+  <button mat-stroked-button color="accent" (click)="openDialog(row)">
+    <mat-icon>edit</mat-icon>
+    {{ "Modifica" | translate }}
+  </button>
+  <button mat-stroked-button color="warn" (click)="delete(row)">
+    <mat-icon>delete_forever</mat-icon>
+    {{ "Elimina" | translate }}
+  </button>
+</ng-template>

@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SubscriptionResult } from 'apollo-angular';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { firstValueFrom, map } from 'rxjs';
+import { map } from 'rxjs';
 import { DataSource } from 'src/app/_core/_components/table/data-source.model';
 import { AgcosObj } from 'src/app/_core/_models/agcos/agcos.interface';
 import {
   AgcosGQL,
   AgcosImportGQL,
   AgcosSubscription,
+  UpdateAgcosGQL,
 } from 'src/app/_core/_services/generated/graphql';
 
 @Component({
@@ -147,7 +147,7 @@ export class ElencoComponent implements OnInit {
     private _translateService: TranslateService,
     private _agcosGQL: AgcosGQL,
     private _agcosImportGQL: AgcosImportGQL,
-    private _http: HttpClient,
+    private _updateAgcosGQL: UpdateAgcosGQL,
     private _loader: NgxUiLoaderService
   ) {
     this.dataSource = new DataSource();
@@ -257,7 +257,8 @@ export class ElencoComponent implements OnInit {
 
   async update() {
     this._loader.start();
-    await firstValueFrom(this._http.get('/agcos/update'));
-    this._loader.stop();
+    this._updateAgcosGQL.mutate().subscribe((_) => {
+      this._loader.stop();
+    });
   }
 }

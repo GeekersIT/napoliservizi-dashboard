@@ -21,9 +21,7 @@ export class RisAgentiEditComponent extends RisEdit implements OnInit {
       templateOptions: {
         orientation: 'horizontal',
       },
-      fieldGroup: this.steps.filter(
-        (step) => step.key != 'protocollo' && step.key != 'geolocalizzazione'
-      ),
+      fieldGroup: this.steps.filter((step) => step.key != 'protocollo'),
     },
   ];
 

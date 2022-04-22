@@ -23,6 +23,7 @@ import { FormlyMatDateRangePickerModule } from '../../_formly/_components/date-r
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonFormlyModule } from '../../_formly/_components/button-formly/button-formly.module';
 import { FormlyMatDateTimePickerModule } from '../../_formly/_components/date-time-picker-formly/date-time-picker-formly.module';
+import { FormlyFormulaModule } from '../../_formly/_components/formula-formly/formula-formly.module';
 
 @NgModule({
   declarations: [FormComponent],
@@ -50,6 +51,7 @@ import { FormlyMatDateTimePickerModule } from '../../_formly/_components/date-ti
     FormlyMatDateTimePickerModule,
     MatIconModule,
     ButtonFormlyModule,
+    FormlyFormulaModule,
   ],
   exports: [FormComponent],
 })

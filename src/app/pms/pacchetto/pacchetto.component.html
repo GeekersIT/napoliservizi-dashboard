@@ -1,0 +1,114 @@
+<mat-toolbar>
+  <span>{{ "Pacchetto stradale" | translate }}</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+<div class="main-content">
+  <table-component
+    [defaultSort]="defaultSort"
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [expandsTemplate]="expandsTemplate"
+    [actionsTemplate]="actionsTemplate"
+    [filterTemplate]="filterTemplate"
+  ></table-component>
+</div>
+
+<ng-template #filterTemplate>
+  <form-component
+    [form]="form"
+    [options]="options"
+    [model]="model"
+    [fields]="fields"
+    [actionsTemplate]="filterActionsTemplate"
+    (resetEvent)="reset($event)"
+  ></form-component>
+  <ng-template #filterActionsTemplate>
+    <button mat-button (click)="applyFilter()">
+      {{ "Applica filtro" | translate }}
+    </button>
+  </ng-template>
+</ng-template>
+
+<ng-template let-row="row" #expandsTemplate>
+  <div class="display-flex">
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Pacchetto stradale attuale" | translate }}</div>
+      <ng-container *ngIf="row.pacchetti.length != 0; else empty">
+        <div *ngFor="let pacchetto of row.pacchetti">
+          <mat-list-item *ngFor="let strato of pacchetto.strati">
+            <div mat-line>
+              {{ strato.materiale.nome }} <i>({{ strato.spessore }} cm)</i>
+            </div>
+            <div mat-line>
+              <span>{{ strato.note }}</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div mat-line>
+              <span>{{ pacchetto.note }}</span>
+            </div>
+            <div mat-line>
+              <span>{{
+                "Valido dal {data}"
+                  | translate
+                    : { data: pacchetto.inizio_validita | date: "full":"it" }
+              }}</span>
+            </div>
+          </mat-list-item>
+        </div>
+      </ng-container>
+      <ng-template #empty>
+        <mat-list-item>
+          <div mat-line>
+            <span>{{ "Non esiste un pacchetto stradalale" | translate }}</span>
+          </div>
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+    <mat-list class="flex-1">
+      <div mat-subheader>{{ "Vecchi pacchetti stradali" | translate }}</div>
+      <ng-container *ngIf="row.pacchetti_vecchi.length != 0; else empty1">
+        <div *ngFor="let pacchetto of row.pacchetti_vecchi">
+          <mat-list-item *ngFor="let strato of pacchetto.strati">
+            <div mat-line>
+              {{ strato.materiale.nome }} <i>({{ strato.spessore }} cm)</i>
+            </div>
+            <div mat-line>
+              <span>{{ strato.note }}</span>
+            </div>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div mat-line>
+              <span>{{ pacchetto.note }}</span>
+            </div>
+            <div mat-line>
+              <span>{{
+                "Valida fino al {data}"
+                  | translate
+                    : { data: pacchetto.fine_validita | date: "full":"it" }
+              }}</span>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </ng-container>
+      <ng-template #empty1>
+        <mat-list-item>
+          <div mat-line>
+            <span>{{
+              "Non ci sono vecchi pacchetti stradali" | translate
+            }}</span>
+          </div>
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+  </div>
+</ng-template>
+
+<ng-template let-row="row" #actionsTemplate>
+  <button mat-stroked-button color="accent" (click)="openDialog(row)">
+    <mat-icon>edit</mat-icon>
+    {{ "Modifica" | translate }}
+  </button>
+</ng-template>

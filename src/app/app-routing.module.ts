@@ -5,13 +5,13 @@ import { AuthGuard } from './_core/_guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard],
-    data: { roles: ['admin'] },
   },
   {
     path: 'toponomastica',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./toponomastica/toponomastica.module').then(
         (m) => m.ToponomasticaModule
@@ -19,19 +19,28 @@ const routes: Routes = [
   },
   {
     path: 'pis',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pis/pis.module').then((m) => m.PisModule),
   },
   {
     path: 'sis',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./sis/sis.module').then((m) => m.SisModule),
   },
   {
     path: 'agcos',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./agcos/agcos.module').then((m) => m.AgcosModule),
   },
   {
+    path: 'pms',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pms/pms.module').then((m) => m.PmsModule),
+  },
+  {
     path: 'gis',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./gis/gis.module').then((m) => m.GisModule),
   },
   {

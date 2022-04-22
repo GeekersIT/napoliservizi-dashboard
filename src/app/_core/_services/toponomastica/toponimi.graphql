@@ -36,6 +36,21 @@ subscription Toponimi($where: toponomastica_toponimo_bool_exp = {}) {
         nome
       }
     }
+    pacchetti(order_by: { fine_validita: desc_nulls_first }) {
+      id
+      fine_validita
+      inizio_validita
+      note
+      strati {
+        id
+        note
+        spessore
+        materiale {
+          id
+          nome
+        }
+      }
+    }
   }
 }
 

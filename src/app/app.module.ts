@@ -17,8 +17,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
 import { AvatarModule } from 'ngx-avatar';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateCompiler, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MESSAGE_FORMAT_CONFIG, TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import {
+  TranslateCompiler,
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
+import {
+  MESSAGE_FORMAT_CONFIG,
+  TranslateMessageFormatCompiler,
+} from 'ngx-translate-messageformat-compiler';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { GraphQLModule } from './graphql.module';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -26,7 +34,10 @@ import { MatPaginationIntlService } from './_core/_services/mat-pagination-intl.
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import {
+  MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+} from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './_core/_components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
@@ -43,7 +54,7 @@ export function createTranslateLoader(http: HttpClient) {
 export function initializeRequiredService(requiredService: RequiredService) {
   return (): Promise<any> => {
     return requiredService.Init();
-  }
+  };
 }
 
 export function formlyValidationConfig(translate: TranslateService) {
@@ -60,7 +71,7 @@ export function formlyValidationConfig(translate: TranslateService) {
         message() {
           return translate.stream('FORM.VALIDATION.FORCESELECTION');
         },
-      }
+      },
     ],
   };
 }
@@ -79,12 +90,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 export const APP_LOCALE_ID = 'it';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    ConfirmDialogComponent
-  ],
+  declarations: [AppComponent, ConfirmDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -104,50 +111,67 @@ export const APP_LOCALE_ID = 'it';
       defaultLanguage: APP_LOCALE_ID,
       compiler: {
         provide: TranslateCompiler,
-        useClass: TranslateMessageFormatCompiler
+        useClass: TranslateMessageFormatCompiler,
       },
       loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
-      }
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
     }),
     GraphQLModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    FormlyModule.forRoot({ 
+    FormlyModule.forRoot({
       extras: { lazyRender: true },
       types: [
-        { name: 'datepicker', defaultOptions: { templateOptions: { datepickerOptions: { datepickerTogglePosition: 'prefix' }}}},
+        {
+          name: 'datepicker',
+          defaultOptions: {
+            templateOptions: {
+              datepickerOptions: { datepickerTogglePosition: 'prefix' },
+            },
+          },
+        },
         { name: 'textarea', defaultOptions: { templateOptions: { rows: 5 } } },
-        { name: 'input', defaultOptions: { templateOptions: { step: 0.1 } } }
-      ]
+        { name: 'input', defaultOptions: { templateOptions: { step: 0.1 } } },
+      ],
     }),
     FormlyMaterialModule,
     MatDialogModule,
     NgxUiLoaderModule,
-
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
     { provide: LOCALE_ID, useValue: APP_LOCALE_ID },
-    { provide: FORMLY_CONFIG, multi: true, useFactory: formlyValidationConfig, deps: [TranslateService] },
+    {
+      provide: FORMLY_CONFIG,
+      multi: true,
+      useFactory: formlyValidationConfig,
+      deps: [TranslateService],
+    },
     {
       provide: MatPaginatorIntl,
       useClass: MatPaginationIntlService,
     },
-    { provide: MESSAGE_FORMAT_CONFIG, useValue: { locales: [APP_LOCALE_ID] }},
+    { provide: MESSAGE_FORMAT_CONFIG, useValue: { locales: [APP_LOCALE_ID] } },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]
+      deps: [KeycloakService],
     },
     RequiredService,
     {
-      provide: APP_INITIALIZER, useFactory: initializeRequiredService, deps: [RequiredService], multi: true
-    }
+      provide: APP_INITIALIZER,
+      useFactory: initializeRequiredService,
+      deps: [RequiredService],
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
