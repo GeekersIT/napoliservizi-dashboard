@@ -8,7 +8,7 @@
     "ws": true,
     "wss": true,
     "router": {
-      "localhost:4200": "http://localhost:8080/"
+      "localhost:4200": "http://localhost:8087/"
     }
   },
   "/storage": {

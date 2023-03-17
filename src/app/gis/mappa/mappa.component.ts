@@ -85,6 +85,34 @@ export class MappaComponent {
         visible: false,
       }),
     },
+    incroci: {
+      title: 'Incroci',
+      tile: new TileLayer({
+        source: new TileWMS({
+          url: '/geoserver/' + environment.keycloak.realm + '/wms',
+          params: {
+            LAYERS: '' + environment.keycloak.realm + ':connessione_grafo',
+            TILED: true,
+          },
+          serverType: 'geoserver',
+        }),
+        visible: false,
+      }),
+    },
+    grafo: {
+      title: 'Grafo',
+      tile: new TileLayer({
+        source: new TileWMS({
+          url: '/geoserver/' + environment.keycloak.realm + '/wms',
+          params: {
+            LAYERS: '' + environment.keycloak.realm + ':grafo',
+            TILED: true,
+          },
+          serverType: 'geoserver',
+        }),
+        visible: false,
+      }),
+    },
   };
   constructor(
     private zone: NgZone,

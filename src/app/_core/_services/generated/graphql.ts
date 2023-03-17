@@ -2768,6 +2768,184 @@ export type Gis_Connessione_Grafo_Variance_Fields = {
   y?: Maybe<Scalars['Float']>;
 };
 
+/** columns and relationships of "gis.connessione_grafo_view" */
+export type Gis_Connessione_Grafo_View = {
+  __typename?: 'gis_connessione_grafo_view';
+  fk_color?: Maybe<Scalars['String']>;
+  fk_t_code?: Maybe<Scalars['String']>;
+  fk_text?: Maybe<Scalars['String']>;
+  geom?: Maybe<Scalars['geometry']>;
+  id?: Maybe<Scalars['bigint']>;
+  toponimi?: Maybe<Scalars['String']>;
+  x?: Maybe<Scalars['numeric']>;
+  y?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregated selection of "gis.connessione_grafo_view" */
+export type Gis_Connessione_Grafo_View_Aggregate = {
+  __typename?: 'gis_connessione_grafo_view_aggregate';
+  aggregate?: Maybe<Gis_Connessione_Grafo_View_Aggregate_Fields>;
+  nodes: Array<Gis_Connessione_Grafo_View>;
+};
+
+/** aggregate fields of "gis.connessione_grafo_view" */
+export type Gis_Connessione_Grafo_View_Aggregate_Fields = {
+  __typename?: 'gis_connessione_grafo_view_aggregate_fields';
+  avg?: Maybe<Gis_Connessione_Grafo_View_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Gis_Connessione_Grafo_View_Max_Fields>;
+  min?: Maybe<Gis_Connessione_Grafo_View_Min_Fields>;
+  stddev?: Maybe<Gis_Connessione_Grafo_View_Stddev_Fields>;
+  stddev_pop?: Maybe<Gis_Connessione_Grafo_View_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Gis_Connessione_Grafo_View_Stddev_Samp_Fields>;
+  sum?: Maybe<Gis_Connessione_Grafo_View_Sum_Fields>;
+  var_pop?: Maybe<Gis_Connessione_Grafo_View_Var_Pop_Fields>;
+  var_samp?: Maybe<Gis_Connessione_Grafo_View_Var_Samp_Fields>;
+  variance?: Maybe<Gis_Connessione_Grafo_View_Variance_Fields>;
+};
+
+
+/** aggregate fields of "gis.connessione_grafo_view" */
+export type Gis_Connessione_Grafo_View_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Gis_Connessione_Grafo_View_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Gis_Connessione_Grafo_View_Avg_Fields = {
+  __typename?: 'gis_connessione_grafo_view_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "gis.connessione_grafo_view". All fields are combined with a logical 'AND'. */
+export type Gis_Connessione_Grafo_View_Bool_Exp = {
+  _and?: Maybe<Array<Gis_Connessione_Grafo_View_Bool_Exp>>;
+  _not?: Maybe<Gis_Connessione_Grafo_View_Bool_Exp>;
+  _or?: Maybe<Array<Gis_Connessione_Grafo_View_Bool_Exp>>;
+  fk_color?: Maybe<String_Comparison_Exp>;
+  fk_t_code?: Maybe<String_Comparison_Exp>;
+  fk_text?: Maybe<String_Comparison_Exp>;
+  geom?: Maybe<Geometry_Comparison_Exp>;
+  id?: Maybe<Bigint_Comparison_Exp>;
+  toponimi?: Maybe<String_Comparison_Exp>;
+  x?: Maybe<Numeric_Comparison_Exp>;
+  y?: Maybe<Numeric_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Gis_Connessione_Grafo_View_Max_Fields = {
+  __typename?: 'gis_connessione_grafo_view_max_fields';
+  fk_color?: Maybe<Scalars['String']>;
+  fk_t_code?: Maybe<Scalars['String']>;
+  fk_text?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['bigint']>;
+  toponimi?: Maybe<Scalars['String']>;
+  x?: Maybe<Scalars['numeric']>;
+  y?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate min on columns */
+export type Gis_Connessione_Grafo_View_Min_Fields = {
+  __typename?: 'gis_connessione_grafo_view_min_fields';
+  fk_color?: Maybe<Scalars['String']>;
+  fk_t_code?: Maybe<Scalars['String']>;
+  fk_text?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['bigint']>;
+  toponimi?: Maybe<Scalars['String']>;
+  x?: Maybe<Scalars['numeric']>;
+  y?: Maybe<Scalars['numeric']>;
+};
+
+/** Ordering options when selecting data from "gis.connessione_grafo_view". */
+export type Gis_Connessione_Grafo_View_Order_By = {
+  fk_color?: Maybe<Order_By>;
+  fk_t_code?: Maybe<Order_By>;
+  fk_text?: Maybe<Order_By>;
+  geom?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  toponimi?: Maybe<Order_By>;
+  x?: Maybe<Order_By>;
+  y?: Maybe<Order_By>;
+};
+
+/** select columns of table "gis.connessione_grafo_view" */
+export enum Gis_Connessione_Grafo_View_Select_Column {
+  /** column name */
+  FkColor = 'fk_color',
+  /** column name */
+  FkTCode = 'fk_t_code',
+  /** column name */
+  FkText = 'fk_text',
+  /** column name */
+  Geom = 'geom',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Toponimi = 'toponimi',
+  /** column name */
+  X = 'x',
+  /** column name */
+  Y = 'y'
+}
+
+/** aggregate stddev on columns */
+export type Gis_Connessione_Grafo_View_Stddev_Fields = {
+  __typename?: 'gis_connessione_grafo_view_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Gis_Connessione_Grafo_View_Stddev_Pop_Fields = {
+  __typename?: 'gis_connessione_grafo_view_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Gis_Connessione_Grafo_View_Stddev_Samp_Fields = {
+  __typename?: 'gis_connessione_grafo_view_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Gis_Connessione_Grafo_View_Sum_Fields = {
+  __typename?: 'gis_connessione_grafo_view_sum_fields';
+  id?: Maybe<Scalars['bigint']>;
+  x?: Maybe<Scalars['numeric']>;
+  y?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate var_pop on columns */
+export type Gis_Connessione_Grafo_View_Var_Pop_Fields = {
+  __typename?: 'gis_connessione_grafo_view_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Gis_Connessione_Grafo_View_Var_Samp_Fields = {
+  __typename?: 'gis_connessione_grafo_view_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Gis_Connessione_Grafo_View_Variance_Fields = {
+  __typename?: 'gis_connessione_grafo_view_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  x?: Maybe<Scalars['Float']>;
+  y?: Maybe<Scalars['Float']>;
+};
+
 /** columns and relationships of "gis.posizionamento_toponimo" */
 export type Gis_Posizionamento_Toponimo = {
   __typename?: 'gis_posizionamento_toponimo';
@@ -3088,6 +3266,8 @@ export type Gis_Sostegno_Ipi = {
   id_cavo?: Maybe<Scalars['String']>;
   lampada1?: Maybe<Scalars['String']>;
   lampada2?: Maybe<Scalars['String']>;
+  lampada_1?: Maybe<Scalars['String']>;
+  lampada_2?: Maybe<Scalars['String']>;
   linea?: Maybe<Scalars['String']>;
   matricola?: Maybe<Scalars['String']>;
   sostegno?: Maybe<Scalars['String']>;
@@ -3149,6 +3329,8 @@ export type Gis_Sostegno_Ipi_Bool_Exp = {
   id_cavo?: Maybe<String_Comparison_Exp>;
   lampada1?: Maybe<String_Comparison_Exp>;
   lampada2?: Maybe<String_Comparison_Exp>;
+  lampada_1?: Maybe<String_Comparison_Exp>;
+  lampada_2?: Maybe<String_Comparison_Exp>;
   linea?: Maybe<String_Comparison_Exp>;
   matricola?: Maybe<String_Comparison_Exp>;
   sostegno?: Maybe<String_Comparison_Exp>;
@@ -3182,6 +3364,8 @@ export type Gis_Sostegno_Ipi_Insert_Input = {
   id_cavo?: Maybe<Scalars['String']>;
   lampada1?: Maybe<Scalars['String']>;
   lampada2?: Maybe<Scalars['String']>;
+  lampada_1?: Maybe<Scalars['String']>;
+  lampada_2?: Maybe<Scalars['String']>;
   linea?: Maybe<Scalars['String']>;
   matricola?: Maybe<Scalars['String']>;
   sostegno?: Maybe<Scalars['String']>;
@@ -3204,6 +3388,8 @@ export type Gis_Sostegno_Ipi_Max_Fields = {
   id_cavo?: Maybe<Scalars['String']>;
   lampada1?: Maybe<Scalars['String']>;
   lampada2?: Maybe<Scalars['String']>;
+  lampada_1?: Maybe<Scalars['String']>;
+  lampada_2?: Maybe<Scalars['String']>;
   linea?: Maybe<Scalars['String']>;
   matricola?: Maybe<Scalars['String']>;
   sostegno?: Maybe<Scalars['String']>;
@@ -3226,6 +3412,8 @@ export type Gis_Sostegno_Ipi_Min_Fields = {
   id_cavo?: Maybe<Scalars['String']>;
   lampada1?: Maybe<Scalars['String']>;
   lampada2?: Maybe<Scalars['String']>;
+  lampada_1?: Maybe<Scalars['String']>;
+  lampada_2?: Maybe<Scalars['String']>;
   linea?: Maybe<Scalars['String']>;
   matricola?: Maybe<Scalars['String']>;
   sostegno?: Maybe<Scalars['String']>;
@@ -3264,6 +3452,8 @@ export type Gis_Sostegno_Ipi_Order_By = {
   id_cavo?: Maybe<Order_By>;
   lampada1?: Maybe<Order_By>;
   lampada2?: Maybe<Order_By>;
+  lampada_1?: Maybe<Order_By>;
+  lampada_2?: Maybe<Order_By>;
   linea?: Maybe<Order_By>;
   matricola?: Maybe<Order_By>;
   sostegno?: Maybe<Order_By>;
@@ -3303,6 +3493,10 @@ export enum Gis_Sostegno_Ipi_Select_Column {
   /** column name */
   Lampada2 = 'lampada2',
   /** column name */
+  Lampada_1 = 'lampada_1',
+  /** column name */
+  Lampada_2 = 'lampada_2',
+  /** column name */
   Linea = 'linea',
   /** column name */
   Matricola = 'matricola',
@@ -3331,6 +3525,8 @@ export type Gis_Sostegno_Ipi_Set_Input = {
   id_cavo?: Maybe<Scalars['String']>;
   lampada1?: Maybe<Scalars['String']>;
   lampada2?: Maybe<Scalars['String']>;
+  lampada_1?: Maybe<Scalars['String']>;
+  lampada_2?: Maybe<Scalars['String']>;
   linea?: Maybe<Scalars['String']>;
   matricola?: Maybe<Scalars['String']>;
   sostegno?: Maybe<Scalars['String']>;
@@ -3388,6 +3584,10 @@ export enum Gis_Sostegno_Ipi_Update_Column {
   Lampada1 = 'lampada1',
   /** column name */
   Lampada2 = 'lampada2',
+  /** column name */
+  Lampada_1 = 'lampada_1',
+  /** column name */
+  Lampada_2 = 'lampada_2',
   /** column name */
   Linea = 'linea',
   /** column name */
@@ -21399,6 +21599,10 @@ export type Query_Root = {
   gis_connessione_grafo_aggregate: Gis_Connessione_Grafo_Aggregate;
   /** fetch data from the table: "gis.connessione_grafo" using primary key columns */
   gis_connessione_grafo_by_pk?: Maybe<Gis_Connessione_Grafo>;
+  /** fetch data from the table: "gis.connessione_grafo_view" */
+  gis_connessione_grafo_view: Array<Gis_Connessione_Grafo_View>;
+  /** fetch aggregated fields from the table: "gis.connessione_grafo_view" */
+  gis_connessione_grafo_view_aggregate: Gis_Connessione_Grafo_View_Aggregate;
   /** fetch data from the table: "gis.posizionamento_toponimo" */
   gis_posizionamento_toponimo: Array<Gis_Posizionamento_Toponimo>;
   /** fetch aggregated fields from the table: "gis.posizionamento_toponimo" */
@@ -22444,6 +22648,24 @@ export type Query_RootGis_Connessione_Grafo_AggregateArgs = {
 
 export type Query_RootGis_Connessione_Grafo_By_PkArgs = {
   id: Scalars['bigint'];
+};
+
+
+export type Query_RootGis_Connessione_Grafo_ViewArgs = {
+  distinct_on?: Maybe<Array<Gis_Connessione_Grafo_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Gis_Connessione_Grafo_View_Order_By>>;
+  where?: Maybe<Gis_Connessione_Grafo_View_Bool_Exp>;
+};
+
+
+export type Query_RootGis_Connessione_Grafo_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Gis_Connessione_Grafo_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Gis_Connessione_Grafo_View_Order_By>>;
+  where?: Maybe<Gis_Connessione_Grafo_View_Bool_Exp>;
 };
 
 
@@ -56799,6 +57021,10 @@ export type Subscription_Root = {
   gis_connessione_grafo_aggregate: Gis_Connessione_Grafo_Aggregate;
   /** fetch data from the table: "gis.connessione_grafo" using primary key columns */
   gis_connessione_grafo_by_pk?: Maybe<Gis_Connessione_Grafo>;
+  /** fetch data from the table: "gis.connessione_grafo_view" */
+  gis_connessione_grafo_view: Array<Gis_Connessione_Grafo_View>;
+  /** fetch aggregated fields from the table: "gis.connessione_grafo_view" */
+  gis_connessione_grafo_view_aggregate: Gis_Connessione_Grafo_View_Aggregate;
   /** fetch data from the table: "gis.posizionamento_toponimo" */
   gis_posizionamento_toponimo: Array<Gis_Posizionamento_Toponimo>;
   /** fetch aggregated fields from the table: "gis.posizionamento_toponimo" */
@@ -57844,6 +58070,24 @@ export type Subscription_RootGis_Connessione_Grafo_AggregateArgs = {
 
 export type Subscription_RootGis_Connessione_Grafo_By_PkArgs = {
   id: Scalars['bigint'];
+};
+
+
+export type Subscription_RootGis_Connessione_Grafo_ViewArgs = {
+  distinct_on?: Maybe<Array<Gis_Connessione_Grafo_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Gis_Connessione_Grafo_View_Order_By>>;
+  where?: Maybe<Gis_Connessione_Grafo_View_Bool_Exp>;
+};
+
+
+export type Subscription_RootGis_Connessione_Grafo_View_AggregateArgs = {
+  distinct_on?: Maybe<Array<Gis_Connessione_Grafo_View_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Gis_Connessione_Grafo_View_Order_By>>;
+  where?: Maybe<Gis_Connessione_Grafo_View_Bool_Exp>;
 };
 
 
@@ -62764,6 +63008,7 @@ export type Toponomastica_Toponimo = {
   dug_id?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
   nome: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
   /** An array relationship */
   pacchetti: Array<Pms_Pacchetto>;
   /** An aggregate relationship */
@@ -62897,6 +63142,7 @@ export type Toponomastica_Toponimo_Bool_Exp = {
   dug_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   nome?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
   pacchetti?: Maybe<Pms_Pacchetto_Bool_Exp>;
   role1?: Maybe<String_Comparison_Exp>;
   role2?: Maybe<String_Comparison_Exp>;
@@ -62935,6 +63181,7 @@ export type Toponomastica_Toponimo_Insert_Input = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   pacchetti?: Maybe<Pms_Pacchetto_Arr_Rel_Insert_Input>;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
@@ -62959,6 +63206,7 @@ export type Toponomastica_Toponimo_Max_Fields = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
   role3?: Maybe<Scalars['String']>;
@@ -62980,6 +63228,7 @@ export type Toponomastica_Toponimo_Min_Fields = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
   role3?: Maybe<Scalars['String']>;
@@ -63025,6 +63274,7 @@ export type Toponomastica_Toponimo_Order_By = {
   dug_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
   pacchetti_aggregate?: Maybe<Pms_Pacchetto_Aggregate_Order_By>;
   role1?: Maybe<Order_By>;
   role2?: Maybe<Order_By>;
@@ -63059,6 +63309,8 @@ export enum Toponomastica_Toponimo_Select_Column {
   /** column name */
   Nome = 'nome',
   /** column name */
+  Note = 'note',
+  /** column name */
   Role1 = 'role1',
   /** column name */
   Role2 = 'role2',
@@ -63089,6 +63341,7 @@ export type Toponomastica_Toponimo_Set_Input = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   role1?: Maybe<Scalars['String']>;
   role2?: Maybe<Scalars['String']>;
   role3?: Maybe<Scalars['String']>;
@@ -63146,6 +63399,8 @@ export enum Toponomastica_Toponimo_Update_Column {
   Id = 'id',
   /** column name */
   Nome = 'nome',
+  /** column name */
+  Note = 'note',
   /** column name */
   Role1 = 'role1',
   /** column name */
@@ -63791,6 +64046,7 @@ export type Toponomastica_Vecchio_Toponimo = {
   dug_id?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
   nome: Scalars['String'];
+  note?: Maybe<Scalars['String']>;
   /** An object relationship */
   tipologia?: Maybe<Toponomastica_Tipologia>;
   tipologia_id?: Maybe<Scalars['Int']>;
@@ -63879,6 +64135,7 @@ export type Toponomastica_Vecchio_Toponimo_Bool_Exp = {
   dug_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   nome?: Maybe<String_Comparison_Exp>;
+  note?: Maybe<String_Comparison_Exp>;
   tipologia?: Maybe<Toponomastica_Tipologia_Bool_Exp>;
   tipologia_id?: Maybe<Int_Comparison_Exp>;
   toponimo?: Maybe<Toponomastica_Toponimo_Bool_Exp>;
@@ -63907,6 +64164,7 @@ export type Toponomastica_Vecchio_Toponimo_Insert_Input = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   tipologia?: Maybe<Toponomastica_Tipologia_Obj_Rel_Insert_Input>;
   tipologia_id?: Maybe<Scalars['Int']>;
   toponimo?: Maybe<Toponomastica_Toponimo_Obj_Rel_Insert_Input>;
@@ -63921,6 +64179,7 @@ export type Toponomastica_Vecchio_Toponimo_Max_Fields = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   tipologia_id?: Maybe<Scalars['Int']>;
   toponimo_id?: Maybe<Scalars['Int']>;
 };
@@ -63932,6 +64191,7 @@ export type Toponomastica_Vecchio_Toponimo_Max_Order_By = {
   dug_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
   tipologia_id?: Maybe<Order_By>;
   toponimo_id?: Maybe<Order_By>;
 };
@@ -63944,6 +64204,7 @@ export type Toponomastica_Vecchio_Toponimo_Min_Fields = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   tipologia_id?: Maybe<Scalars['Int']>;
   toponimo_id?: Maybe<Scalars['Int']>;
 };
@@ -63955,6 +64216,7 @@ export type Toponomastica_Vecchio_Toponimo_Min_Order_By = {
   dug_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
   tipologia_id?: Maybe<Order_By>;
   toponimo_id?: Maybe<Order_By>;
 };
@@ -63983,6 +64245,7 @@ export type Toponomastica_Vecchio_Toponimo_Order_By = {
   dug_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   nome?: Maybe<Order_By>;
+  note?: Maybe<Order_By>;
   tipologia?: Maybe<Toponomastica_Tipologia_Order_By>;
   tipologia_id?: Maybe<Order_By>;
   toponimo?: Maybe<Toponomastica_Toponimo_Order_By>;
@@ -64007,6 +64270,8 @@ export enum Toponomastica_Vecchio_Toponimo_Select_Column {
   /** column name */
   Nome = 'nome',
   /** column name */
+  Note = 'note',
+  /** column name */
   TipologiaId = 'tipologia_id',
   /** column name */
   ToponimoId = 'toponimo_id'
@@ -64019,6 +64284,7 @@ export type Toponomastica_Vecchio_Toponimo_Set_Input = {
   dug_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
   nome?: Maybe<Scalars['String']>;
+  note?: Maybe<Scalars['String']>;
   tipologia_id?: Maybe<Scalars['Int']>;
   toponimo_id?: Maybe<Scalars['Int']>;
 };
@@ -64103,6 +64369,8 @@ export enum Toponomastica_Vecchio_Toponimo_Update_Column {
   Id = 'id',
   /** column name */
   Nome = 'nome',
+  /** column name */
+  Note = 'note',
   /** column name */
   TipologiaId = 'tipologia_id',
   /** column name */
@@ -64204,10 +64472,11 @@ export type ConnessioniGrafoSelectQueryVariables = Exact<{
   fk_t_code?: Maybe<String_Comparison_Exp>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
+  toponimi?: Maybe<String_Comparison_Exp>;
 }>;
 
 
-export type ConnessioniGrafoSelectQuery = { __typename?: 'query_root', gis_connessione_grafo: Array<{ __typename?: 'gis_connessione_grafo', id: any, fk_t_code?: string | null | undefined, geom?: any | null | undefined }> };
+export type ConnessioniGrafoSelectQuery = { __typename?: 'query_root', gis_connessione_grafo_view: Array<{ __typename?: 'gis_connessione_grafo_view', id?: any | null | undefined, geom?: any | null | undefined, toponimi?: string | null | undefined }> };
 
 export type SpecificaPosizionamentoToponimoSelectQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
@@ -65326,15 +65595,15 @@ export const SostegniIpiSelectDocument = gql`
     }
   }
 export const ConnessioniGrafoSelectDocument = gql`
-    query ConnessioniGrafoSelect($fk_t_code: String_comparison_exp = {}, $limit: Int = 10, $offset: Int = 0) {
-  gis_connessione_grafo(
-    where: {fk_t_code: $fk_t_code}
+    query ConnessioniGrafoSelect($fk_t_code: String_comparison_exp = {}, $limit: Int = 10, $offset: Int = 0, $toponimi: String_comparison_exp = {}) {
+  gis_connessione_grafo_view(
+    where: {fk_t_code: $fk_t_code, toponimi: $toponimi}
     limit: $limit
     offset: $offset
   ) {
     id
-    fk_t_code
     geom
+    toponimi
   }
 }
     `;

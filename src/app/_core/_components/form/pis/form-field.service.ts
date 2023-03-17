@@ -420,7 +420,8 @@ export class LocalizzazioneFormFieldService {
           type: 'autocomplete',
           templateOptions: {
             required: true,
-            displayWith: (element: any) => (element ? element.nome : ''),
+            displayWith: (element: any) =>
+              element != null ? element.toponimi : '',
             ...(params?.autosave ? { autosave: params.autosave[5] } : {}),
 
             filter: (term: any, limit: number, offset: number, parent?: any) =>
@@ -435,52 +436,12 @@ export class LocalizzazioneFormFieldService {
                         },
                       }
                     : {}),
+                  ...(term && typeof term === 'string'
+                    ? { toponimi: { _ilike: '%' + term + '%' } }
+                    : {}),
                 })
                 .valueChanges.pipe(
-                  mergeMap(async (result) => {
-                    let ret = Array();
-                    for (
-                      let i = 0;
-                      i < result.data!.gis_connessione_grafo.length;
-                      i++
-                    ) {
-                      let c = result.data!.gis_connessione_grafo[i];
-                      let _in = c.fk_t_code
-                        ? c.fk_t_code?.slice(1, -1).split(';;')
-                        : [];
-                      ret.push({
-                        ...c,
-                        ...{
-                          nome: await firstValueFrom(
-                            this._toponimoNomeSelectGQL
-                              .watch({ _in: _in })
-                              .valueChanges.pipe(
-                                map((toponimo) =>
-                                  toponimo.data.toponomastica_toponimo
-                                    .map(
-                                      (el) =>
-                                        (el.dug ? el.dug.nome + ' ' : '') +
-                                        el.nome
-                                    )
-                                    .join(', ')
-                                )
-                              )
-                          ),
-                        },
-                      });
-                    }
-                    return ret;
-                  }),
-                  map((data) =>
-                    term && typeof term === 'string'
-                      ? data.filter(
-                          (t) =>
-                            t.nome
-                              .toLowerCase()
-                              .indexOf(term.toLocaleLowerCase()) > -1
-                        )
-                      : data
-                  )
+                  map((result) => result.data?.gis_connessione_grafo_view)
                 ),
           },
           ...(params?.root

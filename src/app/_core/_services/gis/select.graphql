@@ -36,15 +36,16 @@ query ConnessioniGrafoSelect(
   $fk_t_code: String_comparison_exp = {}
   $limit: Int = 10
   $offset: Int = 0
+  $toponimi: String_comparison_exp = {}
 ) {
-  gis_connessione_grafo(
-    where: { fk_t_code: $fk_t_code }
+  gis_connessione_grafo_view(
+    where: { fk_t_code: $fk_t_code, toponimi: $toponimi }
     limit: $limit
     offset: $offset
   ) {
     id
-    fk_t_code
     geom
+    toponimi
   }
 }
 

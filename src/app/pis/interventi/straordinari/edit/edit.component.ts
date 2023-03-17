@@ -477,7 +477,7 @@ export class InterventiStraordinariEditComponent
                     displayWith: (element: any) => {
                       return element != null
                         ? typeof element === 'object'
-                          ? element.nome
+                          ? element.toponimi
                           : element
                         : '';
                     },
@@ -494,52 +494,13 @@ export class InterventiStraordinariEditComponent
                           fk_t_code: {
                             _ilike: parent ? '%;' + parent.codice + ';%' : '',
                           },
+                          ...(term && typeof term === 'string' && term != ''
+                            ? { toponimi: { _ilike: '%' + term + '%' } }
+                            : {}),
                         })
                         .valueChanges.pipe(
-                          mergeMap(async (result) => {
-                            let ret = Array();
-                            for (
-                              let i = 0;
-                              i < result.data!.gis_connessione_grafo.length;
-                              i++
-                            ) {
-                              let c = result.data!.gis_connessione_grafo[i];
-                              let _in = c.fk_t_code
-                                ? c.fk_t_code?.slice(1, -1).split(';;')
-                                : [];
-                              ret.push({
-                                ...c,
-                                ...{
-                                  nome: await firstValueFrom(
-                                    this._toponimoNomeSelectGQL
-                                      .watch({ _in: _in })
-                                      .valueChanges.pipe(
-                                        map((toponimo) =>
-                                          toponimo.data.toponomastica_toponimo
-                                            .map(
-                                              (el) =>
-                                                (el.dug
-                                                  ? el.dug.nome + ' '
-                                                  : '') + el.nome
-                                            )
-                                            .join(', ')
-                                        )
-                                      )
-                                  ),
-                                },
-                              });
-                            }
-                            return ret;
-                          }),
-                          map((data) =>
-                            term && typeof term === 'string' && term != ''
-                              ? data.filter(
-                                  (t) =>
-                                    t.nome
-                                      .toLowerCase()
-                                      .indexOf(term.toLocaleLowerCase()) > -1
-                                )
-                              : data
+                          map(
+                            (result) => result.data?.gis_connessione_grafo_view
                           )
                         ),
                   },
@@ -853,7 +814,7 @@ export class InterventiStraordinariEditComponent
                     displayWith: (element: any) => {
                       return element != null
                         ? typeof element === 'object'
-                          ? element.nome
+                          ? element.toponimi
                           : element
                         : '';
                     },
@@ -870,52 +831,13 @@ export class InterventiStraordinariEditComponent
                           fk_t_code: {
                             _ilike: parent ? '%;' + parent.codice + ';%' : '',
                           },
+                          ...(term && typeof term === 'string' && term != ''
+                            ? { toponimi: { _ilike: '%' + term + '%' } }
+                            : {}),
                         })
                         .valueChanges.pipe(
-                          mergeMap(async (result) => {
-                            let ret = Array();
-                            for (
-                              let i = 0;
-                              i < result.data!.gis_connessione_grafo.length;
-                              i++
-                            ) {
-                              let c = result.data!.gis_connessione_grafo[i];
-                              let _in = c.fk_t_code
-                                ? c.fk_t_code?.slice(1, -1).split(';;')
-                                : [];
-                              ret.push({
-                                ...c,
-                                ...{
-                                  nome: await firstValueFrom(
-                                    this._toponimoNomeSelectGQL
-                                      .watch({ _in: _in })
-                                      .valueChanges.pipe(
-                                        map((toponimo) =>
-                                          toponimo.data.toponomastica_toponimo
-                                            .map(
-                                              (el) =>
-                                                (el.dug
-                                                  ? el.dug.nome + ' '
-                                                  : '') + el.nome
-                                            )
-                                            .join(', ')
-                                        )
-                                      )
-                                  ),
-                                },
-                              });
-                            }
-                            return ret;
-                          }),
-                          map((data) =>
-                            term && typeof term === 'string' && term != ''
-                              ? data.filter(
-                                  (t) =>
-                                    t.nome
-                                      .toLowerCase()
-                                      .indexOf(term.toLocaleLowerCase()) > -1
-                                )
-                              : data
+                          map(
+                            (result) => result.data?.gis_connessione_grafo_view
                           )
                         ),
                   },
