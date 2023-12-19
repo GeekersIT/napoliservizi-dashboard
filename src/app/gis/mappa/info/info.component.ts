@@ -11,7 +11,7 @@ export class InfoComponent implements OnInit {
     public dialogRef: MatDialogRef<InfoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
+    // console.log(data);
   }
 
   ngOnInit(): void {}

@@ -12,10 +12,7 @@ import { SegnalazioneEdit } from '../../edit.abstract';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class SegnalazioniProtocollateEditComponent
-  extends SegnalazioneEdit
-  implements OnInit
-{
+export class SegnalazioniProtocollateEditComponent extends SegnalazioneEdit {
   fields: FormlyFieldConfig[] = [
     {
       type: 'stepper',
@@ -26,7 +23,7 @@ export class SegnalazioniProtocollateEditComponent
     },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.disabled.complete.next(false);
     this.baseInit({
       where: {

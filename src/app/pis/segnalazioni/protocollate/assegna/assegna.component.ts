@@ -41,10 +41,7 @@ import { SegnalazioneEdit } from '../../edit.abstract';
   templateUrl: './assegna.component.html',
   styleUrls: ['./assegna.component.scss'],
 })
-export class SegnalazioniProtocollateAssegnaComponent
-  extends SegnalazioneEdit
-  implements OnInit
-{
+export class SegnalazioniProtocollateAssegnaComponent extends SegnalazioneEdit {
   fields: FormlyFieldConfig[] = [
     {
       type: 'stepper',
@@ -179,7 +176,7 @@ export class SegnalazioniProtocollateAssegnaComponent
     );
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.disabled.base.next(true);
     this.baseInit({
       where: {
@@ -193,7 +190,7 @@ export class SegnalazioniProtocollateAssegnaComponent
   }
 
   async save(event: any) {
-    console.log(this.model);
+    // console.log(this.model);
 
     this._updateSegnalazioneGQL
       .mutate({

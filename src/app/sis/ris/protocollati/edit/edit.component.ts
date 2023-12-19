@@ -12,7 +12,7 @@ import { RisEdit } from '../../edit.abstract';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class RisProtocollatiEditComponent extends RisEdit implements OnInit {
+export class RisProtocollatiEditComponent extends RisEdit {
   fields: FormlyFieldConfig[] = [
     {
       type: 'stepper',
@@ -23,7 +23,7 @@ export class RisProtocollatiEditComponent extends RisEdit implements OnInit {
     },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.disabled.complete.next(false);
     this.baseInit({
       where: {

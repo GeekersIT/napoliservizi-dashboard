@@ -396,7 +396,7 @@ export class UnitaOperativeEditComponent extends Dirty implements OnInit {
           }
         : squadra;
 
-    console.log(squadra);
+    // console.log(squadra);
 
     this._updateUnitaOperativaGQL
       .mutate({

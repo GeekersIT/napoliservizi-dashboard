@@ -14,7 +14,7 @@ import { AccertatoriComponent } from './accertatori/accertatori.component';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class RisAgentiEditComponent extends RisEdit implements OnInit {
+export class RisAgentiEditComponent extends RisEdit {
   fields: FormlyFieldConfig[] = [
     {
       type: 'stepper',
@@ -25,7 +25,7 @@ export class RisAgentiEditComponent extends RisEdit implements OnInit {
     },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.baseInit({
       where: {
         _and: [
@@ -43,8 +43,8 @@ export class RisAgentiEditComponent extends RisEdit implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(async (agenti_accertatori) => {
-        console.log('The dialog was closed');
-        console.log(agenti_accertatori);
+        // console.log('The dialog was closed');
+        // console.log(agenti_accertatori);
         if (
           agenti_accertatori != '' &&
           agenti_accertatori != null &&

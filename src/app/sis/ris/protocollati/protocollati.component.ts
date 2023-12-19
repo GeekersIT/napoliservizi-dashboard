@@ -362,7 +362,7 @@ export class RisProtocollatiComponent implements OnInit {
   }
 
   async documentoProtocollato(row: any) {
-    console.log(row);
+    // console.log(row);
     let res: any = await firstValueFrom(
       this._http.post('/storage/file/get', {
         bucket: 'ris-' + row.id,

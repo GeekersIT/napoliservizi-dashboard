@@ -192,13 +192,13 @@ export class AppComponent {
         },
       ],
     },
-    {
-      label: this._translate.instant('P.S.S.U.'),
-      show: this.roles.show(['pssu-report']),
-      routerLink: '',
-      click: () => {},
-      subMenu: null,
-    },
+    // {
+    //   label: this._translate.instant('P.S.S.U.'),
+    //   show: this.roles.show(['pssu-report']),
+    //   routerLink: '',
+    //   click: () => {},
+    //   subMenu: null,
+    // },
     {
       label: this._translate.instant('Agcos'),
       show: this.roles.show(['agcos-report']),
@@ -244,7 +244,7 @@ export class AppComponent {
   async getToken() {
     let userToken = await this._keycloak.getToken();
 
-    console.log(userToken);
+    // console.log(userToken);
   }
 
   // showMenu(lista:Array<string>){

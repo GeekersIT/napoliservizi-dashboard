@@ -13,7 +13,7 @@ import { RisEdit } from '../../edit.abstract';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class RisProvvisoriEditComponent extends RisEdit implements OnInit {
+export class RisProvvisoriEditComponent extends RisEdit {
   fields: FormlyFieldConfig[] = [
     {
       type: 'stepper',
@@ -24,7 +24,7 @@ export class RisProvvisoriEditComponent extends RisEdit implements OnInit {
     },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.baseInit({
       where: {
         _and: [
@@ -188,7 +188,7 @@ export class RisProvvisoriEditComponent extends RisEdit implements OnInit {
                   complete: () => {
                     this.saving = false;
                     if (event.loading) this._loaderService.stop();
-                    console.log('salvato come bozza');
+                    // console.log('salvato come bozza');
                   },
                 });
             } else {

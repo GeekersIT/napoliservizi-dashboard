@@ -41,10 +41,7 @@ import { SegnalazioneEdit } from '../../edit.abstract';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class SegnalazioniProvvisorieEditComponent
-  extends SegnalazioneEdit
-  implements OnInit
-{
+export class SegnalazioniProvvisorieEditComponent extends SegnalazioneEdit {
   constructor(
     protected _required: RequiredService,
     protected _http: HttpClient,
@@ -121,7 +118,7 @@ export class SegnalazioniProvvisorieEditComponent
     },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.baseInit({
       where: {
         _and: [
@@ -136,7 +133,7 @@ export class SegnalazioniProvvisorieEditComponent
     if (event.type == 'def') {
       let model = await this.baseSave(event);
 
-      console.log(model);
+      // console.log(model);
 
       this._protocollo
         .mutate({
@@ -225,28 +222,28 @@ export class SegnalazioniProvvisorieEditComponent
                     this.saving = false;
                     if (event.loading) this._loaderService.stop();
 
-                    console.log('salvato come bozza');
+                    // console.log('salvato come bozza');
                   },
                 });
             } else {
-              console.log({
-                ...model!,
-                ...{ stato: Pis__Stato_Segnalazione_Enum.Aperta },
-                ...{
-                  protocollo: {
-                    ...model.protocollo,
-                    ...{
-                      data: {
-                        ...model.protocollo.data,
-                        ...{ numero: r.data?.genera_protocollo.number },
-                        ...{
-                          data: r.data?.genera_protocollo.datetime.toString(),
-                        },
-                      },
-                    },
-                  },
-                },
-              });
+              // console.log({
+              //   ...model!,
+              //   ...{ stato: Pis__Stato_Segnalazione_Enum.Aperta },
+              //   ...{
+              //     protocollo: {
+              //       ...model.protocollo,
+              //       ...{
+              //         data: {
+              //           ...model.protocollo.data,
+              //           ...{ numero: r.data?.genera_protocollo.number },
+              //           ...{
+              //             data: r.data?.genera_protocollo.datetime.toString(),
+              //           },
+              //         },
+              //       },
+              //     },
+              //   },
+              // });
 
               this._updateSegnalazioneGQL
                 .mutate({

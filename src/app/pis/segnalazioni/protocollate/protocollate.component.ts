@@ -443,7 +443,7 @@ export class SegnalazioniProtocollateComponent implements OnInit {
   }
 
   async documentoProtocollato(row: any) {
-    console.log(row);
+    // console.log(row);
     let res: any = await firstValueFrom(
       this._http.post('/storage/file/get', {
         bucket: 'segnalazione-' + row.id,
@@ -458,7 +458,7 @@ export class SegnalazioniProtocollateComponent implements OnInit {
   }
 
   async schedaSegnalazione(row: any) {
-    console.log(row);
+    // console.log(row);
 
     const template: Buffer = await fetch('/template/segnalazione.docx').then(
       (v) => v.arrayBuffer() as Promise<any>
@@ -472,7 +472,7 @@ export class SegnalazioniProtocollateComponent implements OnInit {
     this.saveByteArray('Scheda di segnalazione.docx', report, true);
   }
   async schedaAttestazione(row: any) {
-    console.log(row);
+    // console.log(row);
 
     const template: Buffer = await fetch(
       './assets/template/pis/attestazione.docx'

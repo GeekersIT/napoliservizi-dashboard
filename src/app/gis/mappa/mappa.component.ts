@@ -113,6 +113,34 @@ export class MappaComponent {
         visible: false,
       }),
     },
+    pis: {
+      title: 'PIS',
+      tile: new TileLayer({
+        source: new TileWMS({
+          url: '/geoserver/' + environment.keycloak.realm + '/wms',
+          params: {
+            LAYERS: '' + environment.keycloak.realm + ':pis',
+            TILED: true,
+          },
+          serverType: 'geoserver',
+        }),
+        visible: false,
+      }),
+    },
+    sis: {
+      title: 'SIS',
+      tile: new TileLayer({
+        source: new TileWMS({
+          url: '/geoserver/' + environment.keycloak.realm + '/wms',
+          params: {
+            LAYERS: '' + environment.keycloak.realm + ':ris',
+            TILED: true,
+          },
+          serverType: 'geoserver',
+        }),
+        visible: false,
+      }),
+    },
   };
   constructor(
     private zone: NgZone,
@@ -476,7 +504,7 @@ export class MappaComponent {
       );
       mapContext!.globalAlpha = 1;
 
-      console.log(mapCanvas.toDataURL());
+      // console.log(mapCanvas.toDataURL());
 
       var fileLink = document.createElement('a');
       fileLink.href = mapCanvas.toDataURL();

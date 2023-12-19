@@ -58,7 +58,7 @@ export class AccertatoriComponent {
     const addRef = this.dialog.open(AddDialog);
 
     addRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      // console.log(result);
       if (result != '' && result != undefined && result != null)
         this.agenti.push(result);
     });
@@ -121,10 +121,10 @@ export class AddDialog {
       .post(AUTH_API + '/token', body.toString(), httpOptions)
       .subscribe(
         (result: any) => {
-          console.log(result);
+          // console.log(result);
 
           let jwt: any = jwtDecode(result.access_token);
-          console.log(jwt);
+          // console.log(jwt);
           this.dialogRef.close({
             username: jwt.preferred_username,
             agente: {

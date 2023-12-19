@@ -1283,7 +1283,8 @@ export class InterventiStraordinariEditComponent
                   .posizionamento_toponimo_punto_iniziale.connessione ===
                   'object'
                   ? this.model.localizzazione
-                      .posizionamento_toponimo_punto_iniziale.connessione.nome
+                      .posizionamento_toponimo_punto_iniziale.connessione
+                      .toponimi
                   : this.model.localizzazione
                       .posizionamento_toponimo_punto_iniziale.connessione,
               ...(this.model.geolocalizzazione.mappa![0].punto.value
@@ -1364,7 +1365,7 @@ export class InterventiStraordinariEditComponent
                 typeof this.model.localizzazione
                   .posizionamento_toponimo_punto_finale.connessione === 'object'
                   ? this.model.localizzazione
-                      .posizionamento_toponimo_punto_finale.connessione.nome
+                      .posizionamento_toponimo_punto_finale.connessione.toponimi
                   : this.model.localizzazione
                       .posizionamento_toponimo_punto_finale.connessione,
               ...(this.model.geolocalizzazione.mappa![1].punto.value

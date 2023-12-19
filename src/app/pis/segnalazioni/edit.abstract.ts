@@ -576,7 +576,7 @@ export abstract class SegnalazioneEdit extends Dirty {
                 ?.find((f) => f.key == 'localizzazione')
                 ?.fieldGroup![1].fieldGroup![2].fieldGroup![0].fieldGroup![1].formControl!.valueChanges.subscribe(
                   (s) => {
-                    console.log(s);
+                    // console.log(s);
 
                     if (s && typeof s != 'string' && punto_iniziale) {
                       punto_iniziale.punto.next({
@@ -891,19 +891,19 @@ export abstract class SegnalazioneEdit extends Dirty {
             'templateOptions.disabled': this.disabled.base,
           },
         },
-        {
-          key: 'richiesta_protezione_civile',
-          type: 'toggle',
-          templateOptions: {
-            appearance: 'standard',
-          },
-          expressionProperties: {
-            'templateOptions.label': this._translateService.stream(
-              'Richiesta intervento protezione civile'
-            ),
-            'templateOptions.disabled': this.disabled.base,
-          },
-        },
+        // {
+        //   key: 'richiesta_protezione_civile',
+        //   type: 'toggle',
+        //   templateOptions: {
+        //     appearance: 'standard',
+        //   },
+        //   expressionProperties: {
+        //     'templateOptions.label': this._translateService.stream(
+        //       'Richiesta intervento protezione civile'
+        //     ),
+        //     'templateOptions.disabled': this.disabled.base,
+        //   },
+        // },
         {
           className: 'section-label',
           template:
@@ -1933,7 +1933,7 @@ export abstract class SegnalazioneEdit extends Dirty {
   }
 
   async baseSave(event: any) {
-    console.log(this.model);
+    // console.log(this.model);
 
     this.saving = true;
     if (event.loading) this._loaderService.start();
@@ -2087,7 +2087,8 @@ export abstract class SegnalazioneEdit extends Dirty {
                   .posizionamento_toponimo_punto_iniziale.connessione ===
                   'object'
                   ? this.model.localizzazione
-                      .posizionamento_toponimo_punto_iniziale.connessione.nome
+                      .posizionamento_toponimo_punto_iniziale.connessione
+                      .toponimi
                   : this.model.localizzazione
                       .posizionamento_toponimo_punto_iniziale.connessione,
               ...(this.model.geolocalizzazione.mappa![0].punto.value
@@ -2142,12 +2143,12 @@ export abstract class SegnalazioneEdit extends Dirty {
       ...(this.model.segnalazione.priorita
         ? { priorita_id: this.model.segnalazione.priorita.id }
         : {}),
-      ...(this.model.segnalazione.richiesta_protezione_civile
-        ? {
-            richiesta_protezione_civile:
-              this.model.segnalazione.richiesta_protezione_civile,
-          }
-        : {}),
+      // ...(this.model.segnalazione.richiesta_protezione_civile
+      //   ? {
+      //       richiesta_protezione_civile:
+      //         this.model.segnalazione.richiesta_protezione_civile,
+      //     }
+      //   : {}),
       ...(this.model.segnalazione.tecnico_referente
         ? {
             tecnico_referente: {
@@ -2386,7 +2387,7 @@ export abstract class SegnalazioneEdit extends Dirty {
     this.model = await firstValueFrom(
       this._segnalazioneGQL.watch(where, options).valueChanges.pipe(
         map(async (result) => {
-          console.log(result.data);
+          // console.log(result.data);
           let segnalazione = result.data?.pis_segnalazione[0];
           if (segnalazione === undefined) {
             this._loaderService.stop();
@@ -2537,12 +2538,36 @@ export abstract class SegnalazioneEdit extends Dirty {
                 ...{ id: segnalazione.protocollo!.id },
                 ...{ numero: segnalazione.protocollo!.numero },
                 ...{ data: segnalazione.protocollo!.data },
-                ...{ mittente: segnalazione.protocollo?.mittente },
+                ...{
+                  mittente: segnalazione.protocollo?.mittente
+                    ? segnalazione.protocollo.mittente
+                    : {
+                        codice: 'XXXX',
+                        id: 1,
+                        nome: 'XXXX',
+                        postazione: 'XXXX',
+                        servizio: 'XXXX',
+                        settore: 'XXXX',
+                        uoc: 'XXXX',
+                        uos: 'XXXX',
+                      },
+                },
                 ...{
                   destinatari: segnalazione.protocollo!.destinatari.map((e) => {
                     return {
                       id: e.id,
-                      destinatario_interno: e.destinatario_interno,
+                      destinatario_interno: e.destinatario_interno
+                        ? e.destinatario_interno
+                        : {
+                            codice: 'XXXX',
+                            id: 1,
+                            nome: 'XXXX',
+                            postazione: 'XXXX',
+                            servizio: 'XXXX',
+                            settore: 'XXXX',
+                            uoc: 'XXXX',
+                            uos: 'XXXX',
+                          },
                       destinatario_esterno: e.destinatario_esterno,
                       e_esterno: e.e_esterno,
                     };
@@ -2563,8 +2588,8 @@ export abstract class SegnalazioneEdit extends Dirty {
                   segnalazione.tecnico_referente
                 ),
                 data: segnalazione.data,
-                richiesta_protezione_civile:
-                  segnalazione.richiesta_protezione_civile,
+                // richiesta_protezione_civile:
+                //   segnalazione.richiesta_protezione_civile,
                 priorita: segnalazione.priorita,
                 segnalazioni_collegate: {
                   presegnalazioni: segnalazione.segnalazioni_collegate

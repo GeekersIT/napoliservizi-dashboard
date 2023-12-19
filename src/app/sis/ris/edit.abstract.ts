@@ -9103,7 +9103,7 @@ export abstract class RisEdit extends Dirty {
                 displayWith: (element: any) => {
                   return element != null
                     ? typeof element === 'object'
-                      ? element.toponimo
+                      ? element.toponimi
                       : element
                     : '';
                 },
@@ -9118,9 +9118,7 @@ export abstract class RisEdit extends Dirty {
                       limit,
                       offset,
                       fk_t_code: {
-                        _ilike: parent
-                          ? '%;' + parent.codice + ';%'
-                          : '',
+                        _ilike: parent ? '%;' + parent.codice + ';%' : '',
                       },
                       ...(term && typeof term === 'string' && term != ''
                         ? { toponimi: { _ilike: '%' + term + '%' } }
@@ -9129,9 +9127,6 @@ export abstract class RisEdit extends Dirty {
                     .valueChanges.pipe(
                       map((result) => result.data?.gis_connessione_grafo_view)
                     ),
-
-
-                
               },
               hooks: {
                 onInit: (field) => {
@@ -11591,8 +11586,8 @@ export abstract class RisEdit extends Dirty {
           .includes(x)
     );
 
-    console.log(agenti_accertatori_d);
-    console.log(agenti_accertatori_n);
+    // console.log(agenti_accertatori_d);
+    // console.log(agenti_accertatori_n);
 
     let model = {
       id: this.id,
@@ -13888,7 +13883,7 @@ export abstract class RisEdit extends Dirty {
                 typeof this.model.localizzazione.posizionamento_toponimo
                   .connessione === 'object'
                   ? this.model.localizzazione.posizionamento_toponimo
-                      .connessione.nome
+                      .connessione.toponimi
                   : this.model.localizzazione.posizionamento_toponimo
                       .connessione,
               ...(this.model.geolocalizzazione.mappa![0].punto.value
@@ -14011,7 +14006,7 @@ export abstract class RisEdit extends Dirty {
       },
     };
 
-    console.log(model);
+    // console.log(model);
 
     delete model.posizionamento_toponimo.data.tipologia;
     delete model.posizionamento_toponimo.data.specifica;
@@ -15207,12 +15202,36 @@ export abstract class RisEdit extends Dirty {
                 ...{ id: ris.protocollo!.id },
                 ...{ numero: ris.protocollo!.numero },
                 ...{ data: ris.protocollo!.data },
-                ...{ mittente: ris.protocollo?.mittente },
+                ...{
+                  mittente: ris.protocollo?.mittente
+                    ? ris.protocollo.mittente
+                    : {
+                        codice: 'XXXX',
+                        id: 1,
+                        nome: 'XXXX',
+                        postazione: 'XXXX',
+                        servizio: 'XXXX',
+                        settore: 'XXXX',
+                        uoc: 'XXXX',
+                        uos: 'XXXX',
+                      },
+                },
                 ...{
                   destinatari: ris.protocollo!.destinatari.map((e) => {
                     return {
                       id: e.id,
-                      destinatario_interno: e.destinatario_interno,
+                      destinatario_interno: e.destinatario_interno
+                        ? e.destinatario_interno
+                        : {
+                            codice: 'XXXX',
+                            id: 1,
+                            nome: 'XXXX',
+                            postazione: 'XXXX',
+                            servizio: 'XXXX',
+                            settore: 'XXXX',
+                            uoc: 'XXXX',
+                            uos: 'XXXX',
+                          },
                       destinatario_esterno: e.destinatario_esterno,
                       e_esterno: e.e_esterno,
                     };

@@ -24,10 +24,7 @@ import { SegnalazioneEdit } from '../../edit.abstract';
   templateUrl: './completa.component.html',
   styleUrls: ['./completa.component.scss'],
 })
-export class SegnalazioniProtocollateCompletaComponent
-  extends SegnalazioneEdit
-  implements OnInit
-{
+export class SegnalazioniProtocollateCompletaComponent extends SegnalazioneEdit {
   // internalStartData: any = {
   //   allegati: [],
   //   attrezzature_impiegate: [],
@@ -425,7 +422,7 @@ export class SegnalazioniProtocollateCompletaComponent
   //   );
   // }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.disabled.base.next(true);
     this.disabled.complete.next(false);
     this.hide.complete.next(false);
